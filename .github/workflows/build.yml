@@ -47,7 +47,7 @@ jobs:
         run: ./gradlew --console=plain :app:assembleFossDebug --warning-mode summary
 
       - name: Upload APK
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: music-nacitone-debug-apk
           path: app/build/outputs/apk/**/*.apk
@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload build reports (on failure)
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: build-reports
           path: |
