@@ -59,7 +59,6 @@ import com.nacitone.innertube.YouTube
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.LocalDownloadUtil
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.constants.ListItemHeight
 import com.nacitone.music.constants.ListThumbnailSize
@@ -93,7 +92,6 @@ fun QueueMenu(
     val database = LocalDatabase.current
     val playerConnection = LocalPlayerConnection.current ?: return
     val coroutineScope = rememberCoroutineScope()
-    val syncUtils = LocalSyncUtils.current
 
     val downloadUtil = LocalDownloadUtil.current
     val librarySong by database.song(mediaMetadata.id).collectAsStateWithLifecycle(initialValue = null)
@@ -231,7 +229,6 @@ fun QueueMenu(
                                 database.query {
                                     update(s)
                                 }
-                                syncUtils.likeSong(s)
                             }
                         }
                     }

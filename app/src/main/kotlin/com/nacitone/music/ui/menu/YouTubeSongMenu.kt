@@ -62,7 +62,6 @@ import com.nacitone.music.LocalArtistNameAliases
 import com.nacitone.music.LocalDownloadUtil
 import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.constants.ListItemHeight
 import com.nacitone.music.constants.ListThumbnailSize
@@ -107,7 +106,6 @@ fun YouTubeSongMenu(
     val librarySong by database.song(song.id).collectAsStateWithLifecycle(initialValue = null)
     val download by downloadUtil.getDownload(song.id).collectAsStateWithLifecycle(initialValue = null)
     val coroutineScope = rememberCoroutineScope()
-    val syncUtils = LocalSyncUtils.current
     val listenTogetherManager = LocalListenTogetherManager.current
     val isPinned by database.speedDialDao.isPinned(song.id).collectAsStateWithLifecycle(initialValue = false)
     val artistNameAliases = LocalArtistNameAliases.current
@@ -240,12 +238,6 @@ fun YouTubeSongMenu(
                                 insert(song.toMediaMetadata().toSongEntity().copy(inLibrary = LocalDateTime.now(), isEpisode = true))
                             }
                         }
-
-                        // Sync with YouTube (handles login check internally)
-                        coroutineScope.launch(Dispatchers.IO) {
-                            val setVideoId = if (isCurrentlySaved) song.setVideoId ?: database.getSetVideoId(song.id)?.setVideoId else null
-                            syncUtils.saveEpisode(song.id, shouldBeSaved, setVideoId)
-                        }
                     } else {
                         // Regular song: toggle like
                         database.transaction {
@@ -258,7 +250,6 @@ fun YouTubeSongMenu(
                                     s = librarySong.song.toggleLike()
                                     update(s)
                                 }
-                                syncUtils.likeSong(s)
                             }
                         }
                     }
@@ -437,8 +428,6 @@ fun YouTubeSongMenu(
                                         database.query {
                                             librarySong?.song?.let { update(it.copy(inLibrary = null)) }
                                         }
-                                        // Sync with YouTube (handles login check internally)
-                                        syncUtils.saveEpisode(song.id, false, song.setVideoId)
                                         onDismiss()
                                     }
                                 )
@@ -464,8 +453,6 @@ fun YouTubeSongMenu(
                                                 insert(song.toMediaMetadata().toSongEntity().copy(inLibrary = java.time.LocalDateTime.now(), isEpisode = true))
                                             }
                                         }
-                                        // Sync with YouTube (handles login check internally)
-                                        syncUtils.saveEpisode(song.id, true, null)
                                         onDismiss()
                                     }
                                 )

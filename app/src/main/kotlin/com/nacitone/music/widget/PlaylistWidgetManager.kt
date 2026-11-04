@@ -651,7 +651,7 @@ class PlaylistWidgetManager @Inject constructor(
     }
 
     private fun getPlayTargetIntent(item: QuickPick): PendingIntent {
-        val intent = Intent(context, PlaylistWidgetReceiver::class.java).apply {
+        val intent = Intent(context, WidgetActionReceiver::class.java).apply {
             action = PlaylistWidgetReceiver.ACTION_PLAY_TARGET
             putExtra(PlaylistWidgetReceiver.EXTRA_TARGET_TYPE, item.targetType)
             putExtra(PlaylistWidgetReceiver.EXTRA_TARGET_ID, item.targetId)
@@ -669,7 +669,7 @@ class PlaylistWidgetManager @Inject constructor(
         action: String,
         requestCode: Int,
     ): PendingIntent {
-        val intent = Intent(context, MusicWidgetReceiver::class.java).apply {
+        val intent = Intent(context, WidgetActionReceiver::class.java).apply {
             this.action = action
         }
         return PendingIntent.getBroadcast(

@@ -9,7 +9,6 @@ package com.nacitone.music.utils
 import android.content.Context
 import com.nacitone.music.db.MusicDatabase
 import com.nacitone.music.db.entities.PlaylistEntity
-import com.nacitone.music.db.entities.SongEntity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,10 +21,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Nacitone tidak punya login akun, jadi sinkronisasi dua arah dengan akun YouTube Music
- * sudah dihapus. Kelas ini tinggal menyimpan operasi lokal (membuat playlist, membersihkan
- * data podcast). Fungsi sinkronisasi di bawah dipertahankan sebagai no-op supaya pemanggil
- * lama tetap berkompilasi; hapus pemanggilnya satu per satu setelah build berhasil.
+ * Nacitone tidak punya login akun, jadi sinkronisasi dengan akun YouTube Music sudah dihapus.
+ * Kelas ini hanya berisi operasi lokal: membuat playlist dan membersihkan data podcast.
  */
 @Singleton
 class SyncUtils @Inject constructor(
@@ -34,15 +31,14 @@ class SyncUtils @Inject constructor(
 ) {
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
-    /** Membuat playlist lokal. [syncWithYouTube] diabaikan karena tidak ada akun. */
+    /** Membuat playlist lokal, lalu memanggil [onCreated] dengan ID-nya di thread utama. */
     fun createPlaylist(
         playlist: PlaylistEntity,
-        @Suppress("UNUSED_PARAMETER") syncWithYouTube: Boolean,
-        onCreated: ((String, Boolean) -> Unit)? = null,
+        onCreated: ((String) -> Unit)? = null,
     ) {
         scope.launch {
             database.insert(playlist.copy(browseId = null, isAutoSync = false))
-            withContext(Dispatchers.Main) { onCreated?.invoke(playlist.id, false) }
+            withContext(Dispatchers.Main) { onCreated?.invoke(playlist.id) }
         }
     }
 
@@ -62,31 +58,4 @@ class SyncUtils @Inject constructor(
             }
         }
     }
-
-    // --- No-op: tidak ada akun untuk disinkronkan ---
-
-    fun tryAutoSync() {}
-    suspend fun performFullSyncSuspend() {}
-    fun likeSong(@Suppress("UNUSED_PARAMETER") s: SongEntity) {}
-    fun subscribeChannel(channelId: String, subscribe: Boolean) {}
-    fun savePodcast(podcastId: String, save: Boolean) {}
-    fun saveEpisode(episodeId: String, save: Boolean, setVideoId: String? = null) {}
-    fun syncLikedSongs() {}
-    fun syncLibrarySongs() {}
-    fun syncUploadedSongs() {}
-    fun syncLikedAlbums() {}
-    fun syncArtistsSubscriptions() {}
-    fun syncSavedPlaylists() {}
-    suspend fun syncLikedSongsSuspend() {}
-    suspend fun syncUploadedSongsSuspend() {}
-    suspend fun syncPodcastSubscriptionsSuspend() {}
-    suspend fun syncEpisodesForLaterSuspend() {}
-    suspend fun syncPlaylistSuspend(browseId: String, playlistId: String) {}
-    fun scheduleAddToPlaylist(browseId: String, playlistId: String, songIds: List<String>) {}
-    fun scheduleRemoveFromPlaylist(
-        browseId: String,
-        songId: String,
-        playlistId: String,
-        getSetVideoId: suspend () -> String?,
-    ) {}
 }

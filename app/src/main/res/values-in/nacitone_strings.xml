@@ -810,4 +810,19 @@
     <string name="qr_share_image">Bagikan gambar</string>
     <string name="qr_scan_hint">Pindai dengan kamera ponsel untuk membuka playlist</string>
     <string name="qr_card_label">Playlist</string>
+    <string name="listen_link_join_title">Gabung ke ruangan?</string>
+    <string name="listen_link_join_message">Sebuah tautan mengajak Anda bergabung ke ruangan Listen Together dengan kode %1$s. Pemilik ruangan dapat mengendalikan pemutaran di perangkat Anda. Lanjutkan hanya jika Anda mempercayai pengirim tautan.</string>
+    <string name="listen_link_join_action">Gabung</string>
+    <string name="support_banner_title">Suka Nacitone?</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="support_banner_message">Aplikasi ini gratis dan dikembangkan oleh Muhammad Ikhsan. Dukungan Anda membantu Nacitone terus berkembang.</string>
+    <string name="support_banner_later">Nanti saja</string>
+    <string name="report_problem">Laporkan masalah</string>
+    <string name="report_problem_chooser">Laporkan masalah</string>
+    <string name="report_problem_subject">Laporan masalah Nacitone</string>
+    <string name="report_problem_intro">Tuliskan apa yang terjadi di sini (apa yang Anda ketuk dan apa yang diharapkan). Info perangkat dan crash terakhir dilampirkan.</string>
+    <string name="nusantara_title">Nusantara</string>
+    <string name="nusantara_subtitle">Musik daerah dari Sabang sampai Merauke</string>
+    <string name="data_usage_title">Pemakaian data sesi ini</string>
+    <string name="data_usage_summary">Data seluler: %1$s · Wi-Fi: %2$s. Ketuk untuk mengatur ulang.</string>
 </resources>

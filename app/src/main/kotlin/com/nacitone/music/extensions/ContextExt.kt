@@ -8,25 +8,6 @@ package com.nacitone.music.extensions
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.nacitone.innertube.utils.parseCookieString
-import com.nacitone.music.constants.InnerTubeCookieKey
-import com.nacitone.music.constants.YtmSyncKey
-import com.nacitone.music.utils.dataStore
-import com.nacitone.music.utils.get
-import kotlinx.coroutines.runBlocking
-
-fun Context.isSyncEnabled(): Boolean {
-    return runBlocking {
-        dataStore.get(YtmSyncKey, true) && isUserLoggedIn()
-    }
-}
-
-fun Context.isUserLoggedIn(): Boolean {
-    return runBlocking {
-        val cookie = dataStore[InnerTubeCookieKey] ?: ""
-        "SAPISID" in parseCookieString(cookie) && isInternetConnected()
-    }
-}
 
 fun Context.isInternetConnected(): Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

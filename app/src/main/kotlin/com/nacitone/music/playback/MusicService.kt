@@ -101,6 +101,7 @@ import com.metrolist.innertubex.extraction.ContentHints
 import com.nacitone.lastfm.LastFM
 import com.nacitone.music.MainActivity
 import com.nacitone.music.R
+import com.nacitone.music.utils.DataUsageMeter
 import com.nacitone.music.constants.AddToPlaylistPosition
 import com.nacitone.music.constants.AddToPlaylistPositionKey
 import com.nacitone.music.constants.AndroidAutoTargetPlaylistKey
@@ -190,7 +191,6 @@ import com.nacitone.music.constants.LoudnessLevelKey
 import com.nacitone.music.utils.CoilBitmapLoader
 import com.nacitone.music.utils.NetworkConnectivityObserver
 import com.nacitone.music.utils.ScrobbleManager
-import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.getArtistSeparator
 import com.nacitone.music.utils.joinToArtistString
 import com.nacitone.music.utils.InnerTubeXPlayer
@@ -257,9 +257,6 @@ class MusicService :
 
     @Inject
     lateinit var lyricsHelper: LyricsHelper
-
-    @Inject
-    lateinit var syncUtils: SyncUtils
 
     @Inject
     lateinit var downloadUtil: DownloadUtil
@@ -2064,7 +2061,6 @@ class MusicService :
 
                 database.query {
                     update(song)
-                    syncUtils.likeSong(song)
 
                     if (dataStore.get(AutoDownloadOnLikeKey, false) && song.liked) {
                         downloadUtil.download(song.id)
@@ -2125,10 +2121,6 @@ class MusicService :
             )
         }
         currentMediaMetadata.value = player.currentMetadata
-
-        // Sync with YouTube (handles login check internally)
-        val setVideoId = if (isCurrentlySaved) database.getSetVideoId(songEntity.id)?.setVideoId else null
-        syncUtils.saveEpisode(songEntity.id, shouldBeSaved, setVideoId)
     }
 
     fun toggleStartRadio() {
@@ -3342,7 +3334,7 @@ class MusicService :
                                         } ?: response.request
                                     }.build(),
                             ),
-                        ),
+                        ).setTransferListener(DataUsageMeter.get(this)),
                     ),
             ).setCacheWriteDataSinkFactory(null)
             .setFlags(FLAG_IGNORE_CACHE_ON_ERROR)
@@ -4008,14 +4000,29 @@ class MusicService :
             }
         }
 
+        // onCreate() bisa berhenti lebih awal (mis. izin foreground ditolak OEM seperti vivo saat
+        // widget ditekan dari latar belakang) sebelum player dibuat. Android tetap memanggil
+        // onStartCommand() setelahnya, jadi tanpa penjagaan ini player yang belum ada diakses.
+        if (!::player.isInitialized) {
+            Timber.tag(TAG).w("onStartCommand dipanggil sebelum player siap; menghentikan service")
+            stopSelf()
+            return START_NOT_STICKY
+        }
+
         when (intent?.action) {
             ACTION_ALARM_TRIGGER -> {
                 handleAlarmTrigger(intent)
             }
 
             MusicWidgetReceiver.ACTION_PLAY_PAUSE -> {
-                if (player.isPlaying) player.pause() else player.play()
-                updateWidgetUI(player.isPlaying)
+                if (player.mediaItemCount == 0) {
+                    // Antrean kosong (mis. aplikasi baru dibuka lewat widget): mulai dari lagu favorit,
+                    // atau lagu terpopuler, supaya tombol play tidak diam saja.
+                    playFromWidgetWhenQueueEmpty()
+                } else {
+                    if (player.isPlaying) player.pause() else player.play()
+                    updateWidgetUI(player.isPlaying)
+                }
             }
 
             MusicWidgetReceiver.ACTION_LIKE -> {
@@ -4045,6 +4052,35 @@ class MusicService :
         return super.onStartCommand(intent, flags, startId)
     }
 
+
+    private fun playFromWidgetWhenQueueEmpty() {
+        scope.launch {
+            try {
+                val queue = withContext(Dispatchers.IO) {
+                    val liked = Intent().putExtra(
+                        PlaylistWidgetReceiver.EXTRA_TARGET_TYPE,
+                        PlaylistWidgetReceiver.TARGET_TYPE_LIKED,
+                    )
+                    val top = Intent().putExtra(
+                        PlaylistWidgetReceiver.EXTRA_TARGET_TYPE,
+                        PlaylistWidgetReceiver.TARGET_TYPE_TOP,
+                    )
+                    buildPlaylistWidgetQueue(liked) ?: buildPlaylistWidgetQueue(top)
+                }
+                if (queue != null) {
+                    playQueue(queue, playWhenReady = true)
+                    updateWidgetUI(true)
+                } else {
+                    startActivity(
+                        Intent(this@MusicService, MainActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                    )
+                }
+            } catch (t: Throwable) {
+                Timber.tag(TAG).e(t, "Gagal memutar dari widget saat antrean kosong")
+            }
+        }
+    }
 
     private fun handlePlaylistWidgetPlay(intent: Intent) {
         scope.launch {
@@ -4151,7 +4187,24 @@ class MusicService :
         }
     }
 
+    /**
+     * Service ini diekspor (dibutuhkan pengontrol media), jadi aplikasi lain bisa mengirim
+     * ACTION_ALARM_TRIGGER. Hanya jalankan bila ID alarm benar-benar ada di penyimpanan alarm.
+     */
     private fun handleAlarmTrigger(intent: Intent) {
+        val alarmId = intent.getStringExtra(EXTRA_ALARM_ID).orEmpty()
+        scope.launch(Dispatchers.IO) {
+            val known = alarmId.isNotBlank() &&
+                runCatching { MusicAlarmStore.load(this@MusicService).any { it.id == alarmId } }.getOrDefault(false)
+            if (!known) {
+                Timber.tag(TAG).w("Mengabaikan pemicu alarm dengan ID tidak dikenal")
+                return@launch
+            }
+            withContext(Dispatchers.Main) { handleVerifiedAlarmTrigger(intent) }
+        }
+    }
+
+    private fun handleVerifiedAlarmTrigger(intent: Intent) {
         scope.launch(Dispatchers.IO) {
             try {
                 MusicAlarmScheduler.scheduleFromPreferences(this@MusicService)

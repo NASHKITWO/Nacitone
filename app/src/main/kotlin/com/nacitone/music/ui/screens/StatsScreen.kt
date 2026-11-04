@@ -63,12 +63,10 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nacitone.innertube.models.Artist
 import com.nacitone.innertube.models.WatchEndpoint
-import com.nacitone.innertube.utils.parseCookieString
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
 import com.nacitone.music.constants.CONTENT_TYPE_ARTIST
-import com.nacitone.music.constants.InnerTubeCookieKey
 import com.nacitone.music.constants.StatPeriod
 import com.nacitone.music.extensions.toMediaItem
 import com.nacitone.music.models.toMediaMetadata
@@ -92,7 +90,6 @@ import com.nacitone.music.ui.menu.SongMenu
 import com.nacitone.music.ui.utils.backToMain
 import com.nacitone.music.utils.joinByBullet
 import com.nacitone.music.utils.makeTimeString
-import com.nacitone.music.utils.rememberPreference
 import com.nacitone.music.viewmodels.StatsViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -174,19 +171,7 @@ fun StatsScreen(
             mostPlayedSongsStats.mapNotNull { statsSong -> songsById[statsSong.id] }
         }
     val mostPeriodPlaylists = listOfNotNull(weeklyMostPlaylist, monthlyMostPlaylist)
-    val (innerTubeCookie) = rememberPreference(InnerTubeCookieKey, "")
-    val isLoggedIn =
-        remember(innerTubeCookie) {
-            "SAPISID" in parseCookieString(innerTubeCookie)
-        }
-    val visibleStatsPlaylists =
-        remember(mostPeriodPlaylists, recapPlaylists, isLoggedIn) {
-            if (isLoggedIn) {
-                (mostPeriodPlaylists + recapPlaylists).distinctBy { it.id }
-            } else {
-                mostPeriodPlaylists
-            }
-        }
+    val visibleStatsPlaylists = mostPeriodPlaylists
 
     val coroutineScope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()

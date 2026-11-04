@@ -139,14 +139,6 @@ fun LibraryAlbumsScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
-        if (ytmSync) {
-            withContext(Dispatchers.IO) {
-                viewModel.sync()
-            }
-        }
-    }
-
     val albums by viewModel.allAlbums.collectAsStateWithLifecycle()
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()

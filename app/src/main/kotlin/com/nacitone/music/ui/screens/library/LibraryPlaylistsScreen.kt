@@ -53,7 +53,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.nacitone.innertube.utils.parseCookieString
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.R
 import com.nacitone.music.constants.CONTENT_TYPE_HEADER
@@ -61,7 +60,6 @@ import com.nacitone.music.constants.CONTENT_TYPE_PLAYLIST
 import com.nacitone.music.constants.GridItemSize
 import com.nacitone.music.constants.GridItemsSizeKey
 import com.nacitone.music.constants.GridThumbnailHeight
-import com.nacitone.music.constants.InnerTubeCookieKey
 import com.nacitone.music.constants.LibraryViewType
 import com.nacitone.music.constants.PlaylistSortDescendingKey
 import com.nacitone.music.constants.PlaylistSortType
@@ -71,7 +69,6 @@ import com.nacitone.music.constants.ShowDownloadedPlaylistKey
 import com.nacitone.music.constants.ShowLikedPlaylistKey
 import com.nacitone.music.constants.ShowTopPlaylistKey
 import com.nacitone.music.constants.ShowUploadedPlaylistKey
-import com.nacitone.music.constants.YtmSyncKey
 import com.nacitone.music.db.entities.Playlist
 import com.nacitone.music.db.entities.PlaylistEntity
 import com.nacitone.music.ui.component.CreatePlaylistDialog
@@ -108,7 +105,6 @@ fun LibraryPlaylistsScreen(
     onViewTypeChange: (LibraryViewType) -> Unit,
     viewModel: LibraryPlaylistsViewModel = hiltViewModel(),
     initialTextFieldValue: String? = null,
-    allowSyncing: Boolean = true,
 ) {
     val menuState = LocalMenuState.current
     val haptic = LocalHapticFeedback.current
@@ -289,21 +285,6 @@ fun LibraryPlaylistsScreen(
     val scrollToTop =
         backStackEntry?.savedStateHandle?.getStateFlow("scrollToTop", false)?.collectAsStateWithLifecycle()
 
-    val (innerTubeCookie) = rememberPreference(InnerTubeCookieKey, "")
-    val isLoggedIn = remember(innerTubeCookie) {
-        "SAPISID" in parseCookieString(innerTubeCookie)
-    }
-
-    val (ytmSync) = rememberPreference(YtmSyncKey, true)
-
-    LaunchedEffect(Unit) {
-        if (ytmSync) {
-            withContext(Dispatchers.IO) {
-                viewModel.sync()
-            }
-        }
-    }
-
     LaunchedEffect(scrollToTop?.value) {
         if (scrollToTop?.value == true) {
             when (viewType) {
@@ -320,7 +301,6 @@ fun LibraryPlaylistsScreen(
         CreatePlaylistDialog(
             onDismiss = { showCreatePlaylistDialog = false },
             initialTextFieldValue = initialTextFieldValue,
-            allowSyncing = allowSyncing,
             onPlaylistCreated = { playlistId ->
                 showCreatePlaylistDialog = false
                 navController.navigate("local_playlist/$playlistId")

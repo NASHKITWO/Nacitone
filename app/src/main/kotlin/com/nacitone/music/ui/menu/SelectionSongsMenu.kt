@@ -48,7 +48,6 @@ import com.nacitone.innertube.YouTube
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.LocalDownloadUtil
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.db.entities.PlaylistSongMap
 import com.nacitone.music.db.entities.Song
@@ -82,7 +81,6 @@ fun SelectionSongMenu(
     val downloadUtil = LocalDownloadUtil.current
     val coroutineScope = rememberCoroutineScope()
     val playerConnection = LocalPlayerConnection.current ?: return
-    val syncUtils = LocalSyncUtils.current
     val deletedNSongsTemplate = stringResource(R.string.deleted_n_songs)
     val listenTogetherManager = com.nacitone.music.LocalListenTogetherManager.current
     val isGuest = listenTogetherManager?.isInRoom == true && listenTogetherManager.isHost == false
@@ -601,7 +599,6 @@ fun SelectionSongMenu(
                                             if ((!allLiked && !song.song.liked) || allLiked) {
                                                 val s = song.song.toggleLike()
                                                 update(s)
-                                                syncUtils.likeSong(s)
                                             }
                                         }
                                     }

@@ -18,7 +18,6 @@ import com.nacitone.music.db.MusicDatabase
 import com.nacitone.music.extensions.filterExplicit
 import com.nacitone.music.extensions.filterVideoSongs
 import com.nacitone.music.extensions.toEnum
-import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.dataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -41,7 +40,6 @@ constructor(
     @ApplicationContext context: Context,
     private val database: MusicDatabase,
     savedStateHandle: SavedStateHandle,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     val playlist = savedStateHandle.get<String>("playlist")!!
 
@@ -77,21 +75,9 @@ constructor(
             }
             .stateIn(viewModelScope, kotlinx.coroutines.flow.SharingStarted.Lazily, emptyList())
 
-    fun syncLikedSongs() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncLikedSongs() }
-    }
-
-    fun syncUploadedSongs() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncUploadedSongs() }
-    }
-
     fun refresh() {
         viewModelScope.launch(Dispatchers.IO) {
             _isRefreshing.value = true
-            when (playlist) {
-                "liked" -> syncUtils.syncLikedSongsSuspend()
-                "uploaded" -> syncUtils.syncUploadedSongsSuspend()
-            }
             _isRefreshing.value = false
         }
     }

@@ -6,7 +6,10 @@
 package com.nacitone.music.ui.component
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -53,9 +56,9 @@ fun Material3SettingsGroup(
         title?.let {
             Text(
                 text = it,
-                style = MaterialTheme.typography.labelLarge,
+                style = MaterialTheme.typography.labelMedium.copy(letterSpacing = 1.4.sp),
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 8.dp, top = 8.dp)
+                modifier = Modifier.padding(start = 6.dp, bottom = 10.dp, top = 12.dp)
             )
         }
 
@@ -66,10 +69,10 @@ fun Material3SettingsGroup(
         ) {
             items.forEachIndexed { index, item ->
                 val shape = when {
-                    items.size == 1 -> RoundedCornerShape(24.dp)
-                    index == 0 -> RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp, bottomStart = 6.dp, bottomEnd = 6.dp)
-                    index == items.size - 1 -> RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp, bottomStart = 24.dp, bottomEnd = 24.dp)
-                    else -> RoundedCornerShape(6.dp)
+                    items.size == 1 -> RoundedCornerShape(28.dp)
+                    index == 0 -> RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp, bottomStart = 8.dp, bottomEnd = 8.dp)
+                    index == items.size - 1 -> RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 28.dp, bottomEnd = 28.dp)
+                    else -> RoundedCornerShape(8.dp)
                 }
 
                 Card(
@@ -83,6 +86,10 @@ fun Material3SettingsGroup(
                         } else {
                             MaterialTheme.colorScheme.surfaceContainerLow
                         }
+                    ),
+                    border = BorderStroke(
+                        width = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.45f),
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
@@ -117,11 +124,14 @@ private fun Material3SettingsItemRow(
         } else if (item.icon != null) {
             Box(
                 modifier = Modifier
-                    .size(40.dp)
-                    .clip(RoundedCornerShape(12.dp))
+                    .size(42.dp)
+                    .clip(RoundedCornerShape(14.dp))
                     .background(
-                        MaterialTheme.colorScheme.primary.copy(
-                            alpha = if (item.isHighlighted) 0.15f else 0.1f
+                        Brush.linearGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primary.copy(alpha = if (item.isHighlighted) 0.26f else 0.18f),
+                                MaterialTheme.colorScheme.tertiary.copy(alpha = if (item.isHighlighted) 0.18f else 0.10f),
+                            )
                         )
                     ),
                 contentAlignment = Alignment.Center

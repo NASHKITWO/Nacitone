@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <full-backup-content>
+    <!-- DataStore menyimpan kunci API (OpenRouter, DeepL), sesi Last.fm, dan kata sandi proxy -->
+    <exclude
+        domain="file"
+        path="datastore" />
     <exclude
         domain="file"
         path="./exoplayer" />

@@ -78,7 +78,6 @@ constructor(
     @ApplicationContext context: Context,
     database: MusicDatabase,
     downloadUtil: DownloadUtil,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
@@ -113,17 +112,6 @@ constructor(
                 }
             }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    fun syncLikedSongs() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncLikedSongs() }
-    }
-
-    fun syncLibrarySongs() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncLibrarySongs() }
-    }
-
-    fun syncUploadedSongs() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncUploadedSongs() }
-    }
 }
 
 @HiltViewModel
@@ -132,7 +120,6 @@ class LibraryArtistsViewModel
 constructor(
     @ApplicationContext context: Context,
     database: MusicDatabase,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
@@ -170,10 +157,6 @@ constructor(
                 .distinctBy { it.id }
         }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    fun sync() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncArtistsSubscriptions() }
-    }
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             allArtists.collect { artists ->
@@ -203,7 +186,6 @@ class LibraryAlbumsViewModel
 constructor(
     @ApplicationContext context: Context,
     database: MusicDatabase,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
@@ -236,10 +218,6 @@ constructor(
                 }
             }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
 
-    fun sync() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncLikedAlbums() }
-    }
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             allAlbums.collect { albums ->
@@ -269,7 +247,6 @@ class LibraryPlaylistsViewModel
 constructor(
     @ApplicationContext context: Context,
     database: MusicDatabase,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()
@@ -293,10 +270,6 @@ constructor(
             .flatMapLatest { (sortType, descending, hideYoutubeShorts) ->
                 database.playlists(sortType, descending).map { it.filterYoutubeShorts(hideYoutubeShorts) }
             }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
-
-    fun sync() {
-        viewModelScope.launch(Dispatchers.IO) { syncUtils.syncSavedPlaylists() }
-    }
 
     val topValue =
         context.dataStore.data
@@ -340,7 +313,6 @@ class LibraryMixViewModel
 constructor(
     @ApplicationContext context: Context,
     database: MusicDatabase,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val _isRefreshing = MutableStateFlow(false)
     val isRefreshing = _isRefreshing.asStateFlow()
@@ -355,16 +327,9 @@ constructor(
         _searchQuery.value = query
     }
 
-    val syncAllLibrary = {
-         viewModelScope.launch(Dispatchers.IO) {
-             syncUtils.tryAutoSync()
-         }
-    }
-
     fun refresh() {
         viewModelScope.launch(Dispatchers.IO) {
             _isRefreshing.value = true
-            syncUtils.performFullSyncSuspend()
             _isRefreshing.value = false
         }
     }
@@ -562,9 +527,6 @@ constructor(
         viewModelScope.launch(Dispatchers.IO) {
             fetchRdpnPlaylist()
         }
-        viewModelScope.launch(Dispatchers.IO) {
-            syncUtils.syncPodcastSubscriptionsSuspend()
-        }
         // Observe refresh trigger for auto-refresh after subscribe/unsubscribe
         viewModelScope.launch(Dispatchers.IO) {
             PodcastRefreshTrigger.refreshFlow.collect {
@@ -585,8 +547,6 @@ constructor(
         fetchSePlaylist()
         fetchPodcastChannels()
         fetchRdpnPlaylist()
-        syncUtils.syncPodcastSubscriptionsSuspend()
-        syncUtils.syncEpisodesForLaterSuspend()
     }
 
     /**

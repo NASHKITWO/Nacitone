@@ -32,7 +32,6 @@ import com.nacitone.music.db.entities.serializeArtistPage
 import com.nacitone.music.db.entities.toArtistPage
 import com.nacitone.music.extensions.filterExplicit
 import com.nacitone.music.extensions.filterExplicitAlbums
-import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.ArtistNameAliases
 import com.nacitone.music.utils.dataStore
 import com.nacitone.music.utils.get
@@ -60,7 +59,6 @@ import com.nacitone.music.extensions.filterVideoSongs as filterVideoSongsLocal
 class ArtistViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val database: MusicDatabase,
-    private val syncUtils: SyncUtils,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     val artistId = savedStateHandle.get<String>("artistId")!!
@@ -308,10 +306,6 @@ class ArtistViewModel @Inject constructor(
             } else {
                 Timber.d("[CHANNEL_TOGGLE] No artist and shouldBeSubscribed=false, nothing to do")
             }
-
-            Timber.d("[CHANNEL_TOGGLE] Calling syncUtils.subscribeChannel($channelId, $shouldBeSubscribed)")
-            // Sync with YouTube (handles login check internally)
-            syncUtils.subscribeChannel(channelId, shouldBeSubscribed)
         }
     }
 }

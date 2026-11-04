@@ -77,15 +77,14 @@
             </intent-filter>
 
             <!-- Listen Together invite link -->
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https" />
-                <data android:host="metrolist.cc" />
-                <data android:pathPrefix="/listen" />
+                <data android:scheme="nacitone" />
+                <data android:host="listen" />
             </intent-filter>
 
             <!-- Youtube filter -->
@@ -272,13 +271,15 @@
             android:resource="@xml/automotive_app_desc" />
         <!-- Music Widget -->
         <receiver
+            android:name=".widget.WidgetActionReceiver"
+            android:exported="false" />
+
+        <receiver
             android:name=".widget.MusicWidgetReceiver"
             android:exported="true"
             android:label="@string/widget_music_player">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.nacitone.music.widget.PLAY_PAUSE" />
-                <action android:name="com.nacitone.music.widget.LIKE" />
                 <action android:name="com.nacitone.music.widget.UPDATE_WIDGET" />
             </intent-filter>
 
@@ -309,8 +310,6 @@
             android:label="@string/widget_turntable">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.nacitone.music.widget.TURNTABLE_PLAY_PAUSE" />
-                <action android:name="com.nacitone.music.widget.TURNTABLE_LIKE" />
                 <action android:name="com.nacitone.music.widget.UPDATE_TURNTABLE_WIDGET" />
             </intent-filter>
 

@@ -105,7 +105,6 @@ import com.nacitone.innertube.models.SongItem
 import com.nacitone.innertube.models.WatchEndpoint
 import com.nacitone.innertube.models.YTItem
 import com.nacitone.innertube.utils.completed
-import com.nacitone.innertube.utils.parseCookieString
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.LocalArtistNameAliases
 import com.nacitone.music.LocalListenTogetherManager
@@ -116,7 +115,6 @@ import com.nacitone.music.constants.AutoRadioQueueKey
 import com.nacitone.music.constants.GridItemSize
 import com.nacitone.music.constants.GridItemsSizeKey
 import com.nacitone.music.constants.GridThumbnailHeight
-import com.nacitone.music.constants.InnerTubeCookieKey
 import com.nacitone.music.constants.ListItemHeight
 import com.nacitone.music.constants.ListThumbnailSize
 import com.nacitone.music.constants.RandomizeHomeOrderKey
@@ -135,6 +133,8 @@ import com.nacitone.music.playback.queues.ListQueue
 import com.nacitone.music.playback.queues.LocalAlbumRadio
 import com.nacitone.music.playback.queues.YouTubeAlbumRadio
 import com.nacitone.music.playback.queues.YouTubeQueue
+import com.nacitone.music.ui.component.NusantaraShelf
+import com.nacitone.music.ui.component.SupportBanner
 import com.nacitone.music.ui.component.AlbumGridItem
 import com.nacitone.music.ui.component.ArtistGridItem
 import com.nacitone.music.ui.component.ChipsRow
@@ -703,7 +703,6 @@ fun HomeScreen(
 
     val accountName by viewModel.accountName.collectAsStateWithLifecycle()
     val accountImageUrl by viewModel.accountImageUrl.collectAsStateWithLifecycle()
-    val innerTubeCookie by rememberPreference(InnerTubeCookieKey, "")
     val (randomizeHomeOrder) = rememberPreference(RandomizeHomeOrderKey, true)
     val autoRadioQueue by rememberPreference(AutoRadioQueueKey, defaultValue = true)
 
@@ -713,11 +712,6 @@ fun HomeScreen(
     val wrappedState by viewModel.wrappedManager.state.collectAsStateWithLifecycle()
     val isWrappedDataReady = wrappedState.isDataReady
 
-    val isLoggedIn =
-        remember(innerTubeCookie) {
-            "SAPISID" in parseCookieString(innerTubeCookie)
-        }
-    val url = if (isLoggedIn) accountImageUrl else null
 
     // Extract unique podcasts from episodes for "Podcast Channels" row
     // Cache the podcasts to prevent them from disappearing during refresh
@@ -1478,6 +1472,21 @@ fun HomeScreen(
                     }
                 }
 
+                if (selectedChip == null) {
+                    item(key = "support_banner", contentType = "home_item") {
+                        SupportBanner()
+                    }
+                    item(key = "nusantara_shelf", contentType = "home_list") {
+                        NusantaraShelf(
+                            onSearch = { query ->
+                                navController.navigate(
+                                    "search/${java.net.URLEncoder.encode(query, "UTF-8")}",
+                                )
+                            },
+                        )
+                    }
+                }
+
                 homeSections.forEach { section ->
                     when (section) {
                         HomeSection.SpeedDial -> {
@@ -2071,32 +2080,11 @@ fun HomeScreen(
                                         label = stringResource(R.string.mixes),
                                         title = accountName,
                                         thumbnail = {
-                                            if (url != null) {
-                                                AsyncImage(
-                                                    model =
-                                                        ImageRequest
-                                                            .Builder(LocalContext.current)
-                                                            .data(url)
-                                                            .diskCachePolicy(CachePolicy.ENABLED)
-                                                            .diskCacheKey(url)
-                                                            .crossfade(false)
-                                                            .build(),
-                                                    placeholder = painterResource(id = R.drawable.person),
-                                                    error = painterResource(id = R.drawable.person),
-                                                    contentDescription = null,
-                                                    contentScale = ContentScale.Crop,
-                                                    modifier =
-                                                        Modifier
-                                                            .size(ListThumbnailSize)
-                                                            .clip(CircleShape),
-                                                )
-                                            } else {
-                                                Icon(
-                                                    painter = painterResource(id = R.drawable.person),
-                                                    contentDescription = null,
-                                                    modifier = Modifier.size(ListThumbnailSize),
-                                                )
-                                            }
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.person),
+                                                contentDescription = null,
+                                                modifier = Modifier.size(ListThumbnailSize),
+                                            )
                                         },
                                     )
                                 }

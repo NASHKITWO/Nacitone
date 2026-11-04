@@ -940,4 +940,19 @@
     <string name="qr_share_image">Share image</string>
     <string name="qr_scan_hint">Scan with your phone camera to open the playlist</string>
     <string name="qr_card_label">Playlist</string>
+    <string name="listen_link_join_title">Join this room?</string>
+    <string name="listen_link_join_message">A link invites you to join a Listen Together room with code %1$s. The room owner can control playback on your device. Continue only if you trust whoever sent the link.</string>
+    <string name="listen_link_join_action">Join</string>
+    <string name="support_banner_title">Enjoying Nacitone?</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="support_banner_message">This app is free and built by Muhammad Ikhsan. Your support helps Nacitone keep growing.</string>
+    <string name="support_banner_later">Maybe later</string>
+    <string name="report_problem">Report a problem</string>
+    <string name="report_problem_chooser">Report a problem</string>
+    <string name="report_problem_subject">Nacitone problem report</string>
+    <string name="report_problem_intro">Describe what happened here (what you tapped and what you expected). Device info and the last crash are attached.</string>
+    <string name="nusantara_title">Nusantara</string>
+    <string name="nusantara_subtitle">Regional music from across the archipelago</string>
+    <string name="data_usage_title">Data used this session</string>
+    <string name="data_usage_summary">Mobile data: %1$s · Wi-Fi: %2$s. Tap to reset.</string>
 </resources>

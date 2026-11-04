@@ -26,6 +26,7 @@ class CrashHandler private constructor(
         try {
             val crashLog = buildCrashLog(throwable)
             Timber.e(throwable, "App crashed")
+            runCatching { BugReport.saveLastCrash(applicationContext, crashLog) }
             
             // Launch crash activity
             val intent = Intent(applicationContext, CrashActivity::class.java).apply {

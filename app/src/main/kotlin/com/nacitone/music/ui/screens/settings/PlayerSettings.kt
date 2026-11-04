@@ -23,6 +23,9 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import com.nacitone.music.utils.DataUsageMeter
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -106,6 +109,9 @@ fun PlayerSettings(
         defaultValue = AudioQuality.AUTO
     )
     var showCellularAudioQualityDialog by remember { mutableStateOf(false) }
+    val dataMeter = DataUsageMeter.get(LocalContext.current)
+    val meteredBytes by dataMeter.meteredBytes.collectAsState()
+    val unmeteredBytes by dataMeter.unmeteredBytes.collectAsState()
     val (lyricsFirst, onLyricsFirstChange) = rememberPreference(
         LyricsFirstKey,
         defaultValue = false
@@ -344,6 +350,20 @@ fun PlayerSettings(
                         )
                     },
                     onClick = { showCellularAudioQualityDialog = true }
+                ))
+                add(Material3SettingsItem(
+                    icon = painterResource(R.drawable.graphic_eq),
+                    title = { Text(stringResource(R.string.data_usage_title)) },
+                    description = {
+                        Text(
+                            stringResource(
+                                R.string.data_usage_summary,
+                                DataUsageMeter.format(meteredBytes),
+                                DataUsageMeter.format(unmeteredBytes),
+                            )
+                        )
+                    },
+                    onClick = { dataMeter.reset() }
                 ))
                 add(Material3SettingsItem(
                     icon = painterResource(R.drawable.lyrics),

@@ -228,26 +228,12 @@ fun LibrarySongsScreen(
                             }
 
                             showUploadDialog = false
-
-                            // Refresh uploaded songs
-                            viewModel.syncUploadedSongs()
                         } else {
                             showUploadDialog = false
                         }
                     }
             }
         }
-
-    LaunchedEffect(Unit) {
-        if (ytmSync) {
-            when (filter) {
-                SongFilter.LIKED -> viewModel.syncLikedSongs()
-                SongFilter.LIBRARY -> viewModel.syncLibrarySongs()
-                SongFilter.UPLOADED -> viewModel.syncUploadedSongs()
-                else -> return@LaunchedEffect
-            }
-        }
-    }
 
     val lazyListState = rememberLazyListState()
 

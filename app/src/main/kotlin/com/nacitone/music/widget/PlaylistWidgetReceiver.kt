@@ -45,21 +45,6 @@ class PlaylistWidgetReceiver : AppWidgetProvider() {
         super.onReceive(context, intent)
 
         when (intent.action) {
-            ACTION_PLAY_TARGET -> {
-                val serviceIntent = Intent(context, MusicService::class.java).apply {
-                    action = ACTION_PLAY_TARGET
-                    putExtra(EXTRA_TARGET_TYPE, intent.getStringExtra(EXTRA_TARGET_TYPE))
-                    putExtra(EXTRA_TARGET_ID, intent.getStringExtra(EXTRA_TARGET_ID))
-                    putExtra(EXTRA_TARGET_TITLE, intent.getStringExtra(EXTRA_TARGET_TITLE))
-                }
-                try {
-                    context.startService(serviceIntent)
-                } catch (e: Exception) {
-                    Timber.tag(TAG).w(e, "Failed to start playlist widget target")
-                    openTargetInApp(context, intent)
-                }
-            }
-
             ACTION_UPDATE_WIDGET -> refreshIdleWidgets()
         }
     }

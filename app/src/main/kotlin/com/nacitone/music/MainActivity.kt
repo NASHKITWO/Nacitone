@@ -262,6 +262,8 @@ class MainActivity : FragmentActivity() {
     private lateinit var navController: NavHostController
     private var pendingIntent: Intent? = null
     private var latestVersionName by mutableStateOf(BuildConfig.BASE_VERSION_NAME)
+    // Kode ruangan dari tautan luar; menunggu persetujuan pengguna sebelum bergabung.
+    private var pendingListenCode by mutableStateOf<String?>(null)
 
     // Keep PlayerConnection as regular property - NOT mutableStateOf to prevent UI recomposition
     // when it becomes null during onStop. Only update the snapshot for Compose when needed.
@@ -1422,6 +1424,35 @@ class MainActivity : FragmentActivity() {
                         }
                     }
 
+                    pendingListenCode?.let { code ->
+                        AlertDialog(
+                            onDismissRequest = { pendingListenCode = null },
+                            title = { Text(stringResource(R.string.listen_link_join_title)) },
+                            text = { Text(stringResource(R.string.listen_link_join_message, code)) },
+                            confirmButton = {
+                                TextButton(
+                                    onClick = {
+                                        pendingListenCode = null
+                                        lifecycleScope.launch {
+                                            val username =
+                                                withContext(Dispatchers.IO) {
+                                                    dataStore.get(ListenTogetherUsernameKey, "")
+                                                }.ifBlank { "Guest" }
+                                            listenTogetherManager.joinRoom(code, username)
+                                        }
+                                    },
+                                ) {
+                                    Text(stringResource(R.string.listen_link_join_action))
+                                }
+                            },
+                            dismissButton = {
+                                TextButton(onClick = { pendingListenCode = null }) {
+                                    Text(stringResource(R.string.cancel))
+                                }
+                            },
+                        )
+                    }
+
                     if (!showChangelog.value) {
                         availableUpdate?.let { update ->
                             val dismissUpdate: () -> Unit = {
@@ -1522,7 +1553,7 @@ class MainActivity : FragmentActivity() {
         intent.removeExtra(EXTRA_WIDGET_TARGET_TYPE)
         intent.removeExtra(EXTRA_WIDGET_TARGET_ID)
 
-        val normalizedTargetId = targetId?.takeIf { it.isNotBlank() }
+        val normalizedTargetId = targetId.asSafeId()
 
         val targetRoute = when (targetType) {
             PlaylistWidgetReceiver.TARGET_TYPE_LOCAL ->
@@ -1546,6 +1577,9 @@ class MainActivity : FragmentActivity() {
         navController.navigate(targetRoute.route)
     }
 
+    /** ID dari tautan luar hanya boleh huruf/angka/_/-; mencegah rute navigasi disusupi atau crash. */
+    private fun String?.asSafeId(): String? = this?.takeIf { Regex("^[A-Za-z0-9_\\-]{1,128}$").matches(it) }
+
     private fun handleDeepLinkIntent(
         intent: Intent,
         navController: NavHostController,
@@ -1561,14 +1595,14 @@ class MainActivity : FragmentActivity() {
                 ?: uri.pathSegments.getOrNull(1)
         val isListenLink = uri.pathSegments.firstOrNull() == "listen" || uri.host?.equals("listen", ignoreCase = true) == true
         if (!listenCode.isNullOrBlank() && isListenLink) {
-            val username = dataStore.get(ListenTogetherUsernameKey, "").ifBlank { "Guest" }
-            listenTogetherManager.joinRoom(listenCode, username)
+            // Jangan langsung bergabung: pemilik ruangan bisa mengendalikan pemutaran.
+            listenCode.asSafeId()?.let { pendingListenCode = it }
             return
         }
 
         when (val path = uri.pathSegments.firstOrNull()) {
             "playlist" -> {
-                val playlistId = uri.getQueryParameter("list")
+                val playlistId = uri.getQueryParameter("list").asSafeId()
                 if (playlistId.isNullOrBlank() || playlistId.equals("null", ignoreCase = true)) {
                     Toast.makeText(this, R.string.playlist_unavailable, Toast.LENGTH_SHORT).show()
                     return
@@ -1592,13 +1626,13 @@ class MainActivity : FragmentActivity() {
             }
 
             "browse" -> {
-                uri.lastPathSegment?.let { browseId ->
+                uri.lastPathSegment.asSafeId()?.let { browseId ->
                     navController.navigate("album/$browseId")
                 }
             }
 
             "channel", "c" -> {
-                uri.lastPathSegment?.let { artistId ->
+                uri.lastPathSegment.asSafeId()?.let { artistId ->
                     navController.navigate("artist/$artistId")
                 }
             }

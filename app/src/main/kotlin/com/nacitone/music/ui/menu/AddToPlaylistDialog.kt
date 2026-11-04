@@ -30,14 +30,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.nacitone.innertube.utils.parseCookieString
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.R
 import com.nacitone.music.constants.AddToPlaylistPosition
 import com.nacitone.music.constants.AddToPlaylistPositionKey
 import com.nacitone.music.constants.AddToPlaylistSortDescendingKey
 import com.nacitone.music.constants.AddToPlaylistSortTypeKey
-import com.nacitone.music.constants.InnerTubeCookieKey
 import com.nacitone.music.constants.ListThumbnailSize
 import com.nacitone.music.constants.PlaylistSortType
 import com.nacitone.music.db.DatabaseDao
@@ -76,12 +74,10 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.material3.FilterChip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.material3.FilterChipDefaults
-import com.nacitone.music.LocalSyncUtils
 
 @Composable
 fun AddToPlaylistDialog(
     isVisible: Boolean,
-    allowSyncing: Boolean = true,
     initialTextFieldValue: String? = null,
     onGetSong: suspend () -> List<String>, // list of song ids. Songs should be inserted to database in this function.
     onGetSongIds: (suspend () -> List<String>)? = null,
@@ -89,7 +85,6 @@ fun AddToPlaylistDialog(
     viewModel: PlaylistsViewModel = hiltViewModel()
 ) {
     val database = LocalDatabase.current
-    val syncUtils = LocalSyncUtils.current
     val coroutineScope = rememberCoroutineScope()
     val (addToPlaylistPosition) = rememberEnumPreference(
         AddToPlaylistPositionKey,
@@ -104,10 +99,6 @@ fun AddToPlaylistDialog(
         false
     )
     val playlists by viewModel.allPlaylists.collectAsStateWithLifecycle()
-    val (innerTubeCookie) = rememberPreference(InnerTubeCookieKey, "")
-    val isLoggedIn = remember(innerTubeCookie) {
-        "SAPISID" in parseCookieString(innerTubeCookie)
-    }
     var showCreatePlaylistDialog by rememberSaveable {
         mutableStateOf(false)
     }
@@ -134,9 +125,6 @@ fun AddToPlaylistDialog(
             ids.map { it to null },
             prepend = addToPlaylistPosition.prepend,
         )
-        targetPlaylist.playlist.browseId?.let { browseId ->
-            syncUtils.scheduleAddToPlaylist(browseId, targetPlaylist.id, ids)
-        }
     }
 
     LaunchedEffect(isVisible, playlists.isEmpty()) {
@@ -323,7 +311,6 @@ fun AddToPlaylistDialog(
         CreatePlaylistDialog(
             onDismiss = { showCreatePlaylistDialog = false },
             initialTextFieldValue = initialTextFieldValue,
-            allowSyncing = allowSyncing
         )
     }
 

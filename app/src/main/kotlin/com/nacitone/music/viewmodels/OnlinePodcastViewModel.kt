@@ -8,7 +8,6 @@ import com.nacitone.innertube.models.EpisodeItem
 import com.nacitone.innertube.models.PodcastItem
 import com.nacitone.music.db.MusicDatabase
 import com.nacitone.music.db.entities.PodcastEntity
-import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.reportException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +28,6 @@ import javax.inject.Inject
 class OnlinePodcastViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     val database: MusicDatabase,
-    private val syncUtils: SyncUtils,
 ) : ViewModel() {
     private val podcastId = savedStateHandle.get<String>("podcastId")!!
 
@@ -106,10 +104,6 @@ class OnlinePodcastViewModel @Inject constructor(
                 Timber.d("[PODCAST_TOGGLE] Inserting new entity: ${newEntity.id}")
                 database.insert(newEntity)
             }
-
-            Timber.d("[PODCAST_TOGGLE] Database updated, calling syncUtils.savePodcast(${currentPodcast.id}, $shouldBeSaved)")
-            // Sync with YouTube (handles login check internally)
-            syncUtils.savePodcast(currentPodcast.id, shouldBeSaved)
         }
     }
 

@@ -39,7 +39,6 @@ import com.nacitone.innertube.models.SongItem
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.LocalDownloadUtil
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.extensions.toMediaItem
 import com.nacitone.music.models.toMediaMetadata
@@ -62,7 +61,6 @@ fun YouTubeSelectionSongMenu(
     val downloadUtil = LocalDownloadUtil.current
     val playerConnection = LocalPlayerConnection.current ?: return
     val coroutineScope = rememberCoroutineScope()
-    val syncUtils = LocalSyncUtils.current
 
     var showChoosePlaylistDialog by rememberSaveable {
         mutableStateOf(false)
@@ -425,7 +423,6 @@ fun YouTubeSelectionSongMenu(
                                                 libraryRemoveToken = metadata.libraryRemoveToken,
                                             )
                                         update(songEntity)
-                                        syncUtils.likeSong(songEntity)
                                     }
                                 }
                             }

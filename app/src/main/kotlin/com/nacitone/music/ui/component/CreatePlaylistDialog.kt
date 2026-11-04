@@ -5,7 +5,6 @@
 
 package com.nacitone.music.ui.component
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +26,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
-import com.nacitone.music.constants.InnerTubeCookieKey
 import com.nacitone.music.db.entities.PlaylistEntity
-import com.nacitone.music.extensions.isSyncEnabled
-import com.nacitone.music.utils.rememberPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -41,20 +36,11 @@ import java.time.LocalDateTime
 fun CreatePlaylistDialog(
     onDismiss: () -> Unit,
     initialTextFieldValue: String? = null,
-    allowSyncing: Boolean = true,
     onPlaylistCreated: ((String) -> Unit)? = null,
 ) {
     val syncUtils = LocalSyncUtils.current
-    val coroutineScope = rememberCoroutineScope()
-    var syncedPlaylist by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
-    val innerTubeCookie by rememberPreference(InnerTubeCookieKey, "")
-    val isSignedIn = innerTubeCookie.isNotEmpty()
-
-    val notLoggedInYoutubeStr = stringResource(R.string.not_logged_in_youtube)
-    val syncDisabledStr = stringResource(R.string.sync_disabled)
-    val playlistCreatedLocallyStr = stringResource(R.string.playlist_created_locally)
 
     TextFieldDialog(
         icon = { Icon(painter = painterResource(R.drawable.add), contentDescription = null) },
@@ -68,58 +54,8 @@ fun CreatePlaylistDialog(
                     bookmarkedAt = LocalDateTime.now(),
                     isEditable = true,
                 ),
-                syncWithYouTube = syncedPlaylist,
-            ) { playlistId, remoteCreated ->
-                if (syncedPlaylist && !remoteCreated) {
-                    Toast.makeText(context, playlistCreatedLocallyStr, Toast.LENGTH_LONG).show()
-                }
+            ) { playlistId ->
                 onPlaylistCreated?.invoke(playlistId)
-            }
-        },
-        extraContent = {
-            if (allowSyncing) {
-                Row(
-                    modifier = Modifier.padding(top = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(
-                            text = stringResource(R.string.sync_playlist),
-                            style = MaterialTheme.typography.titleMedium,
-                        )
-                        Text(
-                            text = stringResource(R.string.allows_for_sync_witch_youtube),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
-                    Switch(
-                        modifier = Modifier.padding(start = 12.dp),
-                        checked = syncedPlaylist,
-                        onCheckedChange = {
-                            coroutineScope.launch {
-                                val isYtmSyncEnabled = withContext(Dispatchers.IO) { context.isSyncEnabled() }
-                                if (!isSignedIn && !syncedPlaylist) {
-                                    Toast
-                                        .makeText(
-                                            context,
-                                            notLoggedInYoutubeStr,
-                                            Toast.LENGTH_SHORT,
-                                        ).show()
-                                } else if (!isYtmSyncEnabled) {
-                                    Toast
-                                        .makeText(
-                                            context,
-                                            syncDisabledStr,
-                                            Toast.LENGTH_SHORT,
-                                        ).show()
-                                } else {
-                                    syncedPlaylist = !syncedPlaylist
-                                }
-                            }
-                        },
-                    )
-                }
             }
         },
     )

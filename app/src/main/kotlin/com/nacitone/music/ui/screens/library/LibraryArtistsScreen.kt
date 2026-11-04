@@ -126,14 +126,6 @@ fun LibraryArtistsScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
-        if (ytmSync) {
-            withContext(Dispatchers.IO) {
-                viewModel.sync()
-            }
-        }
-    }
-
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
     val filteredArtists by viewModel.filteredArtists.collectAsStateWithLifecycle()

@@ -49,6 +49,8 @@ import com.nacitone.music.BuildConfig
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.R
 import com.nacitone.music.ui.component.IconButton
+import com.nacitone.music.ui.component.SUPPORT_URL
+import androidx.compose.material3.TextButton
 import com.nacitone.music.ui.component.Material3SettingsGroup
 import com.nacitone.music.ui.component.Material3SettingsItem
 import com.nacitone.music.ui.utils.backToMain
@@ -69,6 +71,8 @@ private val contactLinks = listOf(
 private val infoLinks = listOf(
     AboutLink(R.string.credits_license_name, R.drawable.info, "https://www.gnu.org/licenses/gpl-3.0.html"),
 )
+
+private const val PRIVACY_POLICY_URL = "https://github.com/NASHKITWO/Nacitone/blob/main/PRIVACY.md"
 
 @Composable
 private fun FounderAvatar(sizeDp: Int, contentDescription: String?) {
@@ -239,8 +243,17 @@ fun AboutScreen(
 
                 Spacer(Modifier.height(24.dp))
 
+                Text(
+                    text = stringResource(R.string.support_banner_message),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                )
+
+                Spacer(Modifier.height(12.dp))
+
                 Button(
-                    onClick = { uriHandler.openUri("https://sociabuzz.com/nacitwo/tribe") },
+                    onClick = { uriHandler.openUri(SUPPORT_URL) },
                     modifier = Modifier.fillMaxWidth(),
                     shape = CircleShape,
                     colors = ButtonDefaults.buttonColors(
@@ -251,6 +264,28 @@ fun AboutScreen(
                     Icon(painterResource(R.drawable.buymeacoffee), contentDescription = null, modifier = Modifier.size(20.dp))
                     Spacer(Modifier.width(12.dp))
                     Text(stringResource(R.string.support_founder), fontWeight = FontWeight.ExtraBold, fontSize = 16.sp)
+                }
+
+                TextButton(
+                    onClick = { uriHandler.openUri(PRIVACY_POLICY_URL) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.privacy_policy))
+                }
+
+                val context = androidx.compose.ui.platform.LocalContext.current
+                val reportChooser = stringResource(R.string.report_problem_chooser)
+                val reportSubject = stringResource(R.string.report_problem_subject)
+                val reportIntro = stringResource(R.string.report_problem_intro)
+                TextButton(
+                    onClick = {
+                        runCatching {
+                            com.nacitone.music.utils.BugReport.share(context, reportChooser, reportSubject, reportIntro)
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.report_problem))
                 }
             }
         }

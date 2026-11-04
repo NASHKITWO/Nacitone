@@ -365,14 +365,6 @@ fun LibraryMixScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
-        if (ytmSync) {
-            withContext(Dispatchers.IO) {
-                viewModel.syncAllLibrary()
-            }
-        }
-    }
-
     val headerContent = @Composable {
         LibrarySearchHeader(
             isSearchActive = isSearchActive,

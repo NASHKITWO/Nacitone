@@ -85,7 +85,6 @@ import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalNavController
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.constants.HideExplicitKey
 import com.nacitone.music.db.entities.Playlist
@@ -497,7 +496,6 @@ private fun OnlinePlaylistHeader(
     val isListenTogetherGuest = listenTogetherManager?.let { it.isInRoom && !it.isHost } ?: false
     val database = LocalDatabase.current
     val menuState = LocalMenuState.current
-    val syncUtils = LocalSyncUtils.current
 
     Column(
         modifier =

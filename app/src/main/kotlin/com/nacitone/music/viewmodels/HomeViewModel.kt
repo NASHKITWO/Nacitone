@@ -44,7 +44,6 @@ import com.nacitone.music.models.SimilarRecommendation
 import com.nacitone.music.ui.screens.wrapped.WrappedAudioService
 import com.nacitone.music.ui.screens.wrapped.WrappedManager
 import com.nacitone.music.utils.NetworkConnectivityObserver
-import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.dataStore
 import com.nacitone.music.utils.safeDataStoreEdit
 import com.nacitone.music.utils.get
@@ -94,7 +93,6 @@ internal fun buildSpeedDialItems(
 class HomeViewModel @Inject constructor(
     @ApplicationContext val context: Context,
     val database: MusicDatabase,
-    val syncUtils: SyncUtils,
     val wrappedManager: WrappedManager,
     private val wrappedAudioService: WrappedAudioService,
     private val networkConnectivity: NetworkConnectivityObserver,
@@ -722,10 +720,6 @@ class HomeViewModel @Inject constructor(
             }
             isRefreshing.value = false
         }
-        // Run sync when user manually refreshes
-        viewModelScope.launch(Dispatchers.IO) {
-            syncUtils.tryAutoSync()
-        }
     }
 
     override fun onCleared() {
@@ -734,11 +728,6 @@ class HomeViewModel @Inject constructor(
     }
 
     init {
-        // Run sync in separate coroutine with cooldown to avoid blocking UI
-        viewModelScope.launch(Dispatchers.IO) {
-            syncUtils.tryAutoSync()
-        }
-
         var wasOffline = !networkConnectivity.networkStatus.value
         viewModelScope.launch(Dispatchers.IO) {
             networkConnectivity.networkStatus.collect { isConnected ->

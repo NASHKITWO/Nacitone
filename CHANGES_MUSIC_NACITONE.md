@@ -51,3 +51,58 @@ Fitur baru (tahap 2):
 - Penandatanganan rilis dibaca dari `keystore.properties` atau env (`STORE_FILE`, `STORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`); keystore di-ignore Git.
 - Workflow baru `.github/workflows/release.yml`: tag `v*` -> build FOSS release -> rilis GitHub berisi `app-universal-release.apk` (nama yang dikenali pemeriksa update).
 - `PANDUAN_RILIS.md` berisi langkah lengkap.
+
+## Perbaikan crash (1.0.0)
+- `MusicService.onStartCommand` mengakses `player` yang belum dibuat bila `onCreate` berhenti lebih awal (foreground ditolak, mis. vivo V2205/Android 14 saat widget ditekan). Ditambah penjagaan `::player.isInitialized`.
+
+## Audit keamanan (tinjauan kode, 6 putaran)
+- Lalu lintas teks biasa (cleartext) dimatikan; hanya localhost/127.0.0.1/10.0.2.2.
+- `datastore/` (kunci API OpenRouter/DeepL, sesi Last.fm, kata sandi proxy) dikeluarkan dari backup cloud Android.
+- Tautan dalam (deep link): ID playlist/album/channel divalidasi (`[A-Za-z0-9_-]{1,128}`) sebelum dipakai di rute navigasi.
+- `ACTION_ALARM_TRIGGER` pada service yang diekspor hanya diproses bila ID alarm ada di penyimpanan alarm.
+- Tautan Listen Together kini menampilkan dialog konfirmasi sebelum bergabung (kode divalidasi).
+- Ekspor backup tidak lagi menyertakan kunci API (OpenRouter, DeepL), sesi Last.fm, kata sandi proxy, token Listen Together, dan cookie/visitor data. Setelah restore, kunci itu perlu diisi ulang.
+
+## Dukungan pengembang
+- Banner "Suka Nacitone?" di Beranda (komponen `SupportBanner`), ditutup = tidak tampil 30 hari; tombol Dukung membuka `https://sociabuzz.com/nacitwo/tribe`.
+- Halaman Tentang: teks ajakan di atas tombol "Dukung Muhammad Ikhsan". URL didefinisikan satu kali (`SUPPORT_URL`).
+
+## Audit keamanan putaran 2
+- `provider_paths.xml`: hanya `cache` dan `Documents/NacitoneExports/`; akses seluruh penyimpanan eksternal dicabut.
+- Updater hanya menerima berkas rilis dari `https://github.com/NASHKITWO/Nacitone/releases/download/`.
+- Target widget (ACTION_OPEN_WIDGET_TARGET) divalidasi sebelum dipakai sebagai rute navigasi.
+
+## Pembersihan sisa login, kebijakan privasi, Dependabot
+- Dibuang: sakelar "sinkron ke YouTube" di CreatePlaylistDialog, parameter `allowSyncing`, cek cookie "sudah login" di AddToPlaylistDialog, LibraryPlaylistsScreen, StatsScreen, HomeScreen, helper `isSyncEnabled`/`isUserLoggedIn`; `SyncUtils` kini hanya `createPlaylist` (lokal) dan `clearPodcastData`.
+- Sengaja dibiarkan: riwayat remote di HistoryScreen, HomeSection.AccountPlaylists, alur akun di HomeViewModel, penanganan cookie di App.kt, pratinjau akun di BackupAndRestore.
+- Baru: `PRIVACY.md` (+ tautan "Kebijakan privasi" di Tentang), `.github/dependabot.yml` (gradle + github-actions); `renovate.json` dihapus agar tidak ada PR ganda.
+
+## Audit keamanan putaran 3
+- Restore backup kini menyaring pengaturan: proxy, URL server AI, URL server Listen Together, serta semua kunci/token/cookie dibuang dari berkas backup yang tidak tepercaya (mencegah backup berbahaya mengalihkan lalu lintas atau kunci API ke server penyerang).
+- Berkas pengaturan/alias di backup dibatasi 2 MB (anti zip-bomb).
+- Ekspor/impor pengaturan memakai API okio sesuai DataStore 1.2.
+- Diperiksa, tidak ditemukan masalah: zip-slip (entri dicocokkan nama persis), WebView (jaringan diblokir), SQL (parameter Room), PendingIntent, log rahasia.
+- Diketahui, belum diubah: tombol widget bisa dipicu aplikasi lain (hanya play/pause/suka); kunci API belum dienkripsi Keystore; tautan berbagi Listen Together masih memakai domain metrolist.cc.
+
+## Penyegaran tampilan (desain mewah)
+- `ui/theme/Type.kt` baru: tipografi (judul serif editorial, isi sans-serif dengan spasi huruf dan tinggi baris lebih lega) dan bentuk sudut yang lebih lembut (8/12/18/26/34 dp); dipasang di `NacitoneTheme`.
+- Warna dasar bawaan diganti ke ungu kerajaan `#6A4CE0` (sesuai ikon); Android 12+ tetap mengikuti warna sistem/sampul lagu seperti sebelumnya.
+- Kartu pengaturan: sudut 28 dp, garis tepi tipis, ikon dengan latar gradasi, judul grup berhuruf renggang.
+- Banner dukungan: kartu gradasi dengan garis tepi emas.
+- Font eksternal tidak ditambahkan (unduhan diblokir di lingkungan kerja); bila ingin, taruh .ttf di `res/font` dan ganti `Display`/`Body` di `Type.kt`.
+
+## Perbaikan widget / tombol play
+- Widget musik, playlist, dan turntable memakai `startForegroundService` (bukan `startService`) saat menekan tombol; lebih andal di vivo/Xiaomi/Oppo.
+- Tombol play di widget saat antrean kosong kini memutar lagu favorit (atau terpopuler); bila pustaka kosong, membuka aplikasi.
+
+## Penutupan celah yang tersisa
+- Tombol widget (play/pause/suka/berikutnya/sebelumnya/putar target) kini lewat `WidgetActionReceiver` yang `exported=false`; aksi tersebut dihapus dari receiver widget yang diekspor, sehingga aplikasi lain tidak bisa memicunya.
+- Tautan undangan Listen Together memakai `nacitone://listen?code=...` (bukan domain metrolist.cc); filter manifest diganti.
+
+## Fitur baru (rekomendasi)
+- Laporkan masalah: `utils/BugReport.kt`; crash terakhir disimpan di `filesDir/last_crash.txt`; tombol di Tentang membuka pemilih aplikasi dengan lampiran laporan (tidak ada pengiriman otomatis).
+- Rak Nusantara di Beranda: `ui/component/NusantaraShelf.kt` (13 kartu gradasi: dangdut, koplo, campursari, gamelan, pop Sunda, pop Jawa, Minang, Batak, Bali, Banyuwangi, Melayu, Ambon & Papua, Qasidah).
+- Kartu Rekap Mingguan didesain ulang bergaya "Wrapped" (`utils/WeeklyRecapImage.kt`).
+- Penunjuk pemakaian data: `utils/DataUsageMeter.kt` (TransferListener pada sumber data jaringan), tampil di Pengaturan Pemutar.
+- README ditulis ulang.
+- Belum: desain ulang pemutar (butuh tangkapan layar).

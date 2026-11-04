@@ -64,7 +64,6 @@ import coil3.compose.AsyncImage
 import com.nacitone.music.LocalDatabase
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.LocalPlayerConnection
-import com.nacitone.music.LocalSyncUtils
 import com.nacitone.music.R
 import com.nacitone.music.constants.CONTENT_TYPE_HEADER
 import com.nacitone.music.constants.CONTENT_TYPE_SONG
@@ -643,7 +642,6 @@ private fun PodcastEpisodePlaylistMenu(
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
-    val syncUtils = LocalSyncUtils.current
     val isPinned by database.speedDialDao.isPinned(podcast.id).collectAsStateWithLifecycle(initialValue = false)
 
     val playlistId = podcast.id.removePrefix("MPSP")
@@ -667,8 +665,6 @@ private fun PodcastEpisodePlaylistMenu(
                             database.query {
                                 update(podcast.copy(bookmarkedAt = null))
                             }
-                            // Sync with YouTube (unsave podcast only, don't unsubscribe channel)
-                            syncUtils.savePodcast(podcast.id, false)
                         }
                         onDismiss()
                     },

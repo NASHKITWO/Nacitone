@@ -38,6 +38,7 @@ object Updater {
     private var cachedReleaseInfo: ReleaseInfo? = null
     private var cachedAllReleases: List<ReleaseInfo> = emptyList()
     
+    private const val TRUSTED_DOWNLOAD_PREFIX = "https://github.com/NASHKITWO/Nacitone/releases/download/"
     private const val CHECK_INTERVAL_MILLIS = 2 * 60 * 60 * 1000L // 2 hours
     private const val GITHUB_API_BASE = "https://api.github.com/repos/NASHKITWO/Nacitone"
 
@@ -92,6 +93,8 @@ object Updater {
             if (!name.endsWith(".apk")) continue
             
             val downloadUrl = asset.getString("browser_download_url")
+            // Hanya percaya berkas yang dihosting di rilis repo resmi.
+            if (!downloadUrl.startsWith(TRUSTED_DOWNLOAD_PREFIX)) continue
             val size = asset.getLong("size")
             
             // Parse architecture and variant from filename

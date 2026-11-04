@@ -10,6 +10,24 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.datastore.preferences.core.edit
+import kotlinx.coroutines.flow.first
+import com.nacitone.music.utils.dataStore
+import com.nacitone.music.constants.ListenTogetherSessionTokenKey
+import com.nacitone.music.constants.ProxyEnabledKey
+import com.nacitone.music.constants.ProxyUrlKey
+import com.nacitone.music.constants.ProxyTypeKey
+import com.nacitone.music.constants.ProxyUsernameKey
+import com.nacitone.music.constants.OpenRouterBaseUrlKey
+import com.nacitone.music.constants.ListenTogetherServerUrlKey
+import com.nacitone.music.constants.ProxyPasswordKey
+import com.nacitone.music.constants.LastFMSessionKey
+import com.nacitone.music.constants.DeeplApiKey
+import com.nacitone.music.constants.OpenRouterApiKey
+import androidx.datastore.preferences.core.toMutablePreferences
+import okio.Buffer
+import okio.buffer
+import okio.sink
+import androidx.datastore.preferences.core.PreferencesSerializer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -82,11 +100,17 @@ class BackupRestoreViewModel @Inject constructor(
         runCatching {
             context.applicationContext.contentResolver.openOutputStream(uri)?.use {
                 it.buffered().zipOutputStream().use { outputStream ->
-                    (context.filesDir / "datastore" / SETTINGS_FILENAME).inputStream().buffered()
-                        .use { inputStream ->
-                            outputStream.putNextEntry(ZipEntry(SETTINGS_FILENAME))
-                            inputStream.copyTo(outputStream)
-                        }
+                    // Kunci API, sesi, dan kata sandi tidak ikut diekspor agar berkas backup aman dibagikan.
+                    val settingsSnapshot =
+                        runBlocking(Dispatchers.IO) { context.applicationContext.dataStore.data.first() }
+                            .toMutablePreferences()
+                    SECRET_PREFERENCE_KEYS.forEach { settingsSnapshot.remove(it) }
+                    outputStream.putNextEntry(ZipEntry(SETTINGS_FILENAME))
+                    runBlocking(Dispatchers.IO) {
+                        val sink = outputStream.sink().buffer()
+                        PreferencesSerializer.writeTo(settingsSnapshot, sink)
+                        sink.flush()
+                    }
                     outputStream.putNextEntry(ZipEntry(ArtistNameAliases.BACKUP_FILENAME))
                     outputStream.write(ArtistNameAliases.serialize().encodeToByteArray())
                     runBlocking(Dispatchers.IO) {
@@ -156,11 +180,19 @@ class BackupRestoreViewModel @Inject constructor(
                             when (entry.name) {
                                 SETTINGS_FILENAME -> {
                                     foundSettings = true
-                                    tempSettings.outputStream().use { it.write(inputStream.readBytes()) }
+                                    // Batasi ukuran dan buang kunci/endpoint sensitif dari backup yang tidak tepercaya.
+                                    val raw = inputStream.readBytesLimited(MAX_SETTINGS_BYTES)
+                                    val parsed = PreferencesSerializer.readFrom(Buffer().write(raw)).toMutablePreferences()
+                                    RESTORE_BLOCKED_KEYS.forEach { parsed.remove(it) }
+                                    tempSettings.outputStream().use { out ->
+                                        val sink = out.sink().buffer()
+                                        PreferencesSerializer.writeTo(parsed, sink)
+                                        sink.flush()
+                                    }
                                 }
                                 ArtistNameAliases.BACKUP_FILENAME -> {
                                     restoredArtistNameAliases =
-                                        ArtistNameAliases.deserialize(inputStream.readBytes().decodeToString())
+                                        ArtistNameAliases.deserialize(inputStream.readBytesLimited(MAX_SETTINGS_BYTES).decodeToString())
                                 }
                                 InternalDatabase.DB_NAME -> {
                                     foundDb = true
@@ -354,7 +386,7 @@ class BackupRestoreViewModel @Inject constructor(
                     var entry = tryOrNull { inputStream.nextEntry }
                     while (entry != null) {
                         if (entry.name == SETTINGS_FILENAME) {
-                            val bytes = inputStream.readBytes()
+                            val bytes = inputStream.readBytesLimited(MAX_SETTINGS_BYTES)
                             val content = bytes.decodeToString(throwOnInvalidSequence = false)
 
                             // Check for auth data (SAPISID cookie indicates logged in)
@@ -659,5 +691,51 @@ class BackupRestoreViewModel @Inject constructor(
 
     companion object {
         const val SETTINGS_FILENAME = "settings.preferences_pb"
+        private const val MAX_SETTINGS_BYTES = 2L * 1024 * 1024
+
+        private fun java.io.InputStream.readBytesLimited(max: Long): ByteArray {
+            val out = java.io.ByteArrayOutputStream()
+            val buf = ByteArray(8192)
+            var total = 0L
+            while (true) {
+                val n = read(buf)
+                if (n < 0) break
+                total += n
+                require(total <= max) { "Berkas pengaturan terlalu besar" }
+                out.write(buf, 0, n)
+            }
+            return out.toByteArray()
+        }
+
+        // Pengaturan yang bisa mengalihkan lalu lintas/kunci ke server penyerang tidak dipulihkan dari backup.
+        private val RESTORE_BLOCKED_KEYS: List<androidx.datastore.preferences.core.Preferences.Key<*>> =
+            listOf(
+                ProxyEnabledKey,
+                ProxyUrlKey,
+                ProxyTypeKey,
+                ProxyUsernameKey,
+                ProxyPasswordKey,
+                OpenRouterBaseUrlKey,
+                ListenTogetherServerUrlKey,
+                OpenRouterApiKey,
+                DeeplApiKey,
+                LastFMSessionKey,
+                ListenTogetherSessionTokenKey,
+                InnerTubeCookieKey,
+                VisitorDataKey,
+                DataSyncIdKey,
+            )
+
+        private val SECRET_PREFERENCE_KEYS: List<androidx.datastore.preferences.core.Preferences.Key<String>> =
+            listOf(
+                OpenRouterApiKey,
+                DeeplApiKey,
+                LastFMSessionKey,
+                ProxyPasswordKey,
+                ListenTogetherSessionTokenKey,
+                InnerTubeCookieKey,
+                VisitorDataKey,
+                DataSyncIdKey,
+            )
     }
 }

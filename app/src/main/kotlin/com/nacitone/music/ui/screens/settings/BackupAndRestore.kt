@@ -234,7 +234,6 @@ fun BackupAndRestore(
 
     AddToPlaylistDialogOnline(
         isVisible = showChoosePlaylistDialogOnline,
-        allowSyncing = false,
         initialTextFieldValue = importedTitle,
         songs = importedSongs,
         onDismiss = { showChoosePlaylistDialogOnline = false },
