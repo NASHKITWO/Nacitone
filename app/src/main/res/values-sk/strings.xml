@@ -75,7 +75,6 @@
     <string name="remove_from_playlist">Odstrániť z playlistu</string>
     <string name="remove_from_queue">Odstrániť z fronty</string>
     <string name="search_online">Vyhľadať online</string>
-    <string name="action_sync">Synchronizovať</string>
     <string name="advanced">Pokročilé</string>
     <string name="tempo_and_pitch">Tempo a výška tónu</string>
     <string name="sort_by_create_date">Dátum pridania</string>

@@ -62,7 +62,6 @@
     <string name="delete">Löschen</string>
     <string name="remove_from_history">Aus Verlauf entfernen</string>
     <string name="search_online">Online-Suche</string>
-    <string name="action_sync">Synchronisieren</string>
     <string name="advanced">Erweitert</string>
     <string name="sort_by_create_date">Hinzufügedatum</string>
     <string name="sort_by_name">Name</string>

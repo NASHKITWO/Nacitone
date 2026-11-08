@@ -15,8 +15,6 @@
     <string name="top_music_videos">人気のMV</string>
     <string name="my_top">マイトップ</string>
     <string name="cached_playlist">キャッシュした曲</string>
-    <string name="sync_playlist">プレイリストを同期</string>
-    <string name="sync_disabled">同期は無効です</string>
     <string name="generating_image">画像を生成中…</string>
     <string name="please_wait">お待ちください</string>
     <string name="cancel">キャンセル</string>
@@ -65,11 +63,9 @@
     <string name="dislikes">低評価数</string>
     <string name="auto_download_on_like">高評価した曲を自動でダウンロード</string>
     <string name="description">説明</string>
-    <string name="not_logged_in_youtube">YouTubeにログインしてください</string>
     <string name="default_links">対応しているリンクを開く</string>
     <string name="views">視聴回数</string>
     <string name="likes">高評価数</string>
-    <string name="allows_for_sync_witch_youtube">YouTube Musicと同期します。これは後から変更できません</string>
     <string name="sort_by_last_updated">更新日</string>
     <plurals name="n_time">
         <item quantity="other">%d回</item>
@@ -166,7 +162,6 @@
     <string name="download_in_progress_desc">ダウンロード中です</string>
     <string name="share_playlist_desc">このプレイリストを他の人と共有します</string>
     <string name="delete_playlist_desc">このプレイリストを完全に削除します</string>
-    <string name="sync_playlist_desc">このプレイリストをYouTube Musicと同期します</string>
     <string name="crop_album_art">アルバムアートを切り抜く</string>
     <string name="crop_album_art_desc">動画のサムネイルを切り抜いて正方形の比率にします</string>
     <string name="primary_color_style">メインカラー</string>
@@ -545,10 +540,7 @@
     </plurals>
     <string name="restore_confirm_title">バックアップを復元しますか？</string>
     <string name="restore_confirm_message">選択したバックアップからアプリのデータを復元します</string>
-    <string name="restore_account_warning">以下のアカウント情報が復元され、保存されます：</string>
     <string name="restore">復元</string>
-    <string name="checking_previous_account">以前のアカウントを確認中…</string>
-    <string name="no_account_found">アカウントが見つかりません</string>
     <string name="widget_recognizer_name">楽曲認識</string>
     <string name="widget_recognizer_description">周囲で流れている曲を認識できるウィジェット</string>
     <string name="widget_recognizer_tap_to_search">タップして開始</string>
@@ -761,7 +753,6 @@
     <string name="playlist_position_beginning_desc">新しく追加された曲は既存の曲の前に表示されます</string>
     <string name="playlist_position_end">プレイリストの最後</string>
     <string name="playlist_position_end_desc">新しく追加された曲は既存の曲の後に表示されます</string>
-    <string name="playlist_created_locally">YouTube の同期に失敗しました。プレイリストはローカルに作成されます。</string>
     <string name="update_available_message">Nacitone %s は既にダウンロードする準備ができています。</string>
     <string name="update_action">アップデート</string>
     <string name="error_no_internet_connection">インターネットに接続されていません</string>

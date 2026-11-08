@@ -26,7 +26,6 @@
     <string name="monthly_most_playlist_name">Máis populares do mes</string>
     <string name="charts">Listaxes</string>
     <string name="cached_playlist">Na caché</string>
-    <string name="allows_for_sync_witch_youtube">OBSERVACIÓN: esta opción activa a sincronización con YouTube Music e NON pode cambiarse máis tarde</string>
     <string name="and">e</string>
     <string name="please_wait">Por favor, agarde</string>
     <string name="enable">Activar</string>
@@ -48,8 +47,6 @@
     <string name="my_top">As miñas favoritas</string>
     <string name="uploaded_playlist">Subidas</string>
     <string name="filter_uploaded">Subidas</string>
-    <string name="sync_playlist">Sincronizar lista de reprodución</string>
-    <string name="sync_disabled">Sincronización desactivada</string>
     <string name="background_color">Cor do fondo</string>
     <string name="remove_from_cache">Eliminar da caché</string>
     <string name="about_artist">Sobre</string>
@@ -60,7 +57,6 @@
     <string name="download_in_progress_desc">Unha descarga está en proceso</string>
     <string name="share_playlist_desc">Compartir esta lista de reprodución con outros</string>
     <string name="delete_playlist_desc">Eliminar esta lista de reprodución permanentemente</string>
-    <string name="sync_playlist_desc">Sincronizar esta lista de reprodución con YouTube Music</string>
     <string name="copy_link">Copiar ligazón</string>
     <string name="select">Seleccionar todo</string>
     <string name="player_background_blur">Desenfocar</string>
@@ -138,7 +134,6 @@
     <string name="clear_image_cache_dialog">Estás seguro que queres borrar todas as imaxes na caché?</string>
     <string name="clear_downloads_dialog">Estás seguro que queres borrar todas as descargas?</string>
     <string name="disable">Desactivar</string>
-    <string name="not_logged_in_youtube">Non iniciaches sesión en YouTube</string>
     <string name="default_links">Abrir ligazóns permitidas</string>
     <string name="open_app_settings_error">Non se puideron abrir os axustes da aplicación</string>
     <string name="release_notes">Notas da versión</string>
@@ -441,11 +436,8 @@
     </plurals>
     <string name="restore_confirm_title">Restaurar copia de seguridade?</string>
     <string name="restore_confirm_message">Isto restablecerá os datos da túa aplicación desde a copia de seguridade</string>
-    <string name="restore_account_warning">Restaurarase e conservarase a seguinte información da conta:</string>
     <string name="restore">Restaurar</string>
     <string name="restore_database_incompatible">Non se pode restaurar a copia de seguridade: a versión da base de datos non é compatible. Os teus datos actuais se mantiveron.</string>
-    <string name="checking_previous_account">Procurando por unha conta anterior…</string>
-    <string name="no_account_found">Non se atopou ningunha conta</string>
     <string name="upload_songs">Cancións subidas</string>
     <string name="uploading">Subindo…</string>
     <string name="upload_progress">%1$d de %2$d</string>

@@ -59,7 +59,6 @@
     <string name="copy_link">Kopjo lidhjen</string>
     <string name="download_in_progress_desc">Një shkarkim është në proces</string>
     <string name="now_playing">Duke luajtur</string>
-    <string name="sync_playlist_desc">Sinkronizo këtë listë luajte me YouTube Music</string>
     <string name="share_playlist_desc">Ndaj këtë listë luajte me të njerëz tjerë</string>
     <string name="delete_playlist_desc">Fshij këtë listë luajte përgjithmonë</string>
     <string name="remove_from_cache">Fshij nga memoria e përkohshme</string>
@@ -78,9 +77,6 @@
     <string name="cached_playlist">Të ruajtur në memorinë e përkohshme</string>
     <string name="uploaded_playlist">Të ngarkuara</string>
     <string name="filter_uploaded">Të ngarkuara</string>
-    <string name="sync_playlist">Sinkronizo listën e luajtjes</string>
-    <string name="sync_disabled">Sinkronizimi është çaktivizuar</string>
-    <string name="allows_for_sync_witch_youtube">SHËNIM: Ky opsion mundëson sinkronizimin me YouTube Music dhe NUK MUND të ndryshohet më vonë</string>
     <string name="enable">Aktivizo</string>
     <string name="share_lyrics">Ndaj tekst këngë</string>
     <string name="share_as_text">Ndaj si tekst</string>
@@ -262,7 +258,6 @@
     <string name="clear_image_cache_dialog">A jeni i sigurt që dëshironi të fshini të gjitha imazhet e ruajtura në memorie?</string>
     <string name="clear_downloads_dialog">A jeni i sigurt që dëshironi të fshini të gjitha shkarkimet?</string>
     <string name="disable">Çaktivizo</string>
-    <string name="not_logged_in_youtube">Nuk jeni identifikuar në YouTube</string>
     <string name="default_links">Hap lidhjet e mbështetura</string>
     <string name="open_app_settings_error">Nuk u hapën dot cilësimet e aplikacionit</string>
     <string name="release_notes">Shënimet e versionit</string>

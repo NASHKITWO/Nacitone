@@ -62,7 +62,6 @@
     <string name="remove_from_playlist">Ukloni iz plejliste</string>
     <string name="remove_from_queue">Ukloni iz reda</string>
     <string name="search_online">Pretraži preko mreže</string>
-    <string name="action_sync">Sinhronizuj</string>
     <string name="advanced">Napredno</string>
     <string name="tempo_and_pitch">Tempo i Visina tona</string>
     <string name="sort_by_create_date">Datum dodavanja</string>

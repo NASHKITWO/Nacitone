@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square)](LICENSE)
 [![Dukung](https://img.shields.io/badge/Dukung-Sociabuzz-orange?style=flat-square)](https://sociabuzz.com/nacitwo/tribe)
 
-[Unduh](https://github.com/NASHKITWO/Nacitone/releases/latest) · [Kebijakan privasi](PRIVACY.md) · [Laporkan masalah](https://github.com/NASHKITWO/Nacitone/issues)
+[Situs web](https://nacitone.xo.je) · [Unduh](https://github.com/NASHKITWO/Nacitone/releases/latest) · [Kebijakan privasi](PRIVACY.md) · [Laporkan masalah](https://github.com/NASHKITWO/Nacitone/issues)
 
 </div>
 
@@ -16,7 +16,6 @@
 
 ## Fitur
 
-- **Nusantara di Beranda.** Pintasan ke dangdut, koplo, campursari, gamelan, pop Sunda, Minang, Batak, Bali, dan musik daerah lain.
 - **Tanpa akun.** Tidak perlu login. Pustaka, playlist, dan riwayat tersimpan di perangkat Anda.
 - **Hemat kuota.** Kualitas otomatis lebih rendah di jaringan seluler, plus penunjuk pemakaian data per sesi.
 - **Lirik tersinkron** dan kartu lirik untuk Story Instagram.

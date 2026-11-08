@@ -9,7 +9,6 @@
     <string name="years">Godina</string>
     <string name="continuous">Kontinuirano</string>
     <string name="offline">Skinuto</string>
-    <string name="sync_playlist">Sinhronizovana plejlista</string>
     <string name="please_wait">Molimo vas sačekajte</string>
     <string name="select">Izaberi sve</string>
     <string name="similar_content">#Sličan #sadržaj</string>
@@ -67,8 +66,6 @@
     <string name="liked">Lajkovano</string>
     <string name="my_top">Moj top</string>
     <string name="cached_playlist">Keširano</string>
-    <string name="sync_disabled">Sinhronizacoja onemogućena</string>
-    <string name="allows_for_sync_witch_youtube">Napomena: Ovo omogućava sinhronizaciju s YouTube Music. Ovo se NE može kasnije promijeniti.</string>
     <string name="generating_image">Generisanje slike</string>
     <string name="cancel">Otkaži</string>
     <string name="share_lyrics">Podjeli stihove</string>
@@ -92,7 +89,6 @@
     <string name="past_year">Prošle godine</string>
     <string name="playlist_add_local_to_synced_note">Napomena: Dodavanje lokalnih pjesama na sinhronizovane/udaljene plejliste nije podržano. Bilo koja druga kombinacija je važeća</string>
     <string name="percentage_format">%d%%</string>
-    <string name="not_logged_in_youtube">Niste prijavljeni na YouTube</string>
     <string name="history_duration">Trajanje istorije</string>
     <plurals name="seconds">
         <item quantity="one">%dsekund</item>

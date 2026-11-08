@@ -62,7 +62,6 @@
     <string name="delete">Eltávolítás</string>
     <string name="remove_from_history">Eltávolítás az előzményekből</string>
     <string name="search_online">Keresés online</string>
-    <string name="action_sync">Szinkronizálás</string>
     <string name="advanced">Haladó</string>
     <string name="sort_by_create_date">Hozzáadás dátuma</string>
     <string name="sort_by_name">Név</string>

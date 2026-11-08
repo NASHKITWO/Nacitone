@@ -41,8 +41,6 @@ import com.nacitone.music.R
  */
 private object VolumeSliderDefaults {
     val TrackHeight: Dp = 40.dp
-    val HandleHeight: Dp = 52.dp
-    val HandleWidth: Dp = 4.dp
     val TrackCornerRadius: Dp = 12.dp
     val InsetIconSize: Dp = 24.dp
     val IconPadding: Dp = 10.dp

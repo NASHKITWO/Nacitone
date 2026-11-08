@@ -61,7 +61,6 @@
     <string name="delete">Hapus</string>
     <string name="remove_from_history">Hapus dari riwayat</string>
     <string name="search_online">Cari online</string>
-    <string name="action_sync">Sinkronkan</string>
     <string name="advanced">Lanjutan</string>
     <string name="sort_by_create_date">Tanggal ditambahkan</string>
     <string name="sort_by_name">Nama</string>
@@ -227,4 +226,9 @@
     <string name="enable_lrclib">Aktifkan penyedia lirik LrcLib</string>
     <string name="dismiss">Tutup</string>
     <string name="action_login">Masuk</string>
+    <string name="pause">Jeda</string>
+    <string name="theme_desc">Atur tema aplikasi</string>
+    <string name="theme_colors">Tema &amp; Warna</string>
+    <string name="theme_mode">Mode Tema</string>
+    <string name="color_palette">Palet Warna</string>
 </resources>

@@ -14,9 +14,6 @@
     <string name="offline">Descărcate</string>
     <string name="my_top">Topul meu</string>
     <string name="cached_playlist">În cache</string>
-    <string name="sync_playlist">Sincronizează playlistul</string>
-    <string name="sync_disabled">Sincronizare dezactivată</string>
-    <string name="allows_for_sync_witch_youtube">Notă: Această setare activează sincronizarea cu YouTube Music și NU poate fi modificată mai târziu</string>
     <string name="generating_image">Se generează imaginea…</string>
     <string name="please_wait">Așteaptă</string>
     <string name="cancel">Anulează</string>
@@ -80,7 +77,6 @@
     <string name="clear_image_cache_dialog">Sigur vrei să ștergi toate imaginile din cache?</string>
     <string name="clear_downloads_dialog">Sigur vrei să ștergi toate descărcările?</string>
     <string name="disable">Dezactivează</string>
-    <string name="not_logged_in_youtube">Neautentificat la YouTube</string>
     <string name="default_links">Deschide linkurile acceptate</string>
     <string name="open_app_settings_error">Nu s-au putut deschide setările aplicației</string>
     <string name="release_notes">Notele lansării</string>
@@ -189,7 +185,6 @@
     <string name="download_in_progress_desc">O descărcare este în progres</string>
     <string name="share_playlist_desc">Distribuie acest playlist cu alții</string>
     <string name="delete_playlist_desc">Elimină acest playlist permanent</string>
-    <string name="sync_playlist_desc">Sincronizează acest playlist cu YouTube Music</string>
     <string name="lyrics_glow_effect">Activează efectul de strălucire al versurilor</string>
     <string name="lyrics_glow_effect_desc">Adaugă o animație de strălucire și un efect de bounce la versurile active</string>
     <string name="enable_better_lyrics">Activează Better Lyrics</string>
@@ -571,10 +566,7 @@
     </plurals>
     <string name="restore_confirm_title">Restaurezi backupul?</string>
     <string name="restore_confirm_message">Acest proces îți va restaura datele aplicației din backupul selectat</string>
-    <string name="restore_account_warning">Următoarele informații ale contului vor fi restaurate și păstrate:</string>
     <string name="restore">Restaurează</string>
-    <string name="checking_previous_account">Se verifică pentru conturi anterioare…</string>
-    <string name="no_account_found">Niciun cont găsit</string>
     <string name="found_in_settings_content">Poate fi găsită în Setări &gt; Conținut</string>
     <string name="speed_dial">Acces rapid</string>
     <string name="pin_to_speed_dial">Fixează la Acces rapid</string>
@@ -772,7 +764,6 @@
     <string name="playlist_position_beginning_desc">Melodiile noi adăugate vor apărea înainte de melodiile existente</string>
     <string name="playlist_position_end">Finalul playlistului</string>
     <string name="playlist_position_end_desc">Melodiile noi adăugate vor apărea după melodiile existente</string>
-    <string name="playlist_created_locally">Sincronizarea cu YouTube a eșuat. Playlistul a fost creat local.</string>
     <string name="error_no_internet_connection">Fără conexiune la internet</string>
     <string name="error_offline_playback">Ești offline. Conectează-te la internet sau redă o piesă descărcată pentru redare offline.</string>
     <string name="error_explicit_login_recommended">Redarea explicită funcționează cel mai bine cu un cont autentificat.</string>

@@ -63,9 +63,6 @@
     <string name="years">Roky</string>
     <string name="continuous">Průběžné</string>
     <string name="cached_playlist">V mezipaměti</string>
-    <string name="sync_playlist">Synchronizovat playlist</string>
-    <string name="sync_disabled">Synchronizace zakázána</string>
-    <string name="allows_for_sync_witch_youtube">UPOZORNĚNÍ: Tato funkce povolí synchronizaci se službou YouTube Music a NELZE ji později změnit</string>
     <string name="remove_from_cache">Odstranit z mezipaměti</string>
     <string name="copy_link">Kopírovat odkaz</string>
     <string name="dislike_all">Nelíbí se u všeho</string>
@@ -83,7 +80,6 @@
     <string name="auto_download_on_like_desc">Automaticky stáhnout skladby, když je přidáte do oblíbených</string>
     <string name="clear_song_cache_dialog">Opravdu chcete vymazat všechny skladby v mezipaměti?</string>
     <string name="clear_downloads_dialog">Opravdu chcete vymazat všechna stahování?</string>
-    <string name="not_logged_in_youtube">Nepřihlášeni do YouTube</string>
     <string name="default_links">Otevírat podporované odkazy</string>
     <string name="history_duration">Délka historie</string>
     <string name="information">Informace</string>
@@ -191,7 +187,6 @@
     <string name="download_in_progress_desc">Probíhá stahování</string>
     <string name="share_playlist_desc">Sdílejte tento playlist s ostatními</string>
     <string name="delete_playlist_desc">Trvale odstranit tento playlist</string>
-    <string name="sync_playlist_desc">Synchronizovat tento playlist s YouTube Music</string>
     <string name="enable_better_lyrics">Povolit Better Lyrics</string>
     <string name="enable_better_lyrics_desc">Texty synchronizované slovo po slově, perfektní pro karaoke</string>
     <string name="none">Žádný</string>
@@ -557,10 +552,7 @@
     </plurals>
     <string name="restore_confirm_title">Obnovit zálohu?</string>
     <string name="restore_confirm_message">Tímto se obnoví data aplikace ze zvolené zálohy</string>
-    <string name="restore_account_warning">Budou obnoveny a zachovány následující informace o účtu:</string>
     <string name="restore">Obnovit</string>
-    <string name="checking_previous_account">Kontroluji předchozí účet…</string>
-    <string name="no_account_found">Žádný účet nenalezen</string>
     <string name="importing_playlist">Importuji playlist…</string>
     <string name="error_podcast_unsubscribe">Nepodařilo se odhlásit z podcastu</string>
     <string name="error_podcast_subscribe">Nepodařilo se přihlásit k odběru podcastu</string>
@@ -784,7 +776,6 @@
     <string name="ai_provider_inception_help">Navštivte https://platform.inceptionlabs.ai pro klíče API</string>
     <string name="enable_zemer">Povolit Zemer</string>
     <string name="enable_zemer_desc">Texty pro židovskou hudbu</string>
-    <string name="playlist_created_locally">Synchronizace s YouTube selhala. Playlist byl vytvořen lokálně.</string>
     <string name="update_available_message">Nacitone %s je připraven ke stažení.</string>
     <string name="update_action">Aktualizovat</string>
     <string name="force_bottom_navbar">Vynutit spodní navigační lištu</string>

@@ -100,6 +100,7 @@ fun YouTubeSongMenu(
 ) {
     val navController = LocalNavController.current
     val context = LocalContext.current
+    val shareFooter = stringResource(R.string.share_footer)
     val database = LocalDatabase.current
     val playerConnection = LocalPlayerConnection.current ?: return
     val downloadUtil = LocalDownloadUtil.current
@@ -327,12 +328,14 @@ fun YouTubeSongMenu(
                         },
                         text = stringResource(R.string.share),
                         onClick = {
-                            val intent = Intent().apply {
-                                action = Intent.ACTION_SEND
-                                type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, song.shareLink)
-                            }
-                            context.startActivity(Intent.createChooser(intent, null))
+                            com.nacitone.music.utils.SongShare.share(
+                                context = context,
+                                database = database,
+                                songId = song.id,
+                                title = song.title,
+                                artist = song.artists.joinToString { it.name },
+                                footer = shareFooter,
+                            )
                             onDismiss()
                         }
                     )

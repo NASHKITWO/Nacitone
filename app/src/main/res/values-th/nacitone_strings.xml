@@ -17,9 +17,6 @@
     <string name="cached_playlist">แคชแล้ว</string>
     <string name="uploaded_playlist">อัปโหลดแล้ว</string>
     <string name="filter_uploaded">อัปโหลดแล้ว</string>
-    <string name="sync_playlist">ซิงค์เพลย์ลิสต์</string>
-    <string name="sync_disabled">ปิดการซิงค์แล้ว</string>
-    <string name="allows_for_sync_witch_youtube">หมายเหตุ: การเปิดใช้งานตัวเลือกนี้จะเปิดการซิงค์กับ YouTube Music และจะไม่สามารถเปลี่ยนแปลงได้ในภายหลัง</string>
     <string name="generating_image">กำลังสร้างรูปภาพ…</string>
     <string name="please_wait">โปรดรอสักครู่</string>
     <string name="cancel">ยกเลิก</string>
@@ -46,7 +43,6 @@
     <string name="download_in_progress_desc">กำลังดาวน์โหลด</string>
     <string name="share_playlist_desc">แชร์เพลย์ลิสต์นี้ให้ผู้อื่น</string>
     <string name="delete_playlist_desc">ลบเพลย์ลิสต์นี้อย่างถาวร</string>
-    <string name="sync_playlist_desc">ซิงค์เพลย์ลิสต์นี้กับ YouTube Music</string>
     <string name="copy_link">คัดลอกลิงก์</string>
     <string name="select">เลือกทั้งหมด</string>
     <string name="like_all">ถูกใจทั้งหมด</string>
@@ -138,7 +134,6 @@
     <string name="clear_image_cache_dialog">คุณแน่ใจหรือไม่ว่าต้องการลบแคชรูปภาพทั้งหมด?</string>
     <string name="clear_downloads_dialog">คุณแน่ใจหรือไม่ว่าต้องการลบไฟล์ที่ดาวน์โหลดทั้งหมด?</string>
     <string name="disable">ปิดใช้งาน</string>
-    <string name="not_logged_in_youtube">ยังไม่ได้เข้าสู่ระบบ YouTube</string>
     <string name="default_links">เปิดลิงก์ที่รองรับ</string>
     <string name="open_app_settings_error">ไม่สามารถเปิดการตั้งค่าแอปได้</string>
     <string name="release_notes">บันทึกการอัปเดต</string>
@@ -545,10 +540,7 @@
     </plurals>
     <string name="restore_confirm_title">กู้คืนข้อมูลจากแบ็กอัป?</string>
     <string name="restore_confirm_message">การดำเนินการนี้จะกู้คืนข้อมูลแอปจากไฟล์แบ็กอัปที่เลือก</string>
-    <string name="restore_account_warning">ข้อมูลบัญชีต่อไปนี้จะได้รับการกู้คืนและเก็บรักษาไว้:</string>
     <string name="restore">กู้คืน</string>
-    <string name="checking_previous_account">กำลังตรวจสอบบัญชีเดิม…</string>
-    <string name="no_account_found">ไม่พบบัญชี</string>
     <string name="widget_recognizer_name">ระบบค้นหาเพลง</string>
     <string name="widget_recognizer_description">ระบุชื่อเพลงที่กำลังเล่นรอบตัวคุณได้จากหน้าจอหลักโดยตรง</string>
     <string name="widget_recognizer_tap_to_search">แตะเพื่อค้นหาเพลง</string>

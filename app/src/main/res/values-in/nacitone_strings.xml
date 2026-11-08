@@ -18,8 +18,6 @@
     <string name="continuous">Berkelanjutan</string>
     <string name="liked">Disukai</string>
     <string name="offline">Diunduh</string>
-    <string name="sync_playlist">Sinkronkan daftar putar</string>
-    <string name="allows_for_sync_witch_youtube">CATATAN: Ini memungkinkan sinkronisasi dengan YouTube Music dan TIDAK DAPAT diubah lagi</string>
     <string name="share_lyrics">Bagikan lirik</string>
     <string name="share_as_text">Bagikan sebagai teks</string>
     <string name="share_as_image">Bagikan sebagai gambar</string>
@@ -34,7 +32,6 @@
     <string name="cancel">Batal</string>
     <string name="general">Umum</string>
     <string name="app_language">Bahasa aplikasi</string>
-    <string name="not_logged_in_youtube">Belum login ke YouTube</string>
     <string name="release_notes">Catatan rilis</string>
     <string name="default_links">Buka link yang didukung</string>
     <string name="open_app_settings_error">Tidak dapat membuka pengaturan aplikasi</string>
@@ -58,7 +55,6 @@
     <string name="player_background_style">Gaya latar belakang pemutar musik</string>
     <string name="my_top">Teratas Saya</string>
     <string name="cached_playlist">Tersimpan di Cache</string>
-    <string name="sync_disabled">Sinkronisasi dinonaktifkan</string>
     <string name="copy_link">Salin link</string>
     <string name="like_all">Sukai semua</string>
     <string name="dislike_all">Tidak sukai semua</string>
@@ -159,7 +155,6 @@
     <string name="download_in_progress_desc">Unduhan sedang berlangsung</string>
     <string name="share_playlist_desc">Bagikan daftar putar ini kepada orang lain</string>
     <string name="delete_playlist_desc">Hapus daftar putar ini secara permanen</string>
-    <string name="sync_playlist_desc">Sinkronkan daftar putar ini dengan YouTube Music</string>
     <string name="primary_color_style">Warna primer</string>
     <string name="tertiary_color_style">Warna tersier</string>
     <string name="enable_better_lyrics">Aktifkan penyedia lirik Better Lyrics</string>
@@ -586,10 +581,7 @@
     </plurals>
     <string name="restore_confirm_title">Pulihkan cadangan?</string>
     <string name="restore_confirm_message">Ini akan memulihkan data aplikasi Anda dari cadangan yang dipilih</string>
-    <string name="restore_account_warning">Informasi akun berikut akan dipulihkan dan dipertahankan:</string>
     <string name="restore">Pulihkan</string>
-    <string name="checking_previous_account">Memeriksa akun sebelumnya…</string>
-    <string name="no_account_found">Tidak ada akun yang ditemukan</string>
     <string name="upload_songs">Unggah lagu</string>
     <string name="uploading">Mengunggah…</string>
     <string name="upload_progress">%1$d dari %2$d</string>
@@ -762,7 +754,6 @@
     <string name="playlist_position_beginning_desc">Lagu yang baru ditambahkan muncul sebelum lagu yang sudah ada</string>
     <string name="playlist_position_end">Akhir daftar putar</string>
     <string name="playlist_position_end_desc">Lagu yang baru ditambahkan muncul setelah lagu yang sudah ada</string>
-    <string name="playlist_created_locally">Sinkronisasi YouTube gagal. Daftar putar dibuat secara lokal.</string>
     <string name="update_available_message">Nacitone %s siap diunduh.</string>
     <string name="update_action">Perbarui</string>
     <string name="error_no_internet_connection">Tidak ada koneksi internet</string>
@@ -813,16 +804,21 @@
     <string name="listen_link_join_title">Gabung ke ruangan?</string>
     <string name="listen_link_join_message">Sebuah tautan mengajak Anda bergabung ke ruangan Listen Together dengan kode %1$s. Pemilik ruangan dapat mengendalikan pemutaran di perangkat Anda. Lanjutkan hanya jika Anda mempercayai pengirim tautan.</string>
     <string name="listen_link_join_action">Gabung</string>
-    <string name="support_banner_title">Suka Nacitone?</string>
+    <string name="support_banner_title">Nacitone gratis dan tanpa iklan</string>
     <string name="privacy_policy">Kebijakan privasi</string>
-    <string name="support_banner_message">Aplikasi ini gratis dan dikembangkan oleh Muhammad Ikhsan. Dukungan Anda membantu Nacitone terus berkembang.</string>
+    <string name="support_banner_message">Dibuat sendirian oleh Muhammad Ikhsan, mahasiswa Teknik Informatika. Kalau terpakai, traktir kopi lewat Sociabuzz bantu pengembangan lanjut.</string>
     <string name="support_banner_later">Nanti saja</string>
     <string name="report_problem">Laporkan masalah</string>
     <string name="report_problem_chooser">Laporkan masalah</string>
     <string name="report_problem_subject">Laporan masalah Nacitone</string>
     <string name="report_problem_intro">Tuliskan apa yang terjadi di sini (apa yang Anda ketuk dan apa yang diharapkan). Info perangkat dan crash terakhir dilampirkan.</string>
-    <string name="nusantara_title">Nusantara</string>
-    <string name="nusantara_subtitle">Musik daerah dari Sabang sampai Merauke</string>
     <string name="data_usage_title">Pemakaian data sesi ini</string>
     <string name="data_usage_summary">Data seluler: %1$s · Wi-Fi: %2$s. Ketuk untuk mengatur ulang.</string>
+    <string name="share_footer">Dibagikan lewat Nacitone · https://github.com/NASHKITWO/Nacitone</string>
+    <string name="import_spotify">Impor dari Spotify</string>
+    <string name="import_spotify_desc">Pakai CSV hasil ekspor playlist Spotify Anda</string>
+    <string name="import_spotify_steps">1. Di komputer atau browser, buka exportify.net lalu masuk ke Spotify.\n2. Ekspor playlist yang diinginkan sebagai CSV.\n3. Kirim file-nya ke HP ini.\n4. Ketuk \"Pilih file CSV\" di bawah. Kolom terdeteksi otomatis dan lagu dicocokkan ke YouTube Music.</string>
+    <string name="import_spotify_pick">Pilih file CSV</string>
+    <string name="website">Situs web</string>
+    <string name="home_load_failed">Musik belum bisa dimuat. Periksa koneksi internet lalu coba lagi.</string>
 </resources>

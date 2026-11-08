@@ -62,7 +62,6 @@
     <string name="delete">Poista</string>
     <string name="remove_from_history">Poista historiasta</string>
     <string name="search_online">Etsi verkossa</string>
-    <string name="action_sync">Synkronoi</string>
     <string name="advanced">Edistynyt</string>
     <string name="sort_by_create_date">Lisäyspäivä</string>
     <string name="sort_by_name">Nimi</string>

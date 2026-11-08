@@ -60,6 +60,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ContainedLoadingIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -214,6 +216,7 @@ fun BottomSheetPlayer(
     pureBlack: Boolean,
 ) {
     val context = LocalContext.current
+    val shareFooter = stringResource(R.string.share_footer)
     val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val menuState = LocalMenuState.current
     val sleepTimerDefaultSetTemplate = stringResource(R.string.sleep_timer_default_set)
@@ -650,7 +653,7 @@ fun BottomSheetPlayer(
             icon = {
                 Icon(
                     painter = painterResource(R.drawable.bedtime),
-                    contentDescription = null,
+                    contentDescription = stringResource(R.string.sleep_timer),
                 )
             },
             title = { Text(stringResource(R.string.sleep_timer)) },
@@ -699,7 +702,7 @@ fun BottomSheetPlayer(
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         if (isAtDefault) {
-                            FilledIconButton(
+                            Button(
                                 onClick = {
                                     scope.launch {
                                         context.safeDataStoreEdit { settings ->
@@ -712,15 +715,11 @@ fun BottomSheetPlayer(
                                         Toast.LENGTH_SHORT,
                                     ).show()
                                 },
-                                colors = IconButtonDefaults.filledIconButtonColors(
-                                    containerColor = MaterialTheme.colorScheme.primary,
-                                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                                ),
-                            ) {
-                                Text(stringResource(R.string.set_as_default))
+                                                            ) {
+                                Text(stringResource(R.string.set_as_default), maxLines = 2, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
                             }
                         } else {
-                            OutlinedIconButton(
+                            OutlinedButton(
                                 onClick = {
                                     scope.launch {
                                         context.safeDataStoreEdit { settings ->
@@ -734,11 +733,11 @@ fun BottomSheetPlayer(
                                     ).show()
                                 },
                             ) {
-                                Text(stringResource(R.string.set_as_default))
+                                Text(stringResource(R.string.set_as_default), maxLines = 2, textAlign = androidx.compose.ui.text.style.TextAlign.Center)
                             }
                         }
 
-                        OutlinedIconButton(
+                        OutlinedButton(
                             onClick = {
                                 showSleepTimerDialog = false
                                 playerConnection.service.sleepTimer?.start(minute = -1)
@@ -1244,16 +1243,14 @@ fun BottomSheetPlayer(
                             } else {
                                 FilledIconButton(
                                     onClick = {
-                                        val intent =
-                                            Intent().apply {
-                                                action = Intent.ACTION_SEND
-                                                type = "text/plain"
-                                                putExtra(
-                                                    Intent.EXTRA_TEXT,
-                                                    "https://music.youtube.com/watch?v=${mediaMetadata.id}",
-                                                )
-                                            }
-                                        context.startActivity(Intent.createChooser(intent, null))
+                                        com.nacitone.music.utils.SongShare.share(
+                                            context = context,
+                                            database = playerConnection.database,
+                                            songId = mediaMetadata.id,
+                                            title = mediaMetadata.title,
+                                            artist = mediaMetadata.artists.joinToString { it.name },
+                                            footer = shareFooter,
+                                        )
                                     },
                                     shape = shareShape,
                                     colors =
@@ -1265,7 +1262,7 @@ fun BottomSheetPlayer(
                                 ) {
                                     Icon(
                                         painter = painterResource(R.drawable.share),
-                                        contentDescription = null,
+                                        contentDescription = stringResource(R.string.share),
                                         modifier = Modifier.size(24.dp),
                                     )
                                 }
@@ -1303,7 +1300,7 @@ fun BottomSheetPlayer(
                                 ) {
                                     Icon(
                                         painter = painterResource(R.drawable.more_horiz),
-                                        contentDescription = null,
+                                        contentDescription = stringResource(R.string.more_options),
                                         modifier = Modifier.size(24.dp),
                                     )
                                 }
@@ -1330,7 +1327,7 @@ fun BottomSheetPlayer(
                                                     R.drawable.favorite_border
                                                 },
                                             ),
-                                        contentDescription = null,
+                                        contentDescription = stringResource(R.string.like),
                                         modifier = Modifier.size(24.dp),
                                     )
                                 }
@@ -1366,21 +1363,19 @@ fun BottomSheetPlayer(
                                         .clip(RoundedCornerShape(24.dp))
                                         .background(textButtonColor)
                                         .clickable {
-                                            val intent =
-                                                Intent().apply {
-                                                    action = Intent.ACTION_SEND
-                                                    type = "text/plain"
-                                                    putExtra(
-                                                        Intent.EXTRA_TEXT,
-                                                        "https://music.youtube.com/watch?v=${mediaMetadata.id}",
-                                                    )
-                                                }
-                                            context.startActivity(Intent.createChooser(intent, null))
+                                            com.nacitone.music.utils.SongShare.share(
+                                                context = context,
+                                                database = playerConnection.database,
+                                                songId = mediaMetadata.id,
+                                                title = mediaMetadata.title,
+                                                artist = mediaMetadata.artists.joinToString { it.name },
+                                                footer = shareFooter,
+                                            )
                                         },
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.share),
-                                    contentDescription = null,
+                                    contentDescription = stringResource(R.string.share),
                                     tint = iconButtonColor,
                                     modifier =
                                         Modifier
@@ -1422,7 +1417,7 @@ fun BottomSheetPlayer(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.more_horiz),
-                                    contentDescription = null,
+                                    contentDescription = stringResource(R.string.more_options),
                                     tint = iconButtonColor,
                                     modifier =
                                         Modifier
@@ -1685,7 +1680,7 @@ fun BottomSheetPlayer(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.skip_previous),
-                                    contentDescription = null,
+                                    contentDescription = stringResource(R.string.previous),
                                     modifier = Modifier.size(32.dp),
                                 )
                             }
@@ -1754,6 +1749,8 @@ fun BottomSheetPlayer(
                                                 if (effectiveIsPlaying) stringResource(R.string.player_pause) else stringResource(R.string.play)
                                             },
                                         style = MaterialTheme.typography.titleMedium,
+                                        maxLines = 1,
+                                        softWrap = false,
                                     )
                                 }
                             }
@@ -1777,7 +1774,7 @@ fun BottomSheetPlayer(
                             ) {
                                 Icon(
                                     painter = painterResource(R.drawable.skip_next),
-                                    contentDescription = null,
+                                    contentDescription = stringResource(R.string.next),
                                     modifier = Modifier.size(32.dp),
                                 )
                             }
@@ -1817,6 +1814,7 @@ fun BottomSheetPlayer(
                             Box(modifier = Modifier.weight(1f)) {
                                 ResizableIconButton(
                                     icon = R.drawable.skip_previous,
+                                    contentDescription = stringResource(R.string.previous),
                                     enabled = canSkipPrevious && !isListenTogetherGuest,
                                     color = TextBackgroundColor,
                                     modifier =
@@ -1885,6 +1883,7 @@ fun BottomSheetPlayer(
                             Box(modifier = Modifier.weight(1f)) {
                                 ResizableIconButton(
                                     icon = R.drawable.skip_next,
+                                    contentDescription = stringResource(R.string.next),
                                     enabled = canSkipNext && !isListenTogetherGuest,
                                     color = TextBackgroundColor,
                                     modifier =
@@ -1903,6 +1902,7 @@ fun BottomSheetPlayer(
                                 ResizableIconButton(
                                     icon = if (isFavorite) R.drawable.favorite else R.drawable.favorite_border,
                                     color = if (isFavorite) MaterialTheme.colorScheme.error else TextBackgroundColor,
+                                    contentDescription = stringResource(R.string.like),
                                     modifier =
                                         Modifier
                                             .size(32.dp)
@@ -2281,7 +2281,7 @@ private fun PlayerMoreMenuButton(
     ) {
         Image(
             painter = painterResource(R.drawable.more_horiz),
-            contentDescription = null,
+            contentDescription = stringResource(R.string.more_options),
             colorFilter = ColorFilter.tint(iconButtonColor),
         )
     }

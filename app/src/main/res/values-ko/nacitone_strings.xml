@@ -23,7 +23,6 @@
     <string name="new_player_design">새로운 플레이어 디자인</string>
     <string name="new_mini_player_design">새로운 미니 플레이어 디자인</string>
     <string name="app_language">앱 언어</string>
-    <string name="not_logged_in_youtube">YouTube에 로그인되어 있지 않습니다</string>
     <string name="views">조회수</string>
     <string name="likes">좋아요</string>
     <string name="subscribe">구독</string>
@@ -59,7 +58,6 @@
     <string name="youtube_music_lyrics_note">참고: 다른 출처가 없으면 YouTube Music 가사가 자동으로 표시되며, 보통 싱크가 지원되지 않습니다</string>
     <string name="swipe_song_to_add">왼쪽으로 스와이프해 재생목록에 추가, 혹은 오른쪽으로 스와이프해 다음에 재생</string>
     <string name="playlist_add_local_to_synced_note">참고: 동기화 / 원격 재생목록에 로컬 곡 추가는 지원되지 않습니다. 그 외 조합은 모두 가능합니다</string>
-    <string name="allows_for_sync_witch_youtube">참고: 이 옵션은 YouTube Music과의 동기화를 활성화하며 나중에 변경할 수 없습니다</string>
     <string name="seek_seconds_addup_description">탐색 시마다 탐색 시간이 5초씩 누적됩니다</string>
     <string name="sleep_timer_stop_after_current_song_description">현재 재생 중인 곡이 끝나면 재생을 중단합니다</string>
     <string name="crop_album_art_desc">비디오 썸네일을 크롭하여 정사각형 화면비 강제 적용</string>
@@ -74,16 +72,13 @@
     <string name="download_in_progress_desc">다운로드 진행 중</string>
     <string name="share_playlist_desc">이 재생목록을 다른 사람과 공유합니다</string>
     <string name="delete_playlist_desc">이 재생목록을 영구적으로 제거합니다</string>
-    <string name="sync_playlist_desc">이 재생목록을 YouTube Music과 동기화합니다</string>
     <string name="select">전체 선택</string>
     <string name="continuous">연속 재생</string>
     <string name="offline">다운로드됨</string>
     <string name="uploaded_playlist">업로드됨</string>
     <string name="filter_uploaded">업로드됨</string>
-    <string name="sync_playlist">재생목록 동기화</string>
     <string name="enable">활성화</string>
     <string name="please_wait">잠시만 기다려 주십시오</string>
-    <string name="sync_disabled">동기화 비활성화됨</string>
     <string name="share_as_text">텍스트로 공유</string>
     <string name="share_as_image">이미지로 공유</string>
     <string name="share_selected">선택 항목 공유</string>
@@ -548,10 +543,7 @@
     </plurals>
     <string name="restore_confirm_title">백업을 복원하시겠습니까?</string>
     <string name="restore_confirm_message">선택한 백업 파일에서 앱 데이터를 복원합니다</string>
-    <string name="restore_account_warning">복원 후에는 다시 로그인해야 합니다. 다음 계정에서 로그아웃됩니다:</string>
     <string name="restore">복원</string>
-    <string name="checking_previous_account">이전 계정 확인 중…</string>
-    <string name="no_account_found">계정을 찾을 수 없습니다</string>
     <string name="upload_songs">음원 업로드</string>
     <string name="uploading">업로드 중…</string>
     <string name="upload_progress">%1$d / %2$d</string>

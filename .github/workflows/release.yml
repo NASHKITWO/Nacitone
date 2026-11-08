@@ -27,6 +27,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Pastikan versi sama dengan versionName
+        run: |
+          WANT="${VERSION#v}"
+          HAVE=$(grep -oP 'versionName\s*=\s*"\K[^"]+' app/build.gradle.kts | head -1)
+          if [ "$WANT" != "$HAVE" ]; then
+            echo "Versi rilis ($WANT) tidak sama dengan versionName ($HAVE) di app/build.gradle.kts" >&2
+            exit 1
+          fi
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:

@@ -24,12 +24,6 @@ object BugReport {
         File(context.filesDir, LAST_CRASH_FILE).writeText(crashLog.take(MAX_CRASH_CHARS))
     }
 
-    fun hasLastCrash(context: Context): Boolean = File(context.filesDir, LAST_CRASH_FILE).exists()
-
-    fun clearLastCrash(context: Context) {
-        File(context.filesDir, LAST_CRASH_FILE).delete()
-    }
-
     fun buildReport(context: Context, note: String = ""): String =
         buildString {
             appendLine("Nacitone - Laporan Masalah")
@@ -68,6 +62,8 @@ object BugReport {
             putExtra(Intent.EXTRA_STREAM, uri)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
-        context.startActivity(Intent.createChooser(intent, chooserTitle).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        runCatching {
+            context.startActivity(Intent.createChooser(intent, chooserTitle).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        }.onFailure { timber.log.Timber.w(it, "Tidak ada aplikasi untuk mengirim laporan") }
     }
 }

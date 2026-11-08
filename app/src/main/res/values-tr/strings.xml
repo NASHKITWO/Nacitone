@@ -62,7 +62,6 @@
     <string name="delete">Sil</string>
     <string name="remove_from_history">Geçmişten kaldır</string>
     <string name="search_online">Çevrim içi ara</string>
-    <string name="action_sync">Eşitle</string>
     <string name="advanced">Gelişmiş</string>
     <string name="sort_by_create_date">Eklendiği tarih</string>
     <string name="sort_by_name">Ad</string>

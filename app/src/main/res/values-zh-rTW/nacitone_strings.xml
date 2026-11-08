@@ -9,8 +9,6 @@
     <string name="liked">喜歡的歌曲</string>
     <string name="offline">已下載</string>
     <string name="my_top">我的Top</string>
-    <string name="sync_playlist">同步播放清單</string>
-    <string name="allows_for_sync_witch_youtube">注意：這允許與 Youtube Music 同步，之後無法更改</string>
     <string name="copy_link">複製連結</string>
     <string name="select">全選</string>
     <string name="like_all">全部喜歡</string>
@@ -69,7 +67,6 @@
     <string name="top_music_videos">熱門音樂影片</string>
     <string name="trending">發燒</string>
     <string name="cached_playlist">快取</string>
-    <string name="sync_disabled">關閉同步</string>
     <string name="generating_image">生成圖片…</string>
     <string name="please_wait">請稍候</string>
     <string name="cancel">取消</string>
@@ -89,7 +86,6 @@
     <string name="auto_download_on_like_desc">當你點擊喜歡某首歌曲時，將自動下載該歌曲</string>
     <string name="clear_song_cache_dialog">確定要清除所有快取歌曲嗎?</string>
     <string name="clear_downloads_dialog">確定要清除所有下載內容嗎?</string>
-    <string name="not_logged_in_youtube">未登入 YouTube</string>
     <string name="description">說明</string>
     <string name="views">播放次數</string>
     <string name="likes">喜歡</string>
@@ -161,7 +157,6 @@
     <string name="download_in_progress_desc">下載正在進行</string>
     <string name="share_playlist_desc">與他人分享此播放列表</string>
     <string name="delete_playlist_desc">永久刪除此播放列表</string>
-    <string name="sync_playlist_desc">將此播放列表與YouTube Music同步</string>
     <string name="primary_color_style">主色調</string>
     <string name="tertiary_color_style">三級顏色</string>
     <string name="lyrics_glow_effect">啟用歌詞發光效果</string>
@@ -296,10 +291,7 @@
     <string name="upload_progress">%1$d 的 %2$d</string>
     <string name="uploading">正在上傳…</string>
     <string name="upload_songs">上傳歌曲</string>
-    <string name="no_account_found">未找到帳戶</string>
-    <string name="checking_previous_account">正在檢查之前的帳戶…</string>
     <string name="restore">恢復</string>
-    <string name="restore_account_warning">將會還原並保留以下帳號資訊：</string>
     <string name="restore_confirm_message">這將從備份中還原您的應用資料</string>
     <string name="restore_confirm_title">恢復備份？</string>
     <string name="no_subscribed_channels">沒有訂閱頻道</string>
@@ -760,7 +752,6 @@
     <string name="android_auto_search_local_songs_limit_desc">限制搜尋結果中顯示的本機歌曲數量。建議不要設為無限制，以避免記憶體崩潰</string>
     <string name="widget_playlists_description">帶有小型播放器控制選項的播放清單捷徑</string>
     <string name="stream_client">串流用戶端</string>
-    <string name="playlist_created_locally">同步 YouTube 失敗。播放清單已本地建立。</string>
     <string name="update_available_message">Nacitone%s 已經準備好下載了。</string>
     <string name="update_action">更新</string>
     <string name="error_no_internet_connection">沒有網路連結</string>

@@ -15,9 +15,6 @@
     <string name="offline">Transferido</string>
     <string name="my_top">Meu Top</string>
     <string name="cached_playlist">Em cache</string>
-    <string name="sync_playlist">Sincronizar lista de reprodução</string>
-    <string name="sync_disabled">Sincronização desativada</string>
-    <string name="allows_for_sync_witch_youtube">OBSERVAÇÃO: Isto permite a sincronização com o YouTube Music e NÃO pode ser alterado depois</string>
     <string name="generating_image">A gerar imagem…</string>
     <string name="please_wait">Por favor, aguarde</string>
     <string name="cancel">Cancelar</string>
@@ -84,7 +81,6 @@
     <string name="clear_image_cache_dialog">Tem certeza que quer apagar todas as imagens em cache?</string>
     <string name="clear_downloads_dialog">Tem certeza que quer limpar todas as descargas?</string>
     <string name="disable">Desativar</string>
-    <string name="not_logged_in_youtube">Não conectado ao YouTube</string>
     <string name="default_links">Abrir ligações suportadas</string>
     <string name="open_app_settings_error">Não foi possível a app de definições</string>
     <string name="release_notes">Registo de mudanças</string>
@@ -124,7 +120,6 @@
     <string name="download_in_progress_desc">Uma transferência está em progresso</string>
     <string name="share_playlist_desc">Partilhar esta lista de reprodução com os outros</string>
     <string name="delete_playlist_desc">Remover esta lista de reprodução permanentemente</string>
-    <string name="sync_playlist_desc">Sincronizar esta lista de reprodução com o YouTube Music</string>
     <string name="starting_radio">A começar rádio…</string>
     <string name="primary_color_style">Cor principal</string>
     <string name="swipe_song_to_remove">Deslizar sobre a música para a remover da playlist</string>
@@ -503,7 +498,6 @@
     <string name="add_to_playlist_position">Posição do botão \"adicionar a Playlist\"</string>
     <string name="auto_radio_queue">Fila do automatica do rádio</string>
     <string name="auto_radio_queue_desc">Criar uma lista de rádio automaticamente quando uma música e selecionada no menu inicial ou na pesquisa</string>
-    <string name="playlist_created_locally">YouTube falhou a Sincronização a Playlist foi criada localmente.</string>
     <string name="lyrics_offset">Delay de Compensação (letras musicais)</string>
     <string name="update_available_message">Nacitone %s, está preparado para fazer Download.</string>
     <string name="update_action">Atualizar</string>
@@ -726,11 +720,8 @@
     </plurals>
     <string name="restore_confirm_title">Queres restaurar o backup?</string>
     <string name="restore_confirm_message">Isto irá restaurar os dados da aplicação do backup selecionado</string>
-    <string name="restore_account_warning">A conta abaixo será restaurada e preservada:</string>
     <string name="restore">Restaurar</string>
     <string name="restore_database_incompatible">Não foi possível restaurar o backup: a versão da base de dados e incompatível. Os teus dados atuais foram preservado.</string>
-    <string name="checking_previous_account">A verificar por uma conta existente…</string>
-    <string name="no_account_found">Não foi encontrada uma conta</string>
     <string name="upload_songs">Enviar Músicas</string>
     <string name="uploading">A enviar…</string>
     <string name="upload_progress">%1$d de %2$d</string>

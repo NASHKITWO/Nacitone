@@ -11,9 +11,6 @@
     <string name="liked">Упадабаныя</string>
     <string name="offline">Спампоўкі</string>
     <string name="my_top">Мой топ</string>
-    <string name="sync_playlist">Сінхранізаваць плей-ліст</string>
-    <string name="sync_disabled">Сінхранізацыя адключана</string>
-    <string name="allows_for_sync_witch_youtube">ЗАЎВАГА: Гэта опцыя ўключае сінхранізацыю з YouTube Music. Гэта НЕЛЬГА змяніць пазней.</string>
     <string name="generating_image">Генерацыя відарыса…</string>
     <string name="please_wait">Пачакайце, калі ласка</string>
     <string name="cancel">Скасаваць</string>
@@ -49,7 +46,6 @@
     <string name="download_in_progress_desc">Ідзе спампаванне</string>
     <string name="share_playlist_desc">Падзяліцца гэтым плэйлістом з другімі</string>
     <string name="delete_playlist_desc">Выдаліць гэты плэйліст назаўсёды</string>
-    <string name="sync_playlist_desc">Сінхранізіраваць гэты плэйліст з YouTube Music</string>
     <string name="copy_link">Скапіраваць спасылку</string>
     <string name="select">Выбраць усё</string>
     <string name="link_copied">Спасылка скапіравана ў буфер абмену</string>
@@ -205,7 +201,6 @@
     <string name="clear_image_cache_dialog">Вы ўпэўненыя, што хочаце ачысціць усе закэшаваныя выявы?</string>
     <string name="clear_downloads_dialog">Вы ўпэўненыя, што хочаце ачысціць усе запампаваныя?</string>
     <string name="disable">Адключыць</string>
-    <string name="not_logged_in_youtube">Вы не ўвайшлі ў YouTube</string>
     <string name="default_links">Адкрыць падтрымліваемыя ссылкі</string>
     <string name="open_app_settings_error">Не атрымалася адкрыць налады прыкладання</string>
     <string name="release_notes">Заўвагі да выпуску</string>

@@ -13,9 +13,6 @@
     <string name="offline">Jaiskia</string>
     <string name="my_top">Nire Onenak</string>
     <string name="cached_playlist">Cachean gordeta</string>
-    <string name="sync_playlist">Zerrenda sinkronizatu</string>
-    <string name="sync_disabled">Sinkronizazioa itzalita</string>
-    <string name="allows_for_sync_witch_youtube">OHARRA: Aukera honek YouTube Music-ekin sinkronizatzea ahalbidetzen du eta beranduago EZINGO DA aldatu</string>
     <string name="generating_image">Irudia sortzen…</string>
     <string name="please_wait">Itxaron, mesedez</string>
     <string name="cancel">Utzi</string>
@@ -101,7 +98,6 @@
     <string name="clear_image_cache_dialog">Ziur al zaude cachean dauden irudi guztiak ezabatu nahi dituzula?</string>
     <string name="clear_downloads_dialog">Ziur zaude deskarga guztiak ezabatu nahi dituzula?</string>
     <string name="disable">Desgaitu</string>
-    <string name="not_logged_in_youtube">YouTube-n saioa ez hasita</string>
     <string name="default_links">Ireki onartutako estekak</string>
     <string name="open_app_settings_error">Aplikazioaren ezarpenak ezin dira ireki</string>
     <string name="release_notes">Bertsio oharrak</string>
@@ -148,7 +144,6 @@
     <string name="remove_download_playlist_desc">Deskargatutako abesti guztiak kendu zerrenda honetatik</string>
     <string name="share_playlist_desc">Zerrenda partekatu</string>
     <string name="delete_playlist_desc">Zerrenda betirako ezabatu</string>
-    <string name="sync_playlist_desc">Zerrenda YouTube Music-ekin sinkronizatu</string>
     <string name="show_artist_monthly_listeners">Hilabeteko entzuleak ikusi</string>
     <string name="download_in_progress_desc">Deskarga bat martxan dago</string>
     <string name="crop_album_art">Album azala moztu</string>

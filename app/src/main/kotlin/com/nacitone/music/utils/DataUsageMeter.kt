@@ -28,6 +28,9 @@ class DataUsageMeter private constructor(
 ) : TransferListener {
     private val connectivity = context.applicationContext.getSystemService(ConnectivityManager::class.java)
 
+    @Volatile private var lastCheckAt = 0L
+    @Volatile private var cachedMetered = true
+
     private val _meteredBytes = MutableStateFlow(0L)
     private val _unmeteredBytes = MutableStateFlow(0L)
 
@@ -48,8 +51,13 @@ class DataUsageMeter private constructor(
         bytesTransferred: Int,
     ) {
         if (!isNetwork || bytesTransferred <= 0) return
-        val metered = runCatching { connectivity?.isActiveNetworkMetered == true }.getOrDefault(true)
-        (if (metered) _meteredBytes else _unmeteredBytes).update { it + bytesTransferred }
+        // Status jaringan hanya dicek ulang tiap 5 detik; onBytesTransferred dipanggil sangat sering.
+        val now = android.os.SystemClock.elapsedRealtime()
+        if (now - lastCheckAt > 5_000L) {
+            cachedMetered = runCatching { connectivity?.isActiveNetworkMetered == true }.getOrDefault(true)
+            lastCheckAt = now
+        }
+        (if (cachedMetered) _meteredBytes else _unmeteredBytes).update { it + bytesTransferred }
     }
 
     override fun onTransferEnd(source: DataSource, dataSpec: DataSpec, isNetwork: Boolean) = Unit

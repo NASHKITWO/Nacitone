@@ -88,7 +88,8 @@ class App :
         }
 
         // Plant logging before extraction services initialize.
-        Timber.plant(Timber.DebugTree())
+        // Log rinci hanya di build debug: lebih ringan dan tidak membocorkan detail lewat logcat di rilis.
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
         InnerTubeXPlayer.initialize(this)
 
         // Pre-read Coil cache size on background to avoid runBlocking in newImageLoader

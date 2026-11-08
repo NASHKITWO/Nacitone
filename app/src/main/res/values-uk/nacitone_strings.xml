@@ -9,8 +9,6 @@
     <string name="liked">Вподобане</string>
     <string name="offline">Завантажене</string>
     <string name="my_top">Мій Топ</string>
-    <string name="sync_playlist">Синхронізувати список відтворення</string>
-    <string name="allows_for_sync_witch_youtube">ПРИМІТКА: Ця опція вмикає синхронізацію з YouTube Music і її НЕ МОЖНА змінити згодом</string>
     <string name="select">Обрати все</string>
     <string name="like_all">Вподобати все</string>
     <string name="dislike_all">Позначити все як не вподобане</string>
@@ -61,7 +59,6 @@
     <string name="trending">Тренди</string>
     <string name="cached_playlist">Кешовано</string>
     <string name="generating_image">Генерація зображення…</string>
-    <string name="sync_disabled">Синхронізація вимкнена</string>
     <string name="please_wait">Зачекайте, будь ласка</string>
     <string name="cancel">Скасувати</string>
     <string name="share_lyrics">Поділитися текстом пісні</string>
@@ -91,7 +88,6 @@
     <string name="auto_download_on_like_desc">Автоматично завантажувати пісні, які ви вподобали</string>
     <string name="clear_song_cache_dialog">Ви впевнені, що хочете очистити всі кешовані пісні?</string>
     <string name="clear_downloads_dialog">Ви впевнені, що хочете очистити всі завантаження?</string>
-    <string name="not_logged_in_youtube">Ви не ввійшли в YouTube</string>
     <string name="information">Інформація</string>
     <string name="description">Опис</string>
     <string name="views">Перегляди</string>
@@ -191,7 +187,6 @@
     <string name="download_in_progress_desc">Йде завантаження</string>
     <string name="share_playlist_desc">Поділіться цим списком відтворення з іншими</string>
     <string name="delete_playlist_desc">Видалити цей плейлист назавжди</string>
-    <string name="sync_playlist_desc">Синхронізуйте цей список відтворення з YouTube Music</string>
     <string name="enable_better_lyrics">Увімкнути кращі тексти пісень</string>
     <string name="enable_better_lyrics_desc">Тексти пісень, синхронізовані за складами — ідеально для караоке</string>
     <string name="none">Жоден</string>

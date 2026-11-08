@@ -15,9 +15,6 @@
     <string name="offline">İndirilenler</string>
     <string name="my_top">En Çok Dinlediklerim</string>
     <string name="cached_playlist">Önbelleğe Alınanlar</string>
-    <string name="sync_playlist">Oynatma listesini eşitle</string>
-    <string name="sync_disabled">Eşitleme devre dışı</string>
-    <string name="allows_for_sync_witch_youtube">NOT: Bu seçenek YouTube Music ile eşitlemeyi etkinleştirir ve daha sonra DEĞİŞTİRİLEMEZ</string>
     <string name="remove_from_cache">Önbellekten kaldır</string>
     <string name="copy_link">Bağlantıyı kopyala</string>
     <string name="select">Tümünü seç</string>
@@ -59,7 +56,6 @@
     <string name="percentage_format">%d%%</string>
     <string name="clear_song_cache_dialog">Tüm önbelleğe alınmış şarkıları temizlemek istediğinize emin misiniz?</string>
     <string name="clear_downloads_dialog">Tüm indirmeleri temizlemek istediğinize emin misiniz?</string>
-    <string name="not_logged_in_youtube">YouTube girişi yapılmadı</string>
     <string name="default_links">Desteklenen bağlantıları aç</string>
     <string name="open_app_settings_error">Uygulama ayarları açılamadı</string>
     <string name="release_notes">Sürüm notları</string>
@@ -187,7 +183,6 @@
     <string name="download_in_progress_desc">İndirme işlemi devam ediyor</string>
     <string name="share_playlist_desc">Bu oynatma listesini başkalarıyla paylaş</string>
     <string name="delete_playlist_desc">Bu oynatma listesini kalıcı olarak sil</string>
-    <string name="sync_playlist_desc">Bu oynatma listesini YouTube Music ile eşitle</string>
     <string name="enable_better_lyrics">Better Lyrics\'i Etkinleştir</string>
     <string name="enable_better_lyrics_desc">Herhangi bir şarkı için hece senkronizasyonlu sözler, karaoke için ideal</string>
     <string name="none">Hiçbiri</string>
@@ -548,10 +543,7 @@
     </plurals>
     <string name="restore_confirm_title">Yedek geri yüklensin mi?</string>
     <string name="restore_confirm_message">Bu, uygulama verilerinizi seçilen yedekten geri yükleyecektir</string>
-    <string name="restore_account_warning">Aşağıdaki hesap bilgileri geri yüklenecek ve korunacaktır:</string>
     <string name="restore">Geri yükle</string>
-    <string name="checking_previous_account">Önceki hesap kontrol ediliyor…</string>
-    <string name="no_account_found">Hesap bulunamadı</string>
     <string name="importing_playlist">Oynatma listesi içe aktarılıyor…</string>
     <string name="widget_recognizer_name">Müzik Tanıyıcı</string>
     <string name="widget_recognizer_description">Çevrenizde çalan şarkıları doğrudan ana ekranınızdan tanımlayın</string>
@@ -769,7 +761,6 @@
     <string name="error_no_internet_connection">İnternet bağlantısı yok</string>
     <string name="error_offline_playback">Çevrimdışı durumdasınız. İnternete bağlanın veya çevrimdışı kullanım için indirdiğiniz bir parçayı oynatın.</string>
     <string name="error_explicit_login_recommended">Açık içerikli oynatma, oturum açılmış bir hesapla daha iyi çalışır.</string>
-    <string name="playlist_created_locally">YouTube eşitlemesi başarısız. Oynatma listeleri yerelde oluşturuldu.</string>
     <string name="ai_provider_inception_help">API anahtarları için https://platform.inceptionlabs.ai sitesini ziyaret edin</string>
     <string name="enable_zemer">Zemer\'i aktifleştir</string>
     <string name="enable_zemer_desc">Yahudi müzikleri için şarkı sözleri</string>

@@ -17,9 +17,6 @@
     <string name="cached_playlist">জমাকৃত</string>
     <string name="uploaded_playlist">আপলোডেড</string>
     <string name="filter_uploaded">আপলোডেড</string>
-    <string name="sync_playlist">প্লেলিস্ট সমন্বয়</string>
-    <string name="sync_disabled">সমন্বয় বন্ধ</string>
-    <string name="allows_for_sync_witch_youtube">নোট: এই বিকল্পটি ইউটিউব মিউজিকের সাথে সমন্বয় চালু করে এবং এটি পরবর্তীতে পরিবর্তন করা সম্ভব নয়</string>
     <string name="generating_image">ছবি তৈরি হচ্ছে…</string>
     <string name="please_wait">অপেক্ষা করুন</string>
     <string name="cancel">বাতিল</string>
@@ -51,7 +48,6 @@
     <string name="enable">চালু করুন</string>
     <string name="show_more">আরও দেখান</string>
     <string name="artist_page_settings">শিল্পীর পাতা</string>
-    <string name="sync_playlist_desc">এই প্লেলিস্টটি ইউটিউব মিউজিকের সাথে সমন্বয় করুন</string>
     <string name="copy_link">লিঙ্ক কপি করুন</string>
     <string name="select">সবগুলো নির্বাচন করুন</string>
     <string name="like_all">সবগুলো লাইক করুন</string>
@@ -481,10 +477,7 @@
     <string name="no_downloaded_episodes">কোন ডাউনলোড করা পর্ব নেই</string>
     <string name="restore_confirm_title">ব্যাকআপ পুনরুদ্ধার করবেন?</string>
     <string name="restore_confirm_message">এটি নির্বাচিত ব্যাকআপ থেকে আপনার অ্যাপের ডেটা পুনরুদ্ধার করবে</string>
-    <string name="restore_account_warning">পুনরুদ্ধার করার পর আপনাকে আবার লগ ইন করতে হবে। নিম্নলিখিত অ্যাকাউন্টটি সাইন আউট করা হবে:</string>
     <string name="restore">পুনরুদ্ধার করুন</string>
-    <string name="checking_previous_account">পূর্ববর্তী অ্যাকাউন্ট খোঁজা করা হচ্ছে…</string>
-    <string name="no_account_found">কোনো অ্যাকাউন্ট খুঁজে পাওয়া যায়নি</string>
     <string name="upload_songs">গান আপলোড করুন</string>
     <string name="uploading">আপলোড করা হচ্ছে…</string>
     <string name="upload_progress">%2$d এর মধ্যে %1$d</string>
@@ -564,7 +557,6 @@
     <string name="clear_song_cache_dialog">আপনি কি নিশ্চিত যে আপনি ক্যাশে থাকা সমস্ত গান মুছে ফেলতে চান?</string>
     <string name="clear_image_cache_dialog">আপনি কি নিশ্চিত যে আপনি সমস্ত ক্যাশ করা ছবি মুছে ফেলতে চান?</string>
     <string name="clear_downloads_dialog">আপনি কি নিশ্চিত যে আপনি সমস্ত ডাউনলোড মুছে ফেলতে চান?</string>
-    <string name="not_logged_in_youtube">ইউটিউবে লগইন করা নেই</string>
     <string name="default_links">সমর্থিত লিঙ্কগুলো খুলুন</string>
     <string name="open_app_settings_error">অ্যাপের সেটিংস খোলা যায়নি</string>
     <string name="release_notes">প্রকাশকের মন্তব্য</string>

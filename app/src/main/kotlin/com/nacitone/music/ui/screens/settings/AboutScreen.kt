@@ -72,6 +72,7 @@ private val infoLinks = listOf(
     AboutLink(R.string.credits_license_name, R.drawable.info, "https://www.gnu.org/licenses/gpl-3.0.html"),
 )
 
+private const val WEBSITE_URL = "https://nacitone.xo.je"
 private const val PRIVACY_POLICY_URL = "https://github.com/NASHKITWO/Nacitone/blob/main/PRIVACY.md"
 
 @Composable
@@ -138,7 +139,7 @@ fun AboutScreen(
         
                 Spacer(Modifier.width(20.dp))
         
-                Column {
+                Column(modifier = Modifier.weight(1f)) {
                     val appDisplayName = stringResource(R.string.app_name)
 
                     Text(
@@ -146,7 +147,9 @@ fun AboutScreen(
                         style = MaterialTheme.typography.headlineLarge,
                         fontWeight = FontWeight.Black,
                         color = MaterialTheme.colorScheme.onSurface,
-                        letterSpacing = (-0.5).sp
+                        letterSpacing = (-0.5).sp,
+                        maxLines = 1,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                     )
             
                     Spacer(Modifier.height(8.dp))
@@ -264,6 +267,13 @@ fun AboutScreen(
                     Icon(painterResource(R.drawable.buymeacoffee), contentDescription = null, modifier = Modifier.size(20.dp))
                     Spacer(Modifier.width(12.dp))
                     Text(stringResource(R.string.support_founder), fontWeight = FontWeight.ExtraBold, fontSize = 16.sp)
+                }
+
+                TextButton(
+                    onClick = { uriHandler.openUri(WEBSITE_URL) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.website))
                 }
 
                 TextButton(

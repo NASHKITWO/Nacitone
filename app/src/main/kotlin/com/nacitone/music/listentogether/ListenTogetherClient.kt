@@ -625,10 +625,11 @@ class ListenTogetherClient
         private fun normalizeServerUrl(url: String): String {
             val trimmed = url.trim()
             if (trimmed.isEmpty()) return DEFAULT_SERVER_URL
-            return if (trimmed.contains("metroserver.meowery.eu", ignoreCase = true)) {
-                DEFAULT_SERVER_URL
-            } else {
-                trimmed
+            return when {
+                trimmed.contains("metroserver.meowery.eu", ignoreCase = true) -> DEFAULT_SERVER_URL
+                // Hanya koneksi terenkripsi (wss://); alamat lain dikembalikan ke server bawaan.
+                !trimmed.startsWith("wss://", ignoreCase = true) -> DEFAULT_SERVER_URL
+                else -> trimmed
             }
         }
 

@@ -73,7 +73,6 @@
     <string name="remove_from_playlist">Tak bort frå speleliste</string>
     <string name="remove_from_queue">Tak bort frå køen</string>
     <string name="search_online">Søk ånetes</string>
-    <string name="action_sync">Synkroniser</string>
     <string name="advanced">Avansert</string>
     <string name="tempo_and_pitch">Snøggleik og tonehøgd</string>
     <string name="sort_by_create_date">Dato lagt til</string>

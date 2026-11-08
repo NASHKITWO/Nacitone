@@ -96,22 +96,6 @@ class PlaylistWidgetReceiver : AppWidgetProvider() {
         }
     }
 
-    private fun openTargetInApp(context: Context, source: Intent) {
-        val activityIntent = Intent(context, MainActivity::class.java).apply {
-            action = MainActivity.ACTION_OPEN_WIDGET_TARGET
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
-            putExtra(
-                MainActivity.EXTRA_WIDGET_TARGET_TYPE,
-                source.getStringExtra(EXTRA_TARGET_TYPE),
-            )
-            putExtra(
-                MainActivity.EXTRA_WIDGET_TARGET_ID,
-                source.getStringExtra(EXTRA_TARGET_ID),
-            )
-        }
-        context.startActivity(activityIntent)
-    }
-
     companion object {
         private const val TAG = "PlaylistWidgetReceiver"
         const val ACTION_PLAY_TARGET = "com.nacitone.music.widget.playlists.PLAY_TARGET"

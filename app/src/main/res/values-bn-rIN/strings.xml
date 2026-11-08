@@ -58,7 +58,6 @@
     <string name="delete">মুছুন</string>
     <string name="remove_from_history">ইতিহাস থেকে অপসারণ</string>
     <string name="search_online">অনলাইন এ খুঁজুন</string>
-    <string name="action_sync">সুসংগত</string>
     <string name="sort_by_create_date">সময় সম্পাদনা করা হয়েছে</string>
     <string name="sort_by_name">নাম</string>
     <string name="sort_by_artist">শিল্পী</string>

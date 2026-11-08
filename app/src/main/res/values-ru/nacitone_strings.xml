@@ -28,7 +28,6 @@
         <item quantity="many">%d секунд</item>
         <item quantity="other">%d секунд</item>
     </plurals>
-    <string name="allows_for_sync_witch_youtube">ПРИМЕЧАНИЕ: Этот параметр включает синхронизацию с YouTube Music, и его НЕЛЬЗЯ изменить позже</string>
     <string name="player_background_blur">Размытие</string>
     <string name="slim_navbar">Тонкая панель навигации</string>
     <string name="dislikes">Дизлайки</string>
@@ -43,8 +42,6 @@
     <string name="offline">Скачанные</string>
     <string name="my_top">Мой топ</string>
     <string name="cached_playlist">Кэшированные</string>
-    <string name="sync_playlist">Синхронизировать плейлист</string>
-    <string name="sync_disabled">Синхронизация выключена</string>
     <string name="cancel">Отмена</string>
     <string name="share_lyrics">Поделиться текстом</string>
     <string name="trending">Тренды</string>
@@ -89,7 +86,6 @@
     <string name="auto_download_on_like_desc">Автоматически скачивать треки, отмечаемые как понравившиеся</string>
     <string name="clear_song_cache_dialog">Вы уверены, что хотите очистить все закэшированные треки?</string>
     <string name="clear_downloads_dialog">Вы уверены, что хотите очистить все скачанные?</string>
-    <string name="not_logged_in_youtube">Вы не вошли в YouTube</string>
     <string name="default_links">Открыть поддерживаемые ссылки</string>
     <string name="open_app_settings_error">Не удалось открыть настройки приложения</string>
     <string name="release_notes">Примечания к выпуску</string>
@@ -191,7 +187,6 @@
     <string name="download_in_progress_desc">Идёт скачивание</string>
     <string name="share_playlist_desc">Поделиться этим плейлистом с другими</string>
     <string name="delete_playlist_desc">Удалить этот плейлист навсегда</string>
-    <string name="sync_playlist_desc">Синхронизировать этот плейлист с YouTube Music</string>
     <string name="enable_better_lyrics">Включить Better Lyrics</string>
     <string name="enable_better_lyrics_desc">Послоговая синхронизация текстов — идеально для караоке</string>
     <string name="none">Нет</string>
@@ -556,10 +551,7 @@
     </plurals>
     <string name="restore_confirm_title">Восстановить из резервной копии?</string>
     <string name="restore_confirm_message">Данные приложения будут восстановлены из выбранной резервной копии</string>
-    <string name="restore_account_warning">Данные следующего аккаунта будут восстановлены и сохранены:</string>
     <string name="restore">Восстановить</string>
-    <string name="checking_previous_account">Поиск предыдущего аккаунта…</string>
-    <string name="no_account_found">Аккаунт не найден</string>
     <string name="importing_playlist">Импорт плейлиста…</string>
     <string name="widget_recognizer_name">Распознаватель музыки</string>
     <string name="widget_recognizer_description">Узнавайте, какая музыка играет рядом, прямо с главного экрана</string>
@@ -781,7 +773,6 @@
     <string name="error_explicit_login_recommended">Для воспроизведения контента с нецензурной лексикой лучше войти в аккаунт.</string>
     <string name="error_no_internet_connection">Нет подключения к интернету</string>
     <string name="error_offline_playback">Вы не в сети. Подключитесь к интернету или включите трек, скачанный для прослушивания офлайн.</string>
-    <string name="playlist_created_locally">Ошибка синхронизации с YouTube. Плейлист создан локально.</string>
     <string name="ai_provider_inception_help">Откройте https://platform.inceptionlabs.ai для получения ключей API</string>
     <string name="enable_zemer">Включить Zemer</string>
     <string name="enable_zemer_desc">Тексты еврейских песен</string>

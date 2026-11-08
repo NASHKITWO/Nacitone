@@ -15,9 +15,6 @@
     <string name="offline">Preneseno</string>
     <string name="my_top">Moj top</string>
     <string name="cached_playlist">Predpomnjeno</string>
-    <string name="sync_playlist">Sinhronizacija seznama predvajanja</string>
-    <string name="sync_disabled">Sinhronizacija onemogočena</string>
-    <string name="allows_for_sync_witch_youtube">Opomba: To omogoča sinhronizacijo z aplikacijo YouTube Music. Tega kasneje NI mogoče spremeniti.</string>
     <string name="generating_image">Generiranje slike</string>
     <string name="please_wait">Prosim, počakajte</string>
     <string name="cancel">Prekliči</string>
@@ -84,7 +81,6 @@
     <string name="clear_image_cache_dialog">Ali ste prepričani, da želite počistiti vse slike v predpomnilniku?</string>
     <string name="clear_downloads_dialog">Ali ste prepričani, da želite počistiti vse prenose?</string>
     <string name="disable">Onemogoči</string>
-    <string name="not_logged_in_youtube">Niste prijavljeni na YouTube</string>
     <string name="default_links">Odpri podprte povezave</string>
     <string name="open_app_settings_error">Ni bilo mogoče odpreti nastavitev aplikacije</string>
     <string name="release_notes">Opombe ob izdaji</string>
@@ -133,7 +129,6 @@
     <string name="download_in_progress_desc">Prenos je v teku</string>
     <string name="share_playlist_desc">Deli ta seznam predvajanja z drugimi</string>
     <string name="delete_playlist_desc">Trajno odstrani ta seznam predvajanja</string>
-    <string name="sync_playlist_desc">Sinhroniziraj seznam predvajanja z YouTube Music</string>
     <string name="starting_radio">Zaganjanje radia</string>
     <string name="crop_album_art">Obreži sliko albuma</string>
     <string name="crop_album_art_desc">Vsili kvadratno razmerje stranic z obrezovanjem sličic videoposnetkov</string>

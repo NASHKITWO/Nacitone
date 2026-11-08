@@ -304,7 +304,16 @@ class MusicService :
             }
         }
 
-    private val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    // Pengecualian yang tak tertangani di coroutine service dicatat, bukan membuat aplikasi crash
+    // (mis. saat memulihkan antrean tersimpan setelah aplikasi lama tidak dibuka).
+    private val scope =
+        CoroutineScope(
+            Dispatchers.Main + SupervisorJob() +
+                kotlinx.coroutines.CoroutineExceptionHandler { _, t ->
+                    if (t is kotlinx.coroutines.CancellationException) return@CoroutineExceptionHandler
+                    Timber.tag(TAG).e(t, "Coroutine di MusicService gagal (diabaikan)")
+                },
+        )
 
     private val binder = MusicBinder()
 
@@ -3978,9 +3987,26 @@ class MusicService :
         flags: Int,
         startId: Int,
     ): Int {
+        val callerAction = intent?.action
+        if (callerAction != null &&
+            callerAction in com.nacitone.music.widget.WidgetAuth.controlActions &&
+            intent?.getStringExtra(com.nacitone.music.widget.WidgetAuth.EXTRA_TOKEN) != com.nacitone.music.widget.WidgetAuth.token
+        ) {
+            // Perintah kontrol dari aplikasi lain (tanpa token) diabaikan.
+            return START_NOT_STICKY
+        }
         if (taskCleared) {
             // A media button press (headset, car) is the user resuming; anything else is a stale restart.
-            if (intent?.action != Intent.ACTION_MEDIA_BUTTON) {
+            val action = intent?.action
+            val userIntent =
+                action == Intent.ACTION_MEDIA_BUTTON ||
+                    (action != null && action.startsWith("com.nacitone.music.widget."))
+            if (!userIntent) {
+                // Layanan mungkin dimulai lewat startForegroundService(): wajib startForeground dulu
+                // sebelum berhenti, kalau tidak Android melempar ForegroundServiceDidNotStartInTimeException.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    runCatching { tryEnsureForegroundWithLatestNotification() }
+                }
                 stopSelf()
                 return START_NOT_STICKY
             }
@@ -4056,6 +4082,13 @@ class MusicService :
     private fun playFromWidgetWhenQueueEmpty() {
         scope.launch {
             try {
+                // Beri waktu pemulihan antrean tersimpan; jangan timpa antrean pengguna.
+                delay(1_500)
+                if (player.mediaItemCount > 0) {
+                    player.play()
+                    updateWidgetUI(player.isPlaying)
+                    return@launch
+                }
                 val queue = withContext(Dispatchers.IO) {
                     val liked = Intent().putExtra(
                         PlaylistWidgetReceiver.EXTRA_TARGET_TYPE,
@@ -4383,10 +4416,15 @@ class MusicService :
                 while (isActive) {
                     delay(1.seconds)
                     if (player.isPlaying) {
-                        widgetManager.updateProgress(
-                            duration = if (player.duration != C.TIME_UNSET) player.duration else 0,
-                            currentPosition = player.currentPosition,
-                        )
+                        try {
+                            widgetManager.updateProgress(
+                                duration = if (player.duration != C.TIME_UNSET) player.duration else 0,
+                                currentPosition = player.currentPosition,
+                            )
+                        } catch (e: Exception) {
+                            // Widget dihapus / launcher mati: jangan hentikan loop atau crash.
+                            Timber.tag(TAG).w(e, "Gagal memperbarui progres widget")
+                        }
                     }
                 }
             }
@@ -4680,7 +4718,6 @@ class MusicService :
 
         const val CHANNEL_ID = "music_channel_01"
         const val NOTIFICATION_ID = 888
-        const val ERROR_CODE_NO_STREAM = 1000001
         const val CHUNK_LENGTH = 512 * 1024L
         const val PERSISTENT_QUEUE_FILE = "persistent_queue.data"
         const val PERSISTENT_AUTOMIX_FILE = "persistent_automix.data"

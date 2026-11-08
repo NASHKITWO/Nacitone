@@ -62,7 +62,6 @@
     <string name="delete">Verwijderen</string>
     <string name="remove_from_history">Verwijder uit geschiedenis</string>
     <string name="search_online">Zoek online</string>
-    <string name="action_sync">Synchroniseer</string>
     <string name="advanced">Geavanceerd</string>
     <string name="sort_by_create_date">Datum toegevoegd</string>
     <string name="sort_by_name">Naam</string>

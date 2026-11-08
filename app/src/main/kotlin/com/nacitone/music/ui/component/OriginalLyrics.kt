@@ -2224,10 +2224,6 @@ fun OriginalLyrics(
 }
 
 // Professional page animation constants inspired by Nacitone design - slower for smoothness
-private const val NACITONE_AUTO_SCROLL_DURATION = 1500L // Much slower auto-scroll for smooth transitions
-private const val NACITONE_INITIAL_SCROLL_DURATION = 1000L // Slower initial positioning
-private const val NACITONE_SEEK_DURATION = 800L // Slower user interaction
-private const val NACITONE_FAST_SEEK_DURATION = 600L // Less aggressive seeking
 
 // Lyrics constants
 val LyricsPreviewTime = 2.seconds

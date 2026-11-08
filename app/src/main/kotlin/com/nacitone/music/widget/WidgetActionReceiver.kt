@@ -13,6 +13,21 @@ import timber.log.Timber
  * sendiri (yang dibuat di NacitoneWidgetManager/PlaylistWidgetManager) yang bisa sampai ke sini,
  * jadi aplikasi lain tidak dapat memicu play/pause/suka/berikutnya.
  */
+/** Token acak per proses: hanya kode aplikasi ini yang tahu, sehingga aplikasi lain tak bisa menyuruh MusicService. */
+object WidgetAuth {
+    const val EXTRA_TOKEN = "nacitone_widget_token"
+    val token: String = java.util.UUID.randomUUID().toString()
+
+    val controlActions =
+        setOf(
+            MusicWidgetReceiver.ACTION_PLAY_PAUSE,
+            MusicWidgetReceiver.ACTION_LIKE,
+            MusicWidgetReceiver.ACTION_NEXT,
+            MusicWidgetReceiver.ACTION_PREVIOUS,
+            PlaylistWidgetReceiver.ACTION_PLAY_TARGET,
+        )
+}
+
 class WidgetActionReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val serviceAction = when (intent.action) {
@@ -29,6 +44,7 @@ class WidgetActionReceiver : BroadcastReceiver() {
         val serviceIntent = Intent(context, MusicService::class.java).apply {
             action = serviceAction
             putExtras(intent)
+            putExtra(WidgetAuth.EXTRA_TOKEN, WidgetAuth.token)
         }
         try {
             ContextCompat.startForegroundService(context, serviceIntent)

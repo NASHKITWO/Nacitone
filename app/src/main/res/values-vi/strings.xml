@@ -61,7 +61,6 @@
     <string name="delete">Xoá</string>
     <string name="remove_from_history">Xoá khỏi lịch sử</string>
     <string name="search_online">Tìm kiếm trực tuyến</string>
-    <string name="action_sync">Đồng bộ</string>
     <string name="advanced">Nâng cao</string>
     <string name="sort_by_create_date">Ngày thêm vào</string>
     <string name="sort_by_name">Tên</string>

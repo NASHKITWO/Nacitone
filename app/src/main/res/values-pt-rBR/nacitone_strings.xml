@@ -52,7 +52,6 @@
     <string name="local_history">Local</string>
     <string name="cached_playlist">Em cache</string>
     <string name="information">Informações</string>
-    <string name="allows_for_sync_witch_youtube">OBSERVAÇÃO: Esta opção permite sincronizar com o YouTube Music e NÃO pode ser alterada mais tarde</string>
     <string name="swipe_song_to_add">Deslizar na música para a esquerda para adicionar a fila ou para a direita para tocá-la em seguida</string>
     <string name="show_top_playlist">Mostrar playlist do Top</string>
     <string name="show_cached_playlist">Mostrar playlist das Em cache</string>
@@ -62,7 +61,6 @@
     <string name="album_cover_desc">Capa do álbum</string>
     <string name="top_music_videos">Vídeoclipes populares</string>
     <string name="trending">Em alta</string>
-    <string name="sync_disabled">Sincronização desativada</string>
     <string name="remove_from_cache">Remover do cache</string>
     <string name="copy_link">Copiar link</string>
     <string name="link_copied">Link copiado para a área de transferência</string>
@@ -70,13 +68,11 @@
     <string name="default_style">Padrão</string>
     <string name="auto_playlists">Playlists automáticas</string>
     <string name="show_downloaded_playlist">Mostrar playlist das Baixadas</string>
-    <string name="sync_playlist">Sincronizar playlist</string>
     <string name="dislike_all">Desfavoritar tudo</string>
     <string name="show_liked_playlist">Mostrar playlist das Curtidas</string>
     <string name="percentage_format">%d%%</string>
     <string name="clear_song_cache_dialog">Você tem certeza que quer limpar todas as músicas em cache?</string>
     <string name="clear_downloads_dialog">Você tem certeza que você quer limpar todos os downloads?</string>
-    <string name="not_logged_in_youtube">Não conectado ao YouTube</string>
     <string name="description">Descrição</string>
     <string name="views">Visualizações</string>
     <string name="likes">Curtidos</string>
@@ -189,7 +185,6 @@
     <string name="download_in_progress_desc">Um download está em andamento</string>
     <string name="share_playlist_desc">Compartilhe esta playlist com outras pessoas</string>
     <string name="delete_playlist_desc">Remover esta playlist permanentemente</string>
-    <string name="sync_playlist_desc">Sincronizar esta playlist com o YouTube Music</string>
     <string name="lyrics_glow_effect">Ativar o efeito de letras brilhantes</string>
     <string name="lyrics_glow_effect_desc">Adiciona uma animação de brilho e efeito de salto para a linha de letras ativas</string>
     <string name="enable_better_lyrics">Ativar Better Lyrics</string>
@@ -552,10 +547,7 @@
     </plurals>
     <string name="restore_confirm_title">Restaurar backup?</string>
     <string name="restore_confirm_message">Isto vai restaurar seus dados do app do backup selecionado</string>
-    <string name="restore_account_warning">As seguintes informações da conta serão restauradas e preservadas:</string>
     <string name="restore">Restaurar</string>
-    <string name="checking_previous_account">Verificando se há uma conta anterior…</string>
-    <string name="no_account_found">Nenhuma conta encontrada</string>
     <string name="importing_playlist">Importando playlist…</string>
     <string name="widget_recognizer_name">Reconhecedor de música</string>
     <string name="widget_recognizer_description">Identifique músicas tocando ao seu redor diretamente da sua tela inicial</string>
@@ -775,7 +767,6 @@
     <string name="error_no_internet_connection">Sem conexão com a internet</string>
     <string name="error_offline_playback">Você está offline. Conecte-se à internet ou reproduza uma faixa baixada para uso offline.</string>
     <string name="error_explicit_login_recommended">A reprodução de conteúdo explícito funciona melhor com uma conta conectada.</string>
-    <string name="playlist_created_locally">Sincronização do YouTube falhou. Playlist criada localmente.</string>
     <string name="update_action">Atualizar</string>
     <string name="ai_provider_inception_help">Visite https://platform.inceptionlabs.ai para chave API</string>
     <string name="enable_zemer">Ativar Zemer</string>

@@ -143,13 +143,8 @@ android {
             )
         }
         debug {
-            if (applicationIdOverride == null) {
-                applicationIdSuffix = ".debug"
-            }
+            // Tanpa akhiran ".debug" dan tanpa label "Debug": satu aplikasi, satu ikon (sama dengan rilis).
             isDebuggable = true
-            if (appNameOverride == null) {
-                resValue("string", "app_name", "Nacitone Debug")
-            }
             signingConfig =
                 if (workflowDebugKeystoreFile != null) {
                     signingConfigs.getByName("workflowDebug")

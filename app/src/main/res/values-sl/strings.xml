@@ -75,7 +75,6 @@
     <string name="remove_from_playlist">Odstrani iz seznama predvajanja</string>
     <string name="remove_from_queue">Odstrani iz čakalne vrste</string>
     <string name="search_online">Išči na spletu</string>
-    <string name="action_sync">Sinhroniziraj</string>
     <string name="advanced">Napredno</string>
     <string name="tempo_and_pitch">Tempo in višina tona</string>
     <string name="sort_by_create_date">Datum dodajanja</string>

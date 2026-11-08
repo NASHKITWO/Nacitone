@@ -17,9 +17,6 @@
     <string name="cached_playlist">Snarlagra</string>
     <string name="uploaded_playlist">Oppladde</string>
     <string name="filter_uploaded">Oppladde</string>
-    <string name="sync_playlist">Synkroniser speleliste</string>
-    <string name="sync_disabled">Synkronisering deaktivert</string>
-    <string name="allows_for_sync_witch_youtube">Obs! Dette tillèt synkronisering med YouTube Music og kan IKKJE brigdast seinare.</string>
     <string name="generating_image">Skapar bilete</string>
     <string name="please_wait">Venlegast vent</string>
     <string name="cancel">Bryt av</string>
@@ -101,7 +98,6 @@
     <string name="download_in_progress_desc">Nedlading er i gang</string>
     <string name="share_playlist_desc">Del denne spelelista med andre</string>
     <string name="delete_playlist_desc">Slett denne spelelista for æve</string>
-    <string name="sync_playlist_desc">Synkroniser spelelista med YouTube Music</string>
     <string name="primary_color_style">Hovudlet</string>
     <string name="tertiary_color_style">Tredjelet</string>
     <string name="lyrics_glow_effect">Glødande songtekster</string>
@@ -121,7 +117,6 @@
     <string name="clear_image_cache_dialog">Er du viss på at du vil reinsa alle hurtiglagra bilete?</string>
     <string name="clear_downloads_dialog">Er du viss på at du vil reinsa alle nedladingar?</string>
     <string name="disable">Slå av</string>
-    <string name="not_logged_in_youtube">Ikkje logga på YouTube</string>
     <string name="default_links">Opna stødde lenkjer</string>
     <string name="open_app_settings_error">Klarte ikkje å opna applikasjonsinnstillingar</string>
     <string name="release_notes">Sleppsnotat</string>

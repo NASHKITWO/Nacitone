@@ -15,9 +15,6 @@
     <string name="offline">Yüklənmiş</string>
     <string name="my_top">Mənim ən sevimlilərim</string>
     <string name="cached_playlist">Keşə yüklənmiş</string>
-    <string name="sync_playlist">Pleylisti sinxronizasiya et</string>
-    <string name="sync_disabled">Sinxronizasiya qeyri-aktivdir</string>
-    <string name="allows_for_sync_witch_youtube">QEYD: Bu seçim YouTube Music ilə sinxronizasiyanı aktivləşdirir və sonradan dəyişdirilə bilməz</string>
     <string name="generating_image">Şəkil yaradılır…</string>
     <string name="please_wait">Zəhmət olmasa gözləyin</string>
     <string name="cancel">Ləğv et</string>
@@ -64,7 +61,6 @@
     <string name="download_in_progress_desc">Yükləmək dəvam edir</string>
     <string name="share_playlist_desc">Bu playlisti başqalarıyla paylaş</string>
     <string name="delete_playlist_desc">Bu playlisti həmişəlik sil</string>
-    <string name="sync_playlist_desc">Playlisti YouTube Musicnen sinxronla</string>
     <string name="crop_album_art">Albom şəklini kəs</string>
     <string name="player_background_style">Albom şəklini pleyerdə tətbiq loqosu ilə əvəz edin</string>
     <string name="follow_theme">Temanı izlə</string>
@@ -194,7 +190,6 @@
     <string name="clear_image_cache_dialog">Bütün keşlənmiş şəkilləri silmək istədiyinizə əminsinizmi?</string>
     <string name="clear_downloads_dialog">Bütün yükləmələri silmək istədiyinizə əminsinizmi?</string>
     <string name="disable">Deaktiv et</string>
-    <string name="not_logged_in_youtube">YouTube-da daxil olmamısınız</string>
     <string name="default_links">Dəstəklənən keçidləri açın</string>
     <string name="open_app_settings_error">Tətbiq parametrlərini açmaq mümkün olmadı</string>
     <string name="release_notes">Buraxılış qeydləri</string>
@@ -706,11 +701,8 @@
     </plurals>
     <string name="restore_confirm_title">Ehtiyat nüsxə bərpa edilsin?</string>
     <string name="restore_confirm_message">Bu, tətbiq məlumatlarınızı seçilmiş ehtiyat nüsxədən bərpa edəcək</string>
-    <string name="restore_account_warning">Aşağıdakı hesab məlumatları bərpa ediləcək və qorunub saxlanılacaq:</string>
     <string name="restore">Bərpa et</string>
     <string name="restore_database_incompatible">Ehtiyat nüsxə bərpa edilə bilmir: verilənlər bazasının versiyası uyğun deyil. Mövcud məlumatlarınız qorunub saxlanılıb.</string>
-    <string name="checking_previous_account">Əvvəlki hesabın olub-olmadığı yoxlanılır…</string>
-    <string name="no_account_found">Hesab tapılmadı</string>
     <string name="upload_songs">Mahnıları yükləyin</string>
     <string name="uploading">Yüklənir…</string>
     <string name="upload_progress">%2$d-dən %1$d-i</string>
@@ -768,7 +760,6 @@
     <string name="playlist_position_end_desc">Yeni əlavə edilmiş mahnılar mövcud mahnılardan sonra görünür</string>
     <string name="enable_zemer">Zemer aktivləşdirin</string>
     <string name="enable_zemer_desc">Yəhudi musiqisi üçün sözlər</string>
-    <string name="playlist_created_locally">YouTube sinxronizasiyası uğursuz oldu. Pleylist yerli olaraq yaradıldı.</string>
     <string name="update_available_message">Nacitone %s yükləməyə hazırdır.</string>
     <string name="update_action">Yeniləmə</string>
     <string name="error_no_internet_connection">İnternet bağlantısı yoxdur</string>

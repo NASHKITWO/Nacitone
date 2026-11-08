@@ -21,9 +21,6 @@
     <string name="cached_playlist">Gekas</string>
     <string name="uploaded_playlist">Opgelaai</string>
     <string name="filter_uploaded">Opgelaai</string>
-    <string name="sync_playlist">Sync snitlys</string>
-    <string name="sync_disabled">Sinkronisering af</string>
-    <string name="allows_for_sync_witch_youtube">LET WEL: Hierdie opsie aktiveer sinkronisering met YouTube Music en KAN NIE later verander word nie</string>
     <string name="and">en</string>
     <string name="generating_image">Skep tans beeld…</string>
     <string name="please_wait">Wag asseblief</string>
@@ -51,7 +48,6 @@
     <string name="download_in_progress_desc">\'n Aflaai is tans aan die gang</string>
     <string name="share_playlist_desc">Deel hierdie snitlys met ander</string>
     <string name="delete_playlist_desc">Verwyder hierdie snitlys permanent</string>
-    <string name="sync_playlist_desc">Sinkroniseer hierdie snitlys met YouTube Music</string>
     <string name="copy_link">Kopieer skakel</string>
     <string name="select">Kies alles</string>
     <string name="like_all">Hou van alles</string>
@@ -194,7 +190,6 @@
     <string name="clear_image_cache_dialog">Is jy seker jy wil alle gekaste beelde uitvee?</string>
     <string name="clear_downloads_dialog">Is jy seker jy wil alle afgelaaides uitvee?</string>
     <string name="disable">Deaktiveer</string>
-    <string name="not_logged_in_youtube">Nie by YouTube aangemeld nie</string>
     <string name="default_links">Maak ondersteunde skakels oop</string>
     <string name="open_app_settings_error">Kon nie die toep-instellings oopmaak nie</string>
     <string name="release_notes">Vrystellingsnotas</string>
@@ -662,11 +657,8 @@
     </plurals>
     <string name="restore_confirm_title">Herstel rugsteun?</string>
     <string name="restore_confirm_message">Dit sal jou toepassingsdata vanaf die geselekteerde rugsteun herstel</string>
-    <string name="restore_account_warning">Die volgende rekeninginligting sal herstel en behou word:</string>
     <string name="restore">Herstel</string>
     <string name="restore_database_incompatible">Kan nie rugsteun herstel nie: databasis-weergawe is onversoenbaar. Jou huidige data is behou.</string>
-    <string name="checking_previous_account">Besig om na vorige rekening te kyk…</string>
-    <string name="no_account_found">Geen rekening gevind nie</string>
     <string name="upload_songs">Laai liedjies op</string>
     <string name="uploading">Besig om op te laai…</string>
     <string name="upload_progress">%1$d van %2$d</string>

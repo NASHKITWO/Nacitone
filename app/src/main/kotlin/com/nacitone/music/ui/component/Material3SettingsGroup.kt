@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -127,12 +128,11 @@ private fun Material3SettingsItemRow(
                     .size(42.dp)
                     .clip(RoundedCornerShape(14.dp))
                     .background(
-                        Brush.linearGradient(
-                            listOf(
-                                MaterialTheme.colorScheme.primary.copy(alpha = if (item.isHighlighted) 0.26f else 0.18f),
-                                MaterialTheme.colorScheme.tertiary.copy(alpha = if (item.isHighlighted) 0.18f else 0.10f),
-                            )
-                        )
+                        if (item.isHighlighted) {
+                            MaterialTheme.colorScheme.primaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.surfaceContainerHighest
+                        },
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -209,7 +209,13 @@ private fun Material3SettingsItemRow(
         // Trailing content
         item.trailingContent?.let { trailing ->
             Spacer(modifier = Modifier.width(8.dp))
-            trailing()
+            // Batasi lebar slot kanan agar judul tidak terhimpit sampai tumpang tindih.
+            Box(
+                modifier = Modifier.widthIn(max = 160.dp),
+                contentAlignment = Alignment.CenterEnd,
+            ) {
+                trailing()
+            }
         }
     }
 }

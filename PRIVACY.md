@@ -1,7 +1,7 @@
 # Kebijakan Privasi Nacitone / Nacitone Privacy Policy
 
 Terakhir diperbarui / Last updated: 4 November 2026
-Pengembang / Developer: Muhammad Ikhsan — ican3192@gmail.com
+Pengembang / Developer: Muhammad Ikhsan — ican3192@gmail.com · https://nacitone.xo.je
 
 ## Bahasa Indonesia
 

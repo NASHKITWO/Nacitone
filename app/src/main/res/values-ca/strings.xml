@@ -200,7 +200,6 @@
     <string name="downloading">S’està baixant</string>
     <string name="add_to_library">Afegeix a la col·lecció</string>
     <string name="action_download">Baixa</string>
-    <string name="action_sync">Sincronitza</string>
     <string name="sort_by_artist">Artista</string>
     <string name="remove_from_queue">Elimina de la cua</string>
     <string name="remove_from_playlist">Elimina de la llista</string>

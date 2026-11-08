@@ -42,9 +42,6 @@
     <string name="liked">Tus \"me gusta\"</string>
     <string name="offline">Descargados</string>
     <string name="cached_playlist">Guardado en la caché</string>
-    <string name="sync_playlist">Sincronizar lista de reproducción</string>
-    <string name="sync_disabled">Sincronización desactivada</string>
-    <string name="allows_for_sync_witch_youtube">Nota: Esto permite sincronizarse con YouTube Music. NO se puede cambiar después</string>
     <string name="generating_image">Generando imagen…</string>
     <string name="please_wait">Por favor, espera</string>
     <string name="cancel">Cancelar</string>
@@ -85,7 +82,6 @@
     <string name="auto_download_on_like_desc">Automáticamente se descargarán las canciones cuando le des me gusta</string>
     <string name="clear_song_cache_dialog">¿Estás seguro de eliminar todas las canciones de la caché?</string>
     <string name="clear_downloads_dialog">¿Estás seguro de eliminar todas las canciones descargadas?</string>
-    <string name="not_logged_in_youtube">No haz iniciado sesión en YouTube</string>
     <string name="default_links">Abrir links soportados</string>
     <string name="dislikes">No me gusta</string>
     <plurals name="seconds">
@@ -145,7 +141,6 @@
     <string name="download_in_progress_desc">Una descarga está en progreso</string>
     <string name="share_playlist_desc">Compartir esta lista de reproducción con otros</string>
     <string name="delete_playlist_desc">Eliminar esta lista de reproducción de forma permanente</string>
-    <string name="sync_playlist_desc">Sincronizar esta lista de reproducción con YouTube Music</string>
     <string name="primary_color_style">Color primario</string>
     <string name="tertiary_color_style">Color terciario</string>
     <string name="lyrics_glow_effect">Habilitar efecto de brillo de la letra</string>
@@ -698,10 +693,7 @@
     </plurals>
     <string name="restore_confirm_title">¿Restaurar copia?</string>
     <string name="restore_confirm_message">Esto restaurará tu aplicación a la copia de seguridad seleccionada</string>
-    <string name="restore_account_warning">Se restaurará y conservará la siguiente información de la cuenta:</string>
     <string name="restore">Restaurar</string>
-    <string name="checking_previous_account">Buscando cuentas anteriores…</string>
-    <string name="no_account_found">No se encontraron cuentas</string>
     <string name="upload_songs">Subir canciones</string>
     <string name="uploading">Subiendo…</string>
     <string name="upload_progress">%1$d de %2$d</string>
@@ -777,7 +769,6 @@
     <string name="error_explicit_login_recommended">La reproducción explícita funciona mejor si inicias sesión.</string>
     <string name="enable_zemer">Habilitar Zemer</string>
     <string name="force_bottom_navbar">Forzar la barra de navegación inferior</string>
-    <string name="playlist_created_locally">Sincronización con Youtube fallida. La lista de reproducción se ha creado localmente.</string>
     <string name="update_available_message">Nacitone %s está listo para descargar.</string>
     <string name="update_action">Actualizar</string>
     <string name="ai_provider_inception_help">Visita https://platform.inceptionlabs.ai para las claves de API</string>

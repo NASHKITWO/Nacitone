@@ -54,7 +54,6 @@
     <string name="remove_from_playlist">Fjern fra spilleliste</string>
     <string name="remove_from_queue">Fjern fra køen</string>
     <string name="search_online">Søk på nettet</string>
-    <string name="action_sync">Synkroniser</string>
     <string name="advanced">Avansert</string>
     <string name="tempo_and_pitch">Tempo og tonehøyde</string>
     <string name="sort_by_create_date">Dato tillagt</string>

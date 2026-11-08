@@ -63,7 +63,6 @@
     <string name="delete">Elimina</string>
     <string name="remove_from_history">Rimuovi dalla cronologia</string>
     <string name="search_online">Cerca in rete</string>
-    <string name="action_sync">Sincronizza</string>
     <string name="advanced">Avanzate</string>
     <string name="sort_by_create_date">Data di aggiunta</string>
     <string name="sort_by_name">Nome</string>

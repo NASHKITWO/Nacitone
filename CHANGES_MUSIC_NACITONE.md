@@ -106,3 +106,48 @@ Fitur baru (tahap 2):
 - Penunjuk pemakaian data: `utils/DataUsageMeter.kt` (TransferListener pada sumber data jaringan), tampil di Pengaturan Pemutar.
 - README ditulis ulang.
 - Belum: desain ulang pemutar (butuh tangkapan layar).
+
+## Satu ikon, satu aplikasi
+- Build debug tidak lagi memakai akhiran ID `.debug` dan label "Nacitone Debug"; ikon dan nama sama dengan rilis. (Catatan: karena tanda tangan debug berbeda dari rilis, APK debug tidak bisa dipasang menimpa rilis; hapus salah satunya lebih dulu.)
+
+## Pop-up dukungan
+- `SupportPopup()` (ui/component/SupportBanner.kt): dialog dukungan untuk Muhammad Ikhsan di Beranda; paling cepat tiap 24 jam, sekali per pembukaan aplikasi, tertunda 2,5 detik; tombol "Dukung Muhammad Ikhsan" (Sociabuzz) dan "Nanti saja". Kunci: `SupportPopupShownAtKey`.
+
+## Kenyamanan dan performa
+- Banner dan pop-up dukungan menunggu DataStore selesai dibaca (`rememberLoadedLong`): tidak ada kedipan banner atau pop-up salah muncul di awal.
+- Interval pop-up dukungan 24 jam.
+- `Timber.DebugTree` hanya dipasang di build debug (rilis lebih ringan, logcat tidak membocorkan detail).
+- `DataUsageMeter` menyimpan status jaringan 5 detik, bukan memanggil ConnectivityManager di setiap potongan data.
+- Diperiksa: pemanggilan `runBlocking` tersisa semuanya berada di thread latar (query database/layanan), tidak di thread UI.
+
+## Berbagi lagu
+- `utils/SongShare.kt`: tombol Bagikan (menu lagu, antrean, pemutar, menu lagu online) kini mengirim judul, artis, cuplikan 4 baris lirik (bila sudah tersimpan di perangkat), tautan putar, dan jejak "Dibagikan lewat Nacitone", bukan hanya tautan YouTube Music. Kartu lirik gambar tetap lewat layar lirik.
+
+## Situs web, impor Spotify
+- Tautan "Situs web" (https://nacitone.xo.je) ditambahkan di layar Tentang, README, dan kebijakan privasi. Situs milik pengembang sendiri; tidak ada berkas situs di proyek ini.
+- Tautan undangan Listen Together tetap `nacitone://listen?code=KODE` (tidak bergantung pada halaman web).
+- Impor Spotify: item "Impor dari Spotify" (panduan Exportify + pilih CSV) dan deteksi otomatis kolom (Track Name / Artist Name(s)) pada impor CSV.
+- Mini-player/pemutar: belum didesain ulang (menunggu tangkapan layar).
+
+## Hasil 20 penguji (putaran 2)
+- Widget tetap bisa memutar setelah aplikasi di-swipe dari recents (MusicService.onStartCommand).
+- Impor CSV kosong tidak lagi membuat dialog progres menggantung.
+- Tautan Listen Together hanya diterima untuk `nacitone://listen`.
+- Backup: kode akun/cookie dihapus (previewBackup, fetchAccountInfoFromBackup, clearAuthData, UI akun). Restore tidak lagi memanggil jaringan.
+- Aksesibilitas: contentDescription untuk tombol berikutnya/sebelumnya/bagikan/opsi/suka/timer tidur di pemutar & mini-player.
+- Home: layar error + tombol "Coba lagi" bila konten gagal dimuat.
+- Keamanan: perintah kontrol widget ke MusicService butuh token acak per proses (aplikasi lain ditolak).
+- Listen Together: keluar dari ruangan lama sebelum bergabung lewat tautan; kode diubah ke huruf besar.
+- release.yml: gagal bila versi input ≠ versionName. Terjemahan ID untuk 5 string.
+- Listen Together: hanya server wss:// (selain itu kembali ke bawaan).
+- Restore: batas ukuran DB 2 GB, batal bila layanan musik gagal berhenti, null-check intent restart.
+- BugReport: tidak crash bila tidak ada aplikasi pengirim.
+- Widget: tombol play saat antrean kosong menunggu 1,5 dtk pemulihan antrean agar tidak menimpa antrean pengguna.
+- Pop-up dukungan tidak muncul saat pemakaian pertama (hitung 24 jam mulai dari sana).
+- Crash buka-ulang & widget: scope MusicService punya CoroutineExceptionHandler (error pemulihan antrean/widget dicatat, tidak crash); jalur "stale restart" memanggil startForeground sebelum stopSelf; loop progres widget tidak lagi mati/crash saat widget/launcher bermasalah.
+- Desain/aksesibilitas: rak Nusantara (peran tombol + label klik, tinggi mengikuti ukuran font, gradasi Koplo/Gamelan lebih gelap untuk kontras); ResizableIconButton punya parameter contentDescription; tombol sebelumnya/berikutnya/suka di pemutar penuh diberi label.
+- Rak Nusantara dihapus (kode, string, README). File tak terpakai dihapus: extensions/ContextExt.kt, crowdin.yml, assets/badges, assets/blacksmith-powered.png.
+- Pop-up dukungan: status tampil disimpan global (tidak hilang saat Beranda dibuat ulang); waktu dicatat saat ditutup; muncul juga di pembukaan pertama.
+- Antislop: banner dukungan jadi kartu tonal datar (tanpa border emas/gradasi), teks lebih manusiawi; ikon pengaturan memakai warna tonal datar, bukan gradasi.
+- Teks tumpang tindih: item daftar & mini-player tinggi minimum (bukan tetap); tombol timer tidur memakai Button (bukan IconButton 40dp); slot kanan item Pengaturan dibatasi lebar; jarak huruf label dikurangi; tombol "Putar semua", kartu Daily Discover, Wrapped Top 5, header Tentang diberi batas lebar/maxLines; teks judul widget playlist memakai dp.
+- Pembersihan: 10 string tak terpakai (di semua bahasa), 16 query DAO tak terpakai, konstanta dimensi/lirik/volume/error tak terpakai, fungsi BugReport & widget yang tak dipanggil dihapus.

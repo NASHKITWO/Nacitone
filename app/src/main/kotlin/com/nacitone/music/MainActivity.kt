@@ -1433,6 +1433,7 @@ class MainActivity : FragmentActivity() {
                                 TextButton(
                                     onClick = {
                                         pendingListenCode = null
+                                        if (listenTogetherManager.roomState.value != null) listenTogetherManager.leaveRoom()
                                         lifecycleScope.launch {
                                             val username =
                                                 withContext(Dispatchers.IO) {
@@ -1593,10 +1594,10 @@ class MainActivity : FragmentActivity() {
             uri.getQueryParameter("code")
                 ?: uri.getQueryParameter("room")
                 ?: uri.pathSegments.getOrNull(1)
-        val isListenLink = uri.pathSegments.firstOrNull() == "listen" || uri.host?.equals("listen", ignoreCase = true) == true
+        val isListenLink = uri.scheme == "nacitone" && uri.host?.equals("listen", ignoreCase = true) == true
         if (!listenCode.isNullOrBlank() && isListenLink) {
             // Jangan langsung bergabung: pemilik ruangan bisa mengendalikan pemutaran.
-            listenCode.asSafeId()?.let { pendingListenCode = it }
+            listenCode.asSafeId()?.let { pendingListenCode = it.uppercase() }
             return
         }
 

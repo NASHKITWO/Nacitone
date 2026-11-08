@@ -18,7 +18,6 @@
     <string name="top_length">Longueur de la liste Mon Top</string>
     <string name="remote_history">Dans d\'autres applications</string>
     <string name="top_music_videos">Meilleurs clips musicaux</string>
-    <string name="allows_for_sync_witch_youtube">REMARQUE : cette option active la synchronisation avec YouTube Music et NE PEUT PAS être modifiée ultérieurement</string>
     <string name="copy_link">Copier le lien</string>
     <string name="dislike_all">Ne pas aimer tout</string>
     <string name="remove_from_cache">Retirer du cache</string>
@@ -45,8 +44,6 @@
     <string name="years">Années</string>
     <string name="continuous">Continu</string>
     <string name="cached_playlist">Mis en cache</string>
-    <string name="sync_playlist">Synchroniser la playlist</string>
-    <string name="sync_disabled">Synchronisation désactivée</string>
     <plurals name="n_time">
         <item quantity="one">%d fois</item>
         <item quantity="many">%d fois</item>
@@ -72,7 +69,6 @@
     <string name="percentage_format">%d%%</string>
     <string name="clear_song_cache_dialog">Êtes-vous sûr de vouloir effacer tous les titres en cache ?</string>
     <string name="clear_downloads_dialog">Êtes-vous sûr·e de vouloir supprimer tous les téléchargements ?</string>
-    <string name="not_logged_in_youtube">Non connecté à YouTube</string>
     <string name="default_links">Ouvrir les liens supportés</string>
     <string name="release_notes">Notes de version</string>
     <string name="history_duration">Durée de l\'historique</string>
@@ -189,7 +185,6 @@
     <string name="download_in_progress_desc">Le téléchargement est en cours</string>
     <string name="share_playlist_desc">Partager cette playlist avec d\'autres personnes</string>
     <string name="delete_playlist_desc">Supprimer définitivement cette playlist</string>
-    <string name="sync_playlist_desc">Synchroniser cette playlist avec YouTube Music</string>
     <string name="enable_better_lyrics">Activer Better Lyrics</string>
     <string name="enable_better_lyrics_desc">Des paroles synchronisées syllabe par syllabe pour n\'importe quel titre, idéales pour le karaoké</string>
     <string name="none">Aucun</string>
@@ -487,10 +482,7 @@
     <string name="lyrics_romanize_as_main">Afficher les paroles romanisées comme paroles principales</string>
     <string name="credits_license_name">Licence publique générale GNU v3.0</string>
     <string name="credits_license_desc">Logiciel libre et open source. Vous pouvez l\'utiliser, l\'étudier, le partager et l\'améliorer</string>
-    <string name="no_account_found">Aucun compte trouvé</string>
-    <string name="checking_previous_account">Vérification du compte précédent…</string>
     <string name="restore">Restaurer</string>
-    <string name="restore_account_warning">Les informations de compte suivantes seront restaurées et conservées :</string>
     <string name="restore_confirm_message">Cela permettra de restaurer les données de votre application à partir de la sauvegarde sélectionnée</string>
     <string name="restore_confirm_title">Restaurer la sauvegarde ?</string>
     <plurals name="n_episode">
@@ -775,7 +767,6 @@
     <string name="error_explicit_login_recommended">La lecture explicite fonctionne mieux lorsque vous êtes connecté à un compte.</string>
     <string name="error_no_internet_connection">Pas de connexion Internet</string>
     <string name="error_offline_playback">Vous n\'êtes pas connecté à Internet. Connectez-vous à Internet ou écoutez un morceau téléchargé pour une écoute hors ligne.</string>
-    <string name="playlist_created_locally">Échec de la synchronisation avec YouTube. Playlist créée localement.</string>
     <string name="ai_provider_inception_help">Rendez-vous sur https://platform.inceptionlabs.ai pour obtenir des clés API</string>
     <string name="enable_zemer">Activer Zemer</string>
     <string name="enable_zemer_desc">Paroles de musique juive</string>

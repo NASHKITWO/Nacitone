@@ -12,9 +12,6 @@
     <string name="offline">التحميلات</string>
     <string name="my_top">الأعلى استماعًا</string>
     <string name="cached_playlist">الأغاني المخزنة مؤقتًا</string>
-    <string name="sync_playlist">مزامنة قائمة التشغيل</string>
-    <string name="sync_disabled">المزامنة غير مفعلة</string>
-    <string name="allows_for_sync_witch_youtube">ملاحظة: يتيح هذا الخيار المزامنة مع YouTube Music ولا يمكن تغييره لاحقًا.</string>
     <string name="remove_from_cache">إزالة من التخزين المؤقت</string>
     <string name="copy_link">نسخ الرابط</string>
     <string name="select">تحديد الكل</string>
@@ -80,7 +77,6 @@
     <string name="clear_song_cache_dialog">هل أنت متأكد أنك تريد مسح كافة الأغاني المخزنة مؤقتًا؟</string>
     <string name="clear_downloads_dialog">هل أنت متأكد أنك تريد مسح كافة التنزيلات؟</string>
     <string name="lyrics">الكلمات</string>
-    <string name="not_logged_in_youtube">لم يتم تسجيل الدخول إلى يوتيوب</string>
     <string name="default_links">فتح الروابط المدعومة افتراضيًا</string>
     <string name="open_app_settings_error">لم يتمكن التطبيق من فتح إعدادات التطبيق</string>
     <string name="all_time">طوال الوقت</string>
@@ -195,7 +191,6 @@
     <string name="download_in_progress_desc">عملية التنزيل جارية</string>
     <string name="share_playlist_desc">شارك قائمة التشغيل هذه مع الآخرين</string>
     <string name="delete_playlist_desc">قم بإزالة قائمة التشغيل هذه نهائياً</string>
-    <string name="sync_playlist_desc">مزامنة قائمة التشغيل مع YouTube Music</string>
     <string name="enable_better_lyrics">تفعيل كلمات الأغاني الأفضل</string>
     <string name="enable_better_lyrics_desc">كلمات متزامنة مقطعيًا لأي أغنية، مثالية للكاريوكي</string>
     <string name="none">لا تأثير</string>
@@ -565,10 +560,7 @@
     </plurals>
     <string name="restore_confirm_title">استعادة النسخة الاحتياطية؟</string>
     <string name="restore_confirm_message">سيؤدي هذا إلى استعادة بيانات تطبيقك من النسخة الاحتياطية.</string>
-    <string name="restore_account_warning">سيتم استعادة معلومات الحساب التالي والاحتفاظ بها:</string>
     <string name="restore">استعادة</string>
-    <string name="checking_previous_account">جارٍ التحقق من الحساب السابق…</string>
-    <string name="no_account_found">لم يتم العثور على حساب</string>
     <string name="widget_recognizer_name">التعرف على الموسيقى</string>
     <string name="widget_recognizer_description">حدد الأغاني التي يتم تشغيلها من حولك مباشرة من شاشتك الرئيسية</string>
     <string name="widget_recognizer_tap_to_search">انقر لتحديد الأغنية</string>
@@ -718,7 +710,6 @@
     <string name="playlist_position_end">نهاية قائمة التشغيل</string>
     <string name="playlist_position_end_desc">الأغاني المضافة حديثًا تظهر بعد الأغاني الموجودة مسبقًا</string>
     <string name="playlist_unavailable">قائمة التشغيل غير موجودة</string>
-    <string name="playlist_created_locally">فشل مزامنة قائمة التشغيل مع تطبيق YouTube. تم إنشاء قائمة تشغيل محليًا على الجهاز.</string>
     <string name="update_available_message">تطبيق Nacitone %s جاهز للتنزيل</string>
     <string name="update_action">تحديث</string>
     <string name="kmp_upgrade_later">ليس الآن</string>

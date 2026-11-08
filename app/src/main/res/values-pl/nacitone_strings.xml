@@ -29,7 +29,6 @@
     <string name="cached_playlist">W pamięci podręcznej</string>
     <string name="cancel">Anuluj</string>
     <string name="album_cover_desc">Okładka</string>
-    <string name="sync_playlist">Synchronizuj playlistę</string>
     <string name="player_background_blur">Rozmycie</string>
     <string name="default_style">Domyślny</string>
     <string name="general">Ogólne</string>
@@ -50,8 +49,6 @@
     <string name="similar_content_desc">Automatycznie dodawaj więcej podobnych utworów po osiągnięciu końca kolejki</string>
     <string name="clear_downloads_dialog">Czy na pewno chcesz wyczyścić wszystkie pobrane pliki?</string>
     <string name="top_music_videos">Najlepsze teledyski</string>
-    <string name="sync_disabled">Synchronizacja wyłączona</string>
-    <string name="allows_for_sync_witch_youtube">UWAGA: Ta opcja włącza synchronizację z YouTube Music i NIE może być zmieniona później</string>
     <string name="generating_image">Generowanie obrazu…</string>
     <string name="please_wait">Proszę czekać</string>
     <string name="share_lyrics">Udostępnij tekst</string>
@@ -85,7 +82,6 @@
     <string name="auto_download_on_like_desc">Automatycznie pobieraj utwory, gdy je polubisz</string>
     <string name="clear_song_cache_dialog">Czy na pewno chcesz wyczyścić wszystkie utwory z pamięci podręcznej?</string>
     <string name="show_cached_playlist">Pokaż playlistę \"Zapisane w pamięci\"</string>
-    <string name="not_logged_in_youtube">Niezalogowany do YouTube</string>
     <string name="default_links">Otwórz obsługiwane linki</string>
     <string name="open_app_settings_error">Nie udało się otworzyć ustawień aplikacji</string>
     <string name="release_notes">Informacje o wersji</string>
@@ -188,7 +184,6 @@
     <string name="download_in_progress_desc">Pobieranie w trakcie</string>
     <string name="share_playlist_desc">Podziel się playlistą z innymi</string>
     <string name="delete_playlist_desc">Trwale usuń playlistę</string>
-    <string name="sync_playlist_desc">Synchronizuj tę playlistę z YouTube Music</string>
     <string name="wavy">Fala</string>
     <string name="lyrics_glow_effect">Włącz efekt podświetlenia tekstu</string>
     <string name="lyrics_glow_effect_desc">Dodaj efekty podświetlenia i odbicia do aktywnego tekstu</string>
@@ -611,10 +606,7 @@
     </plurals>
     <string name="filter_episodes">Epizody</string>
     <string name="restore_confirm_message">Spowoduje to przywrócenie danych aplikacji z wybranej kopii zapasowej</string>
-    <string name="restore_account_warning">Po przywróceniu będziesz musiał się ponownie zalogować. Następujące konto zostanie wylogowane:</string>
     <string name="restore">Przywróć</string>
-    <string name="checking_previous_account">Szukanie poprzedniego konta…</string>
-    <string name="no_account_found">Nie znaleziono konta</string>
     <string name="upload_songs">Prześlij piosenki</string>
     <string name="uploading">Przesyłanie…</string>
     <string name="upload_progress">%1$d z %2$d</string>
@@ -755,7 +747,6 @@
     <string name="playlist_position_beginning_desc">Nowo dodane piosenki pojawiają się przed istniejącymi piosenkami</string>
     <string name="playlist_position_end_desc">Nowo dodane piosenki pojawiają się przed istniejącymi już piosenkami</string>
     <string name="auto_radio_queue">Automatyczna kolejka radia</string>
-    <string name="playlist_created_locally">Synchronizacja z platformą YouTube nie udana. Playlista utworzona lokalnie.</string>
     <string name="auto_radio_queue_desc">Automatycznie utwórz kolejkę radia gdy gra muzyka z pola wyszukiwanie lub domu</string>
     <string name="force_bottom_navbar">Wymuś dolny pasek nawigacji</string>
     <string name="update_action">Aktualizuj</string>

@@ -9,8 +9,6 @@
     <string name="liked">Đã thích</string>
     <string name="offline">Đã tải xuống</string>
     <string name="my_top">Nghe nhiều nhất</string>
-    <string name="sync_playlist">Đồng bộ danh sách phát</string>
-    <string name="allows_for_sync_witch_youtube">LƯU Ý: Tùy chọn này cho phép đồng bộ hóa với YouTube Music và KHÔNG THỂ thay đổi sau này</string>
     <string name="select">Chọn tất cả</string>
     <string name="like_all">Thích tất cả</string>
     <string name="dislike_all">Không thích toàn bộ</string>
@@ -39,7 +37,6 @@
     <string name="percentage_format">%d%%</string>
     <string name="clear_song_cache_dialog">Bạn có muốn xóa tất cả bộ nhớ đệm (cache) liên quan đến nhạc?</string>
     <string name="clear_downloads_dialog">Bạn có muốn xóa tất cả bài hát đã tải xuống?</string>
-    <string name="not_logged_in_youtube">Chưa đăng nhập vào YouTube</string>
     <string name="default_links">Mở đường liên kết được hỗ trợ</string>
     <string name="open_app_settings_error">Không thể mở cài đặt ứng dụng</string>
     <string name="release_notes">Ghi chú của bản phát hành</string>
@@ -66,7 +63,6 @@
     <string name="charts">Bảng xếp hạng</string>
     <string name="album_cover_desc">Ảnh bìa album</string>
     <string name="top_music_videos">Video âm nhạc hàng đầu</string>
-    <string name="sync_disabled">Đã tắt đồng bộ</string>
     <string name="cancel">Huỷ bỏ</string>
     <string name="share_as_text">Chia sẻ dưới dạng văn bản</string>
     <string name="share_as_image">Chia sẻ dưới dạng hình ảnh</string>
@@ -141,7 +137,6 @@
     <string name="download_in_progress_desc">Đang tải xuống</string>
     <string name="share_playlist_desc">Chia sẻ danh sách phát này</string>
     <string name="delete_playlist_desc">Xóa danh sách phát này vĩnh viễn</string>
-    <string name="sync_playlist_desc">Đồng bộ danh sách phát này với YouTube Music</string>
     <string name="primary_color_style">Kiểu màu chính</string>
     <string name="tertiary_color_style">Kiểu màu tam cấp (phụ)</string>
     <string name="swipe_song_to_remove">Vuốt bài hát để xóa khỏi danh sách phát</string>
@@ -332,7 +327,6 @@
     <string name="daily_discover_based_on">Dựa trên %1$s</string>
     <string name="filter_podcasts">Podcasts</string>
     <string name="view_podcast">Xem podcast</string>
-    <string name="no_account_found">Không tìm thấy tài khoản</string>
     <string name="enter_room_code">Nhập mã phòng</string>
     <string name="listen_together_settings_desc">Cấu hình server, username, và thêm nữa</string>
     <string name="ai_lyrics_translation">Dịch lời bài hát bằng AI</string>
@@ -423,9 +417,7 @@
     </plurals>
     <string name="restore_confirm_title">Phục hồi sao lưu?</string>
     <string name="restore_confirm_message">Thao tác này sẽ khôi phục dữ liệu ứng dụng từ bản sao lưu đã chọn</string>
-    <string name="restore_account_warning">Thông tin tài khoản sau đây sẽ được khôi phục và lưu lại:</string>
     <string name="restore">Phục hồi</string>
-    <string name="checking_previous_account">Kiểm tra tài khoản trước đây…</string>
     <string name="enable_automatic_sleeptimer">Kích hoạt hẹn giờ ngủ tự động</string>
     <string name="export_as_csv">Xuất với định dạng CSV</string>
     <string name="export_playlist">Xuất danh sách phát</string>
@@ -763,7 +755,6 @@
     <string name="error_no_internet_connection">Không có kết nối Internet</string>
     <string name="error_offline_playback">Bạn đang ngoại tuyến. Hãy kết nối Internet hoặc phát bản nhạc đã tải xuống để nghe ngoại tuyến.</string>
     <string name="error_explicit_login_recommended">Phát nội dung nhạy cảm hoạt động tốt hơn khi đăng nhập tài khoản.</string>
-    <string name="playlist_created_locally">Đồng bộ hóa với YouTube thất bại. Đã tạo danh sách phát cục bộ.</string>
     <string name="ai_provider_inception_help">Truy cập https://platform.inceptionlabs.ai để lấy khóa API</string>
     <string name="enable_zemer">Bật nhà cung cấp lời bài hát Zemer</string>
     <string name="enable_zemer_desc">Lời bài hát cho âm nhạc Do Thái</string>

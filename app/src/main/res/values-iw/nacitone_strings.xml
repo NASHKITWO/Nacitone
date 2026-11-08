@@ -16,9 +16,6 @@
     <string name="offline">הורד</string>
     <string name="my_top">המובילים שלי</string>
     <string name="cached_playlist">הוטמן</string>
-    <string name="sync_playlist">סנכרן את רשימת ההשמעה</string>
-    <string name="sync_disabled">סינכרון מבוטל</string>
-    <string name="allows_for_sync_witch_youtube">הערה: אפשרות זו מאפשרת סנכרון עם YouTube Music ולא ניתן לשנות אותה מאוחר יותר</string>
     <string name="generating_image">יצירת תמונה…</string>
     <string name="please_wait">אנא המתן</string>
     <string name="cancel">ביטול</string>
@@ -30,7 +27,6 @@
     <string name="customize_colors">התאמה אישית של צבעים</string>
     <string name="text_color">צבע טקסט</string>
     <string name="secondary_text_color">צבע טקסט משני</string>
-    <string name="sync_playlist_desc">סנכרון רשימת ההשמעה הנוכחית עם יוטיוב מיוזיק</string>
     <string name="description">תיאור</string>
     <string name="lyrics">מילות השיר</string>
     <string name="close">סגור</string>
@@ -168,7 +164,6 @@
     <string name="clear_image_cache_dialog">האם הנך בטוח שברצונך לנקות את כל התמונות במטמון?</string>
     <string name="clear_downloads_dialog">האם הנך בטוח שברצונך למחוק את כל ההורדות?</string>
     <string name="disable">השבת</string>
-    <string name="not_logged_in_youtube">לא מחובר ליוטיוב</string>
     <string name="default_links">פתח קישורים נתמכים</string>
     <string name="open_app_settings_error">לא ניתן לפתוח את הגדרות האפליקציה</string>
     <string name="release_notes">הערות שחרור</string>

@@ -61,7 +61,6 @@
     <string name="delete">删除</string>
     <string name="remove_from_history">从历史中移除</string>
     <string name="search_online">在线搜索</string>
-    <string name="action_sync">同步</string>
     <string name="advanced">高级</string>
     <string name="sort_by_create_date">添加日期</string>
     <string name="sort_by_name">名称</string>

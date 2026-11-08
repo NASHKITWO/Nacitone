@@ -165,7 +165,6 @@
     <string name="filter_videos">Vídeos</string>
     <string name="filter_albums">Álbuns</string>
     <string name="search_online">Procurar on-line</string>
-    <string name="action_sync">Sincronizar</string>
     <string name="advanced">Avanzada</string>
     <string name="tempo_and_pitch">Tempo e ton</string>
     <string name="sample_rate">Frecuencia</string>

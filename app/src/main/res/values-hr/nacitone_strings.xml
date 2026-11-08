@@ -13,9 +13,6 @@
     <string name="offline">Preuzeto</string>
     <string name="my_top">Moja najbolje</string>
     <string name="cached_playlist">Predmemorirano</string>
-    <string name="sync_playlist">Sinkroniziraj popis za reprodukciju</string>
-    <string name="sync_disabled">Sync onemogućen</string>
-    <string name="allows_for_sync_witch_youtube">Napomena: Ovo omogućuje sinkronizaciju s YouTube Music-om, ovo NIJE moguće kasnije promijeniti</string>
     <string name="generating_image">Generiram sliku…</string>
     <string name="please_wait">Molim pričekajte</string>
     <string name="cancel">Odustani</string>
@@ -84,7 +81,6 @@
     <string name="clear_image_cache_dialog">Sigurno želite obrisati sve slike pohranjene u cache?</string>
     <string name="clear_downloads_dialog">Sigurno želite obrisati sve preuzete datoteke?</string>
     <string name="disable">Onemogući</string>
-    <string name="not_logged_in_youtube">Nije se prijavljen na YouTube</string>
     <string name="default_links">Otavanje podržanih poveznica</string>
     <string name="open_app_settings_error">Nemogće otvaranje postavka aplikacije</string>
     <string name="release_notes">Obavijest o izdanjima [Croatian</string>

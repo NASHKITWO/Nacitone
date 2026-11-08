@@ -15,9 +15,6 @@
     <string name="offline">Descargado</string>
     <string name="my_top">Mi Top</string>
     <string name="cached_playlist">En caché</string>
-    <string name="sync_playlist">Sincronizar lista de reproducción</string>
-    <string name="sync_disabled">Sincronización deshabilitada</string>
-    <string name="allows_for_sync_witch_youtube">Nota: Esto habilita la sincronización con YouTube Music. y NO se puede cambiar después</string>
     <string name="remove_from_cache">Eliminar de la caché</string>
     <string name="copy_link">Copiar enlace</string>
     <string name="select">Seleccionar todo</string>
@@ -60,7 +57,6 @@
     <string name="percentage_format">%d%%</string>
     <string name="clear_song_cache_dialog">¿Estás seguro de que quieres borrar todas las canciones en caché?</string>
     <string name="clear_downloads_dialog">¿Estás seguro de que quieres eliminar todas las descargas?</string>
-    <string name="not_logged_in_youtube">No has iniciado sesión en YouTube</string>
     <string name="default_links">Abrir enlaces compatibles</string>
     <string name="open_app_settings_error">No se pudieron abrir los ajustes de la aplicación</string>
     <string name="release_notes">Notas de la versión</string>
@@ -189,7 +185,6 @@
     <string name="download_in_progress_desc">La descarga está en proceso</string>
     <string name="share_playlist_desc">Compartir esta lista de reproducción con otros</string>
     <string name="delete_playlist_desc">Eliminar esta lista de reproducción de forma permanente</string>
-    <string name="sync_playlist_desc">Sincronizar lista de reproducción con YouTube Music</string>
     <string name="enable_better_lyrics">Habilitar Better Lyrics</string>
     <string name="enable_better_lyrics_desc">Letras sincronizadas por sílabas para cualquier canción, ideales para karaoke</string>
     <string name="none">Ninguno</string>
@@ -553,10 +548,7 @@
     </plurals>
     <string name="restore_confirm_title">¿Restaurar copia de seguridad?</string>
     <string name="restore_confirm_message">Esto restaurará los datos de la aplicación desde la copia de seguridad</string>
-    <string name="restore_account_warning">La siguiente información de la cuenta será restaurada y conservada:</string>
     <string name="restore">Restaurar</string>
-    <string name="checking_previous_account">Buscando una cuenta anterior…</string>
-    <string name="no_account_found">No se encontró ninguna cuenta</string>
     <string name="widget_recognizer_name">Identificador de música</string>
     <string name="widget_recognizer_description">Identifica canciones que suenan a tu alrededor directamente desde tu pantalla de inicio</string>
     <string name="widget_recognizer_tap_to_search">Toca para identificar una canción</string>
@@ -777,7 +769,6 @@
     <string name="error_offline_playback">Estás sin conexión. Conéctate a internet, o reproduce una pista descargada para uso sin conexión.</string>
     <string name="enable_zemer">Activar Zemer</string>
     <string name="enable_zemer_desc">Letras para música judía</string>
-    <string name="playlist_created_locally">Sincronización de YouTube se fallido. Se ha creado la lista de reproducción local.</string>
     <string name="ai_provider_inception_help">Visit https://platform.inceptionlabs.ai para claves API</string>
     <string name="update_available_message">Nacitone %s está listo para descargar.</string>
     <string name="update_action">Actualizar</string>

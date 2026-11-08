@@ -62,7 +62,6 @@ import com.nacitone.music.ui.menu.CsvColumnMappingDialog
 import com.nacitone.music.ui.menu.CsvImportProgressDialog
 import com.nacitone.music.ui.menu.LoadingScreen
 import com.nacitone.music.ui.utils.backToMain
-import com.nacitone.music.viewmodels.BackupPreviewInfo
 import com.nacitone.music.viewmodels.BackupRestoreViewModel
 import com.nacitone.music.viewmodels.ConvertedSongLog
 import com.nacitone.music.viewmodels.CsvImportState
@@ -95,6 +94,7 @@ fun BackupAndRestore(
     // CSV column mapping state
     var csvImportState by remember { mutableStateOf<CsvImportState?>(null) }
     var showCsvColumnMapping by rememberSaveable { mutableStateOf(false) }
+    var showSpotifyGuide by rememberSaveable { mutableStateOf(false) }
     var showCsvImportProgress by rememberSaveable { mutableStateOf(false) }
     var csvImportProgress by rememberSaveable { mutableIntStateOf(0) }
     val csvRecentLogs = remember { mutableStateListOf<ConvertedSongLog>() }
@@ -103,9 +103,6 @@ fun BackupAndRestore(
     // Restore confirmation dialog state
     var showRestoreConfirmDialog by rememberSaveable { mutableStateOf(false) }
     var pendingRestoreUri by remember { mutableStateOf<android.net.Uri?>(null) }
-    var backupPreviewInfo by remember { mutableStateOf<BackupPreviewInfo?>(null) }
-    var isLoadingAccountInfo by remember { mutableStateOf(false) }
-    var accountCheckFailed by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
@@ -120,24 +117,7 @@ fun BackupAndRestore(
         rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             if (uri != null) {
                 pendingRestoreUri = uri
-                val preview = viewModel.previewBackup(context, uri)
-                backupPreviewInfo = preview
                 showRestoreConfirmDialog = true
-
-                // Fetch account info asynchronously if backup has auth data
-                accountCheckFailed = false
-                if (preview.hasAuthData && preview.cookie != null) {
-                    isLoadingAccountInfo = true
-                    coroutineScope.launch(Dispatchers.IO) {
-                        val accountInfo = viewModel.fetchAccountInfoFromBackup(preview.cookie)
-                        if (accountInfo != null) {
-                            backupPreviewInfo = accountInfo
-                        } else {
-                            accountCheckFailed = true
-                        }
-                        isLoadingAccountInfo = false
-                    }
-                }
             }
         }
     val importPlaylistFromCsv =
@@ -205,6 +185,12 @@ fun BackupAndRestore(
                         },
                     ),
                     Material3SettingsItem(
+                        title = { Text(stringResource(R.string.import_spotify)) },
+                        description = { Text(stringResource(R.string.import_spotify_desc)) },
+                        icon = painterResource(R.drawable.playlist_add),
+                        onClick = { showSpotifyGuide = true },
+                    ),
+                    Material3SettingsItem(
                         title = { Text(stringResource(R.string.import_csv)) },
                         icon = painterResource(R.drawable.playlist_add),
                         onClick = {
@@ -248,6 +234,31 @@ fun BackupAndRestore(
         songTitle = currentImportSong,
     )
 
+    if (showSpotifyGuide) {
+        androidx.compose.material3.AlertDialog(
+            onDismissRequest = { showSpotifyGuide = false },
+            title = { Text(stringResource(R.string.import_spotify)) },
+            text = { Text(stringResource(R.string.import_spotify_steps)) },
+            confirmButton = {
+                androidx.compose.material3.TextButton(
+                    onClick = {
+                        showSpotifyGuide = false
+                        importPlaylistFromCsv.launch(
+                            arrayOf("text/csv", "text/comma-separated-values", "application/csv", "text/plain"),
+                        )
+                    },
+                ) {
+                    Text(stringResource(R.string.import_spotify_pick))
+                }
+            },
+            dismissButton = {
+                androidx.compose.material3.TextButton(onClick = { showSpotifyGuide = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+        )
+    }
+
     // CSV column mapping dialog
     csvImportState?.let { state ->
         CsvColumnMappingDialog(
@@ -283,6 +294,10 @@ fun BackupAndRestore(
                             csvImportProgress = 0
                             csvRecentLogs.clear()
                             showChoosePlaylistDialogOnline = true
+                        } else {
+                            showCsvImportProgress = false
+                            csvImportProgress = 0
+                            csvRecentLogs.clear()
                         }
                     }
                 }
@@ -306,8 +321,6 @@ fun BackupAndRestore(
             onDismiss = {
                 showRestoreConfirmDialog = false
                 pendingRestoreUri = null
-                backupPreviewInfo = null
-                accountCheckFailed = false
             },
             icon = {
                 Icon(
@@ -321,8 +334,6 @@ fun BackupAndRestore(
                     onClick = {
                         showRestoreConfirmDialog = false
                         pendingRestoreUri = null
-                        backupPreviewInfo = null
-                        accountCheckFailed = false
                     },
                 ) {
                     Text(stringResource(android.R.string.cancel))
@@ -331,11 +342,9 @@ fun BackupAndRestore(
                     onClick = {
                         showRestoreConfirmDialog = false
                         pendingRestoreUri?.let { uri ->
-                            viewModel.restore(context, uri, clearAuthData = false)
+                            viewModel.restore(context, uri)
                         }
                         pendingRestoreUri = null
-                        backupPreviewInfo = null
-                        accountCheckFailed = false
                     },
                 ) {
                     Text(stringResource(R.string.restore))
@@ -348,122 +357,6 @@ fun BackupAndRestore(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodyMedium,
             )
-
-            // Show warning about account sign out if account found
-            if (backupPreviewInfo?.accountName != null) {
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = stringResource(R.string.restore_account_warning),
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.titleSmall,
-                )
-            }
-
-            // Show loading or account info
-            if (isLoadingAccountInfo) {
-                Spacer(modifier = Modifier.height(16.dp))
-                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
-                        strokeWidth = 2.dp,
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
-                    Text(
-                        text = stringResource(R.string.checking_previous_account),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-            }
-
-            // Show "No account found" if check failed OR backup has no auth data
-            val hasNoAccount =
-                backupPreviewInfo?.let {
-                    !it.hasAuthData || (it.hasAuthData && it.accountName == null && !isLoadingAccountInfo)
-                } ?: false
-            if (!isLoadingAccountInfo && (accountCheckFailed || hasNoAccount)) {
-                Spacer(modifier = Modifier.height(16.dp))
-                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(R.string.no_account_found),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-                HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
-            }
-
-            // Show account info if backup contains auth data and we have account details
-            backupPreviewInfo?.let { preview ->
-                if (!isLoadingAccountInfo && preview.hasAuthData && preview.accountName != null) {
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    HorizontalDivider(
-                        color = MaterialTheme.colorScheme.outlineVariant,
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        if (preview.accountImageUrl != null) {
-                            AsyncImage(
-                                model = preview.accountImageUrl,
-                                contentDescription = null,
-                                modifier =
-                                    Modifier
-                                        .size(40.dp)
-                                        .clip(CircleShape),
-                                contentScale = ContentScale.Crop,
-                            )
-                        } else {
-                            Box(
-                                modifier =
-                                    Modifier
-                                        .size(40.dp)
-                                        .clip(CircleShape)
-                                        .background(MaterialTheme.colorScheme.secondaryContainer),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.person),
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                                    modifier = Modifier.size(24.dp),
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.size(16.dp))
-
-                        Text(
-                            text = preview.accountEmail ?: preview.accountName,
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onSurface,
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    HorizontalDivider(
-                        color = MaterialTheme.colorScheme.outlineVariant,
-                    )
-                }
-            }
         }
     }
 }

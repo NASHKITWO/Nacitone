@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
@@ -66,6 +67,7 @@ fun NavigationTitle(
                     text = label,
                     style = MaterialTheme.typography.labelLarge,
                     overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
                 )
             }
 
@@ -87,13 +89,15 @@ fun NavigationTitle(
                 colors = ButtonDefaults.outlinedButtonColors(
                     contentColor = MaterialTheme.colorScheme.primary
                 ),
-                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 2.dp),
+                contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
                 modifier = Modifier
-                    .height(24.dp)
+                    .heightIn(min = 32.dp)
             ) {
                 Text(
                     text = stringResource(R.string.play_all),
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                    softWrap = false,
                 )
             }
         }

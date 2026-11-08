@@ -15,9 +15,6 @@
     <string name="offline">Letöltött</string>
     <string name="my_top">Saját Top</string>
     <string name="cached_playlist">Cache-elt</string>
-    <string name="sync_playlist">Lejátszási lista szinkronizálása</string>
-    <string name="sync_disabled">Szinkronizálás kikapcsolva</string>
-    <string name="allows_for_sync_witch_youtube">Figyelem: Ez lehetővé teszi a YouTube Music-al való szinkronizálást és NEM változtatható meg később</string>
     <string name="generating_image">Kép generálása…</string>
     <string name="please_wait">Kérem várjon</string>
     <string name="cancel">Mégse</string>
@@ -82,7 +79,6 @@
     <string name="clear_image_cache_dialog">Biztosan ki akarja üríteni az összes gyorsítótárazott képet?</string>
     <string name="clear_downloads_dialog">Biztosan ki akarja üríteni az összes letöltést?</string>
     <string name="disable">Letilt</string>
-    <string name="not_logged_in_youtube">Nincs bejelentkezve a YouTube-ba</string>
     <string name="default_links">Támogatott hivatkozások megnyitása</string>
     <string name="open_app_settings_error">Nem nyitható meg az app beállítás</string>
     <string name="release_notes">Megjelenési jegyzet</string>
@@ -131,7 +127,6 @@
     <string name="download_in_progress_desc">A Letöltés folyamatban</string>
     <string name="share_playlist_desc">Lejátszási lista megosztása</string>
     <string name="delete_playlist_desc">Lejátszási lista végleges törlése</string>
-    <string name="sync_playlist_desc">Lejátszási lista szinkronizálása a YouTube Music-kal</string>
     <string name="primary_color_style">Elsődleges szín</string>
     <string name="tertiary_color_style">Harmadlagos szín</string>
     <string name="lyrics_glow_effect">Ragyogó dalszöveg effekt bekapcsolása</string>
@@ -477,10 +472,7 @@
     </plurals>
     <string name="restore_confirm_title">Visszaállítás biztonsági mentésből?</string>
     <string name="restore_confirm_message">Visszaállítja az alkalmazás adatait a kiválasztott biztonsági mentésből</string>
-    <string name="restore_account_warning">A következő fiókinformációk kerülnek visszaállításra és megőrzésre:</string>
     <string name="restore">Visszaállítás</string>
-    <string name="checking_previous_account">Korábbi fiók keresése…</string>
-    <string name="no_account_found">Fiók nem található</string>
     <string name="upload_songs">Dalok feltöltése</string>
     <string name="uploading">Feltöltés…</string>
     <string name="upload_progress">%1$d feltöltve %2$d-ből</string>

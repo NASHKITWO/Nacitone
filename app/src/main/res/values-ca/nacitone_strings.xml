@@ -15,9 +15,6 @@
     <string name="offline">Descarregat</string>
     <string name="my_top">El meu Top</string>
     <string name="cached_playlist">En memòria cau</string>
-    <string name="sync_playlist">Sincronitza la llista</string>
-    <string name="sync_disabled">Sincronització deshabitada</string>
-    <string name="allows_for_sync_witch_youtube">NOTA: Aquesta opció activa la sincronització amb YouTube Music i NO es podrà canviar més endavant</string>
     <string name="generating_image">Generant imatge…</string>
     <string name="please_wait">Sisplau espera</string>
     <string name="cancel">Cancel·la</string>
@@ -70,7 +67,6 @@
     <string name="download_in_progress_desc">La descàrrega es troba en procés</string>
     <string name="share_playlist_desc">Comparteix la llista amb altres</string>
     <string name="delete_playlist_desc">Elimina aquesta llista de manera permanent</string>
-    <string name="sync_playlist_desc">Sincronitza aquesta llista amb YouTube Music</string>
     <string name="primary_color_style">Color primari</string>
     <string name="tertiary_color_style">Color terciari</string>
     <string name="swipe_song_to_add">Llisca cap a l\'esquerra per a afegir la cançó a la cua o cap a la dreta per a reproduir-la a continuació</string>
@@ -121,7 +117,6 @@
     <string name="clear_image_cache_dialog">Està segur de que desitja eliminar les imatges de la memòria cau?</string>
     <string name="clear_downloads_dialog">Està segur de que desitja eliminar les descàrregues?</string>
     <string name="disable">Deshabilitar</string>
-    <string name="not_logged_in_youtube">No ha iniciat sessió a YouTube</string>
     <string name="default_links">Obrir enllaços compatibles</string>
     <string name="open_app_settings_error">No s\'ha pogut obrir la configuració de l\'aplicació</string>
     <string name="release_notes">Notes de la versió</string>
@@ -596,10 +591,7 @@
     </plurals>
     <string name="restore_confirm_title">Restablir còpia de seguretat?</string>
     <string name="restore_confirm_message">Aquesta acció restablirà les teues dades de la aplicació de la còpia de seguretat.</string>
-    <string name="restore_account_warning">Hauràs de tornar a iniciar sessió destrés del restabliment. Es tancarà la sessió del següent compte:</string>
     <string name="restore">Restablir</string>
-    <string name="checking_previous_account">Cercant comptes anteriors…</string>
-    <string name="no_account_found">No s\'ha trobat cap compte</string>
     <string name="upload_songs">Puja cançons</string>
     <string name="uploading">Pujant…</string>
     <string name="upload_progress">%1$d de %2$d</string>

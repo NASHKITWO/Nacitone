@@ -133,8 +133,8 @@ import com.nacitone.music.playback.queues.ListQueue
 import com.nacitone.music.playback.queues.LocalAlbumRadio
 import com.nacitone.music.playback.queues.YouTubeAlbumRadio
 import com.nacitone.music.playback.queues.YouTubeQueue
-import com.nacitone.music.ui.component.NusantaraShelf
 import com.nacitone.music.ui.component.SupportBanner
+import com.nacitone.music.ui.component.SupportPopup
 import com.nacitone.music.ui.component.AlbumGridItem
 import com.nacitone.music.ui.component.ArtistGridItem
 import com.nacitone.music.ui.component.ChipsRow
@@ -601,6 +601,8 @@ fun DailyDiscoverCard(
                             text = dailyDiscover.recommendation.title,
                             style = MaterialTheme.typography.titleMedium,
                             color = Color.White,
+                            maxLines = 2,
+                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                         )
                         Text(
                             text =
@@ -618,6 +620,8 @@ fun DailyDiscoverCard(
                                 },
                             style = MaterialTheme.typography.bodyMedium,
                             color = Color.White.copy(alpha = 0.7f),
+                            maxLines = 1,
+                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                         )
                     }
 
@@ -668,6 +672,7 @@ fun HomeScreen(
     val haptic = LocalHapticFeedback.current
     val listenTogetherManager = LocalListenTogetherManager.current
     val isListenTogetherGuest = listenTogetherManager?.let { it.isInRoom && !it.isHost } ?: false
+    SupportPopup()
 
     val isPlaying by playerConnection.isEffectivelyPlaying.collectAsStateWithLifecycle()
     val mediaMetadata by playerConnection.mediaMetadata.collectAsStateWithLifecycle()
@@ -694,6 +699,8 @@ fun HomeScreen(
 
     val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
     val isMoodAndGenresLoading = isLoading && explorePage?.moodAndGenres == null
+    var hasStartedLoading by remember { mutableStateOf(false) }
+    LaunchedEffect(isLoading) { if (isLoading) hasStartedLoading = true }
     val isRefreshing by viewModel.isRefreshing.collectAsStateWithLifecycle()
     val isRandomizing by viewModel.isRandomizing.collectAsStateWithLifecycle()
     val pullRefreshState = rememberPullToRefreshState()
@@ -1475,15 +1482,6 @@ fun HomeScreen(
                 if (selectedChip == null) {
                     item(key = "support_banner", contentType = "home_item") {
                         SupportBanner()
-                    }
-                    item(key = "nusantara_shelf", contentType = "home_list") {
-                        NusantaraShelf(
-                            onSearch = { query ->
-                                navController.navigate(
-                                    "search/${java.net.URLEncoder.encode(query, "UTF-8")}",
-                                )
-                            },
-                        )
                     }
                 }
 
@@ -2523,6 +2521,29 @@ fun HomeScreen(
                                         }
                                     }
                                 }
+                            }
+                        }
+                    }
+                }
+
+                if (hasStartedLoading && !isLoading && !isRefreshing && homePage?.sections.isNullOrEmpty()) {
+                    item(key = "home_error", contentType = "home_item") {
+                        Column(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 32.dp, vertical = 48.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            Text(
+                                text = stringResource(R.string.home_load_failed),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                            )
+                            Spacer(Modifier.height(16.dp))
+                            androidx.compose.material3.Button(onClick = { viewModel.refresh() }) {
+                                Text(stringResource(R.string.retry))
                             }
                         }
                     }

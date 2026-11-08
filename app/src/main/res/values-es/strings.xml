@@ -73,7 +73,6 @@
     <string name="remove_from_playlist">Quitar de la lista de reproducción</string>
     <string name="remove_from_queue">Quitar de la cola</string>
     <string name="search_online">Buscar en línea</string>
-    <string name="action_sync">Sincronizar</string>
     <string name="advanced">Avanzado</string>
     <string name="tempo_and_pitch">Tempo y tono</string>
     <string name="sort_by_create_date">Fecha añadida</string>

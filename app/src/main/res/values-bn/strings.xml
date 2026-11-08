@@ -62,7 +62,6 @@
     <string name="delete">ডিলিট</string>
     <string name="remove_from_history">হিস্ট্রি থেকে সরান</string>
     <string name="search_online">অনলাইন এ খুঁজুন</string>
-    <string name="action_sync">সিঙ্ক্রোনাইজ</string>
     <string name="advanced">অ্যাডভান্স</string>
     <string name="sort_by_create_date">দিন</string>
     <string name="sort_by_name">নাম</string>

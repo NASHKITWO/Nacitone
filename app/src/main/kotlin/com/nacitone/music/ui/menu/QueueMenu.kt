@@ -89,6 +89,7 @@ fun QueueMenu(
     mediaMetadata ?: return
     val navController = LocalNavController.current
     val context = LocalContext.current
+    val shareFooter = stringResource(R.string.share_footer)
     val database = LocalDatabase.current
     val playerConnection = LocalPlayerConnection.current ?: return
     val coroutineScope = rememberCoroutineScope()
@@ -314,15 +315,14 @@ fun QueueMenu(
                         text = stringResource(R.string.share),
                         onClick = {
                             onDismiss()
-                            val intent = Intent().apply {
-                                action = Intent.ACTION_SEND
-                                type = "text/plain"
-                                putExtra(
-                                    Intent.EXTRA_TEXT,
-                                    "https://music.youtube.com/watch?v=${mediaMetadata.id}"
-                                )
-                            }
-                            context.startActivity(Intent.createChooser(intent, null))
+                            com.nacitone.music.utils.SongShare.share(
+                                context = context,
+                                database = database,
+                                songId = mediaMetadata.id,
+                                title = mediaMetadata.title,
+                                artist = mediaMetadata.artists.joinToString { it.name },
+                                footer = shareFooter,
+                            )
                         }
                     )
                 ),

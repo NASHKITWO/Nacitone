@@ -12,9 +12,6 @@
     <string name="offline">Gedownload</string>
     <string name="my_top">Meest geluisterd</string>
     <string name="cached_playlist">Gecached</string>
-    <string name="sync_playlist">Playlist synchroniseren</string>
-    <string name="sync_disabled">Synchroniseren uitgeschakeld</string>
-    <string name="allows_for_sync_witch_youtube">Opmerking: Dit activeert synchronisatie met YouTube Music. Dit kan later NIET worden gewijzigd.</string>
     <string name="generating_image">Afbeelding genereren…</string>
     <string name="please_wait">Een ogenblik geduld alstublieft</string>
     <string name="cancel">Annuleren</string>
@@ -77,7 +74,6 @@
     <string name="auto_download_on_like">Automatisch downloaden bij het liken</string>
     <string name="clear_song_cache_dialog">Weet je zeker dat je alle gecached nummers wilt wissen?</string>
     <string name="clear_downloads_dialog">Weet je zeker dat je alle downloads wilt wissen?</string>
-    <string name="not_logged_in_youtube">Niet op YouTube ingelogd</string>
     <string name="default_links">Open ondersteunde links</string>
     <string name="open_app_settings_error">Kon app instellingen niet openen</string>
     <string name="release_notes">Uitgaven informatie</string>
@@ -148,7 +144,6 @@
     <string name="download_in_progress_desc">Downloaden wordt uitgevoerd</string>
     <string name="share_playlist_desc">Deel afspeellijst</string>
     <string name="delete_playlist_desc">Afspeellijst verwijderen</string>
-    <string name="sync_playlist_desc">Synchroniseer afspeellijst met YouTube Music</string>
     <string name="lyrics_text_size">Songtekst lettergrootte</string>
     <string name="lyrics_line_spacing">Songtekst regel afstand</string>
     <string name="show_wrapped_card">Toon Wrapped</string>

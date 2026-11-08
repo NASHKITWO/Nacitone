@@ -17,9 +17,6 @@
     <string name="cached_playlist">Simpanan sementara</string>
     <string name="uploaded_playlist">Dimuat naik</string>
     <string name="filter_uploaded">Dimuat naik</string>
-    <string name="sync_playlist">Selaras senarai main</string>
-    <string name="sync_disabled">Penyelarasan ditutup</string>
-    <string name="allows_for_sync_witch_youtube">NOTA: Opsyen ini membolehkan penyelarasan dengan YouTube Music dan TIDAK boleh ditukar selepas ini</string>
     <string name="generating_image">Menjana imej…</string>
     <string name="please_wait">Sila tunggu</string>
     <string name="cancel">Batal</string>
@@ -38,7 +35,6 @@
     <string name="download_in_progress_desc">Muat turun sedang berlangsung</string>
     <string name="share_playlist_desc">Kongsi senarai main dengan yang lain</string>
     <string name="delete_playlist_desc">Buang senarai main ini selamanya</string>
-    <string name="sync_playlist_desc">Selaraskan senarai main dengan YouTube Music</string>
     <string name="copy_link">Salin pautan</string>
     <string name="select">Pilih semua</string>
     <string name="like_all">Suka semua</string>
@@ -155,7 +151,6 @@
     <string name="clear_image_cache_dialog">Adakah anda pasti untuk membuang semua imej cache?</string>
     <string name="clear_downloads_dialog">Adakah anda pasti untuk membuang semua yang dimuat turun?</string>
     <string name="disable">Dimatikan</string>
-    <string name="not_logged_in_youtube">Tidak log masuk ke dalam YouTube</string>
     <string name="default_links">Buka pautan disokong</string>
     <string name="open_app_settings_error">Tidak dapat membuka tetapan aplikasi</string>
     <string name="release_notes">Nota keluaran</string>

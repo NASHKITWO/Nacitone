@@ -33,6 +33,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -263,7 +264,7 @@ inline fun ListItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = if (isActive) {
             modifier // playing highlight
-                .height(ListItemHeight)
+                .heightIn(min = ListItemHeight)
                 .padding(horizontal = 8.dp)
                 .clip(RoundedCornerShape(8.dp))
                 .background(
@@ -273,13 +274,13 @@ inline fun ListItem(
                 )
         } else if (isSelected == true) {
             modifier // inactive selected
-                .height(ListItemHeight)
+                .heightIn(min = ListItemHeight)
                 .padding(horizontal = 8.dp)
                 .clip(RoundedCornerShape(8.dp))
                 .background(color = MaterialTheme.colorScheme.inversePrimary.copy(alpha = 0.4f))
         } else {
             modifier // default
-                .height(ListItemHeight)
+                .heightIn(min = ListItemHeight)
                 .padding(horizontal = 8.dp)
         }
     ) {

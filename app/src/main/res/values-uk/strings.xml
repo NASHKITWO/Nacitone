@@ -75,7 +75,6 @@
     <string name="remove_from_playlist">Видалити з плейлиста</string>
     <string name="remove_from_queue">Видалити з черги</string>
     <string name="search_online">Пошук в Інтернеті</string>
-    <string name="action_sync">Синхронізація</string>
     <string name="advanced">Контроль аудіо</string>
     <string name="tempo_and_pitch">Темп і висота тону</string>
     <string name="sort_by_create_date">Нещодавно додані</string>

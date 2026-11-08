@@ -62,7 +62,6 @@
     <string name="delete">حذف</string>
     <string name="remove_from_history">حذف از تاریخچه</string>
     <string name="search_online">جستجوی برخط</string>
-    <string name="action_sync">همگام‌سازی</string>
     <string name="advanced">پیشرفته</string>
     <string name="sort_by_create_date">تاریخ اضافه‌شده</string>
     <string name="sort_by_name">نام</string>
