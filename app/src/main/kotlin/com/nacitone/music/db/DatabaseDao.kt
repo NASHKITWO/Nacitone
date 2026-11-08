@@ -91,16 +91,6 @@ interface DatabaseDao {
     )
     suspend fun playlistSongIds(playlistId: String): List<String>
 
-    @Query(
-        """
-        SELECT song.id FROM song
-        JOIN playlist_song_map ON playlist_song_map.songId = song.id
-        WHERE playlist_song_map.playlistId = :playlistId
-          AND NOT EXISTS (
-              SELECT 1 FROM song_artist_map WHERE song_artist_map.songId = song.id
-          )
-        """,
-    )
     @Query("SELECT * FROM album WHERE id = :albumId LIMIT 1")
     suspend fun albumEntity(albumId: String): AlbumEntity?
 
@@ -657,30 +647,6 @@ interface DatabaseDao {
     fun getSongByIdBlocking(songId: String): Song?
 
     @Transaction
-    @Query("SELECT * FROM song WHERE id IN (:songIds)")
-    suspend fun getSongsByIds(songIds: List<String>): List<Song>
-
-    @Transaction
-    @Query("SELECT * FROM song WHERE dateDownload IS NOT NULL AND isDownloaded = 0")
-    fun cachePlaylistSongs(): Flow<List<Song>>
-
-    @Query("SELECT id FROM song WHERE id IN (:songIds)")
-    suspend fun existingSongIds(songIds: List<String>): List<String>
-
-
-    @Transaction
-    @Query("SELECT * FROM song_artist_map WHERE songId = :songId")
-    fun songArtistMap(songId: String): List<SongArtistMap>
-
-    @Query(
-        """
-        SELECT id FROM song
-        WHERE id IN (:songIds)
-          AND NOT EXISTS (
-              SELECT 1 FROM song_artist_map WHERE song_artist_map.songId = song.id
-          )
-        """,
-    )
     @Transaction
     @Query("SELECT * FROM song")
     fun allSongs(): Flow<List<Song>>
