@@ -1,6 +1,6 @@
-# Nacitone 1.0.3
+# Nacitone 1.0.4
 
 ## Perbaikan
-- Logo lama diganti logo baru di notifikasi, widget, pemutar, halaman Tentang, intro Wrapped, dan banner TV
-- Gambar bagikan Rangkuman mingguan: judul tidak lagi terpotong dan footer tidak menimpa daftar artis
-- Jarak judul dan tanggal di layar Rangkuman mingguan dirapikan
+- Widget pemutar: tambah tombol sebelumnya dan berikutnya
+- Warna tombol widget disamakan dan kontras tombol putar diperbaiki
+- Galeri screenshot ditambahkan ke README
