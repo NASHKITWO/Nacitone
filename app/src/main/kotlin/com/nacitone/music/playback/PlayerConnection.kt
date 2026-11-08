@@ -197,6 +197,9 @@ class PlayerConnection(
     // Callback to check if playback changes should be blocked (e.g., Listen Together guest)
     var shouldBlockPlaybackChanges: (() -> Boolean)? = null
 
+    /** Dipanggil saat tamu Listen Together memilih lagu: lagu diusulkan ke host, bukan diputar. */
+    var onGuestPlayRequest: ((Queue) -> Unit)? = null
+
     // Flag to allow internal sync operations to bypass blocking (set by ListenTogetherManager)
     @Volatile
     var allowInternalSync: Boolean = false
@@ -243,6 +246,7 @@ class PlayerConnection(
         // Block if Listen Together guest (unless internal sync)
         if (!allowInternalSync && shouldBlockPlaybackChanges?.invoke() == true) {
             Timber.tag("PlayerConnection").d("playQueue blocked - Listen Together guest")
+            onGuestPlayRequest?.invoke(queue)
             return
         }
         if (!playerReadinessFlow.value) {

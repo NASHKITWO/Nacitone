@@ -308,6 +308,7 @@ class ListenTogetherManager
                     playerListenerRegistered = false
                 }
                 oldConnection?.shouldBlockPlaybackChanges = null
+                oldConnection?.onGuestPlayRequest = null
                 oldConnection?.onSkipPrevious = null
                 oldConnection?.onSkipNext = null
                 oldConnection?.onRestartSong = null
@@ -321,6 +322,28 @@ class ListenTogetherManager
                 connection?.shouldBlockPlaybackChanges = {
                     // Block if we're in a room as a guest (not host)
                     isInRoom && !isHost
+                }
+                // Tamu memilih lagu: usulkan ke host supaya tidak terasa "tidak bisa memutar".
+                connection?.onGuestPlayRequest = { queue ->
+                    scope.launch {
+                        runCatching {
+                            val status = queue.getInitialStatus()
+                            val metadata = status.items.getOrNull(status.mediaItemIndex)?.metadata
+                            if (metadata != null) {
+                                val durationMs = if (metadata.duration > 0) metadata.duration.toLong() * 1000 else 180000L
+                                suggestTrack(
+                                    TrackInfo(
+                                        id = metadata.id,
+                                        title = metadata.title,
+                                        artist = metadata.artists.joinToArtistString(getArtistSeparator(context)) { it.name },
+                                        album = metadata.album?.title,
+                                        duration = durationMs,
+                                        thumbnail = metadata.thumbnailUrl,
+                                    ),
+                                )
+                            }
+                        }.onFailure { Timber.tag(TAG).w(it, "Gagal mengusulkan lagu dari tamu") }
+                    }
                 }
 
                 // Add listener if in room
