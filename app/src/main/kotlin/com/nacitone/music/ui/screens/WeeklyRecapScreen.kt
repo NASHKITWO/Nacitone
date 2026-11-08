@@ -101,6 +101,7 @@ fun WeeklyRecapScreen(
             fontWeight = FontWeight.Bold,
         )
         if (dateRange.isNotEmpty()) {
+            Spacer(Modifier.height(8.dp))
             Text(
                 text = dateRange,
                 style = MaterialTheme.typography.bodyMedium,

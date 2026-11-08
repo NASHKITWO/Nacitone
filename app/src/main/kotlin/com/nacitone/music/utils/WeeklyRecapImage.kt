@@ -86,11 +86,13 @@ object WeeklyRecapImage {
                 left, 250f,
                 paint(34f, gold, true).apply { letterSpacing = 0.3f },
             )
-            canvas.drawText(
-                context.getString(R.string.weekly_recap),
-                left, 350f,
-                paint(88f, white, true, serif = true),
-            )
+            val titleText = context.getString(R.string.weekly_recap)
+            val titlePaint = paint(88f, white, true, serif = true)
+            // Kecilkan huruf sampai judul muat di lebar kartu (hindari terpotong di tepi).
+            while (titlePaint.measureText(titleText) > textWidth && titlePaint.textSize > 40f) {
+                titlePaint.textSize -= 2f
+            }
+            canvas.drawText(titleText, left, 350f, titlePaint)
             canvas.drawText(dateRange, left, 415f, paint(38f, softWhite, false))
 
             val card = Paint().apply { isAntiAlias = true; color = 0x22FFFFFF }
@@ -139,7 +141,7 @@ object WeeklyRecapImage {
             }
 
             // Artis teratas: chip bergaris emas
-            y = maxOf(y + 30f, 1420f)
+            y = maxOf(y + 10f, 1400f)
             canvas.drawText(
                 context.getString(R.string.weekly_recap_top_artists).uppercase(),
                 left, y,
@@ -147,14 +149,14 @@ object WeeklyRecapImage {
             )
             val artistPaint = paint(52f, white, true, serif = true)
             artists.take(3).forEachIndexed { index, name ->
-                y += 92f
+                y += 84f
                 canvas.drawText("${index + 1}", left, y, paint(52f, gold, true, serif = true))
                 canvas.drawText(ellipsized(name, artistPaint, textWidth - 90f), left + 90f, y, artistPaint)
             }
 
             // Footer
             val footer = context.getString(R.string.lyrics_card_from, context.getString(R.string.app_name))
-            canvas.drawText(footer, left, h - 230f, paint(36f, softWhite, true))
+            canvas.drawText(footer, left, h - 110f, paint(34f, softWhite, true))
 
             bitmap
         }
