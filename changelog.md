@@ -1,4 +1,4 @@
-# Nacitone 1.0.1
+# Nacitone 1.0.2
 
 Pembaruan perbaikan dan penyempurnaan dari rilis pertama.
 
