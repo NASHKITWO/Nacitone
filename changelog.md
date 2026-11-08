@@ -1,15 +1,20 @@
-# Nacitone 1.0.0
+# Nacitone 1.0.1
 
-Rilis pertama Nacitone, klien YouTube Music untuk Android (turunan Metrolist, GPL-3.0).
+Pembaruan perbaikan dan penyempurnaan dari rilis pertama.
 
-## Fitur
-- Kategori musik Indonesia di Beranda
-- Kualitas audio terpisah untuk Wi-Fi dan data seluler
-- Kartu lirik 9:16 untuk Instagram Story
-- Tema Nusantara (Batik Sogan, Batik Nila, Kopi Tubruk, Wayang)
-- Rangkuman mingguan
-- Pemutar yang mengutamakan lirik
-- Bagikan playlist lewat kode QR
+## Perbaikan
+- Tombol widget tetap bisa memutar musik setelah aplikasi ditutup dari daftar aplikasi terbaru
+- Mengurangi crash saat membuka aplikasi kembali setelah lama tidak dipakai, dan saat memperbarui widget
+- Teks yang saling menimpa di daftar lagu, mini-player, Pengaturan, dan dialog timer tidur
+- Pop-up dukungan tidak lagi hilang sendiri setelah muncul
+- Impor CSV/Spotify yang kosong tidak lagi membuat dialog menggantung
 
-## Perubahan
-- Discord dan login akun dihapus
+## Keamanan
+- Perintah widget ke pemutar kini dilindungi, aplikasi lain tidak bisa mengendalikannya
+- Listen Together hanya memakai koneksi terenkripsi (wss) dan tautan undangan dicek lebih ketat
+- Restore backup dibatasi ukurannya dan tidak lagi memakai cookie dari file backup
+
+## Tampilan
+- Banner dukungan dan ikon Pengaturan lebih bersih, tanpa gradasi berlebihan
+- Deskripsi tombol untuk pembaca layar, serta layar error dengan tombol "Coba lagi" di Beranda
+- Rak Nusantara di Beranda dihapus
