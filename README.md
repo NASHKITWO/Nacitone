@@ -26,6 +26,16 @@
 - **Pembaruan otomatis** dari GitHub Releases.
 - **Laporkan masalah** langsung dari Tentang: info perangkat dan crash terakhir dilampirkan (tidak ada yang terkirim otomatis).
 
+## Tampilan
+
+<div align="center">
+
+| Beranda | Pemutar | Lirik | Rekap mingguan |
+| :---: | :---: | :---: | :---: |
+| <img src="docs/screenshots/beranda.jpg" width="200"> | <img src="docs/screenshots/pemutar.jpg" width="200"> | <img src="docs/screenshots/lirik.jpg" width="200"> | <img src="docs/screenshots/rekap.jpg" width="200"> |
+
+</div>
+
 ## Pasang
 
 1. Buka halaman [Releases](https://github.com/NASHKITWO/Nacitone/releases/latest).
