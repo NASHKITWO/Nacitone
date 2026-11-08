@@ -1,6 +1,4 @@
-# Nacitone 1.0.4
+# Nacitone 1.0.5
 
 ## Perbaikan
-- Widget pemutar: tambah tombol sebelumnya dan berikutnya
-- Warna tombol widget disamakan dan kontras tombol putar diperbaiki
-- Galeri screenshot ditambahkan ke README
+- Listen Together: tamu yang mengetuk atau memutar lagu kini otomatis mengusulkannya ke host, tidak lagi tidak terjadi apa-apa
