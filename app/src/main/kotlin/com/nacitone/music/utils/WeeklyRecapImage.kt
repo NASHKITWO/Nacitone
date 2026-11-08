@@ -9,7 +9,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.TextUtils
@@ -20,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 /** Draws the shareable weekly recap card (Instagram Story size, 1080x1920). */
 object WeeklyRecapImage {
-    data class Row(val title: String, val subtitle: String?)
+    data class Row(val title: String, val subtitle: String?, val cover: Bitmap? = null)
 
     suspend fun create(
         context: Context,
@@ -76,6 +78,19 @@ object WeeklyRecapImage {
             fun ellipsized(text: String, p: TextPaint, width: Float): String =
                 TextUtils.ellipsize(text, p, width, TextUtils.TruncateAt.END).toString()
 
+            fun drawCover(bmp: Bitmap?, box: RectF, radius: Float) {
+                if (bmp == null || bmp.width == 0 || bmp.height == 0) {
+                    canvas.drawRoundRect(box, radius, radius, Paint().apply { isAntiAlias = true; color = 0x33FFFFFF })
+                    return
+                }
+                val side = minOf(bmp.width, bmp.height)
+                val src = Rect((bmp.width - side) / 2, (bmp.height - side) / 2, (bmp.width + side) / 2, (bmp.height + side) / 2)
+                val save = canvas.save()
+                canvas.clipPath(Path().apply { addRoundRect(box, radius, radius, Path.Direction.CW) })
+                canvas.drawBitmap(bmp, src, box, Paint().apply { isAntiAlias = true; isFilterBitmap = true })
+                canvas.restoreToCount(save)
+            }
+
             val left = 90f
             val right = w - 90f
             val textWidth = right - left
@@ -113,12 +128,12 @@ object WeeklyRecapImage {
                     left + 44f, 550f,
                     paint(30f, gold, true).apply { letterSpacing = 0.2f },
                 )
-                canvas.drawText("1", left + 44f, 730f, paint(170f, 0x66FFFFFF, true, serif = true))
-                val tp = paint(56f, white, true, serif = true)
-                canvas.drawText(ellipsized(top.title, tp, textWidth - 230f), left + 200f, 690f, tp)
+                drawCover(top.cover, RectF(left + 36f, 580f, left + 236f, 780f), 32f)
+                val tp = paint(52f, white, true, serif = true)
+                canvas.drawText(ellipsized(top.title, tp, textWidth - 300f), left + 270f, 690f, tp)
                 top.subtitle?.let {
-                    val sp = paint(36f, softWhite, false)
-                    canvas.drawText(ellipsized(it, sp, textWidth - 230f), left + 200f, 745f, sp)
+                    val sp = paint(34f, softWhite, false)
+                    canvas.drawText(ellipsized(it, sp, textWidth - 300f), left + 270f, 745f, sp)
                 }
             }
 
@@ -127,15 +142,16 @@ object WeeklyRecapImage {
             songs.drop(1).take(4).forEachIndexed { index, row ->
                 val rect = RectF(left, y, right, y + 116f)
                 canvas.drawRoundRect(rect, 36f, 36f, card)
-                canvas.drawText("${index + 2}", left + 40f, y + 76f, paint(52f, gold, true, serif = true))
+                canvas.drawText("${index + 2}", left + 32f, y + 74f, paint(44f, gold, true, serif = true))
+                drawCover(row.cover, RectF(left + 90f, y + 16f, left + 190f, y + 100f), 22f)
                 val tp = paint(40f, white, true)
                 val sp = paint(30f, softWhite, false)
-                val tw = textWidth - 130f
+                val tw = textWidth - 240f
                 if (row.subtitle != null) {
-                    canvas.drawText(ellipsized(row.title, tp, tw), left + 110f, y + 52f, tp)
-                    canvas.drawText(ellipsized(row.subtitle, sp, tw), left + 110f, y + 92f, sp)
+                    canvas.drawText(ellipsized(row.title, tp, tw), left + 215f, y + 52f, tp)
+                    canvas.drawText(ellipsized(row.subtitle, sp, tw), left + 215f, y + 92f, sp)
                 } else {
-                    canvas.drawText(ellipsized(row.title, tp, tw), left + 110f, y + 72f, tp)
+                    canvas.drawText(ellipsized(row.title, tp, tw), left + 215f, y + 72f, tp)
                 }
                 y += 136f
             }

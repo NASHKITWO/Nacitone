@@ -7,7 +7,11 @@ package com.nacitone.music.ui.screens
 
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +25,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -28,6 +33,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -39,18 +45,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import coil3.compose.AsyncImage
+import coil3.imageLoader
+import coil3.request.ImageRequest
+import coil3.request.allowHardware
+import coil3.toBitmap
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.R
 import com.nacitone.music.ui.component.IconButton
@@ -97,7 +110,7 @@ fun WeeklyRecapScreen(
 
         Text(
             text = stringResource(R.string.weekly_recap_subtitle),
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
         if (dateRange.isNotEmpty()) {
@@ -125,47 +138,117 @@ fun WeeklyRecapScreen(
             }
 
             else -> {
-                Text(
-                    text = stringResource(R.string.weekly_recap_top_songs),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = accent,
-                    fontWeight = FontWeight.SemiBold,
-                )
-                Spacer(Modifier.height(8.dp))
-                data.songs.forEachIndexed { index, song ->
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(14.dp),
-                        modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
+                val top = data.songs.first()
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1f)
+                            .clip(RoundedCornerShape(28.dp))
+                            .background(MaterialTheme.colorScheme.surfaceContainerHigh),
+                ) {
+                    AsyncImage(
+                        model = top.song.thumbnailUrl,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                    Box(
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .background(
+                                    Brush.verticalGradient(
+                                        0.35f to Color.Transparent,
+                                        1f to Color.Black.copy(alpha = 0.82f),
+                                    ),
+                                ),
+                    )
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        color = accent,
+                        modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                     ) {
                         Text(
-                            text = "${index + 1}",
+                            text = "#1  " + stringResource(R.string.weekly_recap_top_songs),
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            fontWeight = FontWeight.SemiBold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
+                        )
+                    }
+                    Column(
+                        modifier = Modifier.align(Alignment.BottomStart).padding(20.dp),
+                    ) {
+                        Text(
+                            text = top.song.title,
                             style = MaterialTheme.typography.headlineSmall,
-                            color = accent,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.width(28.dp),
+                            color = Color.White,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
                         )
-                        AsyncImage(
-                            model = song.song.thumbnailUrl,
-                            contentDescription = null,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.size(52.dp).clip(RoundedCornerShape(8.dp)),
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            text = top.artists.joinToString { it.name },
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = Color.White.copy(alpha = 0.85f),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                         )
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = song.song.title,
-                                style = MaterialTheme.typography.bodyLarge,
-                                fontWeight = FontWeight.SemiBold,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                            )
-                            Text(
-                                text = song.artists.joinToString { it.name },
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                            )
+                    }
+                }
+
+                val rest = data.songs.drop(1)
+                if (rest.isNotEmpty()) {
+                    Spacer(Modifier.height(16.dp))
+                    Column(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(24.dp))
+                                .background(MaterialTheme.colorScheme.surfaceContainer)
+                                .padding(vertical = 8.dp),
+                    ) {
+                        rest.forEachIndexed { i, song ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp),
+                            ) {
+                                Text(
+                                    text = "${i + 2}",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = accent,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.width(22.dp),
+                                )
+                                AsyncImage(
+                                    model = song.song.thumbnailUrl,
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Crop,
+                                    modifier = Modifier.size(48.dp).clip(RoundedCornerShape(14.dp)),
+                                )
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = song.song.title,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        fontWeight = FontWeight.SemiBold,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
+                                    )
+                                    Text(
+                                        text = song.artists.joinToString { it.name },
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
+                                    )
+                                }
+                            }
                         }
                     }
                 }
@@ -175,19 +258,54 @@ fun WeeklyRecapScreen(
                     Text(
                         text = stringResource(R.string.weekly_recap_top_artists),
                         style = MaterialTheme.typography.titleMedium,
-                        color = accent,
                         fontWeight = FontWeight.SemiBold,
                     )
-                    Spacer(Modifier.height(8.dp))
-                    data.artists.forEachIndexed { index, artist ->
-                        Text(
-                            text = "${index + 1}   ${artist.artist.name}",
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.SemiBold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.padding(vertical = 6.dp),
-                        )
+                    Spacer(Modifier.height(12.dp))
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                    ) {
+                        data.artists.forEachIndexed { index, artist ->
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.width(76.dp),
+                            ) {
+                                Box(
+                                    contentAlignment = Alignment.Center,
+                                    modifier =
+                                        Modifier
+                                            .size(64.dp)
+                                            .clip(CircleShape)
+                                            .background(
+                                                if (index == 0) {
+                                                    MaterialTheme.colorScheme.primaryContainer
+                                                } else {
+                                                    MaterialTheme.colorScheme.secondaryContainer
+                                                },
+                                            ),
+                                ) {
+                                    Text(
+                                        text = artist.artist.name.trim().take(1).uppercase(),
+                                        style = MaterialTheme.typography.titleLarge,
+                                        fontWeight = FontWeight.Bold,
+                                        color =
+                                            if (index == 0) {
+                                                MaterialTheme.colorScheme.onPrimaryContainer
+                                            } else {
+                                                MaterialTheme.colorScheme.onSecondaryContainer
+                                            },
+                                    )
+                                }
+                                Spacer(Modifier.height(6.dp))
+                                Text(
+                                    text = artist.artist.name,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    maxLines = 2,
+                                    textAlign = TextAlign.Center,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -204,10 +322,20 @@ fun WeeklyRecapScreen(
                                         context = context,
                                         dateRange = dateRange,
                                         songs =
-                                            data.songs.map {
+                                            data.songs.take(5).map {
+                                                val request =
+                                                    ImageRequest
+                                                        .Builder(context)
+                                                        .data(it.song.thumbnailUrl)
+                                                        .allowHardware(false)
+                                                        .build()
+                                                val cover =
+                                                    runCatching { context.imageLoader.execute(request).image?.toBitmap() }
+                                                        .getOrNull()
                                                 WeeklyRecapImage.Row(
                                                     it.song.title,
                                                     it.artists.joinToString { a -> a.name },
+                                                    cover,
                                                 )
                                             },
                                         artists = data.artists.map { it.artist.name },

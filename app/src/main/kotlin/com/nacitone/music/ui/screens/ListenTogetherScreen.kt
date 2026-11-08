@@ -526,7 +526,7 @@ private fun ConnectionStatusCard(
                             stiffness = Spring.StiffnessLow,
                         ),
                 ),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(28.dp),
         colors =
             CardDefaults.cardColors(
                 containerColor =
@@ -539,7 +539,7 @@ private fun ConnectionStatusCard(
             ),
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(horizontal = 20.dp, vertical = 18.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Row(
@@ -595,7 +595,7 @@ private fun ConnectionStatusCard(
                 )
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -605,7 +605,7 @@ private fun ConnectionStatusCard(
                     Button(
                         onClick = onConnect,
                         modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(12.dp),
+                        shape = CircleShape,
                         colors =
                             ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.primary,
@@ -623,7 +623,7 @@ private fun ConnectionStatusCard(
                     Button(
                         onClick = onDisconnect,
                         modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(12.dp),
+                        shape = CircleShape,
                         colors =
                             ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.primary,
@@ -634,7 +634,7 @@ private fun ConnectionStatusCard(
                     FilledTonalButton(
                         onClick = onReconnect,
                         modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(12.dp),
+                        shape = CircleShape,
                     ) {
                         Text("Reconnect", fontWeight = FontWeight.SemiBold)
                     }
@@ -652,17 +652,25 @@ private fun RoomStatusCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(32.dp),
         colors =
             CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
             ),
     ) {
         Column(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(24.dp),
+                    .background(
+                        Brush.linearGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                MaterialTheme.colorScheme.tertiaryContainer,
+                            ),
+                        ),
+                    )
+                    .padding(horizontal = 24.dp, vertical = 28.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
@@ -671,16 +679,23 @@ private fun RoomStatusCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = roomCode,
-                style = MaterialTheme.typography.displaySmall,
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 6.sp,
-                textAlign = TextAlign.Center,
-            )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(12.dp))
+            Surface(
+                shape = RoundedCornerShape(20.dp),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.55f),
+            ) {
+                Text(
+                    text = roomCode,
+                    style = MaterialTheme.typography.headlineLarge,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 4.sp,
+                    maxLines = 1,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text =
                     if (isHost) {
@@ -689,12 +704,12 @@ private fun RoomStatusCard(
                         stringResource(R.string.listen_together_you_are_guest)
                     },
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
                 textAlign = TextAlign.Center,
             )
 
             if (isHost) {
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(20.dp))
                 val inviteLink =
                     remember(roomCode) {
                         "nacitone://listen?code=$roomCode"
@@ -711,7 +726,7 @@ private fun RoomStatusCard(
                             clipboard.setPrimaryClip(clip)
                             Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
                         },
-                        shape = RoundedCornerShape(12.dp),
+                        shape = CircleShape,
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.link),
@@ -729,7 +744,7 @@ private fun RoomStatusCard(
                             clipboard.setPrimaryClip(clip)
                             Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
                         },
-                        shape = RoundedCornerShape(12.dp),
+                        shape = CircleShape,
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.content_copy),
@@ -754,14 +769,14 @@ private fun ConnectedUsersSection(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(28.dp),
         colors =
             CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
             ),
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(20.dp),
         ) {
             Text(
                 text = "${stringResource(R.string.connected_users)} (${users.size})",
