@@ -4,11 +4,14 @@
 
 **Pemutar musik Android bergaya Nusantara: cepat, hemat kuota, dan terbuka.**
 
-[![Release](https://img.shields.io/github/v/release/NASHKITWO/Nacitone?style=flat-square)](https://github.com/NASHKITWO/Nacitone/releases/latest)
+[![Release](https://img.shields.io/github/v/release/NASHKITWO/Nacitone?style=flat-square&logo=github)](https://github.com/NASHKITWO/Nacitone/releases/latest)
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square)](LICENSE)
-[![Dukung](https://img.shields.io/badge/Dukung-Sociabuzz-orange?style=flat-square)](https://sociabuzz.com/nacitwo/tribe)
+[![Dukung](https://img.shields.io/badge/Dukung-Sociabuzz-orange?style=flat-square&logo=ko-fi&logoColor=white)](https://sociabuzz.com/nacitwo/tribe)
 
-[Situs web](https://nacitone.xo.je) · [Unduh](https://github.com/NASHKITWO/Nacitone/releases/latest) · [Kebijakan privasi](PRIVACY.md) · [Laporkan masalah](https://github.com/NASHKITWO/Nacitone/issues)
+[![Unduh](https://img.shields.io/badge/Unduh_APK-6750A4?style=for-the-badge&logo=android&logoColor=white)](https://github.com/NASHKITWO/Nacitone/releases/latest)
+[![Situs web](https://img.shields.io/badge/Situs_web-181717?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nacitone.xo.je)
+[![Privasi](https://img.shields.io/badge/Kebijakan_privasi-2E7D32?style=for-the-badge&logo=privateinternetaccess&logoColor=white)](PRIVACY.md)
+[![Masalah](https://img.shields.io/badge/Laporkan_masalah-C62828?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NASHKITWO/Nacitone/issues)
 
 </div>
 
@@ -63,11 +66,16 @@ Nacitone gratis. Jika bermanfaat, dukung pengembangnya lewat [Sociabuzz](https:/
 ## Pengembang
 
 **Muhammad Ikhsan**, Teknik Informatika, Universitas Pamulang
+
+<p align="center">
+
 [![Situs web](https://img.shields.io/badge/Situs_web-nacitone.xo.je-6750A4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nacitone.xo.je)
 [![GitHub](https://img.shields.io/badge/GitHub-NASHKITWO-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NASHKITWO)
 [![Instagram](https://img.shields.io/badge/Instagram-@ikhsan2.1-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/ikhsan2.1)
 [![Email](https://img.shields.io/badge/Email-ican3192@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ican3192@gmail.com)
 [![Dukung](https://img.shields.io/badge/Dukung-Sociabuzz-F58220?style=for-the-badge&logo=ko-fi&logoColor=white)](https://sociabuzz.com/nacitwo/tribe)
+
+</p>
 
 ## Lisensi dan penghargaan
 
