@@ -7,6 +7,7 @@ package com.nacitone.music.utils
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.remember
@@ -92,6 +93,7 @@ inline fun <reified T : Enum<T>> enumPreference(
     defaultValue: T,
 ) = ReadOnlyProperty<Any?, T> { _, _ -> context.dataStore[key].toEnum(defaultValue) }
 
+@Suppress("UNCHECKED_CAST")
 @Composable
 fun <T> rememberPreference(
     key: Preferences.Key<T>,
@@ -100,10 +102,27 @@ fun <T> rememberPreference(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
+    val encrypted = key.name in SecretStore.encryptedPreferenceNames && defaultValue is String
+
+    fun decode(raw: T): T = if (encrypted) SecretStore.decrypt(raw as String) as T else raw
+
+    fun encode(plain: T): T = if (encrypted) SecretStore.encrypt(plain as String) as T else plain
+
+    if (encrypted) {
+        LaunchedEffect(key) {
+            context.safeDataStoreEdit {
+                val stored = it[key] as? String
+                if (stored != null && SecretStore.needsMigration(stored)) {
+                    it[key] = SecretStore.encrypt(stored) as T
+                }
+            }
+        }
+    }
+
     val state =
         remember {
             context.dataStore.data
-                .map { it[key] ?: defaultValue }
+                .map { prefs -> prefs[key]?.let { decode(it) } ?: defaultValue }
                 .distinctUntilChanged()
         }.collectAsStateWithLifecycle(defaultValue)
 
@@ -114,7 +133,7 @@ fun <T> rememberPreference(
                 set(value) {
                     coroutineScope.launch {
                         context.safeDataStoreEdit {
-                            it[key] = value
+                            it[key] = encode(value)
                         }
                     }
                 }
