@@ -63,7 +63,11 @@ Nacitone gratis. Jika bermanfaat, dukung pengembangnya lewat [Sociabuzz](https:/
 ## Pengembang
 
 **Muhammad Ikhsan**, Teknik Informatika, Universitas Pamulang
-Instagram [@ikhsan2.1](https://instagram.com/ikhsan2.1) · GitHub [NASHKITWO](https://github.com/NASHKITWO) · ican3192@gmail.com
+[![Situs web](https://img.shields.io/badge/Situs_web-nacitone.xo.je-6750A4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://nacitone.xo.je)
+[![GitHub](https://img.shields.io/badge/GitHub-NASHKITWO-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/NASHKITWO)
+[![Instagram](https://img.shields.io/badge/Instagram-@ikhsan2.1-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/ikhsan2.1)
+[![Email](https://img.shields.io/badge/Email-ican3192@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ican3192@gmail.com)
+[![Dukung](https://img.shields.io/badge/Dukung-Sociabuzz-F58220?style=for-the-badge&logo=ko-fi&logoColor=white)](https://sociabuzz.com/nacitwo/tribe)
 
 ## Lisensi dan penghargaan
 
