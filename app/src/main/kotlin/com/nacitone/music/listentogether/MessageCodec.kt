@@ -14,6 +14,7 @@ class MessageCodec(
 ) {
     companion object {
         private const val COMPRESSION_THRESHOLD = 100
+        private const val MAX_DECOMPRESSED_SIZE = 4 * 1024 * 1024
     }
 
     fun encode(
@@ -83,7 +84,19 @@ class MessageCodec(
 
     private fun decompress(data: ByteArray): ByteArray? =
         try {
-            GZIPInputStream(ByteArrayInputStream(data)).use { it.readBytes() }
+            GZIPInputStream(ByteArrayInputStream(data)).use { input ->
+                val out = ByteArrayOutputStream()
+                val buf = ByteArray(8192)
+                var total = 0
+                while (true) {
+                    val n = input.read(buf)
+                    if (n < 0) break
+                    total += n
+                    if (total > MAX_DECOMPRESSED_SIZE) throw java.io.IOException("Payload too large")
+                    out.write(buf, 0, n)
+                }
+                out.toByteArray()
+            }
         } catch (error: Exception) {
             Timber.e(error, "Failed to decompress Listen Together payload")
             null

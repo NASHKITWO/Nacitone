@@ -70,6 +70,7 @@ object BetterLyrics {
             null
         }
     }.getOrElse { e ->
+        if (e is kotlinx.coroutines.CancellationException) throw e
         Timber.tag(TAG).e(e, "Exception during fetchTTML")
         null
     }
@@ -92,5 +93,5 @@ object BetterLyrics {
         }
         
         TTMLParser.toLRC(parsedLines)
-    }
+    }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }
 }

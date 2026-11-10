@@ -89,12 +89,13 @@ object ZemerLyricsProvider : LyricsProvider {
         val resolved = resolve(id) ?: throw IllegalStateException("Zemer has no lyrics for $id")
         for (source in resolved.sources.sortedWith(compareBy({ it.synced != true }, { rank(it) }))) {
             val body = runCatching { fetchBody(source) }
+                .onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }
                 .onFailure { Timber.tag("Zemer").d(it, "source ${source.type} failed") }
                 .getOrNull()
             if (body != null && hasBody(body)) return@runCatching body
         }
         throw IllegalStateException("No Zemer source yielded a body")
-    }
+    }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }
 
     private fun rank(s: Source) = when (s.type) {
         "jkaraoke" -> 0
@@ -126,6 +127,8 @@ object ZemerLyricsProvider : LyricsProvider {
     }
 
     private suspend fun fetchText(url: String): String? {
+        // Server-supplied pointers must be HTTPS (no cleartext / other schemes).
+        if (!url.startsWith("https://", ignoreCase = true)) return null
         val r = client.get(url) { header(HttpHeaders.Accept, "text/html,application/json") }
         return if (r.status == HttpStatusCode.OK) r.bodyAsText() else null
     }
@@ -187,7 +190,7 @@ object ZemerLyricsProvider : LyricsProvider {
         .replace("&#8217;", "'").replace("&rsquo;", "'")
         .replace("&#8211;", "–").replace("&ndash;", "–")
         .replace("&amp;", "&").replace("&quot;", "\"").replace("&#039;", "'").replace("&nbsp;", " ")
-        .replace(NUMERIC_ENTITY) { m -> m.groupValues[1].toInt().toChar().toString() }
+        .replace(NUMERIC_ENTITY) { m -> m.groupValues[1].toIntOrNull()?.takeIf { it in 1..0xFFFF }?.toChar()?.toString() ?: m.value }
 
     private fun tidy(lines: List<String>): String {
         val out = ArrayList<String>()

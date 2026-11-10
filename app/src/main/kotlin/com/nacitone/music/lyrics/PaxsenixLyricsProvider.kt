@@ -41,6 +41,7 @@ object PaxsenixLyricsProvider : LyricsProvider {
             
             return result
         } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
             Timber.tag(TAG).e(e, "Exception in getLyrics")
             return Result.failure(e)
         }
@@ -60,6 +61,7 @@ object PaxsenixLyricsProvider : LyricsProvider {
             Paxsenix.init(context)
             Paxsenix.getAllLyrics(title, artist, duration, album, callback)
         } catch (e: Exception) {
+            if (e is kotlinx.coroutines.CancellationException) throw e
             Timber.tag(TAG).e(e, "Error fetching lyrics from Paxsenix")
             callback("")
         }

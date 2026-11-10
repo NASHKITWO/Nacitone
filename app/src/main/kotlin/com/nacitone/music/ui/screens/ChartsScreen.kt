@@ -217,8 +217,8 @@ fun ChartsScreen(
                             .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom)
                             .asPaddingValues(),
                 ) {
-                    chartsPage?.sections?.filter { it.title != "Top music videos" }?.forEach { section ->
-                        item(key = "section_title_${section.title}") {
+                    chartsPage?.sections?.filter { it.title != "Top music videos" }?.forEachIndexed { sectionIndex, section ->
+                        item(key = "section_title_${sectionIndex}_${section.title}") {
                             NavigationTitle(
                                 title =
                                     when (section.title) {
@@ -228,7 +228,7 @@ fun ChartsScreen(
                                 modifier = Modifier.animateItem(),
                             )
                         }
-                        item(key = "section_content_${section.title}") {
+                        item(key = "section_content_${sectionIndex}_${section.title}") {
                             BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
                                 val horizontalLazyGridItemWidthFactor = if (maxWidth * 0.475f >= 320.dp) 0.475f else 0.9f
                                 val horizontalLazyGridItemWidth = maxWidth * horizontalLazyGridItemWidthFactor

@@ -185,7 +185,7 @@ object LyricsPlusProvider : LyricsProvider {
             if (!album.isNullOrBlank()) parameter("album", album)
         }
         if (response.status == HttpStatusCode.OK) response.body<LyricsPlusResponse>() else null
-    }.getOrNull()
+    }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }.getOrNull()
 
     private suspend fun fetchLyrics(
         title: String,
@@ -233,13 +233,13 @@ object LyricsPlusProvider : LyricsProvider {
                 if (!album.isNullOrBlank()) parameter("album", album)
                 if (duration > 0) parameter("duration", duration)
             }
-        }.getOrNull()
+        }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }.getOrNull()
 
         suspend fun requestByIsrc() = runCatching {
             client.get(BINIMUM_API_BASE_URL) {
                 parameter("isrc", normalizedIsrc)
             }
-        }.getOrNull()
+        }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }.getOrNull()
 
         val response = if (canUseIsrc) {
             requestByIsrc() ?: requestByTrackMetadata()
@@ -260,9 +260,11 @@ object LyricsPlusProvider : LyricsProvider {
             .firstOrNull { !it.lyricsUrl.isNullOrBlank() }
             ?: return null
         val lyricsUrl = selectedResult.lyricsUrl.orEmpty()
+        // Server-supplied URL must be HTTPS.
+        if (!lyricsUrl.startsWith("https://", ignoreCase = true)) return null
         val ttml = runCatching {
             client.get(lyricsUrl)
-        }.getOrNull()?.let { ttmlResponse ->
+        }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }.getOrNull()?.let { ttmlResponse ->
             if (ttmlResponse.status.isSuccess()) {
                 runCatching { ttmlResponse.body<String>() }.getOrNull()
             } else {
@@ -422,7 +424,7 @@ object LyricsPlusProvider : LyricsProvider {
         val lyricsPlusLrc = convertToLrc(response)
         resolveLyricsWithFallback(binimumResult, response, lyricsPlusLrc)
             ?: throw IllegalStateException("Lyrics unavailable")
-    }
+    }.onFailure { if (it is kotlinx.coroutines.CancellationException) throw it }
 
     private fun resolveLyricsWithFallback(
         binimumResult: BinimumLyricsFetchResult?,

@@ -83,6 +83,7 @@ object TTMLParser {
             try { factory.setFeature("http://xml.org/sax/features/external-general-entities", false) } catch (e: Exception) {}
             try { factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false) } catch (e: Exception) {}
             try { factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false) } catch (e: Exception) {}
+            try { factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true) } catch (e: Exception) {}
             try { factory.setXIncludeAware(false) } catch (e: Exception) {}
             try { factory.isExpandEntityReferences = false } catch (e: Exception) {}
             

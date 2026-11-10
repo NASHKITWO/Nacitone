@@ -72,7 +72,8 @@ class MusicRecognizerWidgetReceiver : AppWidgetProvider() {
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         when (intent.action) {
-            ACTION_START_RECOGNITION -> handleStartRecognition(context)
+            // TAP_MIC dari luar diabaikan: receiver ini diekspor, dan memulai mikrofon hanya boleh
+            // lewat WidgetActionReceiver (tidak diekspor) yang dituju PendingIntent widget.
             ACTION_UPDATE_WIDGET -> updateAllWidgets(context, AppWidgetManager.getInstance(context))
             ACTION_RESET_STATE -> {
                 context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -92,17 +93,20 @@ class MusicRecognizerWidgetReceiver : AppWidgetProvider() {
 
     // ─── Recognition start / stop ─────────────────────────────────────────────
 
-    private fun handleStartRecognition(context: Context) {
+    internal fun handleStartRecognition(context: Context) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val currentState = prefs.getInt(PREF_STATE, STATE_IDLE)
 
         // If active → stop
         if (currentState == STATE_LISTENING || currentState == STATE_PROCESSING) {
-            context.startService(
-                Intent(context, RecognitionForegroundService::class.java).apply {
-                    action = RecognitionForegroundService.ACTION_STOP_WIDGET_RECOGNITION
-                }
-            )
+            try {
+                context.startService(
+                    Intent(context, RecognitionForegroundService::class.java).apply {
+                        action = RecognitionForegroundService.ACTION_STOP_WIDGET_RECOGNITION
+                    }
+                )
+            } catch (_: Exception) {
+            }
             return
         }
 
@@ -126,10 +130,14 @@ class MusicRecognizerWidgetReceiver : AppWidgetProvider() {
         val serviceIntent = Intent(context, RecognitionForegroundService::class.java).apply {
             action = RecognitionForegroundService.ACTION_START_WIDGET_RECOGNITION
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(serviceIntent)
-        } else {
-            context.startService(serviceIntent)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(serviceIntent)
+            } else {
+                context.startService(serviceIntent)
+            }
+        } catch (_: Exception) {
+            // Layanan foreground bisa ditolak sistem (batasan latar belakang); jangan crash receiver.
         }
     }
 
@@ -312,7 +320,7 @@ class MusicRecognizerWidgetReceiver : AppWidgetProvider() {
     private fun getMicIntent(context: Context): PendingIntent =
         PendingIntent.getBroadcast(
             context, 20,
-            Intent(context, MusicRecognizerWidgetReceiver::class.java).apply {
+            Intent(context, WidgetActionReceiver::class.java).apply {
                 action = ACTION_START_RECOGNITION
             },
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE

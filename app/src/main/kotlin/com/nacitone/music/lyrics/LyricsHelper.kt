@@ -191,7 +191,13 @@ constructor(
             cache.put(cacheKey, allResult)
         }
 
-        currentLyricsJob?.join()
+        val job = currentLyricsJob
+        try {
+            job?.join()
+        } catch (e: CancellationException) {
+            job?.cancel()
+            throw e
+        }
     }
 
     private fun resolveLyricsProviders(preferences: androidx.datastore.preferences.core.Preferences): List<LyricsProvider> {

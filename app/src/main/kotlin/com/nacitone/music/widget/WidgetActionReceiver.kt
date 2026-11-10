@@ -30,6 +30,10 @@ object WidgetAuth {
 
 class WidgetActionReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == MusicRecognizerWidgetReceiver.ACTION_START_RECOGNITION) {
+            MusicRecognizerWidgetReceiver().handleStartRecognition(context)
+            return
+        }
         val serviceAction = when (intent.action) {
             MusicWidgetReceiver.ACTION_PLAY_PAUSE,
             TurntableWidgetReceiver.ACTION_TURNTABLE_PLAY_PAUSE -> MusicWidgetReceiver.ACTION_PLAY_PAUSE

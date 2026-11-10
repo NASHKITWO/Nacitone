@@ -577,6 +577,7 @@ class ListenTogetherClient
         private var pingJob: Job? = null
         private var reconnectAttempts = 0
         private var backgroundDisconnectJob: Job? = null
+        private var reconnectJob: Job? = null
 
         // Session info for reconnection
         private var sessionToken: String? = null
@@ -694,6 +695,7 @@ class ListenTogetherClient
                     .header("User-Agent", context.packageName)
                     .build()
 
+            webSocket = null
             webSocket =
                 client.newWebSocket(
                     request,
@@ -722,6 +724,9 @@ class ListenTogetherClient
                             webSocket: WebSocket,
                             bytes: okio.ByteString,
                         ) {
+                            // Ignore events from a stale socket
+                            val current = this@ListenTogetherClient.webSocket
+                            if (current != null && current !== webSocket) return
                             // Handle binary protobuf messages
                             handleMessage(bytes.toByteArray())
                         }
@@ -740,6 +745,8 @@ class ListenTogetherClient
                             code: Int,
                             reason: String,
                         ) {
+                            val current = this@ListenTogetherClient.webSocket
+                            if (current != null && current !== webSocket) return
                             log(LogLevel.INFO, "Connection closed", "Code: $code, Reason: $reason")
                             handleDisconnect()
                         }
@@ -749,6 +756,8 @@ class ListenTogetherClient
                             t: Throwable,
                             response: Response?,
                         ) {
+                            val current = this@ListenTogetherClient.webSocket
+                            if (current != null && current !== webSocket) return
                             log(LogLevel.ERROR, "Connection failure", t.message)
                             handleConnectionFailure(t)
                         }
@@ -781,6 +790,8 @@ class ListenTogetherClient
             log(LogLevel.INFO, "Disconnecting from server")
             backgroundDisconnectJob?.cancel()
             backgroundDisconnectJob = null
+            reconnectJob?.cancel()
+            reconnectJob = null
             releaseWakeLock() // Release wake lock when disconnecting
             pingJob?.cancel()
             pingJob = null
@@ -1059,7 +1070,8 @@ class ListenTogetherClient
                 )
 
                 emitEvent(ListenTogetherEvent.Reconnecting(reconnectAttempts, MAX_RECONNECT_ATTEMPTS))
-                scope.launch {
+                reconnectJob?.cancel()
+                reconnectJob = scope.launch {
                     delay(delayMs)
 
                     // Check if we're still supposed to be reconnecting

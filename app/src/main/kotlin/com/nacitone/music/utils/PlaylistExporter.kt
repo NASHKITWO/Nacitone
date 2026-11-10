@@ -157,9 +157,14 @@ private fun createExportFile(
     }
 
     // Create file with unique name (add timestamp if file exists)
-    val baseFilename = filename.substringBeforeLast('.')
-    val extension = filename.substringAfterLast('.', "")
-    var exportFile = File(exportDir, filename)
+    val safeFilename =
+        filename
+            .replace(Regex("[/\\\\:*?\"<>|\\u0000-\\u001F]"), "_")
+            .trimStart('.')
+            .ifBlank { "playlist.${filename.substringAfterLast('.', "txt")}" }
+    val baseFilename = safeFilename.substringBeforeLast('.')
+    val extension = safeFilename.substringAfterLast('.', "")
+    var exportFile = File(exportDir, safeFilename)
     var counter = 1
 
     while (exportFile.exists()) {
