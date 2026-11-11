@@ -82,15 +82,6 @@ interface DatabaseDao {
     @Query("SELECT * FROM song WHERE id = :songId LIMIT 1")
     suspend fun songEntity(songId: String): SongEntity?
 
-    @Query("SELECT id FROM song WHERE liked")
-    suspend fun likedSongIds(): List<String>
-
-    @Query("SELECT * FROM song WHERE inLibrary IS NOT NULL ORDER BY title")
-    suspend fun librarySongEntitiesByNameAsc(): List<SongEntity>
-
-    @Query("SELECT * FROM song WHERE isUploaded = 1 ORDER BY title")
-    suspend fun uploadedSongEntitiesByNameAsc(): List<SongEntity>
-
     @Query(
         """
         SELECT songId FROM playlist_song_map
@@ -114,24 +105,6 @@ interface DatabaseDao {
 
     @Query("SELECT * FROM album WHERE id = :albumId LIMIT 1")
     suspend fun albumEntity(albumId: String): AlbumEntity?
-
-    @Query("SELECT * FROM album WHERE bookmarkedAt IS NOT NULL ORDER BY title")
-    suspend fun likedAlbumEntitiesByNameAsc(): List<AlbumEntity>
-
-    @Query("SELECT * FROM album WHERE isUploaded = 1 ORDER BY title")
-    suspend fun uploadedAlbumEntitiesByNameAsc(): List<AlbumEntity>
-
-    @Query("SELECT * FROM artist WHERE id = :artistId LIMIT 1")
-    suspend fun artistEntity(artistId: String): ArtistEntity?
-
-    @Query("SELECT * FROM artist WHERE bookmarkedAt IS NOT NULL ORDER BY name")
-    suspend fun bookmarkedArtistEntitiesByNameAsc(): List<ArtistEntity>
-
-    @Query("SELECT * FROM playlist ORDER BY name")
-    suspend fun playlistEntitiesByNameAsc(): List<PlaylistEntity>
-
-    @Query("SELECT * FROM song WHERE isEpisode = 1 AND inLibrary IS NOT NULL ORDER BY inLibrary")
-    suspend fun savedEpisodeEntitiesByCreateDateAsc(): List<SongEntity>
 
     @Transaction
     @Query("SELECT * FROM song WHERE inLibrary IS NOT NULL ORDER BY rowId")
@@ -680,10 +653,6 @@ interface DatabaseDao {
     @Transaction
     @Query("SELECT * FROM song WHERE id = :songId")
     fun song(songId: String?): Flow<Song?>
-
-    @Transaction
-    @Query("SELECT * FROM song WHERE id = :songId LIMIT 1")
-    suspend fun getSongById(songId: String): Song?
 
     @Transaction
     @Query("SELECT * FROM song WHERE id = :songId LIMIT 1")
@@ -1236,10 +1205,6 @@ interface DatabaseDao {
     }.map { it.reversed(descending) }
 
     @Transaction
-    @Query("SELECT * FROM playlist_song_map WHERE playlistId = :playlistId ORDER BY position")
-    fun playlistSongsBlocking(playlistId: String): List<PlaylistSong>
-
-    @Transaction
     @Query(
         "SELECT *, (SELECT COUNT(*) FROM playlist_song_map WHERE playlistId = playlist.id) " +
                 "AS songCount FROM playlist WHERE id = :playlistId"
@@ -1319,18 +1284,6 @@ interface DatabaseDao {
     @Transaction
     @Query("SELECT * FROM song WHERE isEpisode = 1 ORDER BY inLibrary")
     fun podcastEpisodesByCreateDateAsc(): Flow<List<Song>>
-
-    @Transaction
-    @Query("SELECT * FROM song WHERE isEpisode = 1 ORDER BY title")
-    fun podcastEpisodesByNameAsc(): Flow<List<Song>>
-
-    @Transaction
-    @Query("SELECT * FROM song WHERE isEpisode = 1 ORDER BY totalPlayTime")
-    fun podcastEpisodesByPlayTimeAsc(): Flow<List<Song>>
-
-    @Transaction
-    @Query("SELECT * FROM song WHERE isEpisode = 1 ORDER BY rowId")
-    fun podcastEpisodesByRowIdAsc(): Flow<List<Song>>
 
     @Transaction
     @Query("SELECT * FROM song WHERE isEpisode = 1 AND isDownloaded = 1 ORDER BY dateDownload")

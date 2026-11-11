@@ -349,9 +349,6 @@ object LyricsUtils {
         Tokenizer()
     }
 
-    private val HEX_ENTITY_REGEX = "&#x([0-9a-fA-F]+);".toRegex()
-    private val DEC_ENTITY_REGEX = "&#(\\d+);".toRegex()
-
     private fun decodeHtmlEntities(text: String): String {
         if (!text.contains('&')) return text
         val sb = StringBuilder(text.length)

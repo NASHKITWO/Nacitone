@@ -279,8 +279,6 @@ val PlaybackActionPayload.queue: List<TrackInfo>? get() = queueList
 val PlaybackActionPayload.queueTitleOrNull: String? get() = queueTitle.takeIf(String::isNotEmpty)
 val PlaybackActionPayload.volumeOrNull: Float? get() = volume.takeIf { action == PlaybackActions.SET_VOLUME }
 val PlaybackActionPayload.serverTimeOrNull: Long? get() = serverTime.takeIf { it > 0L }
-val PlaybackActionPayload.capturedAtServerTimeOrNull: Long? get() = capturedAtServerTime.takeIf { it > 0L }
-val PlaybackActionPayload.insertNextOrNull: Boolean? get() = insertNext.takeIf { it }
 val SuggestionRejectedPayload.reasonOrNull: String? get() = reason.takeIf(String::isNotEmpty)
 val BufferWaitPayload.waitingFor: List<String> get() = waitingForList
 

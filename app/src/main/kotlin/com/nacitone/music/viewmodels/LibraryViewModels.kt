@@ -48,7 +48,6 @@ import com.nacitone.music.extensions.matchesNormalizedQuery
 import com.nacitone.music.extensions.normalizeForSearch
 import com.nacitone.music.extensions.toEnum
 import com.nacitone.music.playback.DownloadUtil
-import com.nacitone.music.utils.PodcastRefreshTrigger
 import com.nacitone.music.utils.SyncUtils
 import com.nacitone.music.utils.dataStore
 import com.nacitone.music.utils.reportException
@@ -526,14 +525,6 @@ constructor(
         }
         viewModelScope.launch(Dispatchers.IO) {
             fetchRdpnPlaylist()
-        }
-        // Observe refresh trigger for auto-refresh after subscribe/unsubscribe
-        viewModelScope.launch(Dispatchers.IO) {
-            PodcastRefreshTrigger.refreshFlow.collect {
-                // Small delay to allow YouTube's backend to update
-                kotlinx.coroutines.delay(1500)
-                fetchPodcastChannels()
-            }
         }
     }
 
