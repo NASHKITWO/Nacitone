@@ -101,7 +101,10 @@ class CrashActivity : ComponentActivity() {
                 putExtra(Intent.EXTRA_TEXT, crashLog)
                 putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crash_report_subject))
             }
-            startActivity(Intent.createChooser(shareIntent, getString(R.string.crash_share_title)))
+            try {
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.crash_share_title)))
+            } catch (_: Exception) {
+            }
         }
     }
 }

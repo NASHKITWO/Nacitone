@@ -716,7 +716,14 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             } else {
-                load()
+                try {
+                    load()
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    isLoading.value = false
+                    reportException(e)
+                }
             }
             isRefreshing.value = false
         }
@@ -809,6 +816,7 @@ class HomeViewModel @Inject constructor(
                 load()
             } catch (e: Exception) {
                 isHomeDataLoaded = false
+                isLoading.value = false
                 Timber.e(e, "Failed to load home data")
             }
         }

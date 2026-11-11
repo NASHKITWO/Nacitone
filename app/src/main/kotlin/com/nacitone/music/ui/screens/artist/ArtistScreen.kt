@@ -635,8 +635,8 @@ fun ArtistScreen(
                                 contentPadding = WindowInsets.systemBars.only(WindowInsetsSides.Horizontal).asPaddingValues(),
                             ) {
                                 items(
-                                    items = filteredLibraryAlbums,
-                                    key = { "local_album_${it.id}_${filteredLibraryAlbums.indexOf(it)}" },
+                                    items = filteredLibraryAlbums.distinctBy { it.id },
+                                    key = { "local_album_${it.id}" },
                                 ) { album ->
                                     AlbumGridItem(
                                         album = album,

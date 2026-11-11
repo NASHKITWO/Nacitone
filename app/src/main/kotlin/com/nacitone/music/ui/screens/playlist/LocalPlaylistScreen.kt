@@ -330,7 +330,7 @@ fun LocalPlaylistScreen(
                     text =
                         stringResource(
                             R.string.remove_download_playlist_confirm,
-                            playlist?.playlist!!.name,
+                            playlist?.playlist?.name.orEmpty(),
                         ),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(horizontal = 18.dp),
@@ -378,7 +378,7 @@ fun LocalPlaylistScreen(
                     text =
                         stringResource(
                             R.string.delete_playlist_confirm,
-                            playlist?.playlist!!.name,
+                            playlist?.playlist?.name.orEmpty(),
                         ),
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(horizontal = 18.dp),

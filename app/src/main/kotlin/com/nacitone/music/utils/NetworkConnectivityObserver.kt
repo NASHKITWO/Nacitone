@@ -53,7 +53,11 @@ class NetworkConnectivityObserver(context: Context) {
     }
 
     fun unregister() {
-        connectivityManager.unregisterNetworkCallback(networkCallback)
+        try {
+            connectivityManager.unregisterNetworkCallback(networkCallback)
+        } catch (e: IllegalArgumentException) {
+            // Callback was never registered (registration failed) or already unregistered.
+        }
     }
     
     /**

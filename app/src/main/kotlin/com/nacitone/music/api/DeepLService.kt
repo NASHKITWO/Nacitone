@@ -79,7 +79,7 @@ object DeepLService {
                     .build()
 
                 val response = client.newCall(request).execute()
-                val responseBody = response.body?.string()
+                val responseBody = response.use { it.body?.string() }
 
                 if (!response.isSuccessful) {
                     // Retry on server errors (5xx)
@@ -122,6 +122,8 @@ object DeepLService {
                         return@withContext Result.success(paddedLines)
                     }
                 }
+            } catch (e: kotlin.coroutines.cancellation.CancellationException) {
+                throw e
             } catch (e: Exception) {
                 if (currentAttempt == maxRetries - 1) {
                     return@withContext Result.failure(e)
