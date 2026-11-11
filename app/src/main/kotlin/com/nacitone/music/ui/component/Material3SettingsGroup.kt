@@ -83,9 +83,9 @@ fun Material3SettingsGroup(
                     shape = shape,
                     colors = CardDefaults.cardColors(
                         containerColor = if (!useLowContrast) {
-                            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
                         } else {
-                            MaterialTheme.colorScheme.surfaceContainerLow
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.06f)
                         }
                     ),
                     border = BorderStroke(

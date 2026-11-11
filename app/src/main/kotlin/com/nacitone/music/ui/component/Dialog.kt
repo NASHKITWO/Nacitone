@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
@@ -79,8 +80,9 @@ fun DefaultDialog(
         Surface(
             modifier = Modifier.padding(24.dp),
             shape = AlertDialogDefaults.shape,
-            color = AlertDialogDefaults.containerColor,
-            tonalElevation = AlertDialogDefaults.TonalElevation,
+            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+            tonalElevation = 0.dp,
         ) {
             Column(
                 horizontalAlignment = horizontalAlignment,
@@ -168,8 +170,9 @@ fun AccountSettingsDialog(
                         .padding(top = 72.dp, start = 16.dp, end = 16.dp)
                         .clip(RoundedCornerShape(28.dp)),
                 shape = MaterialTheme.shapes.large,
-                color = MaterialTheme.colorScheme.surface,
-                tonalElevation = 8.dp,
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+                tonalElevation = 0.dp,
             ) {
                 AccountSettings(
                     navController = navController,
@@ -252,8 +255,9 @@ fun ListDialog(
         Surface(
             modifier = Modifier.padding(24.dp),
             shape = AlertDialogDefaults.shape,
-            color = AlertDialogDefaults.containerColor,
-            tonalElevation = AlertDialogDefaults.TonalElevation,
+            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+            tonalElevation = 0.dp,
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,

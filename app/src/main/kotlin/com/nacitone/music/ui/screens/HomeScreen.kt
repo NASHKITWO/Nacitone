@@ -550,7 +550,7 @@ fun DailyDiscoverCard(
                 ),
         colors =
             CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
             ),
         shape = RoundedCornerShape(28.dp),
     ) {
@@ -1394,7 +1394,7 @@ fun HomeScreen(
                                         .padding(16.dp),
                                 colors =
                                     CardDefaults.cardColors(
-                                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                                        containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
                                     ),
                             ) {
                                 Box(

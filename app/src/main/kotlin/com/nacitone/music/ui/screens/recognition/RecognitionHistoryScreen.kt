@@ -248,7 +248,7 @@ private fun RecognitionHistoryItem(
         shape = RoundedCornerShape(ThumbnailCornerRadius),
         colors =
             CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
             ),
     ) {
         Row(

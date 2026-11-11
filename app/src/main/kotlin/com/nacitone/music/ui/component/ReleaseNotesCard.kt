@@ -32,7 +32,7 @@ fun ReleaseNotesCard() {
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(6.dp)
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
         )
     ) {
         Column(

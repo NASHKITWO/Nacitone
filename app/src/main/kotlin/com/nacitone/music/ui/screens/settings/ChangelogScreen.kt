@@ -178,7 +178,7 @@ fun ReleaseItem(release: ReleaseInfo) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainer
+                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
             ),
             shape = RoundedCornerShape(16.dp)
         ) {

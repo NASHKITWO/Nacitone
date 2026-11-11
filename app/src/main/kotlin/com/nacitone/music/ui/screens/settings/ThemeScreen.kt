@@ -305,7 +305,7 @@ fun ThemeControls(
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
