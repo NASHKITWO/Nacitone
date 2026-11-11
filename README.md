@@ -42,7 +42,7 @@
 ## Pasang
 
 1. Buka halaman [Releases](https://github.com/NASHKITWO/Nacitone/releases/latest).
-2. Unduh `app-universal-release.apk` (atau sesuai arsitektur perangkat Anda).
+2. Unduh `Nacitone-<versi>.apk`.
 3. Izinkan pemasangan dari sumber ini, lalu buka berkas APK.
 
 ## Bangun sendiri

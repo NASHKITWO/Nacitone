@@ -55,9 +55,9 @@ Encode keystore:
    git push origin v1.0.1
    ```
    Atau jalankan manual: tab Actions -> "Release APK" -> Run workflow.
-4. Workflow membuat rilis `v1.0.1` berisi `app-universal-release.apk`.
+4. Workflow membuat rilis `v1.0.1` berisi `Nacitone-1.0.1.apk`.
 
-Pemeriksa update di aplikasi membaca rilis terbaru repo `NASHKITWO/Nacitone`, membandingkan nomor versinya dengan `versionName`, dan mengunduh aset bernama `app-universal-release.apk`. Karena itu nama berkas dan nomor versi tidak boleh diubah-ubah.
+Pemeriksa update di aplikasi membaca rilis terbaru repo `NASHKITWO/Nacitone`, membandingkan nomor versinya dengan `versionName`, dan mengunduh aset bernama `Nacitone-<versi>.apk`. Karena itu nama berkas dan nomor versi tidak boleh diubah-ubah.
 
 ## Catatan
 - Build FOSS (`assembleFossRelease`) memuat pemeriksa update. Varian `izzy` tidak.

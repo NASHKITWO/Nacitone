@@ -99,6 +99,8 @@ object Updater {
             
             // Parse architecture and variant from filename
             val (arch, variant) = when {
+                // Rilis Nacitone-<versi>.apk: satu APK universal.
+                name.startsWith("Nacitone-") -> "universal" to "foss"
                 name.startsWith("app-") && name.endsWith("-release.apk") -> {
                     val arch = name.removePrefix("app-").removeSuffix("-release.apk")
                     arch to "foss"
