@@ -98,6 +98,9 @@ import com.nacitone.music.listentogether.ListenTogetherEvent
 import com.nacitone.music.listentogether.RoomRole
 import com.nacitone.music.listentogether.SuggestionReceivedPayload
 import com.nacitone.music.listentogether.UserInfo
+import com.nacitone.music.ui.component.glassCardBorder
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.softEnter
 import com.nacitone.music.ui.component.DefaultDialog
 import com.nacitone.music.ui.component.IconButton
 import com.nacitone.music.ui.utils.backToMain
@@ -520,24 +523,17 @@ private fun ConnectionStatusCard(
         modifier =
             Modifier
                 .fillMaxWidth()
+                .softEnter()
                 .animateContentSize(
                     animationSpec =
                         spring(
-                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            dampingRatio = Spring.DampingRatioNoBouncy,
                             stiffness = Spring.StiffnessLow,
                         ),
                 ),
         shape = RoundedCornerShape(28.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor =
-                    when (connectionState) {
-                        ConnectionState.CONNECTED -> MaterialTheme.colorScheme.primaryContainer
-                        ConnectionState.CONNECTING, ConnectionState.RECONNECTING -> MaterialTheme.colorScheme.secondaryContainer
-                        ConnectionState.ERROR -> MaterialTheme.colorScheme.errorContainer
-                        ConnectionState.DISCONNECTED -> MaterialTheme.colorScheme.surfaceContainerHigh
-                    },
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 18.dp),
@@ -652,12 +648,10 @@ private fun RoomStatusCard(
     context: Context,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().softEnter(),
         shape = RoundedCornerShape(32.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier =
@@ -666,8 +660,8 @@ private fun RoomStatusCard(
                     .background(
                         Brush.linearGradient(
                             listOf(
-                                MaterialTheme.colorScheme.primaryContainer,
-                                MaterialTheme.colorScheme.tertiaryContainer,
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.04f),
                             ),
                         ),
                     )
@@ -688,7 +682,7 @@ private fun RoomStatusCard(
                 Text(
                     text = roomCode,
                     style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
                     letterSpacing = 4.sp,
                     maxLines = 1,
@@ -705,7 +699,7 @@ private fun RoomStatusCard(
                         stringResource(R.string.listen_together_you_are_guest)
                     },
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
             )
 
@@ -769,12 +763,10 @@ private fun ConnectedUsersSection(
     onUserClick: (String, String) -> Unit,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().softEnter(),
         shape = RoundedCornerShape(28.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
@@ -915,12 +907,10 @@ private fun PendingJoinRequestsSection(
     onReject: (String) -> Unit,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().softEnter(),
         shape = RoundedCornerShape(20.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -994,12 +984,10 @@ private fun PendingSuggestionsSection(
     onReject: (String) -> Unit,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().softEnter(),
         shape = RoundedCornerShape(20.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -1081,12 +1069,10 @@ private fun JoinCreateRoomSection(
     onFieldFocused: () -> Unit = {},
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().softEnter(),
         shape = RoundedCornerShape(24.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier =
@@ -1297,12 +1283,11 @@ private fun SettingsLinkCard(onClick: () -> Unit) {
         modifier =
             Modifier
                 .fillMaxWidth()
+                .softEnter()
                 .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Row(
             modifier = Modifier.padding(16.dp),

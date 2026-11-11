@@ -8,6 +8,7 @@ package com.nacitone.music.ui.screens
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -68,6 +69,7 @@ import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.R
 import com.nacitone.music.ui.component.IconButton
 import com.nacitone.music.ui.utils.backToMain
+import com.nacitone.music.ui.component.softEnter
 import com.nacitone.music.utils.ComposeToImage
 import com.nacitone.music.utils.WeeklyRecapImage
 import com.nacitone.music.viewmodels.WeeklyRecapViewModel
@@ -144,6 +146,7 @@ fun WeeklyRecapScreen(
                         Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f)
+                            .softEnter()
                             .clip(RoundedCornerShape(28.dp))
                             .background(MaterialTheme.colorScheme.surfaceContainerHigh),
                 ) {
@@ -208,8 +211,10 @@ fun WeeklyRecapScreen(
                         modifier =
                             Modifier
                                 .fillMaxWidth()
+                                .softEnter(120)
                                 .clip(RoundedCornerShape(24.dp))
-                                .background(MaterialTheme.colorScheme.surfaceContainer)
+                                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f))
+                                .border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f), RoundedCornerShape(24.dp))
                                 .padding(vertical = 8.dp),
                     ) {
                         rest.forEachIndexed { i, song ->
@@ -277,23 +282,14 @@ fun WeeklyRecapScreen(
                                             .size(64.dp)
                                             .clip(CircleShape)
                                             .background(
-                                                if (index == 0) {
-                                                    MaterialTheme.colorScheme.primaryContainer
-                                                } else {
-                                                    MaterialTheme.colorScheme.secondaryContainer
-                                                },
+                                                MaterialTheme.colorScheme.primary.copy(alpha = if (index == 0) 0.28f else 0.14f),
                                             ),
                                 ) {
                                     Text(
                                         text = artist.artist.name.trim().take(1).uppercase(),
                                         style = MaterialTheme.typography.titleLarge,
                                         fontWeight = FontWeight.Bold,
-                                        color =
-                                            if (index == 0) {
-                                                MaterialTheme.colorScheme.onPrimaryContainer
-                                            } else {
-                                                MaterialTheme.colorScheme.onSecondaryContainer
-                                            },
+                                        color = MaterialTheme.colorScheme.onSurface,
                                     )
                                 }
                                 Spacer(Modifier.height(6.dp))
