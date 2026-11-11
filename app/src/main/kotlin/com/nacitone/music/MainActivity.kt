@@ -1585,9 +1585,11 @@ class MainActivity : FragmentActivity() {
         intent: Intent,
         navController: NavHostController,
     ) {
-        val uri = intent.data ?: intent.extras?.getString(Intent.EXTRA_TEXT)?.toUri() ?: return
+        val uri = intent.data ?: runCatching { intent.getStringExtra(Intent.EXTRA_TEXT)?.toUri() }.getOrNull() ?: return
         intent.data = null
         intent.removeExtra(Intent.EXTRA_TEXT)
+        // Teks bersama bisa berupa URI opaque (mis. "Dengar: ..."); getQueryParameter melempar pada URI opaque.
+        if (uri.isOpaque) return
         val coroutineScope = lifecycle.coroutineScope
 
         val listenCode =

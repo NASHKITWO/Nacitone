@@ -19,9 +19,9 @@ import javax.inject.Singleton
 class EqualizerService @Inject constructor() {
 
     @SuppressLint("UnsafeOptInUsageError")
-    private val audioProcessors = mutableListOf<CustomEqualizerAudioProcessor>()
-    private var pendingProfile: SavedEQProfile? = null
-    private var shouldDisable: Boolean = false
+    private val audioProcessors = java.util.concurrent.CopyOnWriteArrayList<CustomEqualizerAudioProcessor>()
+    @Volatile private var pendingProfile: SavedEQProfile? = null
+    @Volatile private var shouldDisable: Boolean = false
 
     companion object {
         private const val TAG = "EqualizerService"
@@ -40,8 +40,8 @@ class EqualizerService @Inject constructor() {
         if (shouldDisable) {
             processor.disable()
             // Don't clear shouldDisable here, as we might add more processors
-        } else if (pendingProfile != null) {
-            val profile = pendingProfile!!
+        } else {
+            val profile = pendingProfile ?: return
             applyProfileToProcessor(processor, profile)
             // Don't clear pendingProfile here
         }

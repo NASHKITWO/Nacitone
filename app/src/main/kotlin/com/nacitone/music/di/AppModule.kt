@@ -37,7 +37,12 @@ object AppModule {
     @Singleton
     @ApplicationScope
     fun provideApplicationScope(): CoroutineScope {
-        return CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        return CoroutineScope(
+            SupervisorJob() + Dispatchers.Default +
+                kotlinx.coroutines.CoroutineExceptionHandler { _, e ->
+                    timber.log.Timber.e(e, "Uncaught exception in application scope")
+                },
+        )
     }
 
     @Singleton

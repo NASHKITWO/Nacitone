@@ -954,8 +954,9 @@ internal fun <T> List<T>.paginate(
     page: Int,
     pageSize: Int,
 ): List<T> {
-    val fromIndex = (page.toLong() * pageSize).coerceAtMost(size.toLong()).toInt()
-    val toIndex = (fromIndex.toLong() + pageSize).coerceAtMost(size.toLong()).toInt()
+    val safePageSize = pageSize.coerceAtLeast(0)
+    val fromIndex = (page.coerceAtLeast(0).toLong() * safePageSize).coerceAtMost(size.toLong()).toInt()
+    val toIndex = (fromIndex.toLong() + safePageSize).coerceAtMost(size.toLong()).toInt()
     return subList(fromIndex, toIndex)
 }
 

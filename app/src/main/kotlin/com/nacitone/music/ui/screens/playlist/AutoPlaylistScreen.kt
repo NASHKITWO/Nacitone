@@ -849,7 +849,7 @@ private fun AutoPlaylistHeader(
                 shape = RoundedCornerShape(3.dp),
             ) {
                 AsyncImage(
-                    model = songs[0].song.thumbnailUrl,
+                    model = songs.firstOrNull()?.song?.thumbnailUrl,
                     contentDescription = null,
                     contentScale = androidx.compose.ui.layout.ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),

@@ -21,7 +21,12 @@ class MusicAlarmReceiver : BroadcastReceiver() {
             .putExtra(MusicService.EXTRA_ALARM_ID, alarmId)
             .putExtra(MusicService.EXTRA_ALARM_PLAYLIST_ID, playlistId)
             .putExtra(MusicService.EXTRA_ALARM_RANDOM_SONG, randomSong)
-        ContextCompat.startForegroundService(context, serviceIntent)
+        try {
+            ContextCompat.startForegroundService(context, serviceIntent)
+        } catch (e: Exception) {
+            // ForegroundServiceStartNotAllowed dll.: jangan crash dan jangan lewatkan penjadwalan ulang.
+            android.util.Log.w("MusicAlarmReceiver", "Gagal memulai layanan alarm", e)
+        }
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 MusicAlarmScheduler.scheduleFromPreferences(context)

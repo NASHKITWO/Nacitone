@@ -187,7 +187,7 @@ fun OnlinePodcastScreen(
 
                     itemsIndexed(
                         items = filteredEpisodes,
-                        key = { _, episode -> episode.id }
+                        key = { index, episode -> "${episode.id}_$index" }
                     ) { index, episode ->
                         YouTubeListItem(
                             item = episode,

@@ -3093,19 +3093,19 @@ object YouTube {
                 ?.body
                 ?.transcriptBodyRenderer
                 ?.cueGroups
-                ?.joinToString(
-                    separator = "\n",
-                ) { group ->
-                    val time =
-                        group.transcriptCueGroupRenderer.cues[0]
-                            .transcriptCueRenderer.startOffsetMs
+                ?.mapNotNull { group ->
+                    val cue =
+                        group.transcriptCueGroupRenderer.cues
+                            .firstOrNull()
+                            ?.transcriptCueRenderer ?: return@mapNotNull null
+                    val time = cue.startOffsetMs
                     val text =
-                        group.transcriptCueGroupRenderer.cues[0]
-                            .transcriptCueRenderer.cue.simpleText
+                        cue.cue.simpleText
                             .trim('♪')
                             .trim(' ')
                     "[%02d:%02d.%03d]$text".format(time / 60000, (time / 1000) % 60, time % 1000)
-                }!!
+                }
+                ?.joinToString(separator = "\n")!!
         }
 
     suspend fun visitorData(): Result<String> =

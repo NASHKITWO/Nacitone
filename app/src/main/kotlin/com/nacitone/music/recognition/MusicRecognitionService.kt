@@ -187,7 +187,7 @@ object MusicRecognitionService {
                 }
             }
         } finally {
-            audioRecord.stop()
+            runCatching { audioRecord.stop() }
             audioRecord.release()
         }
 

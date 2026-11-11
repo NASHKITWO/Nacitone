@@ -58,8 +58,8 @@ fun WavySlider(
         Stroke(width = strokeWidthPx, cap = StrokeCap.Round) 
     }
     
-    val normalizedValue = ((value - valueRange.start) / (valueRange.endInclusive - valueRange.start))
-        .coerceIn(0f, 1f)
+    val rangeSpan = valueRange.endInclusive - valueRange.start
+    val normalizedValue = if (rangeSpan > 0f) ((value - valueRange.start) / rangeSpan).coerceIn(0f, 1f) else 0f
     
     var isDragging by remember { mutableStateOf(false) }
     var dragValue by remember { mutableFloatStateOf(normalizedValue) }
@@ -87,7 +87,7 @@ fun WavySlider(
         baseModifier
             .pointerInput(valueRange) {
                 detectTapGestures { offset ->
-                    val newValue = (offset.x / size.width).coerceIn(0f, 1f)
+                    val newValue = (offset.x / size.width.coerceAtLeast(1)).coerceIn(0f, 1f)
                     val mappedValue = valueRange.start + newValue * (valueRange.endInclusive - valueRange.start)
                     onValueChange(mappedValue)
                     onValueChangeFinished?.invoke()
@@ -97,7 +97,7 @@ fun WavySlider(
                 detectHorizontalDragGestures(
                     onDragStart = { offset ->
                         isDragging = true
-                        dragValue = (offset.x / size.width).coerceIn(0f, 1f)
+                        dragValue = (offset.x / size.width.coerceAtLeast(1)).coerceIn(0f, 1f)
                         val mappedValue = valueRange.start + dragValue * (valueRange.endInclusive - valueRange.start)
                         onValueChange(mappedValue)
                     },
@@ -109,7 +109,7 @@ fun WavySlider(
                         isDragging = false
                     },
                     onHorizontalDrag = { _, dragAmount ->
-                        dragValue = (dragValue + dragAmount / size.width).coerceIn(0f, 1f)
+                        dragValue = (dragValue + dragAmount / size.width.coerceAtLeast(1)).coerceIn(0f, 1f)
                         val mappedValue = valueRange.start + dragValue * (valueRange.endInclusive - valueRange.start)
                         onValueChange(mappedValue)
                     }

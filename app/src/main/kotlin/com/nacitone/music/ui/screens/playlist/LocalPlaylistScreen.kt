@@ -956,11 +956,11 @@ fun LocalPlaylistHeader(
                 }
 
                 else -> {
-                    val bytes = uriToByteArray(context, uri)
+                    val bytes = uriToByteArray(context, uri) ?: return@withContext
                     YouTube
                         .uploadCustomThumbnailLink(
                             playlist.playlist.browseId,
-                            bytes!!,
+                            bytes,
                         ).onSuccess { newThumbnailUrl ->
                             overrideThumbnail.value = newThumbnailUrl
                             isCustomThumbnail = true

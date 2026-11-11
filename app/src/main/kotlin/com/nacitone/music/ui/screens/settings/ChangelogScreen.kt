@@ -135,7 +135,7 @@ fun ChangelogScreen(
             ) {
                 val githubReleasesUrl = stringResource(R.string.github_releases_url)
                 ExtendedFloatingActionButton(
-                    onClick = { uriHandler.openUri(githubReleasesUrl) },
+                    onClick = { try { uriHandler.openUri(githubReleasesUrl) } catch (_: Exception) {} },
                     icon = { Icon(painterResource(R.drawable.github), contentDescription = null, modifier = Modifier.size(24.dp)) },
                     text = { Text(stringResource(R.string.view_on_github)) },
                     containerColor = MaterialTheme.colorScheme.onPrimary,
@@ -259,7 +259,12 @@ fun MarkdownText(text: String) {
                             onClick = { offset ->
                                 annotatedString.getStringAnnotations(tag = "URL", start = offset, end = offset)
                                     .firstOrNull()?.let { annotation ->
-                                        uriHandler.openUri(annotation.item)
+                                        if (annotation.item.startsWith("https://") || annotation.item.startsWith("http://")) {
+                                            try {
+                                                uriHandler.openUri(annotation.item)
+                                            } catch (_: Exception) {
+                                            }
+                                        }
                                     }
                             }
                         )

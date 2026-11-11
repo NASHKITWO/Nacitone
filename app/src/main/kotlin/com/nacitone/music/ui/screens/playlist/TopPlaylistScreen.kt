@@ -555,7 +555,7 @@ private fun TopPlaylistHeader(
                 shape = RoundedCornerShape(3.dp)
             ) {
                 AsyncImage(
-                    model = songs[0].thumbnailUrl,
+                    model = songs.firstOrNull()?.thumbnailUrl,
                     contentDescription = null,
                     contentScale = androidx.compose.ui.layout.ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()

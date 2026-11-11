@@ -125,7 +125,7 @@ fun SquigglySlider(
                     Modifier
                         .pointerInput(valueRange) {
                             detectTapGestures { offset ->
-                                val newPosition = (offset.x / size.width) * duration
+                                val newPosition = (offset.x / size.width.coerceAtLeast(1)) * duration
                                 val mappedValue = valueRange.start + newPosition.coerceIn(0f, duration)
                                 onValueChange(mappedValue)
                                 onValueChangeFinished?.invoke()
@@ -135,7 +135,7 @@ fun SquigglySlider(
                             detectDragGestures(
                                 onDragStart = { offset ->
                                     isDragging = true
-                                    val newPosition = (offset.x / size.width) * duration
+                                    val newPosition = (offset.x / size.width.coerceAtLeast(1)) * duration
                                     dragPosition = valueRange.start + newPosition.coerceIn(0f, duration)
                                     onValueChange(dragPosition)
                                 },
@@ -148,7 +148,7 @@ fun SquigglySlider(
                                 },
                                 onDrag = { change, _ ->
                                     change.consume()
-                                    val newPosition = (change.position.x / size.width) * duration
+                                    val newPosition = (change.position.x / size.width.coerceAtLeast(1)) * duration
                                     dragPosition = valueRange.start + newPosition.coerceIn(0f, duration)
                                     onValueChange(dragPosition)
                                 }

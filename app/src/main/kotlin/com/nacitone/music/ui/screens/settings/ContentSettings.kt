@@ -928,12 +928,15 @@ fun ContentSettings(
                         icon = painterResource(R.drawable.language),
                         title = { Text(stringResource(R.string.app_language)) },
                         onClick = {
-                            context.startActivity(
-                                Intent(
-                                    Settings.ACTION_APP_LOCALE_SETTINGS,
-                                    "package:${context.packageName}".toUri()
+                            try {
+                                context.startActivity(
+                                    Intent(
+                                        Settings.ACTION_APP_LOCALE_SETTINGS,
+                                        "package:${context.packageName}".toUri()
+                                    )
                                 )
-                            )
+                            } catch (_: android.content.ActivityNotFoundException) {
+                            }
                         }
                     )
                 } else {

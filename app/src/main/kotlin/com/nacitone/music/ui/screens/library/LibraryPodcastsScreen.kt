@@ -248,7 +248,7 @@ fun LibraryPodcastsScreen(
                     // Saved podcast shows (episode playlists) from YT Music library
                     itemsIndexed(
                         items = subscribedChannels,
-                        key = { _, item -> item.id },
+                        key = { index, item -> "subscribed_${item.id}_$index" },
                         contentType = { _, _ -> CONTENT_TYPE_SONG },
                     ) { _, podcast ->
                         PodcastEpisodePlaylistItem(
@@ -305,7 +305,7 @@ fun LibraryPodcastsScreen(
 
                     itemsIndexed(
                         items = podcastChannels,
-                        key = { _, item -> item.id },
+                        key = { index, item -> "channel_${item.id}_$index" },
                         contentType = { _, _ -> CONTENT_TYPE_SONG },
                     ) { _, channel ->
                         PodcastArtistChannelItem(

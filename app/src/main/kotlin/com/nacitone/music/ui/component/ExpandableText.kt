@@ -82,7 +82,10 @@ fun ExpandableText(
             onClick = { offset ->
                 annotatedText.getStringAnnotations(tag = "URL", start = offset, end = offset)
                     .firstOrNull()?.let { annotation ->
-                        uriHandler.openUri(annotation.item)
+                        try {
+                            uriHandler.openUri(annotation.item)
+                        } catch (_: Exception) {
+                        }
                         return@ClickableText
                     }
                 if (hasOverflow) {

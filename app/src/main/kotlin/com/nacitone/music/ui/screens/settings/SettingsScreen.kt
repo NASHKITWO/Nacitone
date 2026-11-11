@@ -254,7 +254,7 @@ fun SettingsScreen(
                                     )
                                 },
                                 showBadge = true,
-                                onClick = { uriHandler.openUri(downloadUrl) }
+                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (_: Exception) {} }
                             )
                         )
                     }

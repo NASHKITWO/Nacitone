@@ -768,7 +768,7 @@ class MusicService :
                     songUrlCache.invalidate(mediaId)
 
                     // CRITICAL: Clear caches synchronously to prevent format parsing errors
-                    runBlocking(Dispatchers.IO) {
+                    withContext(Dispatchers.IO) {
                         try {
                             playerCache.removeResource(mediaId)
                             downloadCache.removeResource(mediaId)

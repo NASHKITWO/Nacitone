@@ -79,20 +79,23 @@ fun Queue.toPersistQueue(
 }
 
 fun PersistQueue.toQueue(): Queue {
+    // Berkas antrean bisa usang/rusak; indeks di luar rentang membuat ExoPlayer melempar exception.
+    val safeIndex = mediaItemIndex.coerceIn(0, (items.size - 1).coerceAtLeast(0))
+    val safePosition = if (safeIndex == mediaItemIndex) position.coerceAtLeast(0L) else 0L
     return when (queueType) {
         is QueueType.LIST -> ListQueue(
             title = title,
             items = items.map { it.toMediaItem() },
-            startIndex = mediaItemIndex,
-            position = position
+            startIndex = safeIndex,
+            position = safePosition
         )
         is QueueType.YOUTUBE -> {
             // For now, fallback to ListQueue since we can't reconstruct YouTubeQueue properly
             ListQueue(
                 title = title,
                 items = items.map { it.toMediaItem() },
-                startIndex = mediaItemIndex,
-                position = position
+                startIndex = safeIndex,
+                position = safePosition
             )
         }
         is QueueType.YOUTUBE_ALBUM_RADIO -> {
@@ -100,8 +103,8 @@ fun PersistQueue.toQueue(): Queue {
             ListQueue(
                 title = title,
                 items = items.map { it.toMediaItem() },
-                startIndex = mediaItemIndex,
-                position = position
+                startIndex = safeIndex,
+                position = safePosition
             )
         }
         is QueueType.LOCAL_ALBUM_RADIO -> {
@@ -109,8 +112,8 @@ fun PersistQueue.toQueue(): Queue {
             ListQueue(
                 title = title,
                 items = items.map { it.toMediaItem() },
-                startIndex = mediaItemIndex,
-                position = position
+                startIndex = safeIndex,
+                position = safePosition
             )
         }
     }

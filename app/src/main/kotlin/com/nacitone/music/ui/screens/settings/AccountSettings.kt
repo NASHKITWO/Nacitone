@@ -115,7 +115,7 @@ fun AccountSettings(
                                 description = { Text(latestVersionName) },
                                 icon = painterResource(R.drawable.update),
                                 showBadge = true,
-                                onClick = { uriHandler.openUri(downloadUrl) }
+                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (_: Exception) {} }
                             )
                         )
                     }
