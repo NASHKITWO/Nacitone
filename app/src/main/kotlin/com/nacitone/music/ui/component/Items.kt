@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
@@ -260,29 +261,24 @@ inline fun ListItem(
     isActive: Boolean = false,
     isAvailable: Boolean = true,
 ) {
+    val primary = MaterialTheme.colorScheme.primary
+    val highlight by animateColorAsState(
+        targetValue = when {
+            isActive && isSelected == true -> primary.copy(alpha = 0.28f)
+            isActive -> primary.copy(alpha = 0.14f)
+            isSelected == true -> primary.copy(alpha = 0.20f)
+            else -> Color.Transparent
+        },
+        animationSpec = tween(durationMillis = 220),
+        label = "listItemHighlight",
+    )
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = if (isActive) {
-            modifier // playing highlight
-                .heightIn(min = ListItemHeight)
-                .padding(horizontal = 8.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(
-                    color = // selected active
-                        if (isSelected == true) MaterialTheme.colorScheme.primary.copy(alpha = 0.4f)
-                        else MaterialTheme.colorScheme.secondaryContainer
-                )
-        } else if (isSelected == true) {
-            modifier // inactive selected
-                .heightIn(min = ListItemHeight)
-                .padding(horizontal = 8.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(color = MaterialTheme.colorScheme.inversePrimary.copy(alpha = 0.4f))
-        } else {
-            modifier // default
-                .heightIn(min = ListItemHeight)
-                .padding(horizontal = 8.dp)
-        }
+        modifier = modifier
+            .heightIn(min = ListItemHeight)
+            .padding(horizontal = 8.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(highlight)
     ) {
         Box(
             modifier = Modifier.padding(6.dp),
@@ -319,7 +315,7 @@ inline fun ListItem(
             Text(
                 text = title,
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold,
+                fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )

@@ -77,11 +77,17 @@ fun <E> ChipsRow(
                 label = { Text(label) },
                 selected = currentValue == value,
                 colors = FilterChipDefaults.filterChipColors(
-                    containerColor = containerColor,
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.08f),
+                    selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
                 ),
                 onClick = { onValueUpdate(value) },
-                shape = RoundedCornerShape(16.dp),
-                border = null
+                shape = RoundedCornerShape(50),
+                border = FilterChipDefaults.filterChipBorder(
+                    enabled = true,
+                    selected = currentValue == value,
+                    borderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.22f),
+                    selectedBorderColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                ),
             )
 
             Spacer(Modifier.width(8.dp))
