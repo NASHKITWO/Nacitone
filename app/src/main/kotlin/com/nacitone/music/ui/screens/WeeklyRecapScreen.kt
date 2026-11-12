@@ -145,7 +145,7 @@ fun WeeklyRecapScreen(
                     modifier =
                         Modifier
                             .fillMaxWidth()
-                            .aspectRatio(1f)
+                            .aspectRatio(1.1f)
                             .softEnter()
                             .clip(RoundedCornerShape(28.dp))
                             .background(MaterialTheme.colorScheme.surfaceContainerHigh),
@@ -169,13 +169,14 @@ fun WeeklyRecapScreen(
                     )
                     Surface(
                         shape = RoundedCornerShape(50),
-                        color = accent,
+                        color = Color.Black.copy(alpha = 0.45f),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.22f)),
                         modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                     ) {
                         Text(
                             text = "#1  " + stringResource(R.string.weekly_recap_top_songs),
                             style = MaterialTheme.typography.labelLarge,
-                            color = MaterialTheme.colorScheme.onPrimary,
+                            color = Color.White,
                             fontWeight = FontWeight.SemiBold,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -226,7 +227,7 @@ fun WeeklyRecapScreen(
                                 Text(
                                     text = "${i + 2}",
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = accent,
+                                    color = accent.copy(alpha = (1f - i * 0.18f).coerceAtLeast(0.5f)),
                                     fontWeight = FontWeight.Bold,
                                     textAlign = TextAlign.Center,
                                     modifier = Modifier.width(22.dp),
@@ -308,7 +309,8 @@ fun WeeklyRecapScreen(
                 Spacer(Modifier.height(28.dp))
                 Button(
                     enabled = !isSharing,
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().height(52.dp),
+                    shape = CircleShape,
                     onClick = {
                         isSharing = true
                         scope.launch {

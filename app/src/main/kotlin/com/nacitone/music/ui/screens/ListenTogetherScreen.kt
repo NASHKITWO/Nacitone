@@ -535,7 +535,30 @@ private fun ConnectionStatusCard(
         colors = glassCardColors(),
         border = glassCardBorder(),
     ) {
-        Column(
+        if (connectionState == ConnectionState.CONNECTED) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 12.dp),
+            ) {
+                Box(
+                    modifier =
+                        Modifier
+                            .size(10.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primary),
+                )
+                Text(
+                    text = stringResource(R.string.listen_together_connected),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1f),
+                )
+                FilledTonalButton(onClick = onDisconnect, shape = CircleShape) {
+                    Text(stringResource(R.string.disconnect), fontWeight = FontWeight.SemiBold)
+                }
+            }
+        } else Column(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 18.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -732,7 +755,7 @@ private fun RoomStatusCard(
                         Text(stringResource(R.string.copy_link))
                     }
 
-                    FilledTonalButton(
+                    Button(
                         onClick = {
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
                             val clip = android.content.ClipData.newPlainText("Room Code", roomCode)
