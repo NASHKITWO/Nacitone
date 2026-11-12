@@ -1,12 +1,12 @@
-# Nacitone 1.0.9
+# Nacitone 1.1.0
+
+## Logo baru
+- Logo NT Vinyl menggantikan logo lama di ikon aplikasi, notifikasi, widget, About, Wrapped, banner TV, dan README
+- Ikon aplikasi memakai latar vermilion dan mendukung ikon tema Android
 
 ## Tampilan
-- Kartu, dialog, dan popup bawah di seluruh aplikasi kini transparan dengan satu warna tema
-- Sorotan lagu yang sedang diputar atau terpilih di daftar lebih lembut dan membulat, dengan perpindahan warna halus
-- Chip filter di Pustaka berbentuk pil dengan warna tema
-
-## Pembaruan
-- Nama file APK kini Nacitone-versi.apk. Aplikasi 1.0.8 dan yang lebih lama tidak menemukan update otomatis dari versi ini; unduh APK ini secara manual sekali, setelah itu pembaruan di dalam aplikasi berjalan lagi
+- Rekap mingguan: kartu lagu #1 lebih lebar dengan lencana kaca, angka peringkat memudar bertahap, tombol Bagikan berbentuk pil
+- Dengar Bersama: status tersambung jadi satu baris ringkas dengan tombol Putuskan, tombol Salin kode menjadi tombol utama
 
 ## Pembersihan
-- Kode, query database, font ganda, dan berkas yang tidak terpakai dihapus
+- Query database, variabel, string, dan berkas gambar yang tidak terpakai dihapus
