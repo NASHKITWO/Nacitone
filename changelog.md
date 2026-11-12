@@ -1,19 +1,12 @@
-# Nacitone 1.0.8
+# Nacitone 1.0.9
 
 ## Tampilan
-- Kartu di Dengar Bersama dan Rekap Mingguan kini transparan dengan satu warna tema, plus animasi masuk yang halus
+- Kartu, dialog, dan popup bawah di seluruh aplikasi kini transparan dengan satu warna tema
+- Sorotan lagu yang sedang diputar atau terpilih di daftar lebih lembut dan membulat, dengan perpindahan warna halus
+- Chip filter di Pustaka berbentuk pil dengan warna tema
 
-## Perbaikan
-- Perbaikan crash saat membuka aplikasi lagi setelah lama ditutup: antrean tersimpan yang rusak atau usang tidak lagi membuat pemutar error
-- Layar Beranda tidak lagi crash saat lagu dihapus dari pustaka atau rekomendasi tidak punya album
-- Daftar Riwayat, Artis, Pencarian, Podcast, dan Charts tidak lagi crash karena item ganda
-- Artis dan album pada playlist online tidak lagi tertukar
-- Alarm, widget pengenal musik, dan berbagi teks ke aplikasi tidak lagi bisa membuat aplikasi crash
-- Slider tidak lagi error pada ukuran nol; tautan yang gagal dibuka tidak lagi crash
+## Pembaruan
+- Nama file APK kini Nacitone-versi.apk. Aplikasi 1.0.8 dan yang lebih lama tidak menemukan update otomatis dari versi ini; unduh APK ini secara manual sekali, setelah itu pembaruan di dalam aplikasi berjalan lagi
 
-## Keamanan
-- URL lirik dari server wajib HTTPS, parser XML menolak DOCTYPE, muatan Dengar Bersama dibatasi 4 MB, dan nama file ekspor playlist dibersihkan
-- Widget pengenal musik tidak lagi bisa dipicu dari aplikasi lain
-
-## Pustaka
-- Pembaruan ktor, datastore, palette, kotlin, ksp, cast framework, dan gradle
+## Pembersihan
+- Kode, query database, font ganda, dan berkas yang tidak terpakai dihapus
