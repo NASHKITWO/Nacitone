@@ -134,7 +134,6 @@
         <item quantity="other">%d lat</item>
     </plurals>
     <string name="removed_song_from_playlist">Usunięto \"%s\" z playlisty</string>
-    <string name="playlist_synced">Playlista zsynchronizowana</string>
     <string name="undo">Cofnij</string>
     <string name="lyrics_not_found">Nie znaleziono tekstu</string>
     <string name="sleep_timer">Wyłącznik czasowy</string>

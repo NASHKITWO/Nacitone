@@ -135,7 +135,6 @@
         <item quantity="other">%d år</item>
     </plurals>
     <string name="removed_song_from_playlist">Tok «%s» bort frå speleliste</string>
-    <string name="playlist_synced">Speleliste synkronisert</string>
     <string name="undo">Angra</string>
     <string name="lyrics_not_found">Ingen songtekster funne</string>
     <string name="sleep_timer">Svevnsnedteljar</string>

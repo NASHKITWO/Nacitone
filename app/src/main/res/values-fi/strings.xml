@@ -117,7 +117,6 @@
         <item quantity="other">%d vuotta</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" poistettiin soittolistasta</string>
-    <string name="playlist_synced">Soittolista synkronoitu</string>
     <string name="undo">Kumoa</string>
     <string name="lyrics_not_found">Sanoitusta ei löytynyt</string>
     <string name="sleep_timer">Uniajastin</string>

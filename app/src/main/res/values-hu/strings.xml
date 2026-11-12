@@ -118,7 +118,6 @@
         <item quantity="other">%d évek</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" eltávolítva a lejátszási listából</string>
-    <string name="playlist_synced">Lejátszási lista szinkronizálva</string>
     <string name="undo">Visszavonás</string>
     <string name="lyrics_not_found">Dalszöveg nem található</string>
     <string name="sleep_timer">Alvásidőzítő</string>

@@ -151,7 +151,6 @@
         <item quantity="other">%d років</item>
     </plurals>
     <string name="removed_song_from_playlist">«%s» видалена з плейлиста</string>
-    <string name="playlist_synced">Плейлист синхронізовано</string>
     <string name="undo">Скасувати</string>
     <string name="lyrics_not_found">Текст пісні не знайдено</string>
     <string name="sleep_timer">Таймер сну</string>

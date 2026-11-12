@@ -1,6 +1,9 @@
 <div align="center">
 
-# Nacitone
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/logo/nacitone-horizontal-white.svg">
+  <img src="assets/logo/nacitone-horizontal.svg" alt="Nacitone" height="96">
+</picture>
 
 **Pemutar musik Android bergaya Nusantara: cepat, hemat kuota, dan terbuka.**
 

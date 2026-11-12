@@ -118,7 +118,6 @@
         <item quantity="other">%d yıllar</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" çalma listesinden kaldırıldı</string>
-    <string name="playlist_synced">Çalma listesi eşitlendi</string>
     <string name="undo">Geri al</string>
     <string name="lyrics_not_found">Şarkı sözleri bulunamadı</string>
     <string name="sleep_timer">Uyku zamanlayıcısı</string>

@@ -1976,8 +1976,6 @@ class MusicService :
                 }
                 prevList.reverse() // preserve original forward order
 
-                val existingOrder = (prevList + orderAfter).filter { it != currentIndex && it !in newIndices }
-
                 // Build new shuffle order: current -> newly inserted (in insertion order) -> rest
                 val nextBlock = (insertIndex until (insertIndex + items.size)).toList()
                 val finalOrder = IntArray(size)

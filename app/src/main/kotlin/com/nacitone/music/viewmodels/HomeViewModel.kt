@@ -260,10 +260,6 @@ class HomeViewModel @Inject constructor(
         isBeforeDate && (!seen || showWrappedPref)
     }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
-    val wrappedSeen: StateFlow<Boolean> = context.dataStore.data.map { prefs ->
-        prefs[WrappedSeenKey] ?: false
-    }.stateIn(viewModelScope, SharingStarted.Lazily, false)
-
     fun markWrappedAsSeen() {
         viewModelScope.launch(Dispatchers.IO) {
             context.safeDataStoreEdit {

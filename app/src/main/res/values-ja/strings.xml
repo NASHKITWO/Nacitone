@@ -127,7 +127,6 @@
         <item quantity="other">%d年</item>
     </plurals>
     <string name="removed_song_from_playlist">プレイリストから「%s」を削除しました</string>
-    <string name="playlist_synced">プレイリストを同期しました</string>
     <string name="undo">元に戻す</string>
     <string name="lyrics_not_found">歌詞が見つかりません</string>
     <string name="sleep_timer">スリープタイマー</string>

@@ -231,7 +231,6 @@
     <string name="sort_by_create_date">تاريخ الإضافة</string>
     <string name="sort_by_year">السنة</string>
     <string name="sort_by_length">المدة</string>
-    <string name="playlist_synced">تمت مزامنة قائمة الأغاني</string>
     <string name="end_of_song">نهاية الأغنية</string>
     <string name="error_no_internet">لا يوجد اتصال بالشبكة</string>
     <string name="action_like">أعجبتني</string>

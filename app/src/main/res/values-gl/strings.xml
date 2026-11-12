@@ -132,7 +132,6 @@
     <string name="media_id">ID multimedia</string>
     <string name="mime_type">Tipo de MIME</string>
     <string name="removed_song_from_playlist">\"%s\" eliminada da lista de reprodución</string>
-    <string name="playlist_synced">Lista de reprodución sincronizada</string>
     <string name="undo">Desfacer</string>
     <string name="lyrics_not_found">Letras non atopadas</string>
     <string name="sleep_timer">Temporizador</string>

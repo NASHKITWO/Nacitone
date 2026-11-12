@@ -863,7 +863,6 @@ fun LocalPlaylistHeader(
     val menuState = LocalMenuState.current
     val scope = rememberCoroutineScope()
     val editPlaylistCoverStr = stringResource(R.string.edit_playlist_cover)
-    val playlistSyncedStr = stringResource(R.string.playlist_synced)
 
     val playlistLength =
         remember(songs) {

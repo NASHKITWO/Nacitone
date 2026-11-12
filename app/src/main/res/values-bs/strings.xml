@@ -166,7 +166,6 @@
     <string name="queue_searched_songs">Pretražene pjesme</string>
     <string name="proxy_type">Tip proksija</string>
     <string name="removed_song_from_playlist">Ukloni \"%s\" iz spiske</string>
-    <string name="playlist_synced">Spiska sinkronizovana</string>
     <string name="error_unknown">Nepoznata greška</string>
     <string name="action_like">Sviđa mi se</string>
     <string name="sleep_timer">Mjerač vremena za spavanje</string>

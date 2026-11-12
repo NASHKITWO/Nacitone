@@ -94,7 +94,6 @@
     <string name="add_anyway">तब भी जोड़ें</string>
     <string name="duplicates_description_multiple">%d गाने पहले से आपकी चाल सूची में हैं</string>
     <string name="removed_song_from_playlist">\"%s\" चाल सूची से हटाया गया</string>
-    <string name="playlist_synced">चाल सूची समकालिक की गई</string>
     <string name="undo">पूर्ववत् करें</string>
     <plurals name="n_album">
         <item quantity="one">%d एलबम</item>

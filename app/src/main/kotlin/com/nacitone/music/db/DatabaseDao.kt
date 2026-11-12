@@ -91,18 +91,6 @@ interface DatabaseDao {
     )
     suspend fun playlistSongIds(playlistId: String): List<String>
 
-    @Query(
-        """
-        SELECT song.id FROM song
-        JOIN playlist_song_map ON playlist_song_map.songId = song.id
-        WHERE playlist_song_map.playlistId = :playlistId
-          AND NOT EXISTS (
-              SELECT 1 FROM song_artist_map WHERE song_artist_map.songId = song.id
-          )
-        """,
-    )
-    suspend fun playlistSongIdsWithoutArtists(playlistId: String): List<String>
-
     @Query("SELECT * FROM album WHERE id = :albumId LIMIT 1")
     suspend fun albumEntity(albumId: String): AlbumEntity?
 
@@ -673,17 +661,6 @@ interface DatabaseDao {
     @Transaction
     @Query("SELECT * FROM song_artist_map WHERE songId = :songId")
     fun songArtistMap(songId: String): List<SongArtistMap>
-
-    @Query(
-        """
-        SELECT id FROM song
-        WHERE id IN (:songIds)
-          AND NOT EXISTS (
-              SELECT 1 FROM song_artist_map WHERE song_artist_map.songId = song.id
-          )
-        """,
-    )
-    fun songIdsWithoutArtists(songIds: List<String>): List<String>
 
     @Transaction
     @Query("SELECT * FROM song")

@@ -126,7 +126,6 @@
         <item quantity="other">%d let</item>
     </plurals>
     <string name="removed_song_from_playlist">Skladba „%s“ odebrána z playlistu</string>
-    <string name="playlist_synced">Playlist synchronizován</string>
     <string name="undo">Zrušit</string>
     <string name="lyrics_not_found">Texty nenalezeny</string>
     <string name="sleep_timer">Časovač spánku</string>

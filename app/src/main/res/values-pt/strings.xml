@@ -132,7 +132,6 @@
         <item quantity="other">%d anos</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" removida da lista de reprodução</string>
-    <string name="playlist_synced">Lista de reprodução sincronizada</string>
     <string name="undo">Anular</string>
     <string name="lyrics_not_found">Letra não encontrada</string>
     <string name="sleep_timer">Temporizador</string>

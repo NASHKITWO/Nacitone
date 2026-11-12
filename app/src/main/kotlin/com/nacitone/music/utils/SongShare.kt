@@ -34,7 +34,6 @@ object SongShare {
         artist: String,
         footer: String,
     ) {
-        val appContext = context.applicationContext
         scope.launch {
             val snippet =
                 runCatching { database?.lyrics(songId)?.first()?.lyrics?.let(::snippetFrom) }.getOrNull()

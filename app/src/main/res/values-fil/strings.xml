@@ -130,7 +130,6 @@
         <item quantity="other">%d mga taon</item>
     </plurals>
     <string name="removed_song_from_playlist">Inalis ang \"%s\" mula sa playlist</string>
-    <string name="playlist_synced">Na-sync ang playlist</string>
     <string name="undo">Ipawalang-bisa</string>
     <string name="lyrics_not_found">Hindi mahanap ang liriko</string>
     <string name="sleep_timer">Oras ng pagtulog</string>

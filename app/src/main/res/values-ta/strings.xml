@@ -62,7 +62,6 @@
         <item quantity="one">%d ஆண்டு</item>
         <item quantity="other">%d ஆண்டுகள்</item>
     </plurals>
-    <string name="playlist_synced">பிளேலிச்ட் ஒத்திசைக்கப்பட்டது</string>
     <string name="error_timeout">நேரம் முடிந்தது</string>
     <string name="error_unknown">தெரியாத பிழை</string>
     <string name="action_like">போன்ற</string>

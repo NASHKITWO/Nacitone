@@ -213,7 +213,6 @@
         <item quantity="other">%d seleccionades</item>
     </plurals>
     <string name="remove_download_playlist_confirm">Realment voleu eliminar totes les cançons de la llista «%s» de l’emmagatzematge de cançons baixades?</string>
-    <string name="playlist_synced">S’ha sincronitzat la llista</string>
     <string name="end_of_song">Fi de la cançó</string>
     <string name="action_remove_like">Ja no m’agrada</string>
     <string name="sleep_timer">Temportizador</string>

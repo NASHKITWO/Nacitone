@@ -134,7 +134,6 @@
         <item quantity="other">%d χρόνια</item>
     </plurals>
     <string name="removed_song_from_playlist">Αφαίρεση του \"%s\" από τη λίστα</string>
-    <string name="playlist_synced">Λίστα αναπαραγωγής συγχρονισμένη</string>
     <string name="undo">Αναίρεση</string>
     <string name="lyrics_not_found">Δεν βρέθηκαν στίχοι</string>
     <string name="sleep_timer">Χρονοδιακόπτης ύπνου</string>

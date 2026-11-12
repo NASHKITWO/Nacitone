@@ -136,7 +136,6 @@
         <item quantity="other">%d de ani</item>
     </plurals>
     <string name="removed_song_from_playlist">S-a eliminat \"%s\" din playlist</string>
-    <string name="playlist_synced">Playlist sincronizat</string>
     <string name="undo">Anulează</string>
     <string name="lyrics_not_found">Nu s-au găsit versuri</string>
     <string name="sleep_timer">Temporizator de somn</string>

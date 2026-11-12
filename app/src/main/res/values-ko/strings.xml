@@ -110,7 +110,6 @@
         <item quantity="other">%d년</item>
     </plurals>
     <string name="removed_song_from_playlist">재생목록에서 \"%s\"을(를) 삭제했습니다</string>
-    <string name="playlist_synced">재생목록 동기화됨</string>
     <string name="undo">되돌리기</string>
     <string name="lyrics_not_found">가사를 찾을 수 없음</string>
     <string name="sleep_timer">수면 타이머</string>

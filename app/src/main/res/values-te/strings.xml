@@ -146,7 +146,6 @@
         <item quantity="other">%d నెలలు</item>
     </plurals>
     <string name="removed_song_from_playlist">ప్లేలిస్ట్‌ నుండి \"%s\" తీసివేయబడింది</string>
-    <string name="playlist_synced">ప్లేలిస్ట్‌లు సమకాలీకరించబడింది</string>
     <string name="undo">అన్డు</string>
     <string name="lyrics_not_found">సాహిత్యం కనుగొనబడలేదు</string>
     <string name="sleep_timer">నిద్ర టైమర్</string>

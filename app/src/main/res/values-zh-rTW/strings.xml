@@ -127,7 +127,6 @@
         <item quantity="other">%d 年</item>
     </plurals>
     <string name="removed_song_from_playlist">已將「%s」從播放清單移除</string>
-    <string name="playlist_synced">同步完成</string>
     <string name="undo">復原</string>
     <string name="lyrics_not_found">沒有歌詞</string>
     <string name="sleep_timer">睡眠定時器</string>

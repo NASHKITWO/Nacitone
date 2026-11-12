@@ -151,7 +151,6 @@
         <item quantity="other">%d rokov</item>
     </plurals>
     <string name="removed_song_from_playlist">„%s“ bol odstránený z playlistu</string>
-    <string name="playlist_synced">Playlist bol synchronizovaný</string>
     <string name="undo">Vrátiť späť</string>
     <string name="lyrics_not_found">Text piesne sa nenašiel</string>
     <string name="sleep_timer">Časovač vypnutia</string>

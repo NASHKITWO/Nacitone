@@ -133,7 +133,6 @@
         <item quantity="other">%d vite</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" u hoq nga lista e luajtjes</string>
-    <string name="playlist_synced">Lista e luajtjes u sinkronizua</string>
     <string name="undo">Zhbëj</string>
     <string name="lyrics_not_found">Teksti i këngës nuk u gjet</string>
     <string name="sleep_timer">Kohëmatësi i gjumit</string>

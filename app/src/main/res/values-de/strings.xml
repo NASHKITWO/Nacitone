@@ -118,7 +118,6 @@
         <item quantity="other">%d Jahre</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" aus der Playlist entfernt</string>
-    <string name="playlist_synced">Playlist synchronisiert</string>
     <string name="undo">Rückgängig machen</string>
     <string name="lyrics_not_found">Songtext nicht gefunden</string>
     <string name="sleep_timer">Schlaf-Timer</string>

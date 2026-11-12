@@ -127,7 +127,6 @@
         <item quantity="other">%d ปี</item>
     </plurals>
     <string name="removed_song_from_playlist">ลบ \"%s\" ออกจากเพลย์ลิสต์แล้ว</string>
-    <string name="playlist_synced">ซิงค์เพลย์ลิสต์แล้ว</string>
     <string name="undo">เลิกทำ</string>
     <string name="lyrics_not_found">ไม่พบเนื้อเพลง</string>
     <string name="sleep_timer">ตั้งเวลาปิดเพลง</string>

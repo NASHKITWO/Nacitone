@@ -129,7 +129,6 @@
         <item quantity="other">%d raдоў</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" выдалена з плей-ліста</string>
-    <string name="playlist_synced">Плей-ліст сінхранізаваны</string>
     <string name="undo">Адрабіць</string>
     <string name="lyrics_not_found">Тэкст песні не знойдзены</string>
     <string name="sleep_timer">Таймер рэжыму сну</string>

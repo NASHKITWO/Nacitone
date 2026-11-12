@@ -118,7 +118,6 @@
         <item quantity="other">%d ਸਾਲ</item>
     </plurals>
     <string name="removed_song_from_playlist">ਪਲੇਲਿਸਟ ਤੋਂ \"%s\" ਹਟਾਇਆ ਗਿਆ</string>
-    <string name="playlist_synced">ਪਲੇਲਿਸਟ ਸਿੰਕ ਹੋਈ</string>
     <string name="undo">ਅਣਕੀਤਾ ਕਰੋ</string>
     <string name="lyrics_not_found">ਬੋਲ ਨਹੀਂ ਮਿਲੇ</string>
     <string name="sleep_timer">ਸਲੀਪ ਟਾਈਮਰ</string>

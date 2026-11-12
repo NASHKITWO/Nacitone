@@ -697,7 +697,6 @@ fun HomeScreen(
     val episodesForLater by viewModel.episodesForLater.collectAsStateWithLifecycle()
 
     val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
-    val isMoodAndGenresLoading = isLoading && explorePage?.moodAndGenres == null
     var hasStartedLoading by remember { mutableStateOf(false) }
     LaunchedEffect(isLoading) { if (isLoading) hasStartedLoading = true }
     val isRefreshing by viewModel.isRefreshing.collectAsStateWithLifecycle()

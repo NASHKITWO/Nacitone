@@ -110,7 +110,6 @@
         <item quantity="other">%d năm</item>
     </plurals>
     <string name="removed_song_from_playlist">Đã xoá \"%s\" khỏi danh sách phát</string>
-    <string name="playlist_synced">Danh sách phát được đồng bộ</string>
     <string name="undo">Hoàn tác</string>
     <string name="lyrics_not_found">Không tìm thấy lời bài hát</string>
     <string name="sleep_timer">Hẹn giờ ngủ</string>

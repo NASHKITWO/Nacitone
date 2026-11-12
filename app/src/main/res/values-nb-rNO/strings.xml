@@ -86,7 +86,6 @@
         <item quantity="other">%d spillelister</item>
     </plurals>
     <string name="removed_song_from_playlist">Fjernet «%s» fra spilleliste</string>
-    <string name="playlist_synced">Spilleliste synkronisert</string>
     <string name="undo">Angre</string>
     <string name="lyrics_not_found">Sangtekster funnet ikke</string>
     <string name="sleep_timer">Søvntidsur</string>

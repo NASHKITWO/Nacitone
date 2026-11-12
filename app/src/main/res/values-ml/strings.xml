@@ -194,7 +194,6 @@
         <item quantity="other">%d വർഷങ്ങൾ</item>
     </plurals>
     <string name="removed_song_from_playlist">പ്ലേയ്‌ലിസ്റ്റിൽ നിന്ന് \"%s\" കളയുക</string>
-    <string name="playlist_synced">പ്ലേലിസ്റ്റ് സിങ്ക് ചെയ്തു</string>
     <string name="undo">പഴയപടിയാക്കുക</string>
     <string name="lyrics_not_found">വരികൾ കണ്ടുപിടിക്കാനായില്ല</string>
     <string name="sleep_timer">ഉറക്കസമയം</string>

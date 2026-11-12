@@ -147,7 +147,6 @@
         <item quantity="other">%d שנים</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" הוסר מרשימת ההשמעה</string>
-    <string name="playlist_synced">פלייסליט סונכרן</string>
     <string name="undo">בטל</string>
     <string name="lyrics_not_found">מילות השיר לא נמצאו</string>
     <string name="sleep_timer">טיימר שינה</string>

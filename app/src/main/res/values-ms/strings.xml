@@ -110,7 +110,6 @@
         <item quantity="other">%d tahun</item>
     </plurals>
     <string name="removed_song_from_playlist">Buang \"%s\" dari senarai lagu</string>
-    <string name="playlist_synced">Senarai lagu sama</string>
     <string name="undo">Batalkan</string>
     <string name="lyrics_not_found">Lirik tidak di jumpai</string>
     <string name="sleep_timer">Waktu tidur</string>

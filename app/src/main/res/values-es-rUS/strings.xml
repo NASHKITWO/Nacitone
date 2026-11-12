@@ -143,7 +143,6 @@
         <item quantity="other">%d años</item>
     </plurals>
     <string name="removed_song_from_playlist">Se ha eliminado «%s» de la lista de reproducción</string>
-    <string name="playlist_synced">Lista de reproducción sincronizada</string>
     <string name="undo">Deshacer</string>
     <string name="lyrics_not_found">No se han encontrado letras</string>
     <string name="end_of_song">Fin de la canción</string>

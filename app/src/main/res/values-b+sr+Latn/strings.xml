@@ -218,7 +218,6 @@
     <string name="save">Sačuvaj</string>
     <string name="error_no_internet">Nema internet veze</string>
     <string name="lyrics_not_found">Tekst pesme nije pronađen</string>
-    <string name="playlist_synced">Plejlista sinhronizovana</string>
     <string name="sleep_timer">Merač vremena za spavanje</string>
     <string name="end_of_song">Kraj pesme</string>
     <plurals name="minute">

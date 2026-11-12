@@ -118,7 +118,6 @@
         <item quantity="other">%d jaren</item>
     </plurals>
     <string name="removed_song_from_playlist">\"%s\" van afspeelijst verwijderd</string>
-    <string name="playlist_synced">Afspeellijst gesynchroniseerd</string>
     <string name="undo">Ongedaan maken</string>
     <string name="lyrics_not_found">Songtekst niet gevonden</string>
     <string name="sleep_timer">Slaap timer</string>

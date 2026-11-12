@@ -362,11 +362,6 @@ fun LyricsMenu(
         }
     }
 
-    var showRomanizationDialog by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    var showRomanization by rememberSaveable { mutableStateOf(false) }
     var isChecked by remember { mutableStateOf(songProvider()?.romanizeLyrics ?: true) }
 
     var lyricsOffset by rememberSaveable { mutableIntStateOf(songProvider()?.lyricsOffset ?: 0) }

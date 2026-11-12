@@ -107,7 +107,6 @@
         <item quantity="one">%d aasta</item>
         <item quantity="other">%d aastat</item>
     </plurals>
-    <string name="playlist_synced">Esitusloend on sünkroniseeritud</string>
     <string name="undo">Pööra tegevus tagasi</string>
     <string name="lyrics_not_found">Laulusõnu ei leidu</string>
     <string name="end_of_song">Loo lõpp</string>

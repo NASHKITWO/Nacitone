@@ -115,7 +115,6 @@
     <string name="create_playlist">Създаване на плейлист</string>
     <string name="duplicates_description_single">Песента вече е във вашия плейлист</string>
     <string name="error_no_internet">Няма мрежова връзка</string>
-    <string name="playlist_synced">Плейлистът е синхронизиран</string>
     <string name="action_shuffle_on">Разбъркване включено</string>
     <string name="edit_song">Редактирай песен</string>
     <string name="song_artists">Изпълнители на песен</string>
