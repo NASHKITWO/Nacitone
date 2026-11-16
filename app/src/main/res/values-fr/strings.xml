@@ -150,7 +150,6 @@
     <string name="music_player">Lecteur de musique</string>
     <string name="settings">Paramètres</string>
     <string name="appearance">Apparence</string>
-    <string name="enable_dynamic_theme">Thème dynamique</string>
     <string name="pure_black">Noir profond</string>
     <string name="default_open_tab">Onglet ouvert par défaut</string>
     <string name="lyrics_text_position">Alignement du texte des paroles</string>

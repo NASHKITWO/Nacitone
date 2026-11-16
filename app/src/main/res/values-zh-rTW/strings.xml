@@ -150,7 +150,6 @@
     <string name="settings">設定</string>
     <string name="appearance">外觀</string>
     <string name="theme">主題</string>
-    <string name="enable_dynamic_theme">使用動態主題</string>
     <string name="pure_black">純黑</string>
     <string name="player">播放器</string>
     <string name="lyrics_text_position">歌詞文字位置</string>

@@ -8,7 +8,6 @@ package com.nacitone.music.ui.screens.settings
 import android.os.Build
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -58,7 +57,6 @@ import com.nacitone.music.constants.CropAlbumArtKey
 import com.nacitone.music.constants.DefaultOpenTabKey
 import com.nacitone.music.constants.DensityScale
 import com.nacitone.music.constants.DensityScaleKey
-import com.nacitone.music.constants.DynamicThemeKey
 import com.nacitone.music.constants.EnableDynamicIconKey
 import com.nacitone.music.constants.EnableHighRefreshRateKey
 import com.nacitone.music.constants.EnableLandscapeScalingKey
@@ -84,9 +82,7 @@ import com.nacitone.music.constants.PlayerBackgroundStyle
 import com.nacitone.music.constants.PlayerBackgroundStyleKey
 import com.nacitone.music.constants.PlayerButtonsStyle
 import com.nacitone.music.constants.PlayerButtonsStyleKey
-import com.nacitone.music.constants.PureBlackMiniPlayerKey
 import com.nacitone.music.constants.RespectAgentPositioningKey
-import com.nacitone.music.constants.SelectedThemeColorKey
 import com.nacitone.music.constants.ShowCachedPlaylistKey
 import com.nacitone.music.constants.ShowDownloadedPlaylistKey
 import com.nacitone.music.constants.ShowLikedPlaylistKey
@@ -110,7 +106,6 @@ import com.nacitone.music.ui.component.Material3SettingsItem
 import com.nacitone.music.ui.component.PlayerSliderTrack
 import com.nacitone.music.ui.component.SquigglySlider
 import com.nacitone.music.ui.component.WavySlider
-import com.nacitone.music.ui.theme.DefaultThemeColor
 import com.nacitone.music.ui.theme.PlayerSliderColors
 import com.nacitone.music.ui.utils.backToMain
 import com.nacitone.music.utils.IconUtils
@@ -126,11 +121,6 @@ fun AppearanceSettings(
     navController: NavController,
     snackbarHostState: SnackbarHostState,
 ) {
-    val (dynamicTheme, onDynamicThemeChange) =
-        rememberPreference(
-            DynamicThemeKey,
-            defaultValue = true,
-        )
     val (enableDynamicIcon, onEnableDynamicIconPrefChange) =
         rememberPreference(
             EnableDynamicIconKey,
@@ -151,14 +141,6 @@ fun AppearanceSettings(
             EnableLandscapeScalingKey,
             defaultValue = false,
         )
-    val (selectedThemeColorInt) =
-        rememberPreference(
-            SelectedThemeColorKey,
-            defaultValue = DefaultThemeColor.toArgb(),
-        )
-    // Check if user has selected a custom color (not the default/dynamic color)
-    val isUsingCustomColor = selectedThemeColorInt != DefaultThemeColor.toArgb()
-
     val (useNewPlayerDesign, onUseNewPlayerDesignChange) =
         rememberPreference(
             UseNewPlayerDesignKey,
@@ -713,7 +695,6 @@ fun AppearanceSettings(
                 PlayerSliderColors.getSliderColors(
                     MaterialTheme.colorScheme.primary,
                     PlayerBackgroundStyle.DEFAULT,
-                    isSystemInDarkTheme(),
                 )
 
             Column(
@@ -957,33 +938,6 @@ fun AppearanceSettings(
                             onClick = { onEnableLandscapeScalingChange(!enableLandscapeScaling) },
                         ),
                     )
-                    // Only show dynamic theme option when using the default/dynamic color
-                    // When a custom color is selected, dynamic theme is automatically disabled
-                    if (!isUsingCustomColor) {
-                        add(
-                            Material3SettingsItem(
-                                icon = painterResource(R.drawable.palette),
-                                title = { Text(stringResource(R.string.enable_dynamic_theme)) },
-                                trailingContent = {
-                                    Switch(
-                                        checked = dynamicTheme,
-                                        onCheckedChange = onDynamicThemeChange,
-                                        thumbContent = {
-                                            Icon(
-                                                painter =
-                                                    painterResource(
-                                                        id = if (dynamicTheme) R.drawable.check else R.drawable.close,
-                                                    ),
-                                                contentDescription = null,
-                                                modifier = Modifier.size(SwitchDefaults.IconSize),
-                                            )
-                                        },
-                                    )
-                                },
-                                onClick = { onDynamicThemeChange(!dynamicTheme) },
-                            ),
-                        )
-                    }
                     add(
                         Material3SettingsItem(
                             icon = painterResource(R.drawable.palette),
@@ -1008,24 +962,10 @@ fun AppearanceSettings(
                             onClick = { onEnableDynamicIconChange(!enableDynamicIcon) },
                         ),
                     )
-                    add(
-                        Material3SettingsItem(
-                            icon = painterResource(R.drawable.palette),
-                            title = { Text(stringResource(R.string.theme)) },
-                            description = { Text(stringResource(R.string.theme_desc)) },
-                            onClick = { navController.navigate("settings/appearance/theme") },
-                        ),
-                    )
                 },
         )
 
         Spacer(modifier = Modifier.height(27.dp))
-
-        val (pureBlackMiniPlayer, onPureBlackMiniPlayerChange) =
-            rememberPreference(
-                PureBlackMiniPlayerKey,
-                defaultValue = false,
-            )
 
         Material3SettingsGroup(
             title = stringResource(id = R.string.mini_player),
@@ -1871,12 +1811,6 @@ fun AppearanceSettings(
             }
         },
     )
-}
-
-enum class DarkMode {
-    ON,
-    OFF,
-    AUTO,
 }
 
 enum class NavigationTab {

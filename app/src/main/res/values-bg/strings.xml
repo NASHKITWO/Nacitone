@@ -156,7 +156,6 @@
     <string name="action_backup">Архивиране</string>
     <string name="clear_image_cache">Изчисти кеша на изображение</string>
     <string name="backup_create_failed">Неуспешно създаване на резервно копие</string>
-    <string name="enable_dynamic_theme">Активирай динамична тема</string>
     <string name="clear_song_cache">Изчисти кеша на песен</string>
     <string name="queue">Опашка</string>
     <string name="audio_quality_auto">Автоматично</string>

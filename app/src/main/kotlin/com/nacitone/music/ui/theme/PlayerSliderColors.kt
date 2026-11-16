@@ -25,23 +25,15 @@ object PlayerSliderColors {
      * 
      * @param activeColor Color for active track, ticks, and thumb
      * @param playerBackground The player background style
-     * @param useDarkTheme Whether dark theme is being used
      * @return SliderColors configuration
      */
     @Composable
     fun getSliderColors(
         activeColor: Color,
         playerBackground: PlayerBackgroundStyle,
-        useDarkTheme: Boolean
     ): SliderColors {
         val inactiveTrackColor = when (playerBackground) {
-            PlayerBackgroundStyle.DEFAULT -> {
-                if (useDarkTheme) {
-                    MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
-                } else {
-                    MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
-                }
-            }
+            PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
             PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> {
                 Color.White.copy(alpha = 0.4f)
             }

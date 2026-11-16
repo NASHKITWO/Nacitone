@@ -74,7 +74,6 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    pureBlack: Boolean,
     savedStateHandle: SavedStateHandle,
 ) {
     val navController = LocalNavController.current
@@ -273,11 +272,11 @@ fun SearchScreen(
                 },
                 colors =
                     TopAppBarDefaults.topAppBarColors(
-                        containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer,
+                        containerColor = MaterialTheme.colorScheme.surfaceContainer,
                     ),
             )
         },
-        containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.background,
+        containerColor = MaterialTheme.colorScheme.background,
     ) { paddingValues ->
         Box(
             modifier =
@@ -290,7 +289,6 @@ fun SearchScreen(
                     LocalSearchScreen(
                         query = query.text,
                         onDismiss = { navController.navigateUp() },
-                        pureBlack = pureBlack,
                     )
                 }
 
@@ -300,7 +298,6 @@ fun SearchScreen(
                         onQueryChange = { query = it },
                         onSearch = onSearchFromSuggestion,
                         onDismiss = { /* Don't dismiss when searching from suggestions */ },
-                        pureBlack = pureBlack,
                     )
                 }
             }

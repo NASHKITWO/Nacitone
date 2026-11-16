@@ -132,7 +132,6 @@
     <string name="music_player">音乐播放器</string>
     <string name="settings">设置</string>
     <string name="appearance">外观</string>
-    <string name="enable_dynamic_theme">启用动态主题</string>
     <string name="pure_black">纯黑</string>
     <string name="default_open_tab">默认启动标签页</string>
     <string name="lyrics_text_position">歌词文本位置</string>

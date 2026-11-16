@@ -16,7 +16,6 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -108,7 +107,6 @@ import com.nacitone.music.LocalNavController
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
-import com.nacitone.music.constants.DarkModeKey
 import com.nacitone.music.constants.PlaylistEditLockKey
 import com.nacitone.music.constants.PlaylistSongSortDescendingKey
 import com.nacitone.music.constants.PlaylistSongSortType
@@ -136,7 +134,6 @@ import com.nacitone.music.ui.menu.CustomThumbnailMenu
 import com.nacitone.music.ui.menu.LocalPlaylistMenu
 import com.nacitone.music.ui.menu.SelectionSongMenu
 import com.nacitone.music.ui.menu.SongMenu
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.utils.backToMain
 import com.nacitone.music.utils.makeTimeString
 import com.nacitone.music.utils.rememberEnumPreference
@@ -895,14 +892,7 @@ fun LocalPlaylistHeader(
             }
         }
 
-    val (darkMode, _) =
-        rememberEnumPreference(
-            DarkModeKey,
-            defaultValue = DarkMode.AUTO,
-        )
-
     val cropColor = MaterialTheme.colorScheme
-    val darkTheme = darkMode == DarkMode.ON || (darkMode == DarkMode.AUTO && isSystemInDarkTheme())
 
     val pickLauncher =
         rememberLauncherForActivityResult(
@@ -920,7 +910,7 @@ fun LocalPlaylistHeader(
                         setHideBottomControls(true)
                         setToolbarTitle(editPlaylistCoverStr)
 
-                        setStatusBarLight(!darkTheme)
+                        setStatusBarLight(false)
 
                         setToolbarColor(cropColor.surface.toArgb())
                         setToolbarWidgetColor(cropColor.inverseSurface.toArgb())

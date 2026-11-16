@@ -29,7 +29,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -136,12 +135,10 @@ import com.nacitone.innertube.models.WatchEndpoint
 import com.nacitone.music.constants.AppBarHeight
 import com.nacitone.music.constants.AppLanguageKey
 import com.nacitone.music.constants.CheckForUpdatesKey
-import com.nacitone.music.constants.DarkModeKey
 import com.nacitone.music.constants.DefaultOpenTabKey
 import com.nacitone.music.constants.DismissedStandaloneUpdateKey
 import com.nacitone.music.constants.DensityScaleKey
 import com.nacitone.music.constants.DisableScreenshotKey
-import com.nacitone.music.constants.DynamicThemeKey
 import com.nacitone.music.constants.EnableHighRefreshRateKey
 import com.nacitone.music.constants.EnableLandscapeScalingKey
 import com.nacitone.music.constants.ExperimentalLyricsKey
@@ -158,9 +155,7 @@ import com.nacitone.music.constants.PauseListenHistoryKey
 import com.nacitone.music.constants.PauseSearchHistoryKey
 import com.nacitone.music.constants.PreferredLyricsProvider
 import com.nacitone.music.constants.PreferredLyricsProviderKey
-import com.nacitone.music.constants.PureBlackKey
 import com.nacitone.music.constants.SYSTEM_DEFAULT
-import com.nacitone.music.constants.SelectedThemeColorKey
 import com.nacitone.music.constants.SimpMusicMigrationDoneKey
 import com.nacitone.music.constants.SlimNavBarHeight
 import com.nacitone.music.constants.SlimNavBarKey
@@ -192,12 +187,8 @@ import com.nacitone.music.ui.player.BottomSheetPlayer
 import com.nacitone.music.ui.screens.Screens
 import com.nacitone.music.ui.screens.navigationBuilder
 import com.nacitone.music.ui.screens.settings.ChangelogScreen
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.screens.settings.NavigationTab
-import com.nacitone.music.ui.theme.ColorSaver
-import com.nacitone.music.ui.theme.DefaultThemeColor
 import com.nacitone.music.ui.theme.NacitoneTheme
-import com.nacitone.music.ui.theme.extractThemeColor
 import com.nacitone.music.ui.utils.appBarScrollBehavior
 import com.nacitone.music.ui.utils.resetHeightOffset
 import com.nacitone.music.utils.ReleaseInfo
@@ -543,7 +534,6 @@ class MainActivity : FragmentActivity() {
             }
         }
 
-        val enableDynamicTheme by rememberPreference(DynamicThemeKey, defaultValue = true)
         val enableHighRefreshRate by rememberPreference(EnableHighRefreshRateKey, defaultValue = true)
 
         LaunchedEffect(enableHighRefreshRate) {
@@ -574,93 +564,15 @@ class MainActivity : FragmentActivity() {
             }
         }
 
-        val darkTheme by rememberEnumPreference(DarkModeKey, defaultValue = DarkMode.AUTO)
-        val isSystemInDarkTheme = isSystemInDarkTheme()
-        val useDarkTheme =
-            remember(darkTheme, isSystemInDarkTheme) {
-                if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-            }
-
-        LaunchedEffect(useDarkTheme) {
-            setSystemBarAppearance(useDarkTheme)
+        LaunchedEffect(Unit) {
+            setSystemBarAppearance()
         }
 
         val enableLandscapeScaling by rememberPreference(EnableLandscapeScalingKey, defaultValue = false)
         val userDensityScale by rememberPreference(DensityScaleKey, defaultValue = 1f)
-        val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = false)
-        val pureBlack =
-            remember(pureBlackEnabled, useDarkTheme) {
-                pureBlackEnabled && useDarkTheme
-            }
-
-        val (selectedThemeColorInt) = rememberPreference(SelectedThemeColorKey, defaultValue = DefaultThemeColor.toArgb())
-        val selectedThemeColor = Color(selectedThemeColorInt)
-
         val showChangelog = rememberSaveable { mutableStateOf(false) }
 
-        var themeColor by rememberSaveable(stateSaver = ColorSaver) {
-            mutableStateOf(selectedThemeColor)
-        }
-
-        val themeColorCache = remember { mutableMapOf<String, Color>() }
-
-        LaunchedEffect(selectedThemeColor) {
-            if (!enableDynamicTheme) {
-                themeColor = selectedThemeColor
-            }
-        }
-
-        LaunchedEffect(playerConnection, enableDynamicTheme, selectedThemeColor) {
-            val playerConnection = playerConnection
-            if (!enableDynamicTheme || playerConnection == null) {
-                themeColor = selectedThemeColor
-                return@LaunchedEffect
-            }
-
-            playerConnection.service.currentMediaMetadata
-                .distinctUntilChanged { old, new -> old?.id == new?.id }
-                .collectLatest { song ->
-                    if (song?.thumbnailUrl != null) {
-                        val cached = themeColorCache[song.thumbnailUrl]
-                        if (cached != null) {
-                            withFrameNanos { }
-                            themeColor = cached
-                            return@collectLatest
-                        }
-                        withContext(Dispatchers.IO) {
-                            try {
-                                val result =
-                                    imageLoader.execute(
-                                        ImageRequest
-                                            .Builder(this@MainActivity)
-                                            .data(song.thumbnailUrl)
-                                            .allowHardware(false)
-                                            .memoryCachePolicy(CachePolicy.ENABLED)
-                                            .diskCachePolicy(CachePolicy.ENABLED)
-                                            .networkCachePolicy(CachePolicy.ENABLED)
-                                            .crossfade(false)
-                                            .build(),
-                                    )
-                                val extractedColor = result.image?.toBitmap()?.extractThemeColor() ?: selectedThemeColor
-                                themeColorCache[song.thumbnailUrl] = extractedColor
-                                withFrameNanos { }
-                                themeColor = extractedColor
-                            } catch (e: Exception) {
-                                withFrameNanos { }
-                                themeColor = selectedThemeColor
-                            }
-                        }
-                    } else {
-                        themeColor = selectedThemeColor
-                    }
-                }
-        }
-
-        NacitoneTheme(
-            darkTheme = useDarkTheme,
-            pureBlack = pureBlack,
-            themeColor = themeColor,
-        ) {
+        NacitoneTheme {
             val currentDensity = LocalDensity.current
             val windowInfo = LocalWindowInfo.current
             val containerSize = windowInfo.containerDpSize
@@ -691,7 +603,7 @@ class MainActivity : FragmentActivity() {
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface),
+                        .background(MaterialTheme.colorScheme.surface),
             ) {
                 val density = LocalDensity.current
                 val configuration = LocalWindowInfo.current
@@ -1007,13 +919,13 @@ class MainActivity : FragmentActivity() {
                         !(pauseListenHistory && eventCount == 0)
                     }
 
-                val baseBg = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
+                val baseBg = MaterialTheme.colorScheme.surfaceContainer
                 val artistNameAliases by ArtistNameAliases.aliases.collectAsStateWithLifecycle()
 
                 CompositionLocalProvider(
                     LocalDatabase provides database,
                     LocalNavController provides navController,
-                    LocalContentColor provides if (pureBlack) Color.White else contentColorFor(MaterialTheme.colorScheme.surface),
+                    LocalContentColor provides contentColorFor(MaterialTheme.colorScheme.surface),
                     LocalPlayerConnection provides playerConnection,
                     LocalPlayerAwareWindowInsets provides playerAwareWindowInsets,
                     LocalDownloadUtil provides downloadUtil,
@@ -1094,8 +1006,8 @@ class MainActivity : FragmentActivity() {
                                         scrollBehavior = topAppBarScrollBehavior,
                                         colors =
                                             TopAppBarDefaults.topAppBarColors(
-                                                containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer,
-                                                scrolledContainerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer,
+                                                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                                                scrolledContainerColor = MaterialTheme.colorScheme.surfaceContainer,
                                                 titleContentColor = MaterialTheme.colorScheme.onSurface,
                                                 actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 navigationIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -1184,7 +1096,6 @@ class MainActivity : FragmentActivity() {
                                         BottomSheetPlayer(
                                             state = playerBottomSheetState,
                                             navController = navController,
-                                            pureBlack = pureBlack,
                                         )
                                     }
 
@@ -1192,7 +1103,6 @@ class MainActivity : FragmentActivity() {
                                         navigationItems = navigationItems,
                                         currentRoute = currentRoute,
                                         onItemClick = onNavItemClick,
-                                        pureBlack = pureBlack,
                                         slimNav = slimNav,
                                         onSearchLongClick = onSearchLongClick,
                                         onHomeLongHold = { showAccountDialog = true },
@@ -1246,7 +1156,6 @@ class MainActivity : FragmentActivity() {
                                         BottomSheetPlayer(
                                             state = playerBottomSheetState,
                                             navController = navController,
-                                            pureBlack = pureBlack,
                                         )
                                     }
                                 }
@@ -1310,7 +1219,6 @@ class MainActivity : FragmentActivity() {
                                     navigationItems = navigationItems,
                                     currentRoute = currentRoute,
                                     onItemClick = onRailItemClick,
-                                    pureBlack = pureBlack,
                                     onSearchLongClick = onRailSearchLongClick,
                                     onHomeLongHold = { showAccountDialog = true },
                                 )
@@ -1697,16 +1605,10 @@ class MainActivity : FragmentActivity() {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    private fun setSystemBarAppearance(isDark: Boolean) {
+    private fun setSystemBarAppearance() {
         WindowCompat.getInsetsController(window, window.decorView.rootView).apply {
-            isAppearanceLightStatusBars = !isDark
-            isAppearanceLightNavigationBars = !isDark
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            window.statusBarColor = (if (isDark) Color.Transparent else Color.Black.copy(alpha = 0.2f)).toArgb()
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            window.navigationBarColor = (if (isDark) Color.Transparent else Color.Black.copy(alpha = 0.2f)).toArgb()
+            isAppearanceLightStatusBars = false
+            isAppearanceLightNavigationBars = false
         }
     }
 }

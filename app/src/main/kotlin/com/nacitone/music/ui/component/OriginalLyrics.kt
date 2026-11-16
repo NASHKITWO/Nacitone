@@ -28,7 +28,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.animateScrollBy
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -120,7 +119,6 @@ import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
 import com.nacitone.music.constants.AiProviderKey
 import com.nacitone.music.constants.AiSystemPromptKey
-import com.nacitone.music.constants.DarkModeKey
 import com.nacitone.music.constants.DeeplApiKey
 import com.nacitone.music.constants.DeeplFormalityKey
 import com.nacitone.music.constants.LyricsAnimationStyle
@@ -165,7 +163,6 @@ import com.nacitone.music.lyrics.LyricsUtils.romanizeKorean
 import com.nacitone.music.lyrics.lyricsTextLooksSynced
 import com.nacitone.music.ui.component.shimmer.ShimmerHost
 import com.nacitone.music.ui.component.shimmer.TextPlaceholder
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.screens.settings.LyricsPosition
 import com.nacitone.music.ui.screens.settings.defaultList
 import com.nacitone.music.ui.utils.fadingEdge
@@ -238,13 +235,6 @@ fun OriginalLyrics(
         key = PlayerBackgroundStyleKey,
         defaultValue = PlayerBackgroundStyle.DEFAULT,
     )
-
-    val darkTheme by rememberEnumPreference(DarkModeKey, defaultValue = DarkMode.AUTO)
-    val isSystemInDarkTheme = isSystemInDarkTheme()
-    val useDarkTheme =
-        remember(darkTheme, isSystemInDarkTheme) {
-            if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-        }
 
     val decodedList =
         if (romanizeLyricsList.value.isEmpty()) {

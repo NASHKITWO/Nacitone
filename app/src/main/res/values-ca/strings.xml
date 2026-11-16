@@ -146,7 +146,6 @@
     <string name="settings">Paràmetres</string>
     <string name="appearance">Aspecte</string>
     <string name="theme">Tema</string>
-    <string name="enable_dynamic_theme">Activa el tema dinàmic</string>
     <string name="lyrics_text_position">Posició del text de la lletra</string>
     <string name="pure_black">Negre pur</string>
     <string name="player">Reproductor</string>

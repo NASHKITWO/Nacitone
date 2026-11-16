@@ -11,7 +11,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -23,8 +22,6 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
-import com.nacitone.music.constants.DarkModeKey
-import com.nacitone.music.constants.PureBlackKey
 import com.nacitone.music.ui.screens.artist.ArtistAlbumsScreen
 import com.nacitone.music.ui.screens.artist.ArtistItemsScreen
 import com.nacitone.music.ui.screens.artist.ArtistScreen
@@ -48,13 +45,11 @@ import com.nacitone.music.ui.screens.settings.AndroidAutoSettings
 import com.nacitone.music.ui.screens.settings.AppearanceSettings
 import com.nacitone.music.ui.screens.settings.BackupAndRestore
 import com.nacitone.music.ui.screens.settings.ContentSettings
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.screens.settings.PlayerSettings
 import com.nacitone.music.ui.screens.settings.PrivacySettings
 import com.nacitone.music.ui.screens.settings.RomanizationSettings
 import com.nacitone.music.ui.screens.settings.SettingsScreen
 import com.nacitone.music.ui.screens.settings.StorageSettings
-import com.nacitone.music.ui.screens.settings.ThemeScreen
 import com.nacitone.music.ui.screens.settings.UpdaterScreen
 import com.nacitone.music.ui.screens.settings.integrations.IntegrationScreen
 import com.nacitone.music.ui.screens.settings.integrations.LastFMSettings
@@ -77,19 +72,7 @@ fun NavGraphBuilder.navigationBuilder(
     }
 
     composable(Screens.Search.route) { backStackEntry ->
-        val pureBlackEnabled by rememberPreference(PureBlackKey, defaultValue = false)
-        val darkTheme by rememberEnumPreference(DarkModeKey, defaultValue = DarkMode.AUTO)
-        val isSystemInDarkTheme = isSystemInDarkTheme()
-        val useDarkTheme =
-            remember(darkTheme, isSystemInDarkTheme) {
-                if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-            }
-        val pureBlack =
-            remember(pureBlackEnabled, useDarkTheme) {
-                pureBlackEnabled && useDarkTheme
-            }
         SearchScreen(
-            pureBlack = pureBlack,
             savedStateHandle = backStackEntry.savedStateHandle
         )
     }
@@ -345,10 +328,6 @@ fun NavGraphBuilder.navigationBuilder(
 
     composable("settings/appearance") {
         AppearanceSettings(navController, snackbarHostState)
-    }
-
-    composable("settings/appearance/theme") {
-        ThemeScreen(navController)
     }
 
     composable("settings/content") {

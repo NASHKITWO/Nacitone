@@ -19,7 +19,6 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.LocalIndication
@@ -88,9 +87,7 @@ import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
 import com.nacitone.music.constants.CropAlbumArtKey
-import com.nacitone.music.constants.DarkModeKey
 import com.nacitone.music.constants.MiniPlayerHeight
-import com.nacitone.music.constants.PureBlackMiniPlayerKey
 import com.nacitone.music.constants.SwipeSensitivityKey
 import com.nacitone.music.constants.SwipeThumbnailKey
 import com.nacitone.music.constants.ThumbnailCornerRadius
@@ -100,7 +97,6 @@ import com.nacitone.music.listentogether.ListenTogetherManager
 import com.nacitone.music.models.MediaMetadata
 import com.nacitone.music.playback.CastConnectionHandler
 import com.nacitone.music.playback.PlayerConnection
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.utils.resize
 import com.nacitone.music.utils.joinToArtistString
 import com.nacitone.music.utils.rememberEnumPreference
@@ -188,12 +184,6 @@ private fun NewMiniPlayer(
     )
     val context = LocalContext.current
     var gradientColors by remember { mutableStateOf<List<Color>>(emptyList()) }
-    val isSystemInDarkTheme = isSystemInDarkTheme()
-    val darkTheme by rememberEnumPreference(DarkModeKey, defaultValue = DarkMode.AUTO)
-    val useDarkTheme =
-        remember(darkTheme, isSystemInDarkTheme) {
-            if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-        }
 
     // Player states - only collect what's needed at this level
     val playbackState by playerConnection.playbackState.collectAsState()
@@ -294,14 +284,10 @@ private fun NewMiniPlayer(
         MiniPlayerBackgroundStyle.GRADIENT   -> MaterialTheme.colorScheme.surfaceContainer
         MiniPlayerBackgroundStyle.PURE_BLACK -> Color.Black
     }
-    val forceLightColors = !useDarkTheme && (miniPlayerBackground == MiniPlayerBackgroundStyle.PURE_BLACK ||
-            miniPlayerBackground == MiniPlayerBackgroundStyle.BLUR ||
-            miniPlayerBackground == MiniPlayerBackgroundStyle.GRADIENT)
-
-    val primaryColor = if (forceLightColors) Color.White else MaterialTheme.colorScheme.primary
-    val outlineColor = if (forceLightColors) Color.White else MaterialTheme.colorScheme.outline
-    val onSurfaceColor = if (forceLightColors) Color.White else MaterialTheme.colorScheme.onSurface
-    val errorColor = if (forceLightColors) Color(0xFFFF6B6B) else MaterialTheme.colorScheme.error
+    val primaryColor = MaterialTheme.colorScheme.primary
+    val outlineColor = MaterialTheme.colorScheme.outline
+    val onSurfaceColor = MaterialTheme.colorScheme.onSurface
+    val errorColor = MaterialTheme.colorScheme.error
 
     Box(
         modifier =
@@ -687,7 +673,6 @@ private fun LegacyMiniPlayer(
     onClick: () -> Unit = {},
 ) {
     val playerConnection = LocalPlayerConnection.current ?: return
-    val pureBlack by rememberPreference(PureBlackMiniPlayerKey, defaultValue = false)
 
     val playbackState by playerConnection.playbackState.collectAsState()
     val mediaMetadata by playerConnection.mediaMetadata.collectAsState()
@@ -749,13 +734,7 @@ private fun LegacyMiniPlayer(
                 .height(MiniPlayerHeight)
                 .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal))
                 .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
-                .background(
-                    if (pureBlack && isSystemInDarkTheme()) {
-                        Color.Black
-                    } else {
-                        MaterialTheme.colorScheme.surfaceContainer
-                    },
-                ).clickable(
+                .background(MaterialTheme.colorScheme.surfaceContainer).clickable(
                     interactionSource = interactionSource,
                     indication = LocalIndication.current,
                     onClick = onClick
@@ -844,7 +823,6 @@ private fun LegacyMiniPlayer(
                 mediaMetadata?.let {
                     LegacyMiniMediaInfo(
                         mediaMetadata = it,
-                        pureBlack = pureBlack,
                         modifier = Modifier.padding(horizontal = 6.dp),
                     )
                 }
@@ -939,7 +917,6 @@ private fun LegacyPlayPauseButton(
 @Composable
 private fun LegacyMiniMediaInfo(
     mediaMetadata: MediaMetadata,
-    pureBlack: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val error by LocalPlayerConnection.current?.error?.collectAsState() ?: remember { mutableStateOf(null) }
@@ -982,7 +959,7 @@ private fun LegacyMiniMediaInfo(
                     Modifier
                         .fillMaxSize()
                         .background(
-                            color = if (pureBlack) Color.Black else Color.Black.copy(alpha = 0.6f),
+                            color = Color.Black.copy(alpha = 0.6f),
                             shape = RoundedCornerShape(ThumbnailCornerRadius),
                         ),
                 ) {

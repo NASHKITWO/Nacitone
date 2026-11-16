@@ -74,7 +74,6 @@ fun LocalSearchScreen(
     query: String,
     onDismiss: () -> Unit,
     isFromCache: Boolean = false,
-    pureBlack: Boolean,
     viewModel: LocalSearchViewModel = hiltViewModel(),
 ) {
     val navController = LocalNavController.current
@@ -110,7 +109,7 @@ fun LocalSearchScreen(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.background)
                 .let { base ->
                     if (isLandscape) {
                         base.windowInsetsPadding(

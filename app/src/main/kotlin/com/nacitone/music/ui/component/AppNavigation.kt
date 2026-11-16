@@ -53,11 +53,10 @@ fun AppNavigationRail(
     currentRoute: String?,
     onItemClick: (Screens, Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    pureBlack: Boolean = false,
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
+    val containerColor = MaterialTheme.colorScheme.surfaceContainer
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
@@ -134,13 +133,12 @@ fun AppNavigationBar(
     currentRoute: String?,
     onItemClick: (Screens, Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    pureBlack: Boolean = false,
     slimNav: Boolean = false,
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = if (pureBlack) Color.Black else MaterialTheme.colorScheme.surfaceContainer
-    val contentColor = if (pureBlack) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
+    val containerColor = MaterialTheme.colorScheme.surfaceContainer
+    val contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 

@@ -141,7 +141,6 @@
     <string name="music_player">Musik-Player</string>
     <string name="settings">Einstellungen</string>
     <string name="appearance">Erscheinungsbild</string>
-    <string name="enable_dynamic_theme">Dynamisches Thema aktivieren</string>
     <string name="pure_black">Reines Schwarz</string>
     <string name="default_open_tab">Standardmäßig geöffnete Registerkarte</string>
     <string name="lyrics_text_position">Position des Songtextes</string>

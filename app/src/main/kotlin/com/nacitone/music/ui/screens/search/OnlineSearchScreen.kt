@@ -89,7 +89,6 @@ fun OnlineSearchScreen(
     onQueryChange: (TextFieldValue) -> Unit,
     onSearch: (String) -> Unit,
     onDismiss: () -> Unit,
-    pureBlack: Boolean,
     viewModel: OnlineSearchSuggestionViewModel = hiltViewModel(),
 ) {
     val navController = LocalNavController.current
@@ -129,7 +128,7 @@ fun OnlineSearchScreen(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.background),
+                .background(MaterialTheme.colorScheme.background),
     ) {
         // Show parsed URL item at the top if present
         if (viewState.isUrlQuery && viewState.parsedUrlItem != null) {
@@ -360,7 +359,7 @@ fun OnlineSearchScreen(
                                         }
                                     }
                                 },
-                            ).background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface)
+                            ).background(MaterialTheme.colorScheme.surface)
                             .animateItem(),
                 )
             }
@@ -392,7 +391,6 @@ fun OnlineSearchScreen(
                     onQueryChange(TextFieldValue(history.query, TextRange(history.query.length)))
                 },
                 modifier = Modifier.animateItem(),
-                pureBlack = pureBlack,
             )
         }
 
@@ -408,7 +406,6 @@ fun OnlineSearchScreen(
                     onQueryChange(TextFieldValue(query, TextRange(query.length)))
                 },
                 modifier = Modifier.animateItem(),
-                pureBlack = pureBlack,
             )
         }
 
@@ -633,7 +630,7 @@ fun OnlineSearchScreen(
                                     }
                                 }
                             },
-                        ).background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface)
+                        ).background(MaterialTheme.colorScheme.surface)
                         .animateItem(),
             )
         }
@@ -648,7 +645,6 @@ fun SuggestionItem(
     onClick: () -> Unit,
     onDelete: () -> Unit = {},
     onFillTextField: () -> Unit,
-    pureBlack: Boolean,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -656,7 +652,7 @@ fun SuggestionItem(
             modifier
                 .fillMaxWidth()
                 .height(SuggestionItemHeight)
-                .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.surface)
+                .background(MaterialTheme.colorScheme.surface)
                 .clickable(onClick = onClick)
                 .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)),
     ) {

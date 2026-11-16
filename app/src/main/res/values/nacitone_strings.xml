@@ -697,34 +697,9 @@
     <string name="crash_no_log">No crash log available</string>
 
     <!-- Theme Palette Names -->
-    <string name="palette_dynamic">Dynamic</string>
-    <string name="palette_crimson">Crimson</string>
-    <string name="palette_rose">Rose</string>
-    <string name="palette_purple">Purple</string>
-    <string name="palette_deep_purple">Deep Purple</string>
-    <string name="palette_indigo">Indigo</string>
-    <string name="palette_blue">Blue</string>
-    <string name="palette_sky_blue">Sky Blue</string>
-    <string name="palette_cyan">Cyan</string>
-    <string name="palette_teal">Teal</string>
-    <string name="palette_green">Green</string>
-    <string name="palette_light_green">Light Green</string>
-    <string name="palette_lime">Lime</string>
-    <string name="palette_yellow">Yellow</string>
-    <string name="palette_amber">Amber</string>
-    <string name="palette_orange">Orange</string>
-    <string name="palette_deep_orange">Deep Orange</string>
-    <string name="palette_brown">Brown</string>
-    <string name="palette_grey">Grey</string>
-    <string name="palette_blue_grey">Blue Grey</string>
 
     <!-- Theme Content Descriptions -->
     <string name="cd_back">Back</string>
-    <string name="cd_pure_black_mode">Pure black mode</string>
-    <string name="cd_light_mode">Light mode</string>
-    <string name="cd_dark_mode">Dark mode</string>
-    <string name="cd_system_mode">System mode</string>
-    <string name="cd_palette_item">%1$s palette</string>
     <string name="play_all">Play all</string>
     <string name="enable_high_refresh_rate">Enable high refresh rate</string>
     <string name="enable_high_refresh_rate_desc">Forces the display to run at its highest supported refresh rate (e.g. 120Hz)</string>
@@ -914,10 +889,6 @@
     <string name="lyrics_share_format">Format</string>
     <string name="lyrics_format_square">Square</string>
     <string name="lyrics_format_story">Story 9:16</string>
-    <string name="palette_batik_sogan">Batik Sogan</string>
-    <string name="palette_batik_nila">Batik Nila</string>
-    <string name="palette_kopi_tubruk">Kopi Tubruk</string>
-    <string name="palette_wayang">Wayang</string>
     <string name="weekly_recap">Weekly recap</string>
     <string name="weekly_recap_subtitle">Your most played this week</string>
     <string name="weekly_recap_top_songs">Top songs</string>

@@ -120,7 +120,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun OnlineSearchResult(
     viewModel: OnlineSearchViewModel = hiltViewModel(),
-    pureBlack: Boolean = false,
     savedStateHandle: SavedStateHandle? = null
 ) {
     val navController = LocalNavController.current
@@ -365,7 +364,7 @@ fun OnlineSearchResult(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(if (pureBlack) Color.Black else MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.background)
                 .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Top)),
     ) {
         // Google-style SearchBar with Material 3 design
@@ -421,18 +420,8 @@ fun OnlineSearchResult(
             shape = RoundedCornerShape(28.dp),
             colors =
                 OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor =
-                        if (pureBlack) {
-                            MaterialTheme.colorScheme.surface
-                        } else {
-                            MaterialTheme.colorScheme.surfaceContainerHigh
-                        },
-                    unfocusedContainerColor =
-                        if (pureBlack) {
-                            MaterialTheme.colorScheme.surface
-                        } else {
-                            MaterialTheme.colorScheme.surfaceContainerHigh
-                        },
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
                     focusedBorderColor = Color.Transparent,
                     unfocusedBorderColor = Color.Transparent,
                 ),
@@ -564,7 +553,6 @@ fun OnlineSearchResult(
                         isSearchFocused = false
                         focusManager.clearFocus()
                     },
-                    pureBlack = pureBlack,
                 )
             }
             HideOnScrollFAB(

@@ -12,7 +12,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -59,8 +58,7 @@ class CrashActivity : ComponentActivity() {
         val crashLog = intent.getStringExtra(CrashHandler.EXTRA_CRASH_LOG) ?: getString(R.string.crash_no_log)
         
         setContent {
-            val darkTheme = isSystemInDarkTheme()
-            NacitoneTheme(darkTheme = darkTheme) {
+            NacitoneTheme {
                 CrashScreen(
                     crashLog = crashLog,
                     onClose = { finishAffinity() },

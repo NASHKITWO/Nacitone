@@ -132,7 +132,6 @@
     <string name="music_player">Pemutar Musik</string>
     <string name="settings">Pengaturan</string>
     <string name="appearance">Tampilan</string>
-    <string name="enable_dynamic_theme">Aktifkan tema dinamis</string>
     <string name="pure_black">Hitam pekat</string>
     <string name="default_open_tab">Tab terbuka bawaan</string>
     <string name="lyrics_text_position">Posisi teks lirik</string>
@@ -226,8 +225,4 @@
     <string name="dismiss">Tutup</string>
     <string name="action_login">Masuk</string>
     <string name="pause">Jeda</string>
-    <string name="theme_desc">Atur tema aplikasi</string>
-    <string name="theme_colors">Tema &amp; Warna</string>
-    <string name="theme_mode">Mode Tema</string>
-    <string name="color_palette">Palet Warna</string>
 </resources>

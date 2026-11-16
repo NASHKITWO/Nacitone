@@ -159,7 +159,6 @@
     <string name="settings">Innstillingar</string>
     <string name="appearance">Utsjånad</string>
     <string name="theme">Drakt</string>
-    <string name="enable_dynamic_theme">Slå på dynamisk drakt</string>
     <string name="pure_black">Reinsvart</string>
     <string name="player">Spelar</string>
     <string name="lyrics_text_position">Tekstjustering for songtekster</string>

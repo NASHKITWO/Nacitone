@@ -11,7 +11,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -227,15 +226,9 @@ fun CommunityPlaylistCard(
     val listenTogetherManager = LocalListenTogetherManager.current
     val isListenTogetherGuest = listenTogetherManager?.let { it.isInRoom && !it.isHost } ?: false
     val scope = rememberCoroutineScope()
-    val isDark = isSystemInDarkTheme()
     val artistNameAliases = LocalArtistNameAliases.current
 
-    val containerColor =
-        if (isDark) {
-            MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
-        } else {
-            MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
-        }
+    val containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
 
     val dbPlaylist by database.playlistByBrowseId(item.playlist.id).collectAsStateWithLifecycle(initialValue = null)
     val isBookmarked = dbPlaylist?.playlist?.bookmarkedAt != null

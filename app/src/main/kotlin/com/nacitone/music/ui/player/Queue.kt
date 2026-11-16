@@ -154,7 +154,6 @@ fun Queue(
     TextBackgroundColor: Color,
     textButtonColor: Color,
     iconButtonColor: Color,
-    pureBlack: Boolean,
     showInlineLyrics: Boolean,
     playerBackground: PlayerBackgroundStyle = PlayerBackgroundStyle.DEFAULT,
     onToggleLyrics: () -> Unit = {},
@@ -1037,13 +1036,9 @@ fun Queue(
                         interactionSource = remember { MutableInteractionSource() },
                     ) { }
                     .background(
-                        if (pureBlack) {
-                            Color.Black
-                        } else {
-                            MaterialTheme.colorScheme
-                                .secondaryContainer
-                                .copy(alpha = 0.90f)
-                        },
+                        MaterialTheme.colorScheme
+                            .secondaryContainer
+                            .copy(alpha = 0.90f),
                     ).windowInsetsPadding(
                         WindowInsets.systemBars
                             .only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal),
@@ -1172,9 +1167,6 @@ fun Queue(
                     }
                 }
             }
-            if (pureBlack) {
-                HorizontalDivider()
-            }
         }
 
         val shuffleModeEnabled by playerConnection.shuffleModeEnabled.collectAsStateWithLifecycle()
@@ -1183,13 +1175,9 @@ fun Queue(
             modifier =
                 Modifier
                     .background(
-                        if (pureBlack) {
-                            Color.Black
-                        } else {
-                            MaterialTheme.colorScheme
-                                .secondaryContainer
-                                .copy(alpha = 0.90f)
-                        },
+                        MaterialTheme.colorScheme
+                            .secondaryContainer
+                            .copy(alpha = 0.90f),
                     ).fillMaxWidth()
                     .height(
                         ListItemHeight +

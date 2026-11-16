@@ -35,7 +35,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -146,7 +145,6 @@ import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
 import com.nacitone.music.constants.CropAlbumArtKey
-import com.nacitone.music.constants.DarkModeKey
 import com.nacitone.music.constants.HidePlayerThumbnailKey
 import com.nacitone.music.constants.HideStatusBarOnFullscreenKey
 import com.nacitone.music.constants.KeepScreenOn
@@ -182,7 +180,6 @@ import com.nacitone.music.ui.component.SquigglySlider
 import com.nacitone.music.ui.component.WavySlider
 import com.nacitone.music.ui.component.rememberBottomSheetState
 import com.nacitone.music.ui.menu.PlayerMenu
-import com.nacitone.music.ui.screens.settings.DarkMode
 import com.nacitone.music.ui.theme.PlayerColorExtractor
 import com.nacitone.music.ui.theme.PlayerSliderColors
 import com.nacitone.music.ui.utils.ShowMediaInfo
@@ -213,7 +210,6 @@ fun BottomSheetPlayer(
     state: BottomSheetState,
     navController: NavController,
     modifier: Modifier = Modifier,
-    pureBlack: Boolean,
 ) {
     val context = LocalContext.current
     val shareFooter = stringResource(R.string.share_footer)
@@ -261,19 +257,13 @@ fun BottomSheetPlayer(
         defaultValue = PlayerButtonsStyle.DEFAULT,
     )
 
-    val isSystemInDarkTheme = isSystemInDarkTheme()
-    val darkTheme by rememberEnumPreference(DarkModeKey, defaultValue = DarkMode.AUTO)
-    val useDarkTheme =
-        remember(darkTheme, isSystemInDarkTheme) {
-            if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-        }
 
 
     val isPlaying by playerConnection.isPlaying.collectAsState()
     val isKeepScreenOn by rememberPreference(KeepScreenOn, false)
     val keepScreenOn = isPlaying && isKeepScreenOn
 
-    DisposableEffect(playerBackground, state.isExpanded, useDarkTheme, keepScreenOn, isFullScreen, hideStatusBarOnFullscreen) {
+    DisposableEffect(playerBackground, state.isExpanded, keepScreenOn, isFullScreen, hideStatusBarOnFullscreen) {
         val window = (context as? android.app.Activity)?.window
         if (window != null && state.isExpanded) {
             val insetsController = WindowCompat.getInsetsController(window, window.decorView)
@@ -284,7 +274,7 @@ fun BottomSheetPlayer(
                 }
 
                 PlayerBackgroundStyle.DEFAULT -> {
-                    insetsController.isAppearanceLightStatusBars = !useDarkTheme
+                    insetsController.isAppearanceLightStatusBars = false
                 }
             }
 
@@ -305,7 +295,7 @@ fun BottomSheetPlayer(
         onDispose {
             if (window != null) {
                 val insetsController = WindowCompat.getInsetsController(window, window.decorView)
-                insetsController.isAppearanceLightStatusBars = !useDarkTheme
+                insetsController.isAppearanceLightStatusBars = false
                 insetsController.show(WindowInsetsCompat.Type.statusBars())
                 window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
@@ -321,13 +311,6 @@ fun BottomSheetPlayer(
             PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.secondary
             else -> MaterialTheme.colorScheme.onSurface
         }
-    val useBlackBackground =
-        remember(isSystemInDarkTheme, darkTheme, pureBlack) {
-            val useDarkTheme =
-                if (darkTheme == DarkMode.AUTO) isSystemInDarkTheme else darkTheme == DarkMode.ON
-            useDarkTheme && pureBlack
-        }
-
     val playbackState by playerConnection.playbackState.collectAsState()
     val mediaMetadata by playerConnection.mediaMetadata.collectAsState()
     val currentSong by playerConnection.currentSong.collectAsStateWithLifecycle(initialValue = null)
@@ -514,11 +497,7 @@ fun BottomSheetPlayer(
             else -> {
                 when (playerButtonsStyle) {
                     PlayerButtonsStyle.DEFAULT -> {
-                        if (useDarkTheme) {
-                            Pair(Color.White, Color.Black)
-                        } else {
-                            Pair(Color.Black, Color.White)
-                        }
+                        Pair(Color.White, Color.Black)
                     }
 
                     PlayerButtonsStyle.PRIMARY -> {
@@ -826,11 +805,7 @@ fun BottomSheetPlayer(
             }
 
             else -> {
-                if (useBlackBackground) {
-                    Color.Black
-                } else {
-                    MaterialTheme.colorScheme.surfaceContainer
-                }
+                MaterialTheme.colorScheme.surfaceContainer
             }
         }
 
@@ -870,7 +845,7 @@ fun BottomSheetPlayer(
                                         modifier =
                                             Modifier
                                                 .fillMaxSize()
-                                                .blur(if (useDarkTheme) 150.dp else 100.dp),
+                                                .blur(150.dp),
                                     )
                                     Box(
                                         modifier =
@@ -1456,7 +1431,7 @@ fun BottomSheetPlayer(
                             }
                         },
                         enabled = !isListenTogetherGuest,
-                        colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground, useDarkTheme),
+                        colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground),
                         modifier = Modifier.padding(horizontal = PlayerHorizontalPadding),
                     )
                 }
@@ -1482,7 +1457,7 @@ fun BottomSheetPlayer(
                                 sliderPosition = null
                             },
                             modifier = Modifier.padding(horizontal = PlayerHorizontalPadding),
-                            colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground, useDarkTheme),
+                            colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground),
                             isPlaying = effectiveIsPlaying,
                         )
                     } else {
@@ -1504,7 +1479,7 @@ fun BottomSheetPlayer(
                                 }
                                 sliderPosition = null
                             },
-                            colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground, useDarkTheme),
+                            colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground),
                             modifier = Modifier.padding(horizontal = PlayerHorizontalPadding),
                             isPlaying = effectiveIsPlaying,
                         )
@@ -1544,7 +1519,7 @@ fun BottomSheetPlayer(
                         track = { sliderState ->
                             PlayerSliderTrack(
                                 sliderState = sliderState,
-                                colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground, useDarkTheme),
+                                colors = PlayerSliderColors.getSliderColors(textButtonColor, playerBackground),
                             )
                         },
                         modifier = Modifier.padding(horizontal = PlayerHorizontalPadding),
@@ -2073,16 +2048,11 @@ fun BottomSheetPlayer(
                 state = queueSheetState,
                 playerBottomSheetState = state,
                 background =
-                    if (useBlackBackground) {
-                        Color.Black
-                    } else {
-                        MaterialTheme.colorScheme.surfaceContainer
-                    },
+                    MaterialTheme.colorScheme.surfaceContainer,
                 onBackgroundColor = onBackgroundColor,
                 TextBackgroundColor = TextBackgroundColor,
                 textButtonColor = textButtonColor,
                 iconButtonColor = iconButtonColor,
-                pureBlack = pureBlack,
                 showInlineLyrics = showInlineLyrics,
                 playerBackground = playerBackground,
                 onToggleLyrics = {

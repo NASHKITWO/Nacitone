@@ -150,7 +150,6 @@
     <string name="settings">การตั้งค่า</string>
     <string name="appearance">การแสดงผล</string>
     <string name="theme">ธีม</string>
-    <string name="enable_dynamic_theme">เปิดใช้งานธีมแบบไดนามิก</string>
     <string name="pure_black">ดำสนิท</string>
     <string name="player">เครื่องเล่น</string>
     <string name="lyrics_text_position">ตำแหน่งข้อความเนื้อเพลง</string>

@@ -3,6 +3,6 @@
     <color name="ic_launcher_background">#D93E22</color>
 
     <!-- Widget colors for light mode -->
-    <color name="widget_text_primary">#1C1B1F</color>
-    <color name="widget_text_secondary">#49454F</color>
+    <color name="widget_text_primary">#E6E1E5</color>
+    <color name="widget_text_secondary">#CAC4D0</color>
 </resources>

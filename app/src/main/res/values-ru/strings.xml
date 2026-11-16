@@ -177,7 +177,6 @@
     <string name="settings">Настройки</string>
     <string name="appearance">Внешний вид</string>
     <string name="theme">Тема</string>
-    <string name="enable_dynamic_theme">Включить динамическую тему</string>
     <string name="pure_black">Чисто чёрный</string>
     <string name="player">Плеер</string>
     <string name="lyrics_text_position">Расположение текста песни</string>
