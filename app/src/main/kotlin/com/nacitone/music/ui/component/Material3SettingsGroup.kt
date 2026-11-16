@@ -28,6 +28,7 @@ import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
@@ -63,39 +64,34 @@ fun Material3SettingsGroup(
             )
         }
 
-        // Settings items
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
+        // Satu kartu kaca per grup, baris dipisah garis tipis.
+        Card(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .softEnter()
+                    .animateContentSize(),
+            shape = RoundedCornerShape(28.dp),
+            colors =
+                CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = if (useLowContrast) 0.06f else 0.10f),
+                ),
+            border = glassCardBorder(),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         ) {
             items.forEachIndexed { index, item ->
-                val shape = when {
-                    items.size == 1 -> RoundedCornerShape(28.dp)
-                    index == 0 -> RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp, bottomStart = 8.dp, bottomEnd = 8.dp)
-                    index == items.size - 1 -> RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 28.dp, bottomEnd = 28.dp)
-                    else -> RoundedCornerShape(8.dp)
+                if (index > 0) {
+                    HorizontalDivider(
+                        modifier =
+                            Modifier.padding(
+                                start = if (item.icon != null || item.leadingContent != null) 78.dp else 20.dp,
+                                end = 16.dp,
+                            ),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
+                    )
                 }
-
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .animateContentSize(),
-                    shape = shape,
-                    colors = CardDefaults.cardColors(
-                        containerColor = if (!useLowContrast) {
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
-                        } else {
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.06f)
-                        }
-                    ),
-                    border = BorderStroke(
-                        width = 0.5.dp,
-                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.45f),
-                    ),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
-                ) {
-                    Material3SettingsItemRow(item = item)
-                }
+                Material3SettingsItemRow(item = item)
             }
         }
     }
@@ -115,7 +111,7 @@ private fun Material3SettingsItemRow(
                 enabled = item.enabled && item.onClick != null,
                 onClick = { item.onClick?.invoke() }
             )
-            .padding(horizontal = 20.dp, vertical = 16.dp),
+            .padding(horizontal = 20.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Custom leading content or Icon with background
@@ -128,11 +124,7 @@ private fun Material3SettingsItemRow(
                     .size(42.dp)
                     .clip(RoundedCornerShape(14.dp))
                     .background(
-                        if (item.isHighlighted) {
-                            MaterialTheme.colorScheme.primaryContainer
-                        } else {
-                            MaterialTheme.colorScheme.surfaceContainerHighest
-                        },
+                        MaterialTheme.colorScheme.primary.copy(alpha = if (item.isHighlighted) 0.30f else 0.16f),
                     ),
                 contentAlignment = Alignment.Center
             ) {
