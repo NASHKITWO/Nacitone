@@ -53,7 +53,6 @@ import androidx.navigation.NavController
 import com.nacitone.music.LocalPlayerAwareWindowInsets
 import com.nacitone.music.R
 import com.nacitone.music.constants.ChipSortTypeKey
-import com.nacitone.music.constants.CropAlbumArtKey
 import com.nacitone.music.constants.DefaultOpenTabKey
 import com.nacitone.music.constants.DensityScale
 import com.nacitone.music.constants.DensityScaleKey
@@ -76,10 +75,6 @@ import com.nacitone.music.constants.LyricsLineSpacingKey
 import com.nacitone.music.constants.LyricsScrollKey
 import com.nacitone.music.constants.LyricsTextPositionKey
 import com.nacitone.music.constants.LyricsTextSizeKey
-import com.nacitone.music.constants.MiniPlayerBackgroundStyle
-import com.nacitone.music.constants.MiniPlayerBackgroundStyleKey
-import com.nacitone.music.constants.PlayerBackgroundStyle
-import com.nacitone.music.constants.PlayerBackgroundStyleKey
 import com.nacitone.music.constants.PlayerButtonsStyle
 import com.nacitone.music.constants.PlayerButtonsStyleKey
 import com.nacitone.music.constants.RespectAgentPositioningKey
@@ -146,19 +141,6 @@ fun AppearanceSettings(
             UseNewPlayerDesignKey,
             defaultValue = true,
         )
-    val (miniPlayerBackground, onMiniPlayerBackgroundChange) =
-        rememberEnumPreference(
-            MiniPlayerBackgroundStyleKey,
-            defaultValue = MiniPlayerBackgroundStyle.DEFAULT,
-        )
-
-    val availableMiniPlayerBackgroundStyles =
-        MiniPlayerBackgroundStyle.entries.filter {
-            it != MiniPlayerBackgroundStyle.BLUR || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-        }
-
-    var showMiniPlayerBackgroundDialog by rememberSaveable { mutableStateOf(false) }
-
     val (useNewMiniPlayerDesign, onUseNewMiniPlayerDesignChange) =
         rememberPreference(
             UseNewMiniPlayerDesignKey,
@@ -168,16 +150,6 @@ fun AppearanceSettings(
         rememberPreference(
             HidePlayerThumbnailKey,
             defaultValue = false,
-        )
-    val (cropAlbumArt, onCropAlbumArtChange) =
-        rememberPreference(
-            CropAlbumArtKey,
-            defaultValue = false,
-        )
-    val (playerBackground, onPlayerBackgroundChange) =
-        rememberEnumPreference(
-            PlayerBackgroundStyleKey,
-            defaultValue = PlayerBackgroundStyle.DEFAULT,
         )
 
     val (defaultOpenTab, onDefaultOpenTabChange) =
@@ -209,7 +181,7 @@ fun AppearanceSettings(
     val (respectAgentPositioning, onRespectAgentPositioningChange) = rememberPreference(RespectAgentPositioningKey, defaultValue = true)
     val (experimentalLyrics, onExperimentalLyricsChange) = rememberPreference(ExperimentalLyricsKey, defaultValue = true)
 
-    val (lyricsGlowEffect, onLyricsGlowEffectChange) = rememberPreference(LyricsGlowEffectKey, defaultValue = false)
+    val (lyricsGlowEffect, onLyricsGlowEffectChange) = rememberPreference(LyricsGlowEffectKey, defaultValue = true)
     val (lyricsAnimationStyle, onLyricsAnimationStyleChange) =
         rememberEnumPreference(
             LyricsAnimationStyleKey,
@@ -226,7 +198,7 @@ fun AppearanceSettings(
     val (sliderStyle, onSliderStyleChange) =
         rememberEnumPreference(
             SliderStyleKey,
-            defaultValue = SliderStyle.DEFAULT,
+            defaultValue = SliderStyle.WAVY,
         )
     val (squigglySlider, onSquigglySliderChange) =
         rememberPreference(
@@ -307,11 +279,6 @@ fun AppearanceSettings(
             defaultValue = true,
         )
 
-    val availableBackgroundStyles =
-        PlayerBackgroundStyle.entries.filter {
-            it != PlayerBackgroundStyle.BLUR || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-        }
-
     val (defaultChip, onDefaultChipChange) =
         rememberEnumPreference(
             key = ChipSortTypeKey,
@@ -319,10 +286,6 @@ fun AppearanceSettings(
         )
 
     var showSliderOptionDialog by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    var showPlayerBackgroundDialog by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -523,48 +486,6 @@ fun AppearanceSettings(
         )
     }
 
-    if (showPlayerBackgroundDialog) {
-        EnumDialog(
-            onDismiss = { showPlayerBackgroundDialog = false },
-            onSelect = {
-                onPlayerBackgroundChange(it)
-                showPlayerBackgroundDialog = false
-            },
-            title = stringResource(R.string.player_background_style),
-            current = playerBackground,
-            values = availableBackgroundStyles,
-            valueText = {
-                when (it) {
-                    PlayerBackgroundStyle.DEFAULT -> stringResource(R.string.follow_theme)
-                    PlayerBackgroundStyle.GRADIENT -> stringResource(R.string.gradient)
-                    PlayerBackgroundStyle.BLUR -> stringResource(R.string.player_background_blur)
-                }
-            },
-        )
-    }
-
-    if (showMiniPlayerBackgroundDialog) {
-        EnumDialog(
-            onDismiss = { showMiniPlayerBackgroundDialog = false },
-            onSelect = {
-                onMiniPlayerBackgroundChange(it)
-                showMiniPlayerBackgroundDialog = false
-            },
-            title = stringResource(R.string.mini_player_background_style),
-            current = miniPlayerBackground,
-            values = availableMiniPlayerBackgroundStyles,
-            valueText = {
-                when (it) {
-                    MiniPlayerBackgroundStyle.DEFAULT -> stringResource(R.string.follow_theme)
-                    MiniPlayerBackgroundStyle.TRANSPARENT -> stringResource(R.string.transparent)
-                    MiniPlayerBackgroundStyle.BLUR -> stringResource(R.string.player_background_blur)
-                    MiniPlayerBackgroundStyle.GRADIENT -> stringResource(R.string.gradient)
-                    MiniPlayerBackgroundStyle.PURE_BLACK -> stringResource(R.string.pure_black)
-                }
-            },
-        )
-    }
-
     var showDefaultOpenTabDialog by rememberSaveable {
         mutableStateOf(false)
     }
@@ -694,7 +615,6 @@ fun AppearanceSettings(
             val sliderPreviewColors =
                 PlayerSliderColors.getSliderColors(
                     MaterialTheme.colorScheme.primary,
-                    PlayerBackgroundStyle.DEFAULT,
                 )
 
             Column(
@@ -994,45 +914,6 @@ fun AppearanceSettings(
                             onClick = { onUseNewMiniPlayerDesignChange(!useNewMiniPlayerDesign) },
                         ),
                     )
-                    add(
-                        Material3SettingsItem(
-                            icon = painterResource(R.drawable.gradient),
-                            title = {
-                                Text(
-                                    text = stringResource(R.string.mini_player_background_style),
-                                    color =
-                                        if (!useNewMiniPlayerDesign) {
-                                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-                                        } else {
-                                            MaterialTheme.colorScheme.onSurface
-                                        },
-                                )
-                            },
-                            description = {
-                                Text(
-                                    text =
-                                        if (!useNewMiniPlayerDesign) {
-                                            stringResource(R.string.mini_player_background_not_available)
-                                        } else {
-                                            when (miniPlayerBackground) {
-                                                MiniPlayerBackgroundStyle.DEFAULT -> stringResource(R.string.follow_theme)
-                                                MiniPlayerBackgroundStyle.TRANSPARENT -> stringResource(R.string.transparent)
-                                                MiniPlayerBackgroundStyle.BLUR -> stringResource(R.string.player_background_blur)
-                                                MiniPlayerBackgroundStyle.GRADIENT -> stringResource(R.string.gradient)
-                                                MiniPlayerBackgroundStyle.PURE_BLACK -> stringResource(R.string.pure_black)
-                                            }
-                                        },
-                                    color =
-                                        if (!useNewMiniPlayerDesign) {
-                                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-                                        } else {
-                                            MaterialTheme.colorScheme.onSurfaceVariant
-                                        },
-                                )
-                            },
-                            onClick = { if (useNewMiniPlayerDesign) showMiniPlayerBackgroundDialog = true },
-                        ),
-                    )
                 },
         )
 
@@ -1066,20 +947,6 @@ fun AppearanceSettings(
                         onClick = { onUseNewPlayerDesignChange(!useNewPlayerDesign) },
                     ),
                     Material3SettingsItem(
-                        icon = painterResource(R.drawable.gradient),
-                        title = { Text(stringResource(R.string.player_background_style)) },
-                        description = {
-                            Text(
-                                when (playerBackground) {
-                                    PlayerBackgroundStyle.DEFAULT -> stringResource(R.string.follow_theme)
-                                    PlayerBackgroundStyle.GRADIENT -> stringResource(R.string.gradient)
-                                    PlayerBackgroundStyle.BLUR -> stringResource(R.string.player_background_blur)
-                                },
-                            )
-                        },
-                        onClick = { showPlayerBackgroundDialog = true },
-                    ),
-                    Material3SettingsItem(
                         icon = painterResource(R.drawable.hide_image),
                         title = { Text(stringResource(R.string.hide_player_thumbnail)) },
                         description = { Text(stringResource(R.string.hide_player_thumbnail_desc)) },
@@ -1100,28 +967,6 @@ fun AppearanceSettings(
                             )
                         },
                         onClick = { onHidePlayerThumbnailChange(!hidePlayerThumbnail) },
-                    ),
-                    Material3SettingsItem(
-                        icon = painterResource(R.drawable.crop),
-                        title = { Text(stringResource(R.string.crop_album_art)) },
-                        description = { Text(stringResource(R.string.crop_album_art_desc)) },
-                        trailingContent = {
-                            Switch(
-                                checked = cropAlbumArt,
-                                onCheckedChange = onCropAlbumArtChange,
-                                thumbContent = {
-                                    Icon(
-                                        painter =
-                                            painterResource(
-                                                id = if (cropAlbumArt) R.drawable.check else R.drawable.close,
-                                            ),
-                                        contentDescription = null,
-                                        modifier = Modifier.size(SwitchDefaults.IconSize),
-                                    )
-                                },
-                            )
-                        },
-                        onClick = { onCropAlbumArtChange(!cropAlbumArt) },
                     ),
                     Material3SettingsItem(
                         icon = painterResource(R.drawable.palette),

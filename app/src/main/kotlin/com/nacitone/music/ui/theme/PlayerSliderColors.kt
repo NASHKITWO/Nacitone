@@ -10,7 +10,6 @@ import androidx.compose.material3.SliderColors
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.nacitone.music.constants.PlayerBackgroundStyle
 
 /**
  * Player slider color configuration for consistent styling across all slider types
@@ -24,20 +23,13 @@ object PlayerSliderColors {
      * Standard slider colors for all slider types
      * 
      * @param activeColor Color for active track, ticks, and thumb
-     * @param playerBackground The player background style
      * @return SliderColors configuration
      */
     @Composable
     fun getSliderColors(
         activeColor: Color,
-        playerBackground: PlayerBackgroundStyle,
     ): SliderColors {
-        val inactiveTrackColor = when (playerBackground) {
-            PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
-            PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> {
-                Color.White.copy(alpha = 0.4f)
-            }
-        }
+        val inactiveTrackColor = Color.White.copy(alpha = 0.4f)
         
         return SliderDefaults.colors(
             activeTrackColor = activeColor,

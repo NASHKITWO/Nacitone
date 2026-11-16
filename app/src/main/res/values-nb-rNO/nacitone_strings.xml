@@ -43,7 +43,6 @@
         <item quantity="other">%d ganger</item>
     </plurals>
     <string name="player_background_style">Bakgrunnsstil for avspilleren</string>
-    <string name="follow_theme">Følg tema</string>
     <string name="gradient">Gradient</string>
     <string name="player_background_blur">Uskarp</string>
     <string name="player_buttons_style">Farger på avspillerknapper</string>
@@ -82,8 +81,6 @@
     <string name="close">Lukk</string>
     <string name="hide_player_thumbnail">Vis miniatyrbilde i spilleren</string>
     <string name="hide_player_thumbnail_desc">Erstatt albumcover med applogo i spilleren</string>
-    <string name="crop_album_art">Beskjær albumcover</string>
-    <string name="crop_album_art_desc">Tving et kvadratisk visningsforhold ved å beskjære miniatyrbilder av videoer</string>
     <string name="seek_forward_dynamic">%1$d sekunder forover</string>
     <string name="seek_backward_dynamic">-%1$d sekunder bakover</string>
     <string name="seek_seconds_addup">Progressiv spoling</string>

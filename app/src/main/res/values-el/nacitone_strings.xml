@@ -30,7 +30,6 @@
     </plurals>
     <string name="similar_content">Παρόμοιο περιεχόμενο</string>
     <string name="player_background_style">Στυλ φόντου αναπαραγωγέα</string>
-    <string name="follow_theme">Με βάση το θέμα</string>
     <string name="gradient">Διαβάθμιση</string>
     <string name="player_background_blur">Θάμπωμα</string>
     <string name="player_buttons_style">Χρώματα κουμπιού παίχτη</string>
@@ -165,8 +164,6 @@
     <string name="download_in_progress_desc">Μια λήψη βρίσκεται σε εξέλιξη</string>
     <string name="share_playlist_desc">Κοινοποίηση αυτής της λίστας αναπαραγωγής με άλλους</string>
     <string name="delete_playlist_desc">Διαγραφή αυτής της λίστας αναπαραγωγής οριστικά</string>
-    <string name="crop_album_art">Περικοπή εξώφυλλου άλμπουμ</string>
-    <string name="crop_album_art_desc">Επιβολή τετράγωνης αναλογίας διαστάσεων με περικοπή των μικρογραφιών βίντεο</string>
     <string name="primary_color_style">Κύριο χρώμα</string>
     <string name="tertiary_color_style">Τριτογενές χρώμα</string>
     <string name="wavy">Κυματοειδές</string>

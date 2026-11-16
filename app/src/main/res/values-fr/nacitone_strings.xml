@@ -51,7 +51,6 @@
     </plurals>
     <string name="similar_content">Contenu similaire</string>
     <string name="player_background_style">Style de l\'arrière plan du lecteur</string>
-    <string name="follow_theme">Suivre le thème</string>
     <string name="gradient">Dégradé</string>
     <string name="player_background_blur">Flou</string>
     <string name="player_buttons_style">Couleurs des boutons du lecteur</string>
@@ -282,8 +281,6 @@
     <string name="error_playback_failed">Échec de la lecture</string>
     <string name="error_title">Erreur</string>
     <string name="error_eq_apply_failed">Échec de l\'application du profil d\'égaliseur : %1$s</string>
-    <string name="crop_album_art">Recadrer la pochette d\'album</string>
-    <string name="crop_album_art_desc">Forcez un format carré en recadrant les miniatures vidéo</string>
     <string name="keep_screen_on_when_player_is_expanded">Garder l\'écran allumé lorsque le lecteur est agrandi</string>
     <string name="listen_together">Écouter ensemble</string>
     <string name="listen_together_server_url">URL du serveur</string>
@@ -656,9 +653,6 @@
     <string name="android_auto_target_playlist">Ajout rapide d\'une destination</string>
     <string name="android_auto_target_playlist_auto">Non défini</string>
     <string name="android_auto_target_playlist_not_set">Aucune playlist n\'est sélectionnée. Choisissez-en une dans les paramètres d\'Android Auto</string>
-    <string name="mini_player_background_style">Style d\'arrière-plan du mini-lecteur</string>
-    <string name="transparent">Transparent</string>
-    <string name="mini_player_background_not_available">Indisponible lorsque le nouveau design du mini-lecteur est désactivé</string>
     <string name="your_daily_discover">Votre découverte du jour</string>
     <string name="lyrics_from_provider">Paroles de %s</string>
     <string name="hide_status_bar_fullscreen">Masquer la barre d\'état en mode plein écran</string>

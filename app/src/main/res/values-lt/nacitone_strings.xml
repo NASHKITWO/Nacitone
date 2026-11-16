@@ -55,7 +55,6 @@
     <string name="seek_seconds_addup_description">Jei įjungta, prie kiekvieno praleidimo palaipsniui prideda po 5 sekundes</string>
     <string name="similar_content">Panašus turinys</string>
     <string name="player_background_style">Grotuvo fono išvaizda</string>
-    <string name="follow_theme">Pritaikyti prie temos</string>
     <string name="gradient">Gradientas</string>
     <string name="new_player_design">Nauja grotuvo išvaizda</string>
     <string name="new_mini_player_design">Nauja mini grotuvo išvaizda</string>
@@ -229,8 +228,6 @@
     <string name="widget_description">Muzikos grotuvo valdiklis su atkūrimo valdikliais</string>
     <string name="about_artist">Apie</string>
     <string name="show_more">Rodyti daugiau</string>
-    <string name="crop_album_art">Apkarpyti albumo viršelį</string>
-    <string name="crop_album_art_desc">Priverstinai nustatykite kvadratinį kraštinių santykį apkirpdami vaizdo įrašų miniatiūras</string>
     <string name="swipe_song_to_remove">Braukite dainą, kad ją pašalintumėte iš grojaraščio</string>
     <string name="lyrics_glow_effect">Įjungti švytinčių dainų tekstų efektą</string>
     <string name="lyrics_glow_effect_desc">Pridėkite šviečiančią animaciją ir atšokimo efektą prie aktyvių dainų tekstų</string>

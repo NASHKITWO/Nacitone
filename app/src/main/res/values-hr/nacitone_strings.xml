@@ -43,7 +43,6 @@
     </plurals>
     <string name="similar_content">Sličan sadržaj</string>
     <string name="player_background_style">Stil pozadine reproduktora</string>
-    <string name="follow_theme">Pratite temu</string>
     <string name="gradient">Gradijent</string>
     <string name="new_player_design">Ogavan izgled reproduktora</string>
     <string name="new_mini_player_design">Novi izgled minijaturnog reproduktora</string>
@@ -131,7 +130,6 @@
     <string name="download_in_progress_desc">Preuzimanje u tijeku</string>
     <string name="share_playlist_desc">Podijeli listu reproduciranja</string>
     <string name="delete_playlist_desc">Izbriši listu reproduciranja trajno</string>
-    <string name="crop_album_art">Izreži isječak slike albuma</string>
     <string name="primary_color_style">Zadana boja</string>
     <string name="tertiary_color_style">Boja akcenta</string>
     <string name="display_density">Gustoča ikona</string>

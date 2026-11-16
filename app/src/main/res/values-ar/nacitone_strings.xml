@@ -38,7 +38,6 @@
     <string name="player_background_style">نمط خلفية المشغل</string>
     <string name="gradient">ألوان متدرجة</string>
     <string name="player_background_blur">ضبابي</string>
-    <string name="follow_theme">اتباع السيم</string>
     <string name="player_buttons_style">ألوان أزرار المشغل</string>
     <string name="default_style">افتراضي</string>
     <string name="enable_swipe_thumbnail">تمكين التمرير لتغيير الأغنية</string>
@@ -291,8 +290,6 @@
     <string name="error_title">خطأ</string>
     <string name="error_eq_apply_failed">فشل تطبيق ملف تعريف المعادل الصوتي : EQ %1$s</string>
     <string name="error_playback_failed">فشل التشغيل</string>
-    <string name="crop_album_art">اقتصاص غلاف الألبوم</string>
-    <string name="crop_album_art_desc">فرض نسبة عرض إلى ارتفاع مربعة عن طريق اقتصاص صور معاينة الفيديو</string>
     <string name="keep_screen_on_when_player_is_expanded">إبقاء الشاشة مفتوحة عند توسيع مشغل الفيديو</string>
     <string name="listen_together">استمعوا معًا</string>
     <string name="listen_together_server_url">عنوان URL للخادم</string>
@@ -674,9 +671,6 @@
     <string name="alarm_battery_optimization_desc">قم بتعطيل تحسين البطارية للحصول على أداء تنيه يعمل بدقة أكبر في الخلفية</string>
     <string name="speed">سرعة التشغيل</string>
     <string name="varispeed">تفعيل خاصية تغيير السرعة</string>
-    <string name="mini_player_background_style">نمط خلفية المشغل المصغر</string>
-    <string name="transparent">شفاف</string>
-    <string name="mini_player_background_not_available">غير متاح عند تعطيل تصميم المشغل المصغر الجديد</string>
     <string name="enable_zemer">تفعيل زيمر</string>
     <string name="enable_zemer_desc">كلمات الأغاني للموسيقى اليهودية</string>
     <string name="add_to_playlist_position">اضف الى موضع قائمة التشغيل</string>

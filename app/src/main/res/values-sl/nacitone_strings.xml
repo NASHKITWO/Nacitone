@@ -44,7 +44,6 @@
     </plurals>
     <string name="similar_content">Podobna vsebina</string>
     <string name="player_background_style">Slog ozadja predvajalnika</string>
-    <string name="follow_theme">Sledi temi</string>
     <string name="gradient">Gradient</string>
     <string name="new_player_design">Nova oblika predvajalnika</string>
     <string name="player_background_blur">Zameglitev</string>
@@ -130,8 +129,6 @@
     <string name="share_playlist_desc">Deli ta seznam predvajanja z drugimi</string>
     <string name="delete_playlist_desc">Trajno odstrani ta seznam predvajanja</string>
     <string name="starting_radio">Zaganjanje radia</string>
-    <string name="crop_album_art">Obreži sliko albuma</string>
-    <string name="crop_album_art_desc">Vsili kvadratno razmerje stranic z obrezovanjem sličic videoposnetkov</string>
     <string name="primary_color_style">Primarna barva</string>
     <string name="tertiary_color_style">Terciarna barva</string>
     <string name="wavy">Valovit</string>

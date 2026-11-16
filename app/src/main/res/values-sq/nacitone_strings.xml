@@ -20,7 +20,6 @@
     <string name="lyrics">Tekste</string>
     <string name="close">Mbyll</string>
     <string name="hide_player_thumbnail">Fshih miniaturen e riprodhuesit</string>
-    <string name="follow_theme">Ndjek temën</string>
     <string name="default_style">Parazgjedhur</string>
     <string name="play_all">Luaj të gjitha</string>
     <string name="cd_back">Mbrapsht</string>
@@ -69,8 +68,6 @@
     <string name="background_color">Ngjyra e sfondit</string>
     <string name="starting_radio">Duke nisur radion…</string>
     <string name="hide_player_thumbnail_desc">Zëvendëso ilustrimin e albumit me logon e aplikacionit në riprodhuesin</string>
-    <string name="crop_album_art">Pri ilustrimin e albumit</string>
-    <string name="crop_album_art_desc">Detyro një raport aspekti katror duke prerë miniaturat e videos</string>
     <string name="already_in_playlist">Gjendet në listë:</string>
     <plurals name="n_time">
         <item quantity="one">%d herë</item>

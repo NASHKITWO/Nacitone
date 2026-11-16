@@ -19,7 +19,6 @@
         <item quantity="other">%d lần</item>
     </plurals>
     <string name="similar_content">Nội dung tương tự</string>
-    <string name="follow_theme">Dựa theo chủ đề</string>
     <string name="gradient">Độ phủ màu</string>
     <string name="player_background_blur">Làm mờ</string>
     <string name="enable_swipe_thumbnail">Bật lướt bìa để chuyển bài</string>
@@ -267,8 +266,6 @@
     <string name="crash_report_subject">Báo cáo sự cố Nacitone</string>
     <string name="crash_close">Đóng</string>
     <string name="crash_no_log">Không có nhật ký sự cố</string>
-    <string name="crop_album_art">Cắt ảnh bìa album</string>
-    <string name="crop_album_art_desc">Cắt ảnh thu nhỏ video về tỷ lệ vuông</string>
     <string name="skip_silence_desc">Tự động tua nhanh qua các đoạn không có nhạc trong bài hát</string>
     <string name="skip_silence_instant">Bỏ qua đoạn im lặng tức thì</string>
     <string name="skip_silence_instant_desc">Tua nhanh qua các đoạn im lặng thay vì tăng tốc độ phát</string>
@@ -493,8 +490,6 @@
     <string name="alarm_exact_permission_title">Cho phép báo động chính xác</string>
     <string name="alarm_battery_optimization_title">Tối ưu hóa pin</string>
     <string name="alarm_battery_optimization_desc">Tắt tính năng tối ưu hóa pin để báo thức hoạt động ổn định hơn khi chạy nền</string>
-    <string name="transparent">Trong suốt</string>
-    <string name="mini_player_background_not_available">Không khả dụng khi thiết kế trình phát thu nhỏ (mini-player) mới bị vô hiệu hóa</string>
     <string name="found_in_settings_content">Tìm ở Cài đặt &gt; Nội dung</string>
     <string name="your_daily_discover">Hôm nay nghe gì</string>
     <string name="casting_to">Đang phát tới %s</string>
@@ -596,7 +591,6 @@
     <string name="speed">Tốc độ phát</string>
     <string name="varispeed">Bật chế độ tốc độ phát</string>
     <string name="varispeed_description">Liên kết tốc độ phát lại với tốc độ phát, tạo ra hiệu ứng tăng tốc và giảm tốc giống như băng cassette</string>
-    <string name="mini_player_background_style">Kiểu nền của trình phát mini</string>
     <string name="lyrics_animation_style_title">Hoạt ảnh cho lời bài hát</string>
     <string name="plays">phát</string>
     <string name="failed_to_parse_proxy">Không thể phân tích URL proxy</string>

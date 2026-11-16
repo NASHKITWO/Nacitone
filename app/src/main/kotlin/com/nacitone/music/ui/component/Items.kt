@@ -105,7 +105,6 @@ import com.nacitone.music.LocalDownloadUtil
 import com.nacitone.music.LocalNavController
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
-import com.nacitone.music.constants.CropAlbumArtKey
 import com.nacitone.music.constants.GridItemSize
 import com.nacitone.music.constants.GridItemsSizeKey
 import com.nacitone.music.constants.GridThumbnailHeight
@@ -1474,7 +1473,6 @@ fun ItemThumbnail(
     isSelected: Boolean = false,
     thumbnailRatio: Float = 1f
 ) {
-    val cropAlbumArt by rememberPreference(CropAlbumArtKey, false)
     
     Box(
         contentAlignment = Alignment.Center,
@@ -1492,7 +1490,7 @@ fun ItemThumbnail(
                     .networkCachePolicy(coil3.request.CachePolicy.ENABLED)
                     .build(),
                 contentDescription = null,
-                contentScale = if (cropAlbumArt) ContentScale.Crop else ContentScale.Fit,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(shape)
@@ -1556,7 +1554,6 @@ fun LocalThumbnail(
     playButtonVisible: Boolean = false,
     thumbnailRatio: Float = 1f
 ) {
-    val cropAlbumArt by rememberPreference(CropAlbumArtKey, false)
     
     Box(
         contentAlignment = Alignment.Center,
@@ -1572,7 +1569,7 @@ fun LocalThumbnail(
                 .networkCachePolicy(coil3.request.CachePolicy.ENABLED)
                 .build(),
             contentDescription = null,
-            contentScale = if (cropAlbumArt) ContentScale.Crop else ContentScale.Fit,
+            contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
 
@@ -1662,7 +1659,6 @@ fun PlaylistThumbnail(
     shape: Shape,
     cacheKey: String? = null
 ) {
-    val cropAlbumArt by rememberPreference(CropAlbumArtKey, false)
     
     when (thumbnails.size) {
         0 -> Box(
@@ -1683,7 +1679,7 @@ fun PlaylistThumbnail(
                 .networkCachePolicy(coil3.request.CachePolicy.ENABLED)
                 .build(),
             contentDescription = null,
-            contentScale = if (cropAlbumArt) ContentScale.Crop else ContentScale.Fit,
+            contentScale = ContentScale.Crop,
             placeholder = painterResource(R.drawable.queue_music),
             error = painterResource(R.drawable.queue_music),
             modifier = Modifier
@@ -1710,7 +1706,7 @@ fun PlaylistThumbnail(
                         .networkCachePolicy(coil3.request.CachePolicy.ENABLED)
                         .build(),
                     contentDescription = null,
-                    contentScale = if (cropAlbumArt) ContentScale.Crop else ContentScale.Fit,
+                    contentScale = ContentScale.Crop,
                     placeholder = painterResource(R.drawable.queue_music),
                     error = painterResource(R.drawable.queue_music),
                     modifier = Modifier

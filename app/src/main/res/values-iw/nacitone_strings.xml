@@ -42,8 +42,6 @@
     <string name="now_playing">מתנגן כעת</string>
     <string name="hide_player_thumbnail">הסתר תמונה ממוזערת של הנגן</string>
     <string name="hide_player_thumbnail_desc">החלפת תמונת האלבום בסמל היישום בנגן</string>
-    <string name="crop_album_art">חיתוך תמונת האלבום</string>
-    <string name="crop_album_art_desc">כפיית יחס אורך-רוחב ריבועי ע\"י חיתוך צלמיות הוידאו</string>
     <string name="already_in_playlist">כבר נכללים ברשימת ההשמעה:</string>
     <plurals name="n_time">
         <item quantity="one">פעם אחת</item>
@@ -70,7 +68,6 @@
     <string name="similar_content">תוכן דומה</string>
     <string name="player_background_style">סגנון הרקע של הנגן</string>
     <string name="player_background_solid">מלא</string>
-    <string name="follow_theme">עפ\"י ערכת הנושא</string>
     <string name="gradient">הדרגה</string>
     <string name="new_player_design">עיצוב נגן חדש</string>
     <string name="new_mini_player_design">עיצוב נגן זעיר חדש</string>
@@ -494,8 +491,6 @@
     <string name="ai_lyrics_translated">מילים מתורגמות</string>
     <string name="ai_provider">ספק</string>
     <string name="alarm_disabled">מושבת</string>
-    <string name="transparent">שקוף</string>
-    <string name="mini_player_background_not_available">לא זמין כאשר מיני נגן חדש מושבת</string>
     <string name="wrapped_close">סגור עטיפה</string>
     <string name="import_profile">ייבוא פרופיל</string>
     <string name="your_daily_discover">הסקירה היומית שלך</string>

@@ -135,8 +135,6 @@ import com.nacitone.music.constants.LyricsTextSizeKey
 import com.nacitone.music.constants.OpenRouterApiKey
 import com.nacitone.music.constants.OpenRouterBaseUrlKey
 import com.nacitone.music.constants.OpenRouterModelKey
-import com.nacitone.music.constants.PlayerBackgroundStyle
-import com.nacitone.music.constants.PlayerBackgroundStyleKey
 import com.nacitone.music.constants.TranslateLanguageKey
 import com.nacitone.music.constants.TranslateModeKey
 import com.nacitone.music.db.entities.LyricsEntity.Companion.LYRICS_NOT_FOUND
@@ -209,7 +207,7 @@ fun OriginalLyrics(
     val romanizeLyricsList = rememberPreference(LyricsRomanizeList, "")
     val romanizeAsMain by rememberPreference(LyricsRomanizeAsMainKey, false)
     val romanizeCyrillicByLine by rememberPreference(LyricsRomanizeCyrillicByLineKey, false)
-    val lyricsGlowEffect by rememberPreference(LyricsGlowEffectKey, false)
+    val lyricsGlowEffect by rememberPreference(LyricsGlowEffectKey, true)
     val lyricsAnimationStyle by rememberEnumPreference(LyricsAnimationStyleKey, LyricsAnimationStyle.APPLE)
     val lyricsTextSize by rememberPreference(LyricsTextSizeKey, 24f)
     val lyricsLineSpacing by rememberPreference(LyricsLineSpacingKey, 1.3f)
@@ -231,10 +229,6 @@ fun OriginalLyrics(
     val currentSong by playerConnection.currentSong.collectAsStateWithLifecycle(initialValue = null)
     val lyrics = remember(lyricsEntity) { lyricsEntity?.lyrics?.trim() }
 
-    val playerBackground by rememberEnumPreference(
-        key = PlayerBackgroundStyleKey,
-        defaultValue = PlayerBackgroundStyle.DEFAULT,
-    )
 
     val decodedList =
         if (romanizeLyricsList.value.isEmpty()) {
@@ -412,16 +406,7 @@ fun OriginalLyrics(
 
     // Use Material 3 expressive accents and keep glow/text colors unified
     val expressiveAccent =
-        when (playerBackground) {
-            PlayerBackgroundStyle.DEFAULT -> {
-                MaterialTheme.colorScheme.primary
-            }
-
-            PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> {
-                // For blur/gradient backgrounds, always use light colors regardless of theme
-                Color.White
-            }
-        }
+        Color.White
 
     var currentLineIndex by remember {
         mutableIntStateOf(-1)

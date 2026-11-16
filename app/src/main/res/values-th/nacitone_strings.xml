@@ -55,8 +55,6 @@
     <string name="close">ปิด</string>
     <string name="hide_player_thumbnail">ซ่อนภาพตัวอย่างในเครื่องเล่น</string>
     <string name="hide_player_thumbnail_desc">แทนที่ภาพปกอัลบั้มด้วยโลโก้แอปในเครื่องเล่น</string>
-    <string name="crop_album_art">ครอบภาพปกอัลบั้ม</string>
-    <string name="crop_album_art_desc">บังคับให้เป็นอัตราส่วนสี่เหลี่ยมจัตุรัสโดยครอบตัดภาพตัวอย่างวิดีโอ</string>
     <string name="already_in_playlist">มีอยู่ในเพลย์ลิสต์แล้ว:</string>
     <plurals name="n_time">
         <item quantity="other">%d ครั้ง</item>
@@ -67,7 +65,6 @@
     <string name="seek_seconds_addup">เพิ่มเวลาข้ามแบบต่อเนื่อง</string>
     <string name="similar_content">เนื้อหาที่คล้ายกัน</string>
     <string name="player_background_style">รูปแบบพื้นหลังเครื่องเล่น</string>
-    <string name="follow_theme">ตามธีมระบบ</string>
     <string name="gradient">ไล่ระดับสี</string>
     <string name="new_player_design">ดีไซน์เครื่องเล่นใหม่</string>
     <string name="new_mini_player_design">ดีไซน์มินิเพลเยอร์ใหม่</string>
@@ -643,9 +640,6 @@
     <string name="speed">ความเร็วในการเล่น</string>
     <string name="varispeed">เปิดใช้งาน Varispeed</string>
     <string name="varispeed_description">เชื่อมระดับเสียง (Pitch) กับความเร็วในการเล่น ทำให้เกิดเอฟเฟกต์เร่งหรือชะลอความเร็วแบบเทป</string>
-    <string name="mini_player_background_style">รูปแบบพื้นหลังมินิเพลเยอร์</string>
-    <string name="transparent">โปร่งใส</string>
-    <string name="mini_player_background_not_available">ไม่สามารถใช้งานได้เมื่อปิดดีไซน์มินิเพลเยอร์แบบใหม่</string>
     <string name="lyrics_animation_style_title">รูปแบบแอนิเมชันแบบคำต่อคำ</string>
     <string name="system_equalizer_desc">เปิดอีควอไลเซอร์ของระบบ Android</string>
     <string name="eq_wizard">ตัวช่วยตั้งค่า AutoEQ</string>

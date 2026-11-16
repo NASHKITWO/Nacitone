@@ -59,7 +59,6 @@
     <string name="lyrics">লিরিক্স</string>
     <string name="close">বন্ধ করুন</string>
     <string name="already_in_playlist">ইতিমধ্যে প্লেলিস্টে আছে:</string>
-    <string name="follow_theme">থিম অনুসরণ করুন</string>
     <string name="gradient">গ্রেডিয়েন্ট</string>
     <string name="new_player_design">নতুন প্লেয়ার ডিজাইন</string>
     <string name="new_mini_player_design">নতুন মিনি-প্লেয়ার ডিজাইন</string>
@@ -514,8 +513,6 @@
     </plurals>
     <string name="hide_player_thumbnail">প্লেয়ার থাম্বনেইল লুকান</string>
     <string name="hide_player_thumbnail_desc">প্লেয়ারে অ্যালবামের আর্টওয়ার্কটি অ্যাপের লোগো দিয়ে প্রতিস্থাপন করুন</string>
-    <string name="crop_album_art">অ্যালবাম আর্ট ক্রপ করুন</string>
-    <string name="crop_album_art_desc">ভিডিও থাম্বনেইল ক্রপ করে একটি বর্গাকার অ্যাস্পেক্ট রেশিও তৈরি করুন</string>
     <string name="seek_seconds_addup">প্রগ্রেসিভ সিক</string>
     <string name="seek_seconds_addup_description">সক্রিয় করা হলে, প্রতিটি সিক-এর সাথে পর্যায়ক্রমে অতিরিক্ত ৫ সেকেন্ড যোগ হয়</string>
     <string name="similar_content">অনুরূপ কন্টেন্ট</string>
@@ -583,9 +580,6 @@
     <string name="scrobble_delay_minutes">Scrobble বিলম্ব (মিনিট)</string>
     <string name="equalizer_desc">অডিও equalizer খুলুন</string>
     <string name="mini_player">মিনি-প্লেয়ার</string>
-    <string name="mini_player_background_style">মিনি-প্লেয়ার ব্যাকগ্রাউন্ড স্টাইল</string>
-    <string name="transparent">স্বচ্ছ</string>
-    <string name="mini_player_background_not_available">নতুন মিনি-প্লেয়ার ডিজাইন নিষ্ক্রিয় করা থাকলে অনুপলব্ধ</string>
     <string name="cache_size_warning_title">একটু দাঁড়ান!</string>
     <string name="cache_size_warning_message">আপনার নির্বাচিত সীমা (%1$s) অ্যাপটি বর্তমানে যা ব্যবহার করছে তার চেয়ে কম। চালিয়ে গেলে কিছু ক্যাশ করা %2$s মুছে যেতে পারে। তবুও কি এগিয়ে যাবেন?</string>
     <string name="cache_size_warning_confirm">এগিয়ে যান</string>

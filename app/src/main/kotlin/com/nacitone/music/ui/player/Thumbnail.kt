@@ -73,10 +73,7 @@ import coil3.request.ImageRequest
 import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
-import com.nacitone.music.constants.CropAlbumArtKey
 import com.nacitone.music.constants.HidePlayerThumbnailKey
-import com.nacitone.music.constants.PlayerBackgroundStyle
-import com.nacitone.music.constants.PlayerBackgroundStyleKey
 import com.nacitone.music.constants.PlayerHorizontalPadding
 import com.nacitone.music.constants.SeekExtraSeconds
 import com.nacitone.music.constants.SwipeThumbnailKey
@@ -180,19 +177,6 @@ private fun getMediaItems(
     return MediaItemsData(items, currentMediaIndex)
 }
 
-/**
- * Get text color based on player background style.
- * Computed once per background style change.
- */
-@Stable
-@Composable
-private fun getTextColor(playerBackground: PlayerBackgroundStyle): Color {
-    return when (playerBackground) {
-        PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.onBackground
-        PlayerBackgroundStyle.BLUR -> Color.White
-        PlayerBackgroundStyle.GRADIENT -> Color.White
-    }
-}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -219,14 +203,9 @@ fun Thumbnail(
     val swipeThumbnailPref by rememberPreference(SwipeThumbnailKey, true)
     val swipeThumbnail = swipeThumbnailPref && !isListenTogetherGuest
     val hidePlayerThumbnail by rememberPreference(HidePlayerThumbnailKey, false)
-    val cropAlbumArt by rememberPreference(CropAlbumArtKey, false)
-    val playerBackground by rememberEnumPreference(
-        key = PlayerBackgroundStyleKey,
-        defaultValue = PlayerBackgroundStyle.DEFAULT
-    )
     
     // Pre-calculate text color based on background style
-    val textBackgroundColor = getTextColor(playerBackground)
+    val textBackgroundColor = Color.White
     
     // Grid state
     val thumbnailLazyGridState = rememberLazyGridState()
@@ -394,7 +373,6 @@ fun Thumbnail(
                                 item = item,
                                 dimensions = dimensions,
                                 hidePlayerThumbnail = hidePlayerThumbnail,
-                                cropAlbumArt = cropAlbumArt,
                                 textBackgroundColor = textBackgroundColor,
                                 layoutDirection = layoutDirection,
                                 onSeek = onSeekCallback,
@@ -491,7 +469,6 @@ private fun ThumbnailItem(
     item: MediaItem,
     dimensions: ThumbnailDimensions,
     hidePlayerThumbnail: Boolean,
-    cropAlbumArt: Boolean,
     textBackgroundColor: Color,
     layoutDirection: LayoutDirection,
     onSeek: (String, Boolean) -> Unit,
@@ -572,7 +549,6 @@ private fun ThumbnailItem(
 
                 ThumbnailImage(
                     artworkUri = artworkUriToUse,
-                    cropArtwork = cropAlbumArt
                 )
             }
             
@@ -616,7 +592,6 @@ private fun HiddenThumbnailPlaceholder(
 @Composable
 private fun ThumbnailImage(
     artworkUri: String?,
-    cropArtwork: Boolean,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -636,7 +611,7 @@ private fun ThumbnailImage(
                 .networkCachePolicy(CachePolicy.ENABLED)
                 .build(),
             contentDescription = null,
-            contentScale = if (cropArtwork) ContentScale.Crop else ContentScale.Fit,
+            contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
     }

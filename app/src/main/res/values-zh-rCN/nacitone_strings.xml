@@ -37,7 +37,6 @@
     </plurals>
     <string name="similar_content">相似内容</string>
     <string name="player_background_style">播放器背景样式</string>
-    <string name="follow_theme">遵循主题</string>
     <string name="gradient">渐变</string>
     <string name="player_background_blur">模糊</string>
     <string name="player_buttons_style">播放器按钮颜色</string>
@@ -276,8 +275,6 @@
     <string name="error_playback_failed">播放失败</string>
     <string name="error_eq_apply_failed">无法应用均衡器配置文件：%1$s</string>
     <string name="error_title">错误</string>
-    <string name="crop_album_art">裁剪专辑封面</string>
-    <string name="crop_album_art_desc">通过裁剪视频缩略图强制使用正方形宽高比</string>
     <string name="keep_screen_on_when_player_is_expanded">当播放页面最大化时保持屏幕打开</string>
     <string name="listen_together">一起听</string>
     <string name="listen_together_server_url">服务器网址</string>
@@ -644,9 +641,6 @@
     <string name="ai_system_prompt">系统提示</string>
     <string name="ai_system_prompt_default">默认</string>
     <string name="ai_system_prompt_reset">重置为默认</string>
-    <string name="mini_player_background_style">迷你播放器背景样式</string>
-    <string name="transparent">透明</string>
-    <string name="mini_player_background_not_available">当新迷你播放器设计被禁用时不可用</string>
     <string name="your_daily_discover">您的每日发现</string>
     <string name="lyrics_animation_none">无</string>
     <string name="lyrics_from_provider">来自 %s 的歌词</string>

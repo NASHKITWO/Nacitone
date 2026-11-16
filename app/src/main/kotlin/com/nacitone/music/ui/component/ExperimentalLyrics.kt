@@ -102,8 +102,6 @@ import com.nacitone.music.constants.OpenRouterBaseUrlKey
 import com.nacitone.music.constants.OpenRouterDefaultBaseUrl
 import com.nacitone.music.constants.OpenRouterDefaultModel
 import com.nacitone.music.constants.OpenRouterModelKey
-import com.nacitone.music.constants.PlayerBackgroundStyle
-import com.nacitone.music.constants.PlayerBackgroundStyleKey
 import com.nacitone.music.constants.RespectAgentPositioningKey
 import com.nacitone.music.constants.ShowIntervalIndicatorKey
 import com.nacitone.music.constants.TranslateLanguageKey
@@ -203,10 +201,6 @@ fun ExperimentalLyrics(
     val currentSong by playerConnection.currentSong.collectAsStateWithLifecycle(initialValue = null)
     val lyrics = remember(lyricsEntity) { lyricsEntity?.lyrics?.trim() }
 
-    val playerBackground by rememberEnumPreference(
-        key = PlayerBackgroundStyleKey,
-        defaultValue = PlayerBackgroundStyle.DEFAULT
-    )
 
     val enabledLanguages = remember(romanizeLyricsList.value) {
         if (romanizeLyricsList.value.isEmpty()) {
@@ -295,10 +289,7 @@ fun ExperimentalLyrics(
         }
     }
 
-    val expressiveAccent = when (playerBackground) {
-        PlayerBackgroundStyle.DEFAULT -> MaterialTheme.colorScheme.primary
-        PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> Color.White
-    }
+    val expressiveAccent = Color.White
 
     var activeLineIndices by remember { mutableStateOf(emptySet<Int>()) }
     var scrollTargetIndex by rememberSaveable { mutableIntStateOf(-1) }

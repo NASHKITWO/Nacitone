@@ -8,7 +8,6 @@
     <string name="sort_by_last_updated">Data zaktualizowania</string>
     <string name="already_in_playlist">Już na playliście:</string>
     <string name="player_background_style">Styl tła odtwarzacza</string>
-    <string name="follow_theme">Zgodnie z motywem</string>
     <string name="gradient">Gradient</string>
     <string name="proxy">Proxy</string>
     <string name="default_lib_chips">Zmień domyślny chip biblioteki</string>
@@ -263,8 +262,6 @@
     <string name="show_artist_description">Więcej o artyście</string>
     <string name="show_artist_subscriber_count">Pokaż liczbę obserwujących</string>
     <string name="show_artist_monthly_listeners">Miesięczna liczba słuchaczy</string>
-    <string name="crop_album_art">Przytnij okładkę albumu</string>
-    <string name="crop_album_art_desc">Wymuś kwadratowe miniatury wideo</string>
     <string name="skip_silence_desc">Pomijaj ciszę w utworach</string>
     <string name="skip_silence_instant">Natychmiast pomijaj ciszę</string>
     <string name="like">Polub</string>
@@ -637,9 +634,6 @@
     <string name="alarm_exact_permission_desc">Zgoda na precyzyjne alarmy poprawia niezawodność gdy aplikacja działa w tle</string>
     <string name="alarm_battery_optimization_title">Optymalizacja baterii</string>
     <string name="alarm_battery_optimization_desc">Wyłącz optymalizację baterii dla lepszej niezawodności w tle</string>
-    <string name="mini_player_background_style">Styl tła miniodtwarzacza</string>
-    <string name="transparent">Przezroczystość</string>
-    <string name="mini_player_background_not_available">Niedostępne gdy nowy miniodtwarzacz jest wyłączony</string>
     <string name="your_daily_discover">Twoje Codzienne Odkrycia</string>
     <string name="ai_system_prompt">Komunikat systemowy</string>
     <string name="ai_system_prompt_default">Domyślne</string>

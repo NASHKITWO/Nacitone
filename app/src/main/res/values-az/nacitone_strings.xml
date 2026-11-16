@@ -61,9 +61,7 @@
     <string name="download_in_progress_desc">Yükləmək dəvam edir</string>
     <string name="share_playlist_desc">Bu playlisti başqalarıyla paylaş</string>
     <string name="delete_playlist_desc">Bu playlisti həmişəlik sil</string>
-    <string name="crop_album_art">Albom şəklini kəs</string>
     <string name="player_background_style">Albom şəklini pleyerdə tətbiq loqosu ilə əvəz edin</string>
-    <string name="follow_theme">Temanı izlə</string>
     <string name="gradient">Qradient</string>
     <string name="new_player_design">Təzə pleyer dizaynı</string>
     <string name="new_mini_player_design">Təzə mini pleyer dizaynı</string>
@@ -109,7 +107,6 @@
     <string name="artist_page_settings">Sənətçinin səhifəsi</string>
     <string name="and">və</string>
     <string name="show_artist_description">Göstər sənətçinin təsviri</string>
-    <string name="crop_album_art_desc">Video örtükü kəsərək kvadrat aspekt nisbətini məcburi edin</string>
     <string name="player_background_solid">Bütöv</string>
     <string name="lyrics_from_provider">Sözləri %s</string>
     <string name="mixes">Qarışıqlar</string>
@@ -346,9 +343,6 @@
     <string name="advanced_desc">Mahnının tempini və tonallığını tənzimləyin</string>
     <string name="equalizer_desc">Audio ekvalayzeri açın</string>
     <string name="mini_player">Mini pleyer</string>
-    <string name="mini_player_background_style">Mini-pleyerin fon üslubu</string>
-    <string name="transparent">Şəffaf</string>
-    <string name="mini_player_background_not_available">Yeni mini-pleyer dizaynı deaktiv edildikdə əlçatan deyil</string>
     <string name="cache_size_warning_title">Bir dəqiqə!</string>
     <string name="cache_size_warning_message">Seçdiyiniz limit (%1$s) tətbiqin hazırda istifadə etdiyi həcmdən azdır. Davam etmək bəzi keşlənmiş %2$s məlumatlarının silinməsinə səbəb ola bilər. Yenə də davam edilsin?</string>
     <string name="cache_size_warning_confirm">Davam edin</string>

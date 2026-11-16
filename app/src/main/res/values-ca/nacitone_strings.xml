@@ -52,7 +52,6 @@
     <string name="seek_seconds_addup_description">Quand està activat, afegeix 5 segons extra per cada cerca</string>
     <string name="similar_content">Contingut similar</string>
     <string name="player_background_style">Estil de fons del reproductor</string>
-    <string name="follow_theme">Segueix el tema</string>
     <string name="gradient">Gradient</string>
     <string name="new_player_design">Disseny nou del reproductor</string>
     <string name="new_mini_player_design">Disseny nou del mini reproductor</string>
@@ -272,7 +271,6 @@
     <string name="show_artist_description">Mostra la descripció de l\'artista</string>
     <string name="show_artist_subscriber_count">Mostra el nombre de subscriptors</string>
     <string name="show_artist_monthly_listeners">Mostra els oients mensuals</string>
-    <string name="crop_album_art">Retalla la coberta de l\'àlbum</string>
     <string name="tap_to_open">Toca per obrir el Nacitone</string>
     <string name="remember_shuffle_and_repeat">Recorda l\'aleatori i la repetició</string>
     <string name="pause_music_when_media_is_muted">Pausa la música en silenciar la multimèdia</string>
@@ -282,7 +280,6 @@
     <string name="turntable_widget_description">Dispositiu musical circular amb controls de reproducció i m\'agrada</string>
     <string name="remember_shuffle_and_repeat_desc">Recorda l\'aleatori i la repetició en reiniciar l\'aplicació</string>
     <string name="persistent_shuffle_desc">Mantén l\'aleatori activat en començar noves cançons o llistes</string>
-    <string name="crop_album_art_desc">Retalla les miniatures dels vídeos per forçar una relació d\'aspecte quadrada</string>
     <string name="skip_silence_instant_desc">Omet les parts silencioses de les cançons en comptes d\'avançar-les ràpidament</string>
     <string name="keep_screen_on_when_player_is_expanded">Amb reproductor expandit, mantén la pantalla encesa</string>
     <string name="listen_together">Escoltar Junts</string>

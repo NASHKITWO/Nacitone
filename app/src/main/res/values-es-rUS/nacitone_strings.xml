@@ -70,7 +70,6 @@
     <string name="already_in_playlist">Ya está en la lista de reproducción:</string>
     <string name="similar_content">Contenido similar</string>
     <string name="player_background_style">Estilo del reproductor de fondo</string>
-    <string name="follow_theme">Seguir tema</string>
     <string name="gradient">Gradiente</string>
     <string name="player_background_blur">Desenfoque</string>
     <string name="player_buttons_style">Colores de los botones del reproductor</string>
@@ -280,8 +279,6 @@
     <string name="turntable_widget_description">Widget de música circular con controles de reproducción y me gusta</string>
     <string name="progress_percent">Progreso %s%%</string>
     <string name="error_playback_failed">Falló la reproducción</string>
-    <string name="crop_album_art">Recortar la portada del álbum</string>
-    <string name="crop_album_art_desc">Recortar las miniaturas de los videos para forzar una relación de aspecto cuadrada</string>
     <string name="error_title">Error</string>
     <string name="error_eq_apply_failed">No se pudo aplicar el perfil de ecualización: %1$s</string>
     <string name="keep_screen_on_when_player_is_expanded">Mantener la pantalla encendida cuando el reproductor esté expandido</string>
@@ -582,9 +579,6 @@
     <string name="speed">Velocidad de la reproducción</string>
     <string name="varispeed">Habilitar Varispeed</string>
     <string name="varispeed_description">Sincronizar el tono con la velocidad de reproducción para lograr efectos tipo cinta (más agudo al acelerar y más grave al ralentizar)</string>
-    <string name="mini_player_background_style">Estilo de fondo del mini reproductor</string>
-    <string name="transparent">Transparente</string>
-    <string name="mini_player_background_not_available">No disponible cuando el diseño nuevo del mini reproductor esta deshabilitado</string>
     <string name="lyrics_animation_style_title">Estilo de animación letra por letra</string>
     <string name="system_equalizer_desc">Abrir el ecualizador por defecto de Android</string>
     <string name="eq_wizard">Asistente de AutoEQ</string>

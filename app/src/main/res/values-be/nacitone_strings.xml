@@ -61,8 +61,6 @@
     <string name="starting_radio">Запускаем радыё…</string>
     <string name="hide_player_thumbnail">Схаваць мініяцюры плэера</string>
     <string name="hide_player_thumbnail_desc">Заменіць вокладку альбома ў плэере на лагатып прыкладання</string>
-    <string name="crop_album_art">Абрэзаць вокладку альбома</string>
-    <string name="crop_album_art_desc">Прымусова выкарыстоўваць квадратнае суадносіны старон, абржзая мініяцюры відэа</string>
     <string name="already_in_playlist">Ужо ў плэйлісце:</string>
     <plurals name="n_time">
         <item quantity="one">%d раз</item>
@@ -77,7 +75,6 @@
     <string name="similar_content">Падобны кантэнт</string>
     <string name="player_background_style">Стыль фону плэера</string>
     <string name="player_background_solid">Суцэльны</string>
-    <string name="follow_theme">Прытрымлівацца тэме</string>
     <string name="gradient">Градыент</string>
     <string name="new_player_design">Новы дызайн плэера</string>
     <string name="new_mini_player_design">Новы дызайн мімі-плэера</string>

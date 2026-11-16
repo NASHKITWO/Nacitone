@@ -22,7 +22,6 @@
     </plurals>
     <string name="similar_content">相似內容</string>
     <string name="player_background_style">播放器背景樣式</string>
-    <string name="follow_theme">跟隨主題</string>
     <string name="gradient">漸層</string>
     <string name="player_background_blur">模糊</string>
     <string name="player_buttons_style">播放器按鈕顏色</string>
@@ -215,8 +214,6 @@
     <string name="persistent_shuffle_desc">在開始播放新歌曲或播放清單時，仍維持隨機播放狀態</string>
     <string name="persistent_shuffle_title">固定隨機播放</string>
     <string name="enable">啟用</string>
-    <string name="crop_album_art">裁切專輯封面</string>
-    <string name="crop_album_art_desc">透過裁切影片縮圖強制使用正方形寬高比</string>
     <string name="player_background_solid">純色</string>
     <string name="display_density">顯示密度</string>
     <string name="enable_lrclib_desc">社群驅動的同步歌詞資料庫</string>
@@ -588,9 +585,6 @@
     <string name="alarm_exact_permission_desc">授予設定精確鬧鐘時間的權限，提升應用程式在背景執行的穩定性</string>
     <string name="alarm_battery_optimization_title">電池優化</string>
     <string name="alarm_battery_optimization_desc">停用電池優化功能，以提高鬧鐘在背景執行的穩定性</string>
-    <string name="mini_player_background_style">迷你播放器背景樣式</string>
-    <string name="transparent">透明的</string>
-    <string name="mini_player_background_not_available">停用新迷你播放器後，此功能無法使用</string>
     <string name="your_daily_discover">你的每天新發現</string>
     <string name="together">一起聆聽</string>
     <string name="listen_together_sync_volume">同步主持人音量</string>

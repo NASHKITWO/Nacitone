@@ -37,7 +37,6 @@
     </plurals>
     <string name="similar_content">Подобно съдържание</string>
     <string name="player_background_style">Настройки на фона на плеъра</string>
-    <string name="follow_theme">Следвай темата</string>
     <string name="gradient">Градиент</string>
     <string name="player_background_blur">Замъглено</string>
     <string name="player_buttons_style">Цветове на бутоните на плеъра</string>
@@ -182,8 +181,6 @@
     <string name="show_artist_description">Покажи описание на изпълнителя</string>
     <string name="show_artist_subscriber_count">Показване на броя на абонатите</string>
     <string name="show_artist_monthly_listeners">Показване на месечните слушатели</string>
-    <string name="crop_album_art">Изрязване на обложката на албума</string>
-    <string name="crop_album_art_desc">Принудително квадратно съотношение на страните чрез изрязване на миниатюрите на видеоклиповете</string>
     <string name="display_density">Плътност на интерфейса</string>
     <string name="wavy">Вълнообразен</string>
     <string name="lyrics_glow_effect">Активиране на ефекта на светещ текст на песента</string>
@@ -320,9 +317,6 @@
     <string name="add_to_queue_desc">Добави в края на опашката</string>
     <string name="add_to_playlist_desc">Добави в плейлист</string>
     <string name="mini_player">Мини-плейър</string>
-    <string name="mini_player_background_style">Стила на фона на мини-плейъра</string>
-    <string name="transparent">Прозрачен</string>
-    <string name="mini_player_background_not_available">Не работи когато новият дизайн ма мини-плейърът е изключен</string>
     <string name="cache_size_warning_title">Внимание!</string>
     <string name="cache_size_warning_message">Лимитът, който сте избрали (%1$s), е по-малък от използвания в момента от приложението. Продължаването може да доведе до премахването на някои кеширани %2$s. Продължаване?</string>
     <string name="cache_size_warning_confirm">Продължаване</string>

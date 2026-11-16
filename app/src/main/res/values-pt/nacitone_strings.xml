@@ -43,7 +43,6 @@
     </plurals>
     <string name="similar_content">Conteúdo similar</string>
     <string name="player_background_style">Estilo do fundo do reprodutor</string>
-    <string name="follow_theme">Seguir o tema</string>
     <string name="gradient">Gradiente</string>
     <string name="new_player_design">Novo desenho do reprodutor</string>
     <string name="new_mini_player_design">Novo design do Reprodutor Minimizado</string>
@@ -261,8 +260,6 @@
     <string name="show_artist_description">Mostrar descrição do artista</string>
     <string name="show_artist_subscriber_count">Mostrar contador de subscritores</string>
     <string name="show_artist_monthly_listeners">Mostrar ouvintes mensais</string>
-    <string name="crop_album_art">Cortar capa do álbum</string>
-    <string name="crop_album_art_desc">Forçar uma proporção quadrada cortando as miniaturas de vídeos</string>
     <string name="skip_silence_instant">Saltar instantâneamente silêncio</string>
     <string name="persistent_shuffle_title">Modo aleatório persistente</string>
     <string name="persistent_shuffle_desc">Manter o modo aleatório ligado quando começarem novas músicas ou listas de reprodução</string>
@@ -411,14 +408,12 @@
     <string name="and">e</string>
     <string name="lyrics_romanize_as_main">Sempre mostrar letras com caracteres Latins</string>
     <string name="hide_youtube_shorts">Esconder YouTube Shorts</string>
-    <string name="transparent">Transparente</string>
     <string name="lyrics_animation_style_title">Estilo de animação palavra-por-palavra</string>
     <string name="system_equalizer_desc">Abrir equalizador embutido do Android</string>
     <string name="eq_wizard">Programa de ajuste de equalizador (AutoEQ)</string>
     <string name="playlist_unavailable">Lista de Reprodução indisponível</string>
     <string name="kmp_upgrade_later">Agora não</string>
     <string name="audio_track_playback_params">Usar processamento de áudio via hardware</string>
-    <string name="mini_player_background_not_available">Indisponível quando o novo mini-reprodutor está desativado</string>
     <string name="eq_download_db">Transferir base de dados do AutoEQ (17 MB)</string>
     <string name="eq_downloading">A transferir…</string>
     <string name="import_from_file">Importar pelo ficheiro</string>
@@ -504,7 +499,6 @@
     <string name="varispeed">Habilitar velocidade variável</string>
     <string name="varispeed_description">Junta o Tom e velocidade de reprodução, do que resulta num efeito parecido com o Fast forward de um leitor VHS</string>
     <string name="audio_track_playback_params_description">Usar o Android AudioTrack para mudanças de tom/velocidade em vez de processamento de software. Mais sólido para toms agudos mais extremos</string>
-    <string name="mini_player_background_style">Estilo de fundo de reprodutor minimizado</string>
     <string name="plays">Vezes tocadas</string>
     <string name="enable_zemer">Habilitar Zemer</string>
     <string name="found_in_settings_content">Pode ser encontrado em Definições &gt; Conteúdo</string>

@@ -54,7 +54,6 @@
     <string name="delete_playlist_desc">tangalin itong playlist habang buhay</string>
     <string name="lyrics">liriko</string>
     <string name="close">isara</string>
-    <string name="crop_album_art">icrop ang album art</string>
     <string name="mixes">Halo</string>
     <string name="parsed_from_link">Kinuha mula sa link</string>
     <string name="weekly_most_playlist_name">Lingguhang Pinaka</string>
@@ -62,7 +61,6 @@
     <string name="and">at</string>
     <string name="enable">Paganahin</string>
     <string name="about_artist">Artista</string>
-    <string name="crop_album_art_desc">Pilitin ang parisukat na aspeto sa pamamagitan ng pag-crop ng mga thumbnail ng video</string>
     <plurals name="n_time">
         <item quantity="one">%d oras</item>
         <item quantity="other">%d oras</item>
@@ -74,7 +72,6 @@
     <string name="similar_content">Kaparehas na nilalaman</string>
     <string name="player_background_style">Estilo ng background ng player</string>
     <string name="player_background_solid">Matatag</string>
-    <string name="follow_theme">Sundan ang theme</string>
     <string name="gradient">Gradient</string>
     <string name="new_player_design">Bagong design ng player</string>
     <string name="new_mini_player_design">Bagong design ng mini-player</string>

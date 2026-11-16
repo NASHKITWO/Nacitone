@@ -43,7 +43,6 @@
     <string name="link_copied">Ligazón copiada no portapapeis</string>
     <string name="starting_radio">Comezando radio…</string>
     <string name="hide_player_thumbnail_desc">Substituír a portada do álbum co logotipo da aplicación no reprodutor</string>
-    <string name="crop_album_art">Cortar portada do álbum</string>
     <string name="my_top">As miñas favoritas</string>
     <string name="uploaded_playlist">Subidas</string>
     <string name="filter_uploaded">Subidas</string>
@@ -69,7 +68,6 @@
     <string name="similar_content">Contido semellante</string>
     <string name="player_background_style">Estilo do fondo do reprodutor</string>
     <string name="player_background_solid">Sólido</string>
-    <string name="follow_theme">Seguir tema</string>
     <string name="gradient">Gradación</string>
     <string name="new_player_design">Novo deseño do reprodutor</string>
     <string name="new_mini_player_design">Novo deseño do minirreprodutor</string>
@@ -205,9 +203,6 @@
     <string name="advanced_desc">Axustar o tempo e o ton desta canción</string>
     <string name="equalizer_desc">Abrir o ecualizador de audio</string>
     <string name="mini_player">Minirreprodutor</string>
-    <string name="mini_player_background_style">Estilo do fondo do minirreprodutor</string>
-    <string name="transparent">Transparente</string>
-    <string name="mini_player_background_not_available">Non dispoñible cando o novo deseño do minirreprodutor está desactivado</string>
     <string name="cache_size_warning_title">Agarde!</string>
     <string name="cache_size_warning_message">O límite que escolliches (%1$s) é menor que o que está a usar actualmente a aplicación. Se continúas pode que se eliminen %2$s almacenados na caché. Queres continuar igualmente?</string>
     <string name="cache_size_warning_confirm">Continuar</string>
@@ -637,7 +632,6 @@
     <string name="show_interval_indicator">Amosar indicador de intervalo</string>
     <string name="lyrics_glow_effect">Activar efecto de letras brillantes</string>
     <string name="lyrics_line_spacing">Espazo entre liñas das letras</string>
-    <string name="crop_album_art_desc">Forzar unha relación de aspecto cadrada cortando as miniaturas de vídeo</string>
     <string name="already_in_playlist">Xa está na lista de reprodución:</string>
     <string name="seek_forward_dynamic">+%1$d segundos cara diante</string>
     <string name="seek_backward_dynamic">-%1$d segundos cara atrás</string>

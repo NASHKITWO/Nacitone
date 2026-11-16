@@ -60,8 +60,6 @@
     <string name="close">Maak toe</string>
     <string name="hide_player_thumbnail">Steek speler-kleinkiekie weg</string>
     <string name="hide_player_thumbnail_desc">Vervang die albumkuns in die speler met die toep se logo</string>
-    <string name="crop_album_art">Sny albumkuns by</string>
-    <string name="crop_album_art_desc">Forseer \'n vierkantige aspekverhouding deur video-kleinkiekies by te sny</string>
     <string name="already_in_playlist">Reeds in snitlys:</string>
     <plurals name="n_time">
         <item quantity="one">%d keer</item>
@@ -74,7 +72,6 @@
     <string name="similar_content">Soortgelyke inhoud</string>
     <string name="player_background_style">Speler-agtergrondstyl</string>
     <string name="player_background_solid">Solied</string>
-    <string name="follow_theme">Volg tema</string>
     <string name="gradient">Gradiënt</string>
     <string name="new_player_design">Nuwe spelerontwerp</string>
     <string name="new_mini_player_design">Nuwe minispeler-ontwerp</string>
@@ -394,9 +391,6 @@
     <string name="advanced_desc">Verstel die liedjie se tempo en toonhoogte</string>
     <string name="equalizer_desc">Maak die oudio-ekwailiseerder oop</string>
     <string name="mini_player">Minispeler</string>
-    <string name="mini_player_background_style">Minispeler-agtergrondstyl</string>
-    <string name="transparent">Deursigtig</string>
-    <string name="mini_player_background_not_available">Onbeskikbaar wanneer die nuwe minispeler-ontwerp gedeaktiveer is</string>
     <string name="cache_size_warning_title">Wag \'n bietjie!</string>
     <string name="cache_size_warning_message">Die limiet wat jy gekies het (%1$s) is kleiner as wat die toep tans gebruik. As jy voortgaan, kan dit veroorsaak dat sommige gekaste %2$s verwyder word. Gaan in elk geval voort?</string>
     <string name="cache_size_warning_confirm">Gaan voort</string>

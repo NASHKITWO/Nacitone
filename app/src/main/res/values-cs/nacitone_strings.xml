@@ -35,7 +35,6 @@
         <item quantity="other">%dkrát</item>
     </plurals>
     <string name="similar_content">Podobný obsah</string>
-    <string name="follow_theme">Podle motivu</string>
     <string name="gradient">Barevný přechod</string>
     <string name="player_background_blur">Rozostřený obal</string>
     <string name="player_buttons_style">Barvy tlačítek přehrávače</string>
@@ -285,8 +284,6 @@
     <string name="error_playback_failed">Přehrávání selhalo</string>
     <string name="error_title">Chyba</string>
     <string name="error_eq_apply_failed">Nepodařilo se použít profil ekvalizéru: %1$s</string>
-    <string name="crop_album_art">Oříznout obal alba</string>
-    <string name="crop_album_art_desc">Vynutit čtvercový poměr stran oříznutím miniatur videí</string>
     <string name="keep_screen_on_when_player_is_expanded">Ponechat zapnutou obrazovku při zvětšeném přehrávači</string>
     <string name="listen_together">Společný poslech</string>
     <string name="listen_together_server_url">Adresa serveru</string>
@@ -644,9 +641,6 @@
     <string name="alarm_exact_permission_title">Povolit přesné budíky</string>
     <string name="alarm_exact_permission_desc">Uděluje oprávnění pro přesné načasování budíku, což zlepšuje přesnost, když je aplikace na pozadí</string>
     <string name="alarm_battery_optimization_desc">Zakažte optimalizaci baterie pro spolehlivější chování budíků na pozadí</string>
-    <string name="mini_player_background_style">Styl pozadí mini přehrávače</string>
-    <string name="transparent">Průhledné</string>
-    <string name="mini_player_background_not_available">Nedostupné při zakázaném novém stylu mini přehrávače</string>
     <string name="your_daily_discover">Vaše denní objevování</string>
     <string name="ai_system_prompt">Systémový dotaz</string>
     <string name="ai_system_prompt_default">Výchozí</string>

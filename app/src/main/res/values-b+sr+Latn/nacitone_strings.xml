@@ -39,7 +39,6 @@
     <string name="already_in_playlist">Već je u plejlisiti:</string>
     <string name="similar_content">Sličan sadržaj</string>
     <string name="player_background_style">Stil pozadine plejera</string>
-    <string name="follow_theme">Prati temu</string>
     <string name="gradient">Gradijent</string>
     <string name="player_background_blur">Zamućenje</string>
     <string name="player_buttons_style">Boje dugmadi plejera</string>
@@ -79,7 +78,6 @@
     <string name="show_artist_subscriber_count">Pokaži broj pratilaca</string>
     <string name="show_artist_monthly_listeners">Pokaži mesečne slušaoce</string>
     <string name="delete_playlist_desc">Ukloni ovu plejlistu zauvek</string>
-    <string name="crop_album_art">Izreži omot albuma</string>
     <plurals name="n_time">
         <item quantity="one">%d vremena</item>
         <item quantity="few">%d vremena</item>

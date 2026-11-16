@@ -51,7 +51,6 @@
     <string name="similar_content">Antzeko edukia</string>
     <string name="dislike_all">Ez gustoko denak</string>
     <string name="player_background_style">Erreproduzitzaile atzeko estiloa</string>
-    <string name="follow_theme">Jarraitu gaia</string>
     <string name="gradient">Gradientea</string>
     <string name="new_player_design">Erreproduzitzaile diseinu berria</string>
     <string name="new_mini_player_design">Mini-erreproduzitzaile diseinu berria</string>
@@ -146,7 +145,6 @@
     <string name="delete_playlist_desc">Zerrenda betirako ezabatu</string>
     <string name="show_artist_monthly_listeners">Hilabeteko entzuleak ikusi</string>
     <string name="download_in_progress_desc">Deskarga bat martxan dago</string>
-    <string name="crop_album_art">Album azala moztu</string>
     <string name="parsed_from_link">Estekatik erauzita</string>
     <string name="weekly_most_playlist_name">Nire Asteko Onenak</string>
     <string name="monthly_most_playlist_name">Hilabeteko entzunenak</string>
@@ -216,7 +214,6 @@
     <string name="shuffle_playlist_first_desc">Nahastean, jo zerrenda edo album honetako abesti guztiak antzeko edukira pasa baino lehen</string>
     <string name="prevent_duplicate_tracks_in_queue">Ilaran errepikatutako abestiak saihestu</string>
     <string name="prevent_duplicate_tracks_in_queue_desc">Dagoeneko ilaran dagoen abesti bat gehitzean, bere jatorrizko posiziotik mugituko da berriz gehitu ordez</string>
-    <string name="crop_album_art_desc">Behartu itxura-ratio karratua izatera bideoen miniaturak moztuz</string>
     <string name="skip_silence_desc">Abestien isiluneak azkar pasatu</string>
     <string name="skip_silence_instant">Berehala saltatu isiluneak</string>
     <string name="skip_silence_instant_desc">Aurrera salto egin isiluneetan musikaren abiadura handitu beharrean</string>
@@ -358,9 +355,6 @@
     <string name="advanced_desc">Abestiaren tenpoa eta tonua aldatu</string>
     <string name="equalizer_desc">Audio-ekualizadorea ireki</string>
     <string name="mini_player">Minierreproduzitzailea</string>
-    <string name="mini_player_background_style">Minierreproduzitzailearen hondoaren estiloa</string>
-    <string name="transparent">Gardena</string>
-    <string name="mini_player_background_not_available">Ez dago erabilgarri minierreproduzitzailearen diseinu berria ezgaituta dagoenean</string>
     <string name="cache_size_warning_title">Itxaron!</string>
     <string name="cache_size_warning_message">Aukeratutako muga (%1$s) aplikazioa momentuan erabiltzen ari dena baino txikiagoa da. Jarraituz gero cachean gordetako %2$s ezabatu daitezke. Jarraitu nahi al duzu hala ere?</string>
     <string name="cache_size_warning_confirm">Jarraitu</string>

@@ -53,7 +53,6 @@
     <string name="seek_seconds_addup_description">Dreg på seg 5 sekund i tillegg på kvar einskild søkingsframspoling om påslegen</string>
     <string name="similar_content">Liknande innhald</string>
     <string name="player_background_style">Bakgrunnsstil for avspelar</string>
-    <string name="follow_theme">Fylg tema</string>
     <string name="gradient">Letovergang</string>
     <string name="new_player_design">Ny spelardesign</string>
     <string name="new_mini_player_design">Ny minispelardesign</string>

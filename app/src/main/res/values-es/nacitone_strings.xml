@@ -31,7 +31,6 @@
     </plurals>
     <string name="similar_content">Contenido similar</string>
     <string name="player_background_style">Estilo de fondo del reproductor</string>
-    <string name="follow_theme">Seguir tema</string>
     <string name="gradient">Gradiente</string>
     <string name="player_background_blur">Desenfoque</string>
     <string name="player_buttons_style">Colores de los botones del reproductor</string>
@@ -272,7 +271,6 @@
     <string name="like">Me gusta</string>
     <string name="widget_description">Widget reproductor de música con controles de reproducción</string>
     <string name="turntable_widget_description">Widget musical circular con controles de reproducir y me gusta</string>
-    <string name="crop_album_art">Recortar portada del álbum</string>
     <plurals name="band_count">
         <item quantity="one">%d banda</item>
         <item quantity="many">%d de bandas</item>
@@ -281,7 +279,6 @@
     <string name="error_title">Error</string>
     <string name="error_eq_apply_failed">Error al aplicar el perfil de ecualización: %1$s</string>
     <string name="error_playback_failed">Reproducción fallida</string>
-    <string name="crop_album_art_desc">Forzar una relación de aspecto cuadrada recortando miniaturas de vídeo</string>
     <string name="persistent_shuffle_title">Aleatorio persistente</string>
     <string name="persistent_shuffle_desc">Mantener la reproducción aleatoria habilitada al iniciar nuevas canciones o listas de reproducción</string>
     <string name="keep_screen_on_when_player_is_expanded">Mantener la pantalla encendida cuando el reproductor está expandido</string>
@@ -661,9 +658,6 @@
     <string name="speed">Velocidad de reproducción</string>
     <string name="varispeed">Habilitar Varispeed</string>
     <string name="varispeed_description">Vincular el tono con la velocidad de reproducción para lograr efectos tipo cinta al acelerar o ralentizar</string>
-    <string name="mini_player_background_style">Estilo de fondo del mini reproductor</string>
-    <string name="transparent">Transparente</string>
-    <string name="mini_player_background_not_available">No disponible cuando el mini reproductor está deshabilitado</string>
     <string name="lyrics_animation_style_title">Estilo de animación letra por letra</string>
     <string name="system_equalizer_desc">Abrir el ecualizador por defecto de android</string>
     <string name="eq_wizard">Asistente de AutoEQ</string>

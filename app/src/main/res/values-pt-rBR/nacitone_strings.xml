@@ -19,7 +19,6 @@
     </plurals>
     <string name="similar_content">Conteúdo similar</string>
     <string name="player_background_style">Estilo do fundo do tocador</string>
-    <string name="follow_theme">Seguir o tema</string>
     <string name="gradient">Gradiente</string>
     <string name="player_background_blur">Desfocado</string>
     <string name="enable_swipe_thumbnail">Ativar deslizar para trocar de música</string>
@@ -280,8 +279,6 @@
     <string name="persistent_shuffle_desc">Manter o modo aleatório ativado quando começar novas músicas ou playlists</string>
     <string name="lyrics_offset">Atraso da letra</string>
     <string name="enable">Ativar</string>
-    <string name="crop_album_art">Cortar capa do álbum</string>
-    <string name="crop_album_art_desc">Forçar formato quadrado nas miniaturas dos vídeos</string>
     <string name="keep_screen_on_when_player_is_expanded">Manter tela ligada enquanto o reprodutor estiver expandido</string>
     <string name="crossfade">Transição suave</string>
     <string name="crossfade_desc">A música atual desvanece gradualmente enquanto a próxima começa a tocar</string>
@@ -656,9 +653,6 @@
     <string name="time_transfer_listen_time_label">Tempo de reprodução:</string>
     <string name="time_transfer_convert">Converter</string>
     <string name="song_dropdown_more_results">Continue digitando para reduzir os resultados (%d mais)</string>
-    <string name="mini_player_background_style">Estilo do plano de fundo do mini reprodutor</string>
-    <string name="transparent">Transparente</string>
-    <string name="mini_player_background_not_available">Indisponível quando o novo design do mini reprodutor está desativado</string>
     <string name="your_daily_discover">Sua descoberta diária</string>
     <string name="lyrics_from_provider">Letras de %s</string>
     <string name="hide_status_bar_fullscreen">Ocultar barra de status em tela cheia</string>

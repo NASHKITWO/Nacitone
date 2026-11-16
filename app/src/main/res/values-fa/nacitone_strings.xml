@@ -5,7 +5,6 @@
     <string name="cancel">لغو</string>
     <string name="share_as_image">اشتراک گذاری به عنوان تصویر</string>
     <string name="auto_download_on_like_desc">دریافت خودکار موسیقی‌ها زمانی که آنها را پسندیدید</string>
-    <string name="follow_theme">پیروی از پوسته</string>
     <string name="player_background_style">سبک پس‌زمینه پخش‌کننده</string>
     <string name="past_24_hours">۲۴ ساعت گذشته</string>
     <string name="enable_swipe_thumbnail">تغییر آهنگ با کشیدن را فعال کنید</string>
@@ -96,12 +95,10 @@
     <string name="show_artist_description">نمایش توضیحات هنرمند</string>
     <string name="new_player_design">طراحی جدید پخش‌کننده</string>
     <string name="lyrics_glow_effect_desc">­افزودن انیمیشن درخشش و افکت پرش به متن فعال ترانه</string>
-    <string name="crop_album_art">برش تصویر البوم</string>
     <string name="hide_player_thumbnail_desc">جایگزین کردن کاور آلبوم با لوگوی برنامه در پخش‌کننده</string>
     <string name="show_artist_monthly_listeners">نمایش شنوندگان ماهانه</string>
     <string name="lyrics_glow_effect">فعال‌سازی حالت نورانی متن ترانه</string>
     <string name="show_more">نمایش بیشتر</string>
-    <string name="crop_album_art_desc">برش مربعی تصویر ویدیو</string>
     <string name="remove_download_playlist_desc">حذف تمام اهنگ های دانلود شده از این لیست پخش</string>
     <string name="primary_color_style">رنگ اصلی</string>
     <string name="new_mini_player_design">طراحی جدید مینی پخش‌کننده</string>

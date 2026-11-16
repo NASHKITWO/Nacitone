@@ -23,7 +23,6 @@
     </plurals>
     <string name="similar_content">Подібний контент</string>
     <string name="player_background_style">Стиль фону програвача</string>
-    <string name="follow_theme">Дотримуватись теми</string>
     <string name="gradient">Градієнт</string>
     <string name="player_background_blur">Розмиття</string>
     <string name="enable_swipe_thumbnail">Перемикання пісень проведенням по обкладинці</string>
@@ -285,8 +284,6 @@
     <string name="error_playback_failed">Помилка відтворення</string>
     <string name="error_title">Помилка</string>
     <string name="error_eq_apply_failed">Не вдалося застосувати профіль еквалайзера: %1$s</string>
-    <string name="crop_album_art">Обрізати обкладинку альбому</string>
-    <string name="crop_album_art_desc">Примусово обрізати мініатюри відео для збереження квадратного співвідношення сторін</string>
     <string name="keep_screen_on_when_player_is_expanded">Залишати екран увімкненим, коли програвач розгорнуто</string>
     <string name="enable">Увімкнути</string>
     <string name="player_background_solid">Суцільний</string>
@@ -393,9 +390,6 @@
     <string name="audio_offload_disabled_by_crossfade">Вимкнено, оскільки активна функція перехресного згасання</string>
     <string name="speed">Швидкість відтворення</string>
     <string name="hide_youtube_shorts">Приховати YouTube Shorts</string>
-    <string name="mini_player_background_style">Стиль фону мініплеєра</string>
-    <string name="transparent">Прозорий</string>
-    <string name="mini_player_background_not_available">Недоступно, якщо вимкнено новий дизайн мініплеєра</string>
     <string name="system_equalizer_desc">Відкриває вбудований еквалайзер Android</string>
     <string name="export_playlist">Експортувати список відтворення</string>
     <string name="export_as_csv">Експортувати як CSV</string>

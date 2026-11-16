@@ -48,7 +48,6 @@
     <string name="app_language">言語</string>
     <string name="slim_navbar">コンパクトな下部ナビゲーションバー</string>
     <string name="enable_similar_content">似た曲を再生</string>
-    <string name="follow_theme">テーマに従う</string>
     <plurals name="seconds">
         <item quantity="other">%d秒</item>
     </plurals>
@@ -162,8 +161,6 @@
     <string name="download_in_progress_desc">ダウンロード中です</string>
     <string name="share_playlist_desc">このプレイリストを他の人と共有します</string>
     <string name="delete_playlist_desc">このプレイリストを完全に削除します</string>
-    <string name="crop_album_art">アルバムアートを切り抜く</string>
-    <string name="crop_album_art_desc">動画のサムネイルを切り抜いて正方形の比率にします</string>
     <string name="primary_color_style">メインカラー</string>
     <string name="tertiary_color_style">アクセントカラー</string>
     <string name="wavy">波</string>
@@ -664,9 +661,6 @@
     <string name="experimental_lyrics_desc">アニメーションとパフォーマンスを強化した、新しい実験的な歌詞コンポーネントを使用します</string>
     <string name="experimental_lyrics_beta_title">実験的機能</string>
     <string name="experimental_lyrics_beta_message">新しい歌詞コンポーネントは現在開発中のため、不具合が含まれている場合があります。本当に使用しますか？</string>
-    <string name="mini_player_background_style">ミニプレーヤーの背景</string>
-    <string name="transparent">透明</string>
-    <string name="mini_player_background_not_available">新しいミニプレーヤーのデザインを使用していない場合は変更できません</string>
     <string name="lyrics_animation_style_title">単語ごとのアニメーションスタイル</string>
     <string name="your_daily_discover">今日のイチオシ</string>
     <string name="close_chip">閉じる</string>

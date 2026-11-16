@@ -30,7 +30,6 @@
     </plurals>
     <string name="similar_content">Benzer içerik</string>
     <string name="player_background_style">Oynatıcı arka plan stili</string>
-    <string name="follow_theme">Temayı takip et</string>
     <string name="gradient">Gradyan</string>
     <string name="player_background_blur">Bulanık</string>
     <string name="player_buttons_style">Oynatıcı düğme renkleri</string>
@@ -279,8 +278,6 @@
     <string name="error_playback_failed">Oynatma başarısız</string>
     <string name="error_title">Hata</string>
     <string name="error_eq_apply_failed">Ekolayzır profili uygulanamadı: %1$s</string>
-    <string name="crop_album_art">Albüm resmini kırp</string>
-    <string name="crop_album_art_desc">Video küçük resimlerini kırparak kare en boy oranını zorlayın</string>
     <string name="keep_screen_on_when_player_is_expanded">Oynatıcı açıkken ekranı açık tut</string>
     <string name="listen_together">Birlikte Dinle</string>
     <string name="listen_together_server_url">Sunucu URL\'si</string>
@@ -650,9 +647,6 @@
     <string name="alarm_time">Alarm saati</string>
     <string name="alarm_enabled">Alarmı etkinleştir</string>
     <string name="alarm">Alarm</string>
-    <string name="mini_player_background_style">Mini oynatıcı arka plan stili</string>
-    <string name="transparent">Şeffaf</string>
-    <string name="mini_player_background_not_available">Yeni mini oynatıcı tasarımı devre dışıyken kullanılamaz</string>
     <string name="your_daily_discover">Günlük Keşfin</string>
     <string name="more_options">Diğer seçenekler</string>
     <string name="switch_to_grid_view">Izgara görünümüne geç</string>

@@ -104,7 +104,6 @@ import com.nacitone.music.LocalListenTogetherManager
 import com.nacitone.music.LocalPlayerConnection
 import com.nacitone.music.R
 import com.nacitone.music.constants.ListItemHeight
-import com.nacitone.music.constants.PlayerBackgroundStyle
 import com.nacitone.music.constants.QueueEditLockKey
 import com.nacitone.music.constants.UseNewPlayerDesignKey
 import com.nacitone.music.extensions.metadata
@@ -155,7 +154,6 @@ fun Queue(
     textButtonColor: Color,
     iconButtonColor: Color,
     showInlineLyrics: Boolean,
-    playerBackground: PlayerBackgroundStyle = PlayerBackgroundStyle.DEFAULT,
     onToggleLyrics: () -> Unit = {},
 ) {
     val navController = LocalNavController.current
@@ -305,7 +303,6 @@ fun Queue(
                         iconButtonColor = iconButtonColor,
                         iconSize = iconSize,
                         textBackgroundColor = TextBackgroundColor,
-                        playerBackground = playerBackground,
                     )
 
                     PlayerQueueButton(
@@ -326,7 +323,6 @@ fun Queue(
                         text = if (sleepTimerEnabled) makeTimeString(sleepTimerTimeLeft) else null,
                         iconSize = iconSize,
                         textBackgroundColor = TextBackgroundColor,
-                        playerBackground = playerBackground,
                     )
 
                     val shuffleModeEnabled by playerConnection.shuffleModeEnabled.collectAsStateWithLifecycle()
@@ -343,7 +339,6 @@ fun Queue(
                         iconButtonColor = iconButtonColor,
                         iconSize = iconSize,
                         textBackgroundColor = TextBackgroundColor,
-                        playerBackground = playerBackground,
                     )
 
                     PlayerQueueButton(
@@ -356,7 +351,6 @@ fun Queue(
                         iconButtonColor = iconButtonColor,
                         iconSize = iconSize,
                         textBackgroundColor = TextBackgroundColor,
-                        playerBackground = playerBackground,
                     )
 
                     PlayerQueueButton(
@@ -377,7 +371,6 @@ fun Queue(
                         iconButtonColor = iconButtonColor,
                         iconSize = iconSize,
                         textBackgroundColor = TextBackgroundColor,
-                        playerBackground = playerBackground,
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
@@ -1272,7 +1265,6 @@ private fun PlayerQueueButton(
     iconButtonColor: Color,
     iconSize: androidx.compose.ui.unit.Dp,
     textBackgroundColor: Color,
-    playerBackground: PlayerBackgroundStyle,
 ) {
     val buttonModifier =
         Modifier
@@ -1317,15 +1309,7 @@ private fun PlayerQueueButton(
                 if (isActive) {
                     iconButtonColor
                 } else {
-                    when (playerBackground) {
-                        PlayerBackgroundStyle.BLUR, PlayerBackgroundStyle.GRADIENT -> {
-                            Color.White
-                        }
-
-                        PlayerBackgroundStyle.DEFAULT -> {
-                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        }
-                    }
+                    Color.White
                 }
             val finalTint = if (enabled) baseTint else baseTint.copy(alpha = 0.5f)
             Icon(

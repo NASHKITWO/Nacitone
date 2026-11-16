@@ -57,7 +57,6 @@
     <string name="seek_seconds_addup_description">Jika dibuka, 5 saat tambahan akan ditambah pada setiap langkauan progresif (progressive seek)</string>
     <string name="similar_content">Kandungan seerti</string>
     <string name="player_background_style">Rupa latar pemain</string>
-    <string name="follow_theme">Ikut tema</string>
     <string name="gradient">Kecerunan</string>
     <string name="new_player_design">Reka bentuk pemain baru</string>
     <string name="new_mini_player_design">Reka bentuk pemain mini baharu</string>
@@ -174,8 +173,6 @@
     <string name="show_artist_description">Paparkan deskripsi artis</string>
     <string name="show_artist_subscriber_count">Paparkan jumlah langganan</string>
     <string name="show_artist_monthly_listeners">Paparkan pendengar bulanan</string>
-    <string name="crop_album_art">Kerat rajah album</string>
-    <string name="crop_album_art_desc">Memaksa aspek nisbah segi empat sama dengan memangkas rajah video</string>
     <string name="player_background_solid">Pejal</string>
     <string name="display_density">Kepadatan Layar</string>
 </resources>

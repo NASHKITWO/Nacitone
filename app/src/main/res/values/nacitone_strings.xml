@@ -70,8 +70,6 @@
     <string name="close">Close</string>
     <string name="hide_player_thumbnail">Hide player thumbnail</string>
     <string name="hide_player_thumbnail_desc">Replace the album artwork with the app logo in the player</string>
-    <string name="crop_album_art">Crop album art</string>
-    <string name="crop_album_art_desc">Force a square aspect ratio by cropping video thumbnails</string>
 
     <string name="already_in_playlist">Already in playlist: </string>
 
@@ -89,7 +87,6 @@
 
     <string name="player_background_style">Player background style</string>
     <string name="player_background_solid">Solid</string>
-    <string name="follow_theme">Follow theme</string>
     <string name="gradient">Gradient</string>
     <string name="new_player_design">New player design</string>
     <string name="new_mini_player_design">New mini-player design</string>
@@ -418,9 +415,6 @@
     <string name="advanced_desc">Adjust the song\'s tempo and pitch</string>
     <string name="equalizer_desc">Open the audio equalizer</string>
     <string name="mini_player">Mini-player</string>
-    <string name="mini_player_background_style">Mini-player background style</string>
-    <string name="transparent">Transparent</string>
-    <string name="mini_player_background_not_available">Unavailable when the new mini-player design is disabled</string>
     <string name="cache_size_warning_title">Hold on!</string>
     <string name="cache_size_warning_message">The limit you\'ve chosen (%1$s) is smaller than what the app is currently using. Continuing may cause some cached %2$s to be removed. Proceed anyway?</string>
     <string name="cache_size_warning_confirm">Continue</string>
