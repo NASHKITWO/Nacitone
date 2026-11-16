@@ -12,8 +12,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,6 +24,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -62,7 +68,7 @@ fun AppNavigationRail(
 
     NavigationRail(
         modifier = modifier,
-        containerColor = containerColor
+        containerColor = containerColor.copy(alpha = 0.94f),
     ) {
         Spacer(modifier = Modifier.weight(1f))
 
@@ -114,6 +120,12 @@ fun AppNavigationRail(
                     // Long presses are handled via InteractionSource
                 },
                 interactionSource = interactionSource,
+                colors =
+                    NavigationRailItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    ),
                 icon = {
                     Icon(
                         painter = painterResource(id = iconRes),
@@ -142,10 +154,15 @@ fun AppNavigationBar(
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
+    val lineColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
     NavigationBar(
-        modifier = modifier,
-        containerColor = containerColor,
-        contentColor = contentColor
+        modifier =
+            modifier.drawBehind {
+                drawLine(lineColor, Offset(0f, 0f), Offset(size.width, 0f), strokeWidth = 1.dp.toPx())
+            },
+        containerColor = containerColor.copy(alpha = 0.94f),
+        contentColor = contentColor,
+        tonalElevation = 0.dp,
     ) {
         navigationItems.forEach { screen ->
             val isSelected = remember(currentRoute, screen.route) {
@@ -195,6 +212,14 @@ fun AppNavigationBar(
                     // Long presses are handled via InteractionSource
                 },
                 interactionSource = interactionSource,
+                colors =
+                    NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        selectedTextColor = MaterialTheme.colorScheme.primary,
+                        indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    ),
                 icon = {
                     Icon(
                         painter = painterResource(id = iconRes),
@@ -206,7 +231,8 @@ fun AppNavigationBar(
                         Text(
                             text = stringResource(screen.titleId),
                             maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis,
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                         )
                     }
                 } else null
