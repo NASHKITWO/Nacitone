@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings
 
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.glassCardBorder
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -177,9 +179,8 @@ fun ReleaseItem(release: ReleaseInfo) {
 
         Card(
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
-            ),
+            colors = glassCardColors(),
+        border = glassCardBorder(),
             shape = RoundedCornerShape(16.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {

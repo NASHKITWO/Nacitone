@@ -31,9 +31,8 @@ fun ReleaseNotesCard() {
             .padding(horizontal = 16.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)
-        )
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(
             modifier = Modifier.padding(16.dp)

@@ -57,8 +57,8 @@ fun SupportBanner(modifier: Modifier = Modifier) {
     Card(
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)),
-        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.outlineVariant),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
             Text(

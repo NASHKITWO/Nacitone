@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings
 
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.glassCardBorder
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,7 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
@@ -117,7 +119,9 @@ fun AboutScreen(
         Spacer(Modifier.height(16.dp))
 
         // App Header Section
-        ElevatedCard(
+        Card(
+            colors = glassCardColors(),
+            border = glassCardBorder(),
             shape = RoundedCornerShape(32.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
@@ -205,7 +209,9 @@ fun AboutScreen(
         Spacer(Modifier.height(24.dp))
 
         // Founder & Developer Hero Card
-        ElevatedCard(
+        Card(
+            colors = glassCardColors(),
+            border = glassCardBorder(),
             shape = RoundedCornerShape(32.dp),
             modifier = Modifier.fillMaxWidth()
         ) {

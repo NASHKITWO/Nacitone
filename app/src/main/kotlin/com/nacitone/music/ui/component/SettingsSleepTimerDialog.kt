@@ -39,7 +39,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Card
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Button
 import androidx.compose.animation.AnimatedVisibility
@@ -295,7 +295,9 @@ fun SleepTimerDialog(
                     ),
                 ) + fadeOut(),
             ) {
-                ElevatedCard(
+                Card(
+            colors = glassCardColors(),
+            border = glassCardBorder(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 4.dp),
@@ -326,7 +328,9 @@ fun SleepTimerDialog(
                     ),
                 ) + fadeOut(),
             ) {
-                ElevatedCard(
+                Card(
+            colors = glassCardColors(),
+            border = glassCardBorder(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 4.dp),
@@ -459,7 +463,9 @@ fun SleepTimerDialog(
                     ),
                 ) + fadeOut(),
             ) {
-                ElevatedCard(
+                Card(
+            colors = glassCardColors(),
+            border = glassCardBorder(),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 4.dp),

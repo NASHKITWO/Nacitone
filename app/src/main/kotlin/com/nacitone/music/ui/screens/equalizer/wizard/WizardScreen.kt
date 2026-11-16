@@ -1,5 +1,9 @@
 package com.nacitone.music.ui.screens.equalizer.wizard
 
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.glassCardBorder
+import com.nacitone.music.ui.component.glassSelectableColors
+import com.nacitone.music.ui.component.glassSelectableBorder
 import androidx.compose.animation.*
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
@@ -256,9 +260,8 @@ private fun ModelItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
-        )
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Row(
             modifier = Modifier
@@ -372,13 +375,8 @@ private fun VariantItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onToggle),
-        colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) {
-                MaterialTheme.colorScheme.primaryContainer
-            } else {
-                MaterialTheme.colorScheme.surfaceVariant
-            }
-        )
+        colors = glassSelectableColors(isSelected),
+        border = glassSelectableBorder(isSelected),
     ) {
         Row(
             modifier = Modifier

@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.recognition
 
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.glassCardBorder
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -246,10 +248,8 @@ private fun RecognitionHistoryItem(
                 .padding(horizontal = 16.dp, vertical = 8.dp)
                 .clickable { onClick() },
         shape = RoundedCornerShape(ThumbnailCornerRadius),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
     ) {
         Row(
             modifier =

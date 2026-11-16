@@ -239,7 +239,8 @@ internal fun LyricsShareDialog(
         Card(
             shape = MaterialTheme.shapes.medium,
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            colors = glassPanelColors(),
+            border = glassCardBorder(),
             modifier = Modifier.padding(16.dp).fillMaxWidth(0.85f)
         ) {
             Column(Modifier.padding(20.dp)) {

@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.ui.component.glassCardColors
+import com.nacitone.music.ui.component.glassCardBorder
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -228,7 +230,6 @@ fun CommunityPlaylistCard(
     val scope = rememberCoroutineScope()
     val artistNameAliases = LocalArtistNameAliases.current
 
-    val containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp)
 
     val dbPlaylist by database.playlistByBrowseId(item.playlist.id).collectAsStateWithLifecycle(initialValue = null)
     val isBookmarked = dbPlaylist?.playlist?.bookmarkedAt != null
@@ -238,10 +239,8 @@ fun CommunityPlaylistCard(
             modifier
                 .width(320.dp)
                 .height(420.dp),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = containerColor,
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
         shape = RoundedCornerShape(28.dp),
         onClick = onClick,
     ) {
@@ -541,10 +540,8 @@ fun DailyDiscoverCard(
                         }
                     },
                 ),
-        colors =
-            CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-            ),
+        colors = glassCardColors(),
+        border = glassCardBorder(),
         shape = RoundedCornerShape(28.dp),
     ) {
         BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
@@ -1384,10 +1381,8 @@ fun HomeScreen(
                                     Modifier
                                         .fillMaxWidth()
                                         .padding(16.dp),
-                                colors =
-                                    CardDefaults.cardColors(
-                                        containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-                                    ),
+                                colors = glassCardColors(),
+        border = glassCardBorder(),
                             ) {
                                 Box(
                                     modifier =
@@ -1449,10 +1444,8 @@ fun HomeScreen(
                                 Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 16.dp, vertical = 8.dp),
-                            colors =
-                                CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                                ),
+                            colors = glassCardColors(MaterialTheme.colorScheme.tertiary),
+                            border = glassCardBorder(MaterialTheme.colorScheme.tertiary),
                         ) {
                             Column(modifier = Modifier.padding(16.dp)) {
                                 Text(

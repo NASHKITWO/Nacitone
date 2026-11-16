@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings.integrations
 
+import com.nacitone.music.ui.component.glassSelectableColors
+import com.nacitone.music.ui.component.glassSelectableBorder
 import android.widget.Toast
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
@@ -647,15 +649,8 @@ private fun ServerChooserDialog(
                             .fillMaxWidth()
                             .clickable { onSelect(server) },
                     shape = RoundedCornerShape(16.dp),
-                    colors =
-                        CardDefaults.cardColors(
-                            containerColor =
-                                if (isSelected) {
-                                    MaterialTheme.colorScheme.primaryContainer
-                                } else {
-                                    MaterialTheme.colorScheme.surfaceVariant
-                                },
-                        ),
+                    colors = glassSelectableColors(isSelected),
+                    border = glassSelectableBorder(isSelected),
                 ) {
                     Row(
                         modifier =

@@ -1772,7 +1772,8 @@ fun OriginalLyrics(
             BasicAlertDialog(onDismissRequest = { /* Don't dismiss */ }) {
                 Card( // Use Card for better styling
                     shape = MaterialTheme.shapes.medium,
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    colors = glassPanelColors(),
+                    border = glassCardBorder(),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
                 ) {
                     Box(modifier = Modifier.padding(32.dp)) {
@@ -1791,10 +1792,8 @@ fun OriginalLyrics(
                 Card(
                     shape = MaterialTheme.shapes.medium,
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    colors =
-                        CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                        ),
+                    colors = glassPanelColors(),
+                    border = glassCardBorder(),
                     modifier =
                         Modifier
                             .padding(16.dp)

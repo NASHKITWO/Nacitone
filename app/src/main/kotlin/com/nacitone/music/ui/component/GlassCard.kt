@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
@@ -25,6 +26,29 @@ private const val GLASS_STROKE_ALPHA = 0.22f
 fun glassCardColors(tint: Color = MaterialTheme.colorScheme.primary): CardColors =
     CardDefaults.cardColors(
         containerColor = tint.copy(alpha = GLASS_FILL_ALPHA),
+        contentColor = MaterialTheme.colorScheme.onSurface,
+    )
+
+/** Same glass look for list rows that can be selected: a stronger tint and border when [selected]. */
+@Composable
+fun glassSelectableColors(selected: Boolean): CardColors =
+    CardDefaults.cardColors(
+        containerColor = MaterialTheme.colorScheme.primary.copy(alpha = if (selected) 0.24f else GLASS_FILL_ALPHA),
+        contentColor = MaterialTheme.colorScheme.onSurface,
+    )
+
+@Composable
+fun glassSelectableBorder(selected: Boolean): BorderStroke =
+    BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = if (selected) 0.5f else GLASS_STROKE_ALPHA))
+
+/** Opaque variant for cards inside dialogs, where a see-through fill would show the screen behind. */
+@Composable
+fun glassPanelColors(): CardColors =
+    CardDefaults.cardColors(
+        containerColor =
+            MaterialTheme.colorScheme.primary
+                .copy(alpha = GLASS_FILL_ALPHA)
+                .compositeOver(MaterialTheme.colorScheme.surfaceContainerHigh),
         contentColor = MaterialTheme.colorScheme.onSurface,
     )
 

@@ -1,5 +1,7 @@
 package com.nacitone.music.ui.screens.settings
 
+import com.nacitone.music.ui.component.glassSelectableColors
+import com.nacitone.music.ui.component.glassSelectableBorder
 import android.app.AlarmManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -393,13 +395,8 @@ private fun AlarmEditorDialog(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 4.dp),
-                            colors = CardDefaults.cardColors(
-                                containerColor = if (selected) {
-                                    MaterialTheme.colorScheme.primaryContainer
-                                } else {
-                                    MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
-                                }
-                            )
+                            colors = glassSelectableColors(selected),
+                            border = glassSelectableBorder(selected),
                         ) {
                             Row(
                                 modifier = Modifier
