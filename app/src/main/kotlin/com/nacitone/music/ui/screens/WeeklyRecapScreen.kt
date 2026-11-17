@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.ui.component.GlassTint
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -214,8 +215,8 @@ fun WeeklyRecapScreen(
                                 .fillMaxWidth()
                                 .softEnter(120)
                                 .clip(RoundedCornerShape(24.dp))
-                                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f))
-                                .border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f), RoundedCornerShape(24.dp))
+                                .background(GlassTint.copy(alpha = 0.10f))
+                                .border(1.dp, GlassTint.copy(alpha = 0.22f), RoundedCornerShape(24.dp))
                                 .padding(vertical = 8.dp),
                     ) {
                         rest.forEachIndexed { i, song ->
@@ -283,7 +284,7 @@ fun WeeklyRecapScreen(
                                             .size(64.dp)
                                             .clip(CircleShape)
                                             .background(
-                                                MaterialTheme.colorScheme.primary.copy(alpha = if (index == 0) 0.28f else 0.14f),
+                                                GlassTint.copy(alpha = if (index == 0) 0.28f else 0.14f),
                                             ),
                                 ) {
                                     Text(

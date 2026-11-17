@@ -111,7 +111,7 @@ private fun IntegrationCardItemRow(
                     .size(40.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(
-                        MaterialTheme.colorScheme.primary.copy(
+                        GlassTint.copy(
                             alpha = if (item.isHighlighted) 0.15f else 0.1f
                         )
                     ),

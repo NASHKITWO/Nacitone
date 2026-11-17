@@ -74,7 +74,7 @@ fun Material3SettingsGroup(
             shape = RoundedCornerShape(28.dp),
             colors =
                 CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = if (useLowContrast) 0.06f else 0.10f),
+                    containerColor = GlassTint.copy(alpha = if (useLowContrast) 0.06f else 0.10f),
                 ),
             border = glassCardBorder(),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
@@ -88,7 +88,7 @@ fun Material3SettingsGroup(
                                 end = 16.dp,
                             ),
                         thickness = 0.5.dp,
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
+                        color = GlassTint.copy(alpha = 0.14f),
                     )
                 }
                 Material3SettingsItemRow(item = item)
@@ -124,7 +124,7 @@ private fun Material3SettingsItemRow(
                     .size(42.dp)
                     .clip(RoundedCornerShape(14.dp))
                     .background(
-                        MaterialTheme.colorScheme.primary.copy(alpha = if (item.isHighlighted) 0.30f else 0.16f),
+                        GlassTint.copy(alpha = if (item.isHighlighted) 0.30f else 0.16f),
                     ),
                 contentAlignment = Alignment.Center
             ) {

@@ -263,9 +263,9 @@ inline fun ListItem(
     val primary = MaterialTheme.colorScheme.primary
     val highlight by animateColorAsState(
         targetValue = when {
-            isActive && isSelected == true -> primary.copy(alpha = 0.28f)
-            isActive -> primary.copy(alpha = 0.14f)
-            isSelected == true -> primary.copy(alpha = 0.20f)
+            isActive && isSelected == true -> GlassTint.copy(alpha = 0.28f)
+            isActive -> GlassTint.copy(alpha = 0.14f)
+            isSelected == true -> GlassTint.copy(alpha = 0.20f)
             else -> Color.Transparent
         },
         animationSpec = tween(durationMillis = 220),

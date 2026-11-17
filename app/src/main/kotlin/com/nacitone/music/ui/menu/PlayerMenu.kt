@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.menu
 
+import com.nacitone.music.ui.component.GlassTint
 import android.content.Context
 import android.content.Intent
 import android.media.audiofx.AudioEffect
@@ -1277,7 +1278,7 @@ fun ListenTogetherDialog(
                 shape = RoundedCornerShape(16.dp),
                 color =
                     when (connectionState) {
-                        ConnectionState.CONNECTED -> MaterialTheme.colorScheme.primary.copy(alpha = 0.15f)
+                        ConnectionState.CONNECTED -> GlassTint.copy(alpha = 0.15f)
                         ConnectionState.CONNECTING, ConnectionState.RECONNECTING -> MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f)
                         ConnectionState.ERROR -> MaterialTheme.colorScheme.error.copy(alpha = 0.15f)
                         ConnectionState.DISCONNECTED -> MaterialTheme.colorScheme.surfaceVariant
@@ -1401,7 +1402,7 @@ fun ListenTogetherDialog(
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp),
                         shape = RoundedCornerShape(16.dp),
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                        color = GlassTint.copy(alpha = 0.1f),
                     ) {
                         Column(
                             modifier = Modifier.padding(16.dp),

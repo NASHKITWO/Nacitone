@@ -18,12 +18,15 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
-private const val GLASS_FILL_ALPHA = 0.10f
-private const val GLASS_STROKE_ALPHA = 0.22f
+private const val GLASS_FILL_ALPHA = 0.08f
+private const val GLASS_STROKE_ALPHA = 0.18f
 
-/** Translucent fill tinted with the theme's primary color: every card shares one tone. */
+/** Warna kaca bening: putih transparan, tanpa semburat ungu. */
+val GlassTint: Color = Color.White
+
+/** Isi transparan bening: semua kartu memakai satu nada yang sama. */
 @Composable
-fun glassCardColors(tint: Color = MaterialTheme.colorScheme.primary): CardColors =
+fun glassCardColors(tint: Color = GlassTint): CardColors =
     CardDefaults.cardColors(
         containerColor = tint.copy(alpha = GLASS_FILL_ALPHA),
         contentColor = MaterialTheme.colorScheme.onSurface,
@@ -33,27 +36,27 @@ fun glassCardColors(tint: Color = MaterialTheme.colorScheme.primary): CardColors
 @Composable
 fun glassSelectableColors(selected: Boolean): CardColors =
     CardDefaults.cardColors(
-        containerColor = MaterialTheme.colorScheme.primary.copy(alpha = if (selected) 0.24f else GLASS_FILL_ALPHA),
+        containerColor = GlassTint.copy(alpha = if (selected) 0.20f else GLASS_FILL_ALPHA),
         contentColor = MaterialTheme.colorScheme.onSurface,
     )
 
 @Composable
 fun glassSelectableBorder(selected: Boolean): BorderStroke =
-    BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = if (selected) 0.5f else GLASS_STROKE_ALPHA))
+    BorderStroke(1.dp, GlassTint.copy(alpha = if (selected) 0.45f else GLASS_STROKE_ALPHA))
 
 /** Opaque variant for cards inside dialogs, where a see-through fill would show the screen behind. */
 @Composable
 fun glassPanelColors(): CardColors =
     CardDefaults.cardColors(
         containerColor =
-            MaterialTheme.colorScheme.primary
+            GlassTint
                 .copy(alpha = GLASS_FILL_ALPHA)
                 .compositeOver(MaterialTheme.colorScheme.surfaceContainerHigh),
         contentColor = MaterialTheme.colorScheme.onSurface,
     )
 
 @Composable
-fun glassCardBorder(tint: Color = MaterialTheme.colorScheme.primary): BorderStroke =
+fun glassCardBorder(tint: Color = GlassTint): BorderStroke =
     BorderStroke(1.dp, tint.copy(alpha = GLASS_STROKE_ALPHA))
 
 /** Fades and slides the element up a few dp once, when it first enters composition. */

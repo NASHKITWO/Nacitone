@@ -81,7 +81,7 @@ fun DefaultDialog(
             modifier = Modifier.padding(24.dp),
             shape = AlertDialogDefaults.shape,
             color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+            border = BorderStroke(1.dp, GlassTint.copy(alpha = 0.22f)),
             tonalElevation = 0.dp,
         ) {
             Column(
@@ -171,7 +171,7 @@ fun AccountSettingsDialog(
                         .clip(RoundedCornerShape(28.dp)),
                 shape = MaterialTheme.shapes.large,
                 color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+                border = BorderStroke(1.dp, GlassTint.copy(alpha = 0.22f)),
                 tonalElevation = 0.dp,
             ) {
                 AccountSettings(
@@ -256,7 +256,7 @@ fun ListDialog(
             modifier = Modifier.padding(24.dp),
             shape = AlertDialogDefaults.shape,
             color = MaterialTheme.colorScheme.surface.copy(alpha = 0.90f),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.22f)),
+            border = BorderStroke(1.dp, GlassTint.copy(alpha = 0.22f)),
             tonalElevation = 0.dp,
         ) {
             Column(

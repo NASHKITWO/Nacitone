@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.ui.component.GlassTint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -683,8 +684,8 @@ private fun RoomStatusCard(
                     .background(
                         Brush.linearGradient(
                             listOf(
-                                MaterialTheme.colorScheme.primary.copy(alpha = 0.18f),
-                                MaterialTheme.colorScheme.primary.copy(alpha = 0.04f),
+                                GlassTint.copy(alpha = 0.18f),
+                                GlassTint.copy(alpha = 0.04f),
                             ),
                         ),
                     )

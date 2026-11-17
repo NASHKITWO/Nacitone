@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.settings
 
+import com.nacitone.music.ui.component.GlassTint
 import com.nacitone.music.ui.component.glassCardColors
 import com.nacitone.music.ui.component.glassCardBorder
 import androidx.compose.foundation.Image
@@ -163,7 +164,7 @@ fun AboutScreen(
                     ) {
                         Surface(
                             shape = RoundedCornerShape(8.dp),
-                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                            color = GlassTint.copy(alpha = 0.1f)
                         ) {
                             Text(
                                 text = BuildConfig.VERSION_NAME,

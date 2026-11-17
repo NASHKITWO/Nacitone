@@ -123,7 +123,7 @@ fun AppNavigationRail(
                 colors =
                     NavigationRailItemDefaults.colors(
                         selectedIconColor = MaterialTheme.colorScheme.primary,
-                        indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
+                        indicatorColor = GlassTint.copy(alpha = 0.24f),
                         unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     ),
                 icon = {
@@ -154,7 +154,7 @@ fun AppNavigationBar(
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
-    val lineColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.18f)
+    val lineColor = GlassTint.copy(alpha = 0.18f)
     NavigationBar(
         modifier =
             modifier.drawBehind {
@@ -216,7 +216,7 @@ fun AppNavigationBar(
                     NavigationBarItemDefaults.colors(
                         selectedIconColor = MaterialTheme.colorScheme.primary,
                         selectedTextColor = MaterialTheme.colorScheme.primary,
-                        indicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.24f),
+                        indicatorColor = GlassTint.copy(alpha = 0.24f),
                         unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     ),

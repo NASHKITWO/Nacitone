@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.recognition
 
+import com.nacitone.music.ui.component.GlassTint
 import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -312,8 +313,8 @@ private fun ReadyState(onStartRecognition: () -> Unit) {
                         Brush.radialGradient(
                             colors =
                                 listOf(
-                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
-                                    MaterialTheme.colorScheme.primary.copy(alpha = 0.1f),
+                                    GlassTint.copy(alpha = 0.3f),
+                                    GlassTint.copy(alpha = 0.1f),
                                     Color.Transparent,
                                 ),
                         ),
@@ -375,7 +376,7 @@ private fun ListeningState(onCancel: () -> Unit) {
                         .size(200.dp)
                         .scale(scale)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)),
+                        .background(GlassTint.copy(alpha = 0.2f)),
             )
 
             // Inner pulsing ring
@@ -385,7 +386,7 @@ private fun ListeningState(onCancel: () -> Unit) {
                         .size(180.dp)
                         .scale(scale * 0.9f)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                        .background(GlassTint.copy(alpha = 0.3f)),
             )
 
             // Main button
