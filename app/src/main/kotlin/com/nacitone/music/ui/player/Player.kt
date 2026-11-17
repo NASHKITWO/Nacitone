@@ -428,8 +428,6 @@ fun BottomSheetPlayer(
 
     val TextBackgroundColor = Color.White
 
-    val icBackgroundColor = Color.Black
-
     val (textButtonColor, iconButtonColor) =
         when (playerButtonsStyle) {
             PlayerButtonsStyle.DEFAULT -> {

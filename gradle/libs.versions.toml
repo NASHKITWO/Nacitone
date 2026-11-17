@@ -3,7 +3,6 @@ androidGradlePlugin = "9.4.1"
 browser = "1.10.0"
 robolectric = "4.17"
 androidxTestCore = "1.7.0"
-json = "20260814"
 kotlin = "2.4.21"
 compose = "1.12.1"
 lifecycle = "2.11.0"
@@ -94,7 +93,6 @@ ktor-client-encoding = { module = "io.ktor:ktor-client-encoding", version.ref = 
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
-json = { module = "org.json:json", version.ref = "json" }
 
 desugaring = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugaring" }
 

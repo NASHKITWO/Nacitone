@@ -28,33 +28,6 @@ fun List<Run>.splitBySeparator(): List<List<Run>> {
     return res
 }
 
-fun List<Run>.splitArtistsByConjunction(): List<Run> {
-    val result = mutableListOf<Run>()
-    val words = ArtistConjunctions.conjunctions
-    val conjunctionPattern = Regex(
-        if (words.isNotEmpty()) " (${words.joinToString("|") { Regex.escape(it) }}) | & "
-        else " & ",
-        RegexOption.IGNORE_CASE
-    )
-    forEach { run ->
-        val text = run.text
-        if (text.contains(conjunctionPattern)) {
-            val parts = text.split(conjunctionPattern)
-            parts.forEachIndexed { index, part ->
-                if (part.isNotBlank()) {
-                    result.add(Run(part.trim(), if (index == 0) run.navigationEndpoint else null))
-                }
-            }
-        } else if (text.trim().equals("&", ignoreCase = true) ||
-                text.trim().equals("•") ||
-                words.any { text.trim().equals(it, ignoreCase = true) }
-        ) {
-        } else {
-            result.add(run)
-        }
-    }
-    return result
-}
 
 object ArtistConjunctions {
     var conjunctions: List<String> = listOf("and")
