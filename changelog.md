@@ -1,3 +1,17 @@
+# Nacitone 1.4.0
+
+## Logo
+- Logo baru: huruf n yang sekaligus not, di atas ubin kaca
+- Diganti di ikon aplikasi, ikon notifikasi, banner TV, ikon toko, dan berkas logo di repo
+
+## Tampilan
+- Semua kartu, grup pengaturan, chip, dialog, dan navigasi memakai kaca putih bening, bukan ungu
+- Grup pengaturan menjadi satu kartu kaca dengan pemisah tipis dan chip ikon
+- Tombol tonal, chip terpilih, dan garis tepi mengikuti warna kaca dari tema
+
+## Pembersihan
+- Kode mati dan entri dependensi yang tidak terpakai dibuang
+
 # Nacitone 1.3.0
 
 ## Pembaruan
