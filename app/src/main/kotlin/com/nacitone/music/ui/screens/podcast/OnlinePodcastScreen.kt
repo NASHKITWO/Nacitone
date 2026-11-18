@@ -1,5 +1,6 @@
 package com.nacitone.music.ui.screens.podcast
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -238,6 +239,7 @@ fun OnlinePodcastScreen(
             title = {
                 if (isSearching) {
                     TextField(
+                        shape = GlassFieldShape,
                         value = query,
                         onValueChange = { query = it },
                         placeholder = {

@@ -1,5 +1,8 @@
 package com.nacitone.music.ui.component
 
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -72,3 +75,31 @@ fun Modifier.softEnter(delayMillis: Int = 0): Modifier =
             translationY = (1f - progress.value) * 18.dp.toPx()
         }
     }
+
+
+/** Bentuk pil-bulat untuk field teks kaca. */
+val GlassFieldShape = RoundedCornerShape(20.dp)
+
+/** Warna field teks terisi: kaca bening, tanpa garis bawah; menebal saat fokus. */
+@Composable
+fun glassTextFieldColors(): TextFieldColors =
+    TextFieldDefaults.colors(
+        focusedContainerColor = GlassTint.copy(alpha = 0.14f),
+        unfocusedContainerColor = GlassTint.copy(alpha = 0.08f),
+        disabledContainerColor = GlassTint.copy(alpha = 0.04f),
+        errorContainerColor = GlassTint.copy(alpha = 0.08f),
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent,
+        errorIndicatorColor = Color.Transparent,
+    )
+
+/** Warna field teks bergaris: tepi kaca, tepi utama saat fokus. */
+@Composable
+fun glassOutlinedTextFieldColors(): TextFieldColors =
+    TextFieldDefaults.colors(
+        focusedContainerColor = GlassTint.copy(alpha = 0.08f),
+        unfocusedContainerColor = GlassTint.copy(alpha = 0.04f),
+        focusedIndicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
+        unfocusedIndicatorColor = GlassTint.copy(alpha = 0.22f),
+    )

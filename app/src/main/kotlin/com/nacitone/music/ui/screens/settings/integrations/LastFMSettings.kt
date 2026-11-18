@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings.integrations
 
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -143,6 +145,8 @@ fun LastFMSettings(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     OutlinedTextField(
+                        colors = glassOutlinedTextFieldColors(),
+                        shape = GlassFieldShape,
                         value = tempUsername,
                         onValueChange = {
                             tempUsername = it
@@ -153,6 +157,8 @@ fun LastFMSettings(
                         enabled = !isLoggingIn,
                     )
                     OutlinedTextField(
+                        colors = glassOutlinedTextFieldColors(),
+                        shape = GlassFieldShape,
                         value = tempPassword,
                         onValueChange = {
                             tempPassword = it

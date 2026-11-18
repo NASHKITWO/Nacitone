@@ -56,6 +56,8 @@ fun SongSelectDropdown(
     Box(modifier = Modifier.fillMaxWidth()) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextField(
+                colors = glassTextFieldColors(),
+                shape = GlassFieldShape,
                 value = searchText,
                 onValueChange = {
                     searchText = it

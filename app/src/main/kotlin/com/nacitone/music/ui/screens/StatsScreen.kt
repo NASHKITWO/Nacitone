@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -663,6 +664,7 @@ fun StatsScreen(
             } else if (isSearching) {
                 Row {
                     TextField(
+                        shape = GlassFieldShape,
                         value = query,
                         onValueChange = { query = it },
                         placeholder = {

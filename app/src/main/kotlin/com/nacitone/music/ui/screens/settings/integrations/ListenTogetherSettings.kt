@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings.integrations
 
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import com.nacitone.music.ui.component.GlassFieldShape
 import com.nacitone.music.ui.component.glassSelectableColors
 import com.nacitone.music.ui.component.glassSelectableBorder
 import android.widget.Toast
@@ -207,6 +209,8 @@ fun ListenTogetherSettings(navController: NavController) {
             },
         ) {
             OutlinedTextField(
+                colors = glassOutlinedTextFieldColors(),
+                shape = GlassFieldShape,
                 value = tempUsername,
                 onValueChange = { tempUsername = it },
                 label = { Text(stringResource(R.string.listen_together_username)) },
@@ -264,6 +268,8 @@ fun ListenTogetherSettings(navController: NavController) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 OutlinedTextField(
+                    colors = glassOutlinedTextFieldColors(),
+                    shape = GlassFieldShape,
                     value = createUsername,
                     onValueChange = { createUsername = it },
                     label = { Text(stringResource(R.string.listen_together_username)) },
@@ -311,6 +317,8 @@ fun ListenTogetherSettings(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 OutlinedTextField(
+                    colors = glassOutlinedTextFieldColors(),
+                    shape = GlassFieldShape,
                     value = joinUsername,
                     onValueChange = { joinUsername = it },
                     label = { Text(stringResource(R.string.listen_together_username)) },
@@ -321,6 +329,8 @@ fun ListenTogetherSettings(navController: NavController) {
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OutlinedTextField(
+                    colors = glassOutlinedTextFieldColors(),
+                    shape = GlassFieldShape,
                     value = roomCodeInput,
                     onValueChange = { roomCodeInput = it.uppercase().filter { c -> c.isLetterOrDigit() }.take(8) },
                     label = { Text(stringResource(R.string.listen_together_room_code)) },
@@ -697,6 +707,8 @@ private fun ServerChooserDialog(
                 fontWeight = FontWeight.SemiBold,
             )
             OutlinedTextField(
+                colors = glassOutlinedTextFieldColors(),
+                shape = GlassFieldShape,
                 value = customUrl,
                 onValueChange = { customUrl = it },
                 label = { Text(stringResource(R.string.listen_together_server_url)) },

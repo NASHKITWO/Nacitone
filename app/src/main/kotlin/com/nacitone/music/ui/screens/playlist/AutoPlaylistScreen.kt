@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.playlist
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
@@ -698,6 +699,7 @@ fun AutoPlaylistScreen(
 
                     isSearching -> {
                         TextField(
+                            shape = GlassFieldShape,
                             value = query,
                             onValueChange = { query = it },
                             placeholder = {

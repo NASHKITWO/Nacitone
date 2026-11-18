@@ -5,6 +5,12 @@
 
 package com.nacitone.music.ui.screens.search
 
+import com.nacitone.music.ui.component.GlassTint
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.border
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.asPaddingValues
@@ -180,7 +186,14 @@ fun SearchScreen(
             GlassTopAppBar(
                 title = {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(end = 8.dp)
+                                .clip(RoundedCornerShape(26.dp))
+                                .background(GlassTint.copy(alpha = 0.08f))
+                                .border(1.dp, GlassTint.copy(alpha = 0.18f), RoundedCornerShape(26.dp))
+                                .padding(start = 18.dp, end = 4.dp, top = 4.dp, bottom = 4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         BasicTextField(
@@ -272,7 +285,8 @@ fun SearchScreen(
                 },
                 colors =
                     TopAppBarDefaults.topAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                        containerColor = Color.Transparent,
+                        scrolledContainerColor = Color.Transparent,
                     ),
             )
         },

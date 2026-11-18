@@ -339,6 +339,7 @@ fun TextFieldDialog(
             if (textFields != null) {
                 textFields.forEachIndexed { index, (label, value) ->
                     TextField(
+                        shape = GlassFieldShape,
                         value = value,
                         onValueChange = { onTextFieldsChange?.invoke(index, it) },
                         placeholder = { Text(label) },
@@ -379,6 +380,7 @@ fun TextFieldDialog(
                             },
                 ) {
                     TextField(
+                        shape = GlassFieldShape,
                         value = legacyFieldState.value,
                         onValueChange = { legacyFieldState.value = it },
                         placeholder = placeholder,

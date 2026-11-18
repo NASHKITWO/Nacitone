@@ -1,5 +1,6 @@
 package com.nacitone.music.ui.utils
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -96,6 +97,7 @@ fun ShowOffsetDialog(songProvider: () -> SongEntity?) {
             modifier = Modifier.fillMaxWidth()
         ) {
             TextField(
+                shape = GlassFieldShape,
                 value = textFieldValue,
                 onValueChange = { newText ->
                     val sanitized = newText.filter {

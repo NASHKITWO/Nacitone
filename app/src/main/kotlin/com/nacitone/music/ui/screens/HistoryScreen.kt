@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -439,6 +440,7 @@ fun HistoryScreen(
                 Text(pluralStringResource(R.plurals.n_selected, selection.size, selection.size))
             } else if (isSearching) {
                 TextField(
+                    shape = GlassFieldShape,
                     value = query,
                     onValueChange = { query = it },
                     placeholder = {

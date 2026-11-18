@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.playlist
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -361,6 +362,7 @@ fun CachePlaylistScreen(
                     }
                     isSearching -> {
                         TextField(
+                            shape = GlassFieldShape,
                             value = query,
                             onValueChange = { query = it },
                             placeholder = {

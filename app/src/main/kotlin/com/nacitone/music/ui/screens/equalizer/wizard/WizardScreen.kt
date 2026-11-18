@@ -1,5 +1,7 @@
 package com.nacitone.music.ui.screens.equalizer.wizard
 
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import com.nacitone.music.ui.component.GlassFieldShape
 import com.nacitone.music.ui.component.GlassTopAppBar
 import com.nacitone.music.ui.component.glassCardColors
 import com.nacitone.music.ui.component.glassCardBorder
@@ -205,6 +207,8 @@ private fun ModelSelectionStep(
         )
 
         OutlinedTextField(
+            colors = glassOutlinedTextFieldColors(),
+            shape = GlassFieldShape,
             value = searchQuery,
             onValueChange = onSearchQueryChanged,
             label = { Text(stringResource(R.string.wizard_model_name)) },

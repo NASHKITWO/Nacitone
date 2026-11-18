@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.playlist
 
+import com.nacitone.music.ui.component.GlassFieldShape
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -721,6 +722,7 @@ fun LocalPlaylistScreen(
                     Text(pluralStringResource(R.plurals.n_selected, selection.size, selection.size))
                 } else if (isSearching) {
                     TextField(
+                        shape = GlassFieldShape,
                         value = query,
                         onValueChange = { query = it },
                         placeholder = {

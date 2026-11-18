@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.menu
 
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import com.nacitone.music.ui.component.GlassFieldShape
 import android.app.SearchManager
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -241,6 +243,8 @@ fun LyricsMenu(
             },
         ) {
             OutlinedTextField(
+                colors = glassOutlinedTextFieldColors(),
+                shape = GlassFieldShape,
                 value = titleField,
                 onValueChange = onTitleFieldChange,
                 singleLine = true,
@@ -250,6 +254,8 @@ fun LyricsMenu(
             Spacer(Modifier.height(12.dp))
 
             OutlinedTextField(
+                colors = glassOutlinedTextFieldColors(),
+                shape = GlassFieldShape,
                 value = artistField,
                 onValueChange = onArtistFieldChange,
                 singleLine = true,

@@ -5,6 +5,8 @@
 
 package com.nacitone.music.ui.screens.settings
 
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import com.nacitone.music.ui.component.GlassFieldShape
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
@@ -210,6 +212,7 @@ fun ContentSettings(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         OutlinedTextField(
+                            shape = GlassFieldShape,
                             value = proxyType.name,
                             onValueChange = {},
                             readOnly = true,
@@ -239,6 +242,8 @@ fun ContentSettings(
                     }
 
                     OutlinedTextField(
+                        colors = glassOutlinedTextFieldColors(),
+                        shape = GlassFieldShape,
                         value = tempProxyUrl,
                         onValueChange = { tempProxyUrl = it },
                         label = { Text(stringResource(R.string.proxy_url)) },
@@ -266,12 +271,16 @@ fun ContentSettings(
                     AnimatedVisibility(visible = authEnabled) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             OutlinedTextField(
+                                colors = glassOutlinedTextFieldColors(),
+                                shape = GlassFieldShape,
                                 value = tempProxyUsername,
                                 onValueChange = { tempProxyUsername = it },
                                 label = { Text(stringResource(R.string.proxy_username)) },
                                 modifier = Modifier.fillMaxWidth()
                             )
                             OutlinedTextField(
+                                colors = glassOutlinedTextFieldColors(),
+                                shape = GlassFieldShape,
                                 value = tempProxyPassword,
                                 onValueChange = { tempProxyPassword = it },
                                 label = { Text(stringResource(R.string.proxy_password)) },
