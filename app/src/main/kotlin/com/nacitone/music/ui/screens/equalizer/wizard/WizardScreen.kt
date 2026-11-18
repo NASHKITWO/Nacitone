@@ -1,5 +1,6 @@
 package com.nacitone.music.ui.screens.equalizer.wizard
 
+import com.nacitone.music.ui.component.GlassTopAppBar
 import com.nacitone.music.ui.component.glassCardColors
 import com.nacitone.music.ui.component.glassCardBorder
 import com.nacitone.music.ui.component.glassSelectableColors
@@ -68,7 +69,7 @@ private fun WizardScreenContent(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
+            GlassTopAppBar(
                 title = {
                     Text(
                         text = when (state.currentStep) {

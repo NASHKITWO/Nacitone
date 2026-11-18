@@ -21,7 +21,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import com.nacitone.music.ui.component.GlassTopAppBar
 import androidx.compose.runtime.Composable
 import com.nacitone.music.utils.DataUsageMeter
 import androidx.compose.runtime.collectAsState
@@ -1177,7 +1177,7 @@ fun PlayerSettings(
         Spacer(modifier = Modifier.height(16.dp))
     }
 
-    TopAppBar(
+    GlassTopAppBar(
         title = { Text(stringResource(R.string.player_and_audio)) },
         navigationIcon = {
             IconButton(

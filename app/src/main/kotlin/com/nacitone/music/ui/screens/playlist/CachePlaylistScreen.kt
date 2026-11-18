@@ -36,7 +36,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.TopAppBar
+import com.nacitone.music.ui.component.GlassTopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -350,7 +350,7 @@ fun CachePlaylistScreen(
             headerItems = 2
         )
 
-        TopAppBar(
+        GlassTopAppBar(
             title = {
                 when {
                     inSelectMode -> {
