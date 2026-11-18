@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.player
 
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.RepeatMode
