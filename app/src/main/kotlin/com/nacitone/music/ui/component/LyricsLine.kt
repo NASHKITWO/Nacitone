@@ -150,7 +150,7 @@ internal fun LyricsLine(
     val itemModifier = modifier
         .fillMaxWidth()
         .onSizeChanged { onSizeChanged(it.height) }
-        .clip(RoundedCornerShape(8.dp))
+        .clip(RoundedCornerShape(12.dp))
         .combinedClickable(
             onClick = onClick,
             onLongClick = onLongClick

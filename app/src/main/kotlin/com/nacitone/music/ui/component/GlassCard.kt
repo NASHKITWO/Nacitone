@@ -1,5 +1,15 @@
 package com.nacitone.music.ui.component
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.Spring
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TextFieldColors
@@ -103,3 +113,27 @@ fun glassOutlinedTextFieldColors(): TextFieldColors =
         focusedIndicatorColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
         unfocusedIndicatorColor = GlassTint.copy(alpha = 0.22f),
     )
+
+
+/** Menyusut sedikit saat ditekan lalu memantul kembali; tidak mengonsumsi sentuhan. */
+fun Modifier.pressScale(pressedScale: Float = 0.97f): Modifier =
+    composed {
+        var pressed by remember { mutableStateOf(false) }
+        val scale by animateFloatAsState(
+            targetValue = if (pressed) pressedScale else 1f,
+            animationSpec = spring(dampingRatio = 0.55f, stiffness = Spring.StiffnessMedium),
+            label = "pressScale",
+        )
+        this
+            .pointerInput(Unit) {
+                awaitEachGesture {
+                    awaitFirstDown(requireUnconsumed = false)
+                    pressed = true
+                    waitForUpOrCancellation()
+                    pressed = false
+                }
+            }.graphicsLayer {
+                scaleX = scale
+                scaleY = scale
+            }
+    }

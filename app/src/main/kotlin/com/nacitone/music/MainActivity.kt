@@ -1315,7 +1315,7 @@ class MainActivity : FragmentActivity() {
                             ) {
                                 Surface(
                                     modifier = Modifier.padding(24.dp),
-                                    shape = RoundedCornerShape(16.dp),
+                                    shape = RoundedCornerShape(20.dp),
                                     color = AlertDialogDefaults.containerColor,
                                     tonalElevation = AlertDialogDefaults.TonalElevation,
                                 ) {

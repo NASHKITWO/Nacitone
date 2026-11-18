@@ -163,7 +163,7 @@ fun AboutScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Surface(
-                            shape = RoundedCornerShape(8.dp),
+                            shape = RoundedCornerShape(12.dp),
                             color = GlassTint.copy(alpha = 0.1f)
                         ) {
                             Text(
@@ -176,7 +176,7 @@ fun AboutScreen(
                         }
                         
                         Surface(
-                            shape = RoundedCornerShape(8.dp),
+                            shape = RoundedCornerShape(12.dp),
                             color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f)
                         ) {
                             Text(
@@ -190,7 +190,7 @@ fun AboutScreen(
 
                         if (BuildConfig.DEBUG) {
                             Surface(
-                                shape = RoundedCornerShape(8.dp),
+                                shape = RoundedCornerShape(12.dp),
                                 color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f)
                             ) {
                                 Text(

@@ -658,7 +658,7 @@ private fun ServerChooserDialog(
                         Modifier
                             .fillMaxWidth()
                             .clickable { onSelect(server) },
-                    shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(20.dp),
                     colors = glassSelectableColors(isSelected),
                     border = glassSelectableBorder(isSelected),
                 ) {
@@ -752,7 +752,7 @@ fun LogEntryItem(log: LogEntry) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Surface(
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(12.dp),
                 color =
                     when (log.level) {
                         LogLevel.ERROR -> MaterialTheme.colorScheme.errorContainer

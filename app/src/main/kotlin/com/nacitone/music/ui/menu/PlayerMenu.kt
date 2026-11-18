@@ -1275,7 +1275,7 @@ fun ListenTogetherDialog(
                     Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(20.dp),
                 color =
                     when (connectionState) {
                         ConnectionState.CONNECTED -> GlassTint.copy(alpha = 0.15f)
@@ -1401,7 +1401,7 @@ fun ListenTogetherDialog(
                             Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp),
-                        shape = RoundedCornerShape(16.dp),
+                        shape = RoundedCornerShape(20.dp),
                         color = GlassTint.copy(alpha = 0.1f),
                     ) {
                         Column(
@@ -1850,7 +1850,7 @@ fun ListenTogetherDialog(
                         Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 16.dp),
-                    shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(20.dp),
                     color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
                 ) {
                     Column(
@@ -1958,7 +1958,7 @@ fun ListenTogetherDialog(
                         joinErrorMessage?.let { msg ->
                             Surface(
                                 modifier = Modifier.fillMaxWidth(),
-                                shape = RoundedCornerShape(8.dp),
+                                shape = RoundedCornerShape(12.dp),
                                 color = MaterialTheme.colorScheme.error.copy(alpha = 0.1f),
                             ) {
                                 Row(

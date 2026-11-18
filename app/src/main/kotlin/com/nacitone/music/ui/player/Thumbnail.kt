@@ -5,6 +5,14 @@
 
 package com.nacitone.music.ui.player
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -484,6 +492,22 @@ private fun ThumbnailItem(
     var skipMultiplier by remember { mutableIntStateOf(1) }
     var lastTapTime by remember { mutableLongStateOf(0L) }
 
+    // Sampul "bernapas" saat lagu diputar dan menyusut saat dijeda.
+    val isPlayingNow by playerConnection.isPlaying.collectAsState()
+    val isCurrentItem = item.mediaId == currentMediaId
+    val restingScale by animateFloatAsState(
+        targetValue = if (isCurrentItem && !isPlayingNow) 0.93f else 1f,
+        animationSpec = spring(dampingRatio = 0.55f, stiffness = Spring.StiffnessLow),
+        label = "artRestingScale",
+    )
+    val breath by rememberInfiniteTransition(label = "artBreath").animateFloat(
+        initialValue = 1f,
+        targetValue = 1.02f,
+        animationSpec = infiniteRepeatable(tween(3600, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "artBreathScale",
+    )
+    val artScale = if (isCurrentItem && isPlayingNow) restingScale * breath else restingScale
+
     Box(
         modifier = modifier
             .then(
@@ -536,6 +560,10 @@ private fun ThumbnailItem(
         Box(
             modifier = Modifier
                 .size(dimensions.thumbnailSize)
+                .graphicsLayer {
+                    scaleX = artScale
+                    scaleY = artScale
+                }
                 .clip(RoundedCornerShape(dimensions.cornerRadius))
         ) {
             if (hidePlayerThumbnail) {
@@ -632,7 +660,7 @@ private fun SeekEffectOverlay(
         fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
         modifier = modifier
-            .background(Color.Black.copy(alpha = 0.7f), RoundedCornerShape(8.dp))
+            .background(Color.Black.copy(alpha = 0.7f), RoundedCornerShape(12.dp))
             .padding(8.dp)
     )
 }

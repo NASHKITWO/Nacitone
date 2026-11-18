@@ -214,9 +214,9 @@ fun WeeklyRecapScreen(
                             Modifier
                                 .fillMaxWidth()
                                 .softEnter(120)
-                                .clip(RoundedCornerShape(24.dp))
+                                .clip(RoundedCornerShape(28.dp))
                                 .background(GlassTint.copy(alpha = 0.10f))
-                                .border(1.dp, GlassTint.copy(alpha = 0.22f), RoundedCornerShape(24.dp))
+                                .border(1.dp, GlassTint.copy(alpha = 0.22f), RoundedCornerShape(28.dp))
                                 .padding(vertical = 8.dp),
                     ) {
                         rest.forEachIndexed { i, song ->

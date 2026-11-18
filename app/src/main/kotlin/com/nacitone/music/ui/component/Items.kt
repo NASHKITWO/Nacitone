@@ -276,7 +276,7 @@ inline fun ListItem(
         modifier = modifier
             .heightIn(min = ListItemHeight)
             .padding(horizontal = 8.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(20.dp))
             .background(highlight)
     ) {
         Box(

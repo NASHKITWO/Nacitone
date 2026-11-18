@@ -325,7 +325,7 @@ private fun PodcastHeader(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(200.dp)
-                .clip(RoundedCornerShape(8.dp))
+                .clip(RoundedCornerShape(12.dp))
         )
 
         Spacer(modifier = Modifier.height(16.dp))

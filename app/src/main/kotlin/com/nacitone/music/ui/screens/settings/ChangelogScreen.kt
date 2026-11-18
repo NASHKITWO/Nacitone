@@ -181,7 +181,7 @@ fun ReleaseItem(release: ReleaseInfo) {
             modifier = Modifier.fillMaxWidth(),
             colors = glassCardColors(),
         border = glassCardBorder(),
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(20.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 MarkdownText(release.description)
