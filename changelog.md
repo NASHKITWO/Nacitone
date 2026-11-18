@@ -1,3 +1,10 @@
+# Nacitone 1.4.2
+
+## Tampilan
+- Bilah atas bergaya kaca di semua layar: latar transparan, judul tebal, tombol kembali dalam lingkaran kaca
+- Bilah pencarian berbentuk pil kaca
+- Semua field teks memakai kaca bening dengan sudut membulat
+
 # Nacitone 1.4.1
 
 ## Logo
