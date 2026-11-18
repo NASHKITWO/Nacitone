@@ -1,3 +1,13 @@
+# Nacitone 1.4.3
+
+## Gerak
+- Sampul di pemutar bernapas pelan saat lagu diputar dan menyusut saat dijeda
+- Baris pengaturan menyusut sedikit saat ditekan lalu memantul kembali
+
+## Tampilan
+- Sudut komponen diseragamkan ke tiga ukuran: 12, 20, dan 28 dp
+- Status kosong berupa lingkaran kaca besar dengan ikon berwarna utama
+
 # Nacitone 1.4.2
 
 ## Tampilan
