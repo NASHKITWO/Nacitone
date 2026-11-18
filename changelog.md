@@ -1,3 +1,9 @@
+# Nacitone 1.4.1
+
+## Logo
+- Logo disederhanakan: hanya huruf n-not, transparan, tanpa ubin dan latar
+- Latar ikon adaptif transparan; ikon toko, banner TV, dan berkas logo ikut diganti
+
 # Nacitone 1.4.0
 
 ## Logo
