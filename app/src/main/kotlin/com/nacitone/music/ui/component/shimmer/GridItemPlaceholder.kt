@@ -25,13 +25,13 @@ import com.nacitone.music.constants.GridItemSize
 import com.nacitone.music.constants.GridItemsSizeKey
 import com.nacitone.music.constants.GridThumbnailHeight
 import com.nacitone.music.constants.SmallGridThumbnailHeight
-import com.nacitone.music.constants.ThumbnailCornerRadius
+import com.nacitone.music.constants.GridCornerRadius
 import com.nacitone.music.utils.rememberEnumPreference
 
 @Composable
 fun GridItemPlaceHolder(
     modifier: Modifier = Modifier,
-    thumbnailShape: Shape = RoundedCornerShape(ThumbnailCornerRadius),
+    thumbnailShape: Shape = RoundedCornerShape(GridCornerRadius),
     fillMaxWidth: Boolean = false,
 ) {
     val gridItemSize by rememberEnumPreference(GridItemsSizeKey, GridItemSize.BIG)

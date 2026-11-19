@@ -21,7 +21,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.nacitone.music.constants.ThumbnailCornerRadius
+import com.nacitone.music.constants.GridCornerRadius
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -48,7 +48,7 @@ fun RandomizeGridItem(
         modifier =
             modifier
                 .aspectRatio(1f)
-                .clip(RoundedCornerShape(ThumbnailCornerRadius))
+                .clip(RoundedCornerShape(GridCornerRadius))
                 .background(MaterialTheme.colorScheme.secondaryContainer)
                 .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,

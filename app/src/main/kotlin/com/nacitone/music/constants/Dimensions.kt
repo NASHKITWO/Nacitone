@@ -30,7 +30,10 @@ val ListThumbnailSize = 48.dp
 val SmallGridThumbnailHeight = 104.dp
 val GridThumbnailHeight = 128.dp
 
-val ThumbnailCornerRadius = 3.dp
+val ThumbnailCornerRadius = 12.dp
+
+/** Sudut sampul besar di grid (album, playlist, kartu Pustaka). */
+val GridCornerRadius = 24.dp
 
 val PlayerHorizontalPadding = 32.dp
 

@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens.library
 
+import com.nacitone.music.constants.GridCornerRadius
 import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -510,7 +511,7 @@ private fun AutoPlaylistCard(
             modifier =
                 Modifier
                     .size(56.dp)
-                    .clip(RoundedCornerShape(ThumbnailCornerRadius))
+                    .clip(RoundedCornerShape(GridCornerRadius))
                     .background(MaterialTheme.colorScheme.primaryContainer),
             contentAlignment = Alignment.Center,
         ) {
@@ -522,7 +523,7 @@ private fun AutoPlaylistCard(
                     modifier =
                         Modifier
                             .size(56.dp)
-                            .clip(RoundedCornerShape(ThumbnailCornerRadius)),
+                            .clip(RoundedCornerShape(GridCornerRadius)),
                 )
             } else {
                 Icon(
@@ -580,7 +581,7 @@ private fun PodcastEpisodePlaylistItem(
             modifier =
                 Modifier
                     .size(56.dp)
-                    .clip(RoundedCornerShape(ThumbnailCornerRadius))
+                    .clip(RoundedCornerShape(GridCornerRadius))
                     .background(MaterialTheme.colorScheme.primaryContainer),
             contentAlignment = Alignment.Center,
         ) {
@@ -592,7 +593,7 @@ private fun PodcastEpisodePlaylistItem(
                     modifier =
                         Modifier
                             .size(56.dp)
-                            .clip(RoundedCornerShape(ThumbnailCornerRadius)),
+                            .clip(RoundedCornerShape(GridCornerRadius)),
                 )
             } else {
                 Icon(

@@ -5,6 +5,7 @@
 
 package com.nacitone.music.ui.screens
 
+import com.nacitone.music.constants.GridCornerRadius
 import com.nacitone.music.ui.component.glassCardColors
 import com.nacitone.music.ui.component.glassCardBorder
 import androidx.activity.compose.BackHandler
@@ -1321,7 +1322,7 @@ fun HomeScreen(
                                                         CircleShape
                                                     } else {
                                                         RoundedCornerShape(
-                                                            ThumbnailCornerRadius,
+                                                            GridCornerRadius,
                                                         )
                                                     }
                                                 AsyncImage(
@@ -2220,7 +2221,7 @@ fun HomeScreen(
                                                             CircleShape
                                                         } else {
                                                             RoundedCornerShape(
-                                                                ThumbnailCornerRadius,
+                                                                GridCornerRadius,
                                                             )
                                                         }
                                                     AsyncImage(
@@ -2296,7 +2297,7 @@ fun HomeScreen(
                                                             CircleShape
                                                         } else {
                                                             RoundedCornerShape(
-                                                                ThumbnailCornerRadius,
+                                                                GridCornerRadius,
                                                             )
                                                         }
                                                     AsyncImage(

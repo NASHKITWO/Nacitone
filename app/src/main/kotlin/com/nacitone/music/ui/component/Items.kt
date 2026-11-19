@@ -7,6 +7,7 @@
 
 package com.nacitone.music.ui.component
 
+import com.nacitone.music.constants.GridCornerRadius
 import androidx.compose.foundation.border
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -626,7 +627,7 @@ fun SongGridItem(
             thumbnailUrl = song.song.thumbnailUrl,
             isActive = isActive,
             isPlaying = isPlaying,
-            shape = RoundedCornerShape(ThumbnailCornerRadius),
+            shape = RoundedCornerShape(GridCornerRadius),
             modifier = Modifier.size(gridHeight)
         )
         if (!isActive) {
@@ -854,7 +855,7 @@ fun AlbumGridItem(
             thumbnailUrl = album.album.thumbnailUrl,
             isActive = isActive,
             isPlaying = isPlaying,
-            shape = RoundedCornerShape(ThumbnailCornerRadius),
+            shape = RoundedCornerShape(GridCornerRadius),
         )
 
         AlbumPlayButton(
@@ -1054,7 +1055,7 @@ fun PlaylistGridItem(
                     )
                 }
             },
-            shape = RoundedCornerShape(ThumbnailCornerRadius)
+            shape = RoundedCornerShape(GridCornerRadius)
         )
     },
     fillMaxWidth = fillMaxWidth,
@@ -1303,7 +1304,7 @@ fun YouTubeGridItem(
             thumbnailUrl = item.thumbnail,
             isActive = isActive,
             isPlaying = isPlaying,
-            shape = if (item is ArtistItem) CircleShape else RoundedCornerShape(ThumbnailCornerRadius),
+            shape = if (item is ArtistItem) CircleShape else RoundedCornerShape(GridCornerRadius),
         )
 
         if (item is SongItem && !isActive) {
@@ -1369,7 +1370,7 @@ fun LocalSongsGrid(
             thumbnailUrl = thumbnailUrl,
             isActive = isActive,
             isPlaying = isPlaying,
-            shape = RoundedCornerShape(ThumbnailCornerRadius),
+            shape = RoundedCornerShape(GridCornerRadius),
             modifier = if (fillMaxWidth) Modifier.fillMaxWidth() else Modifier,
             showCenterPlay = true,
             playButtonVisible = false
@@ -1453,7 +1454,7 @@ fun LocalAlbumsGrid(
             thumbnailUrl = thumbnailUrl,
             isActive = isActive,
             isPlaying = isPlaying,
-            shape = RoundedCornerShape(ThumbnailCornerRadius),
+            shape = RoundedCornerShape(GridCornerRadius),
             modifier = if (fillMaxWidth) Modifier.fillMaxWidth() else Modifier,
             showCenterPlay = false,
             playButtonVisible = true
