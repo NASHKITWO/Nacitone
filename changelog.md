@@ -1,3 +1,12 @@
+# Nacitone 1.4.5
+
+## Tampilan
+- Header Beranda transparan penuh, juga saat digulir
+- Kartu grid di Pustaka dan layar lain lebih bulat (24 dp), sampul daftar 12 dp
+- Footer (bilah navigasi bawah) transparan
+- Kartu rekap mingguan: judul besar, angka serif, tiap lagu kartu kaca, foto artis dengan cincin untuk peringkat 1
+- Dashboard Dengar Bersama: ikon kaca, titik status berdenyut, kode ruangan per karakter, avatar dan kolom isian kaca
+
 # Nacitone 1.4.4
 
 ## Tampilan

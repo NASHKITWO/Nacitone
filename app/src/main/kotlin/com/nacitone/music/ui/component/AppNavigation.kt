@@ -62,13 +62,12 @@ fun AppNavigationRail(
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = MaterialTheme.colorScheme.surfaceContainer
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
     NavigationRail(
         modifier = modifier,
-        containerColor = containerColor.copy(alpha = 0.94f),
+        containerColor = Color.Transparent,
     ) {
         Spacer(modifier = Modifier.weight(1f))
 
@@ -149,7 +148,6 @@ fun AppNavigationBar(
     onSearchLongClick: (() -> Unit)? = null,
     onHomeLongHold: (() -> Unit)? = null,
 ) {
-    val containerColor = MaterialTheme.colorScheme.surfaceContainer
     val contentColor = MaterialTheme.colorScheme.onSurfaceVariant
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
@@ -160,7 +158,7 @@ fun AppNavigationBar(
             modifier.drawBehind {
                 drawLine(lineColor, Offset(0f, 0f), Offset(size.width, 0f), strokeWidth = 1.dp.toPx())
             },
-        containerColor = containerColor.copy(alpha = 0.94f),
+        containerColor = Color.Transparent,
         contentColor = contentColor,
         tonalElevation = 0.dp,
     ) {
