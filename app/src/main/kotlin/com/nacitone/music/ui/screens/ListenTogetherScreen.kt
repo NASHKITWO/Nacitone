@@ -9,6 +9,14 @@ import com.nacitone.music.ui.component.GlassTint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
+import com.nacitone.music.ui.component.glassOutlinedTextFieldColors
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.border
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -58,7 +66,6 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -484,23 +491,34 @@ private fun HeaderSection(isInRoom: Boolean = false) {
         Box(
             modifier =
                 Modifier
-                    .size(80.dp)
+                    .size(96.dp)
                     .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
+                    .background(GlassTint.copy(alpha = 0.08f))
+                    .border(1.dp, GlassTint.copy(alpha = 0.18f), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(
-                painter = painterResource(R.drawable.group_outlined),
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                modifier = Modifier.size(48.dp),
-            )
+            Box(
+                modifier =
+                    Modifier
+                        .size(68.dp)
+                        .clip(CircleShape)
+                        .background(GlassTint.copy(alpha = 0.10f))
+                        .border(1.dp, GlassTint.copy(alpha = 0.22f), CircleShape),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.group_outlined),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(34.dp),
+                )
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = stringResource(R.string.listen_together),
             style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.ExtraBold,
             color = MaterialTheme.colorScheme.onBackground,
         )
         Spacer(modifier = Modifier.height(4.dp))
@@ -510,6 +528,32 @@ private fun HeaderSection(isInRoom: Boolean = false) {
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+    }
+}
+
+@Composable
+private fun PulseDot(
+    color: Color,
+    pulsing: Boolean,
+) {
+    val transition = rememberInfiniteTransition(label = "pulse")
+    val ring by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(1800)),
+        label = "ring",
+    )
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.size(22.dp)) {
+        if (pulsing) {
+            Box(
+                modifier =
+                    Modifier
+                        .size(10.dp + 12.dp * ring)
+                        .clip(CircleShape)
+                        .background(color.copy(alpha = 0.35f * (1f - ring))),
+            )
+        }
+        Box(modifier = Modifier.size(10.dp).clip(CircleShape).background(color))
     }
 }
 
@@ -542,13 +586,7 @@ private fun ConnectionStatusCard(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 12.dp),
             ) {
-                Box(
-                    modifier =
-                        Modifier
-                            .size(10.dp)
-                            .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.primary),
-                )
+                PulseDot(MaterialTheme.colorScheme.primary, pulsing = true)
                 Text(
                     text = stringResource(R.string.listen_together_connected),
                     style = MaterialTheme.typography.titleSmall,
@@ -568,20 +606,15 @@ private fun ConnectionStatusCard(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Box(
-                    modifier =
-                        Modifier
-                            .size(10.dp)
-                            .clip(CircleShape)
-                            .background(
-                                color =
-                                    when (connectionState) {
-                                        ConnectionState.CONNECTED -> MaterialTheme.colorScheme.primary
-                                        ConnectionState.CONNECTING, ConnectionState.RECONNECTING -> MaterialTheme.colorScheme.tertiary
-                                        ConnectionState.ERROR -> MaterialTheme.colorScheme.error
-                                        ConnectionState.DISCONNECTED -> MaterialTheme.colorScheme.outline
-                                    },
-                            ),
+                PulseDot(
+                    color =
+                        when (connectionState) {
+                            ConnectionState.CONNECTED -> MaterialTheme.colorScheme.primary
+                            ConnectionState.CONNECTING, ConnectionState.RECONNECTING -> MaterialTheme.colorScheme.tertiary
+                            ConnectionState.ERROR -> MaterialTheme.colorScheme.error
+                            ConnectionState.DISCONNECTED -> MaterialTheme.colorScheme.outline
+                        },
+                    pulsing = connectionState == ConnectionState.CONNECTING || connectionState == ConnectionState.RECONNECTING,
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
@@ -673,7 +706,7 @@ private fun RoomStatusCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth().softEnter(),
-        shape = RoundedCornerShape(32.dp),
+        shape = RoundedCornerShape(28.dp),
         colors = glassCardColors(),
         border = glassCardBorder(),
     ) {
@@ -699,20 +732,31 @@ private fun RoomStatusCard(
                 textAlign = TextAlign.Center,
             )
             Spacer(modifier = Modifier.height(12.dp))
-            Surface(
-                shape = RoundedCornerShape(20.dp),
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.55f),
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally),
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(
-                    text = roomCode,
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 4.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
-                )
+                roomCode.forEach { ch ->
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier =
+                            Modifier
+                                .weight(1f, fill = false)
+                                .width(34.dp)
+                                .height(48.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.45f))
+                                .border(1.dp, GlassTint.copy(alpha = 0.20f), RoundedCornerShape(12.dp)),
+                    ) {
+                        Text(
+                            text = ch.toString(),
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.ExtraBold,
+                            maxLines = 1,
+                        )
+                    }
+                }
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
@@ -846,9 +890,10 @@ private fun UserAvatar(
                 color =
                     when {
                         user.isHost -> MaterialTheme.colorScheme.primary
-                        isCurrentUser -> MaterialTheme.colorScheme.secondary
-                        else -> MaterialTheme.colorScheme.surfaceVariant
+                        isCurrentUser -> GlassTint.copy(alpha = 0.22f)
+                        else -> GlassTint.copy(alpha = 0.10f)
                     },
+                border = BorderStroke(1.dp, GlassTint.copy(alpha = if (user.isHost) 0f else 0.22f)),
             ) {
                 Box(
                     contentAlignment = Alignment.Center,
@@ -861,8 +906,7 @@ private fun UserAvatar(
                         color =
                             when {
                                 user.isHost -> MaterialTheme.colorScheme.onPrimary
-                                isCurrentUser -> MaterialTheme.colorScheme.onSecondary
-                                else -> MaterialTheme.colorScheme.onSurfaceVariant
+                                else -> MaterialTheme.colorScheme.onSurface
                             },
                     )
                 }
@@ -1129,12 +1173,7 @@ private fun JoinCreateRoomSection(
                 singleLine = true,
                 shape = RoundedCornerShape(20.dp),
                 colors =
-                    OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = MaterialTheme.colorScheme.primary,
-                        unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
-                        focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-                        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-                    ),
+                    glassOutlinedTextFieldColors(),
                 modifier =
                     Modifier
                         .fillMaxWidth()
@@ -1164,12 +1203,7 @@ private fun JoinCreateRoomSection(
                 singleLine = true,
                 shape = RoundedCornerShape(20.dp),
                 colors =
-                    OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = MaterialTheme.colorScheme.primary,
-                        unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
-                        focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-                        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-                    ),
+                    glassOutlinedTextFieldColors(),
                 modifier =
                     Modifier
                         .fillMaxWidth()
@@ -1186,7 +1220,8 @@ private fun JoinCreateRoomSection(
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.primaryContainer,
+                    color = GlassTint.copy(alpha = 0.10f),
+                    border = BorderStroke(1.dp, GlassTint.copy(alpha = 0.20f)),
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -1205,7 +1240,7 @@ private fun JoinCreateRoomSection(
                         Text(
                             text = waitingForApprovalText,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = MaterialTheme.colorScheme.onSurface,
                             fontWeight = FontWeight.Medium,
                             textAlign = TextAlign.Center,
                         )

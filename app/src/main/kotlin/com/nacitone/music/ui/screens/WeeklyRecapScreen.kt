@@ -54,10 +54,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -111,19 +113,29 @@ fun WeeklyRecapScreen(
         Spacer(Modifier.windowInsetsPadding(windowInsets.only(WindowInsetsSides.Top)))
         Spacer(Modifier.height(64.dp))
 
+        if (dateRange.isNotEmpty()) {
+            Box(
+                modifier =
+                    Modifier
+                        .clip(CircleShape)
+                        .background(GlassTint.copy(alpha = 0.10f))
+                        .border(1.dp, GlassTint.copy(alpha = 0.20f), CircleShape),
+            ) {
+                Text(
+                    text = dateRange,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = accent,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
+                )
+            }
+            Spacer(Modifier.height(12.dp))
+        }
         Text(
             text = stringResource(R.string.weekly_recap_subtitle),
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.displaySmall,
+            fontWeight = FontWeight.ExtraBold,
         )
-        if (dateRange.isNotEmpty()) {
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = dateRange,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
         Spacer(Modifier.height(24.dp))
 
         val data = recap
@@ -170,12 +182,12 @@ fun WeeklyRecapScreen(
                     )
                     Surface(
                         shape = RoundedCornerShape(50),
-                        color = Color.Black.copy(alpha = 0.45f),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.22f)),
+                        color = GlassTint.copy(alpha = 0.16f),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, GlassTint.copy(alpha = 0.30f)),
                         modifier = Modifier.align(Alignment.TopStart).padding(16.dp),
                     ) {
                         Text(
-                            text = "#1  " + stringResource(R.string.weekly_recap_top_songs),
+                            text = stringResource(R.string.weekly_recap_top_songs),
                             style = MaterialTheme.typography.labelLarge,
                             color = Color.White,
                             fontWeight = FontWeight.SemiBold,
@@ -184,8 +196,17 @@ fun WeeklyRecapScreen(
                             modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
                         )
                     }
+                    Text(
+                        text = "1",
+                        style = MaterialTheme.typography.displayLarge,
+                        fontFamily = FontFamily.Serif,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 120.sp,
+                        color = Color.White.copy(alpha = 0.92f),
+                        modifier = Modifier.align(Alignment.BottomEnd).padding(end = 22.dp, bottom = 4.dp),
+                    )
                     Column(
-                        modifier = Modifier.align(Alignment.BottomStart).padding(20.dp),
+                        modifier = Modifier.align(Alignment.BottomStart).fillMaxWidth(0.72f).padding(20.dp),
                     ) {
                         Text(
                             text = top.song.title,
@@ -208,36 +229,35 @@ fun WeeklyRecapScreen(
 
                 val rest = data.songs.drop(1)
                 if (rest.isNotEmpty()) {
-                    Spacer(Modifier.height(16.dp))
-                    Column(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .softEnter(120)
-                                .clip(RoundedCornerShape(28.dp))
-                                .background(GlassTint.copy(alpha = 0.10f))
-                                .border(1.dp, GlassTint.copy(alpha = 0.22f), RoundedCornerShape(28.dp))
-                                .padding(vertical = 8.dp),
-                    ) {
+                    Spacer(Modifier.height(12.dp))
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         rest.forEachIndexed { i, song ->
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(12.dp),
-                                modifier = Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp),
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .softEnter(120 + i * 70)
+                                        .clip(RoundedCornerShape(20.dp))
+                                        .background(GlassTint.copy(alpha = 0.08f))
+                                        .border(1.dp, GlassTint.copy(alpha = 0.16f), RoundedCornerShape(20.dp))
+                                        .padding(horizontal = 14.dp, vertical = 10.dp),
                             ) {
                                 Text(
                                     text = "${i + 2}",
-                                    style = MaterialTheme.typography.titleMedium,
-                                    color = accent.copy(alpha = (1f - i * 0.18f).coerceAtLeast(0.5f)),
+                                    fontFamily = FontFamily.Serif,
+                                    fontSize = 30.sp,
+                                    color = accent.copy(alpha = (1f - i * 0.16f).coerceAtLeast(0.5f)),
                                     fontWeight = FontWeight.Bold,
                                     textAlign = TextAlign.Center,
-                                    modifier = Modifier.width(22.dp),
+                                    modifier = Modifier.width(28.dp),
                                 )
                                 AsyncImage(
                                     model = song.song.thumbnailUrl,
                                     contentDescription = null,
                                     contentScale = ContentScale.Crop,
-                                    modifier = Modifier.size(48.dp).clip(RoundedCornerShape(14.dp)),
+                                    modifier = Modifier.size(52.dp).clip(RoundedCornerShape(12.dp)),
                                 )
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
@@ -273,31 +293,43 @@ fun WeeklyRecapScreen(
                         modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     ) {
                         data.artists.forEachIndexed { index, artist ->
+                            val size = if (index == 0) 80.dp else 64.dp
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.width(76.dp),
+                                modifier = Modifier.width(88.dp).softEnter(200 + index * 70),
                             ) {
                                 Box(
                                     contentAlignment = Alignment.Center,
                                     modifier =
                                         Modifier
-                                            .size(64.dp)
+                                            .size(size)
                                             .clip(CircleShape)
-                                            .background(
-                                                GlassTint.copy(alpha = if (index == 0) 0.28f else 0.14f),
+                                            .background(GlassTint.copy(alpha = 0.14f))
+                                            .border(
+                                                if (index == 0) 2.dp else 1.dp,
+                                                if (index == 0) accent else GlassTint.copy(alpha = 0.22f),
+                                                CircleShape,
                                             ),
                                 ) {
                                     Text(
                                         text = artist.artist.name.trim().take(1).uppercase(),
                                         style = MaterialTheme.typography.titleLarge,
+                                        fontFamily = FontFamily.Serif,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface,
                                     )
+                                    AsyncImage(
+                                        model = artist.artist.thumbnailUrl,
+                                        contentDescription = null,
+                                        contentScale = ContentScale.Crop,
+                                        modifier = Modifier.fillMaxSize(),
+                                    )
                                 }
-                                Spacer(Modifier.height(6.dp))
+                                Spacer(Modifier.height(8.dp))
                                 Text(
                                     text = artist.artist.name,
                                     style = MaterialTheme.typography.labelMedium,
+                                    fontWeight = if (index == 0) FontWeight.Bold else FontWeight.Medium,
                                     maxLines = 2,
                                     textAlign = TextAlign.Center,
                                     overflow = TextOverflow.Ellipsis,
