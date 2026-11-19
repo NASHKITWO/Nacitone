@@ -1,3 +1,11 @@
+# Nacitone 1.4.4
+
+## Tampilan
+- Cahaya latar lembut (biru, ungu, merah muda) di belakang seluruh aplikasi agar efek kaca terlihat
+- Header Beranda dan Pustaka transparan, dengan logo di sebelah kiri judul
+- Ubin kosong di Pustaka dan mini player memakai kaca bening
+- Lingkaran kosong di bilah atas dihapus
+
 # Nacitone 1.4.3
 
 ## Gerak
