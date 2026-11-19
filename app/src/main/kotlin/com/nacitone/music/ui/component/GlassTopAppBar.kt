@@ -30,7 +30,8 @@ import androidx.compose.ui.unit.dp
 fun GlassTopAppBar(
     title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    navigationIcon: @Composable () -> Unit = {},
+    navigationIcon: (@Composable () -> Unit)? = null,
+    navigationIconGlass: Boolean = true,
     actions: @Composable RowScope.() -> Unit = {},
     colors: TopAppBarColors =
         TopAppBarDefaults.topAppBarColors(
@@ -47,17 +48,25 @@ fun GlassTopAppBar(
         },
         modifier = modifier,
         navigationIcon = {
-            Box(
-                modifier =
-                    Modifier
-                        .padding(start = 8.dp)
-                        .size(44.dp)
-                        .clip(CircleShape)
-                        .background(GlassTint.copy(alpha = 0.08f))
-                        .border(1.dp, GlassTint.copy(alpha = 0.18f), CircleShape),
-                contentAlignment = Alignment.Center,
-            ) {
-                navigationIcon()
+            if (navigationIcon != null) {
+                if (navigationIconGlass) {
+                    Box(
+                        modifier =
+                            Modifier
+                                .padding(start = 8.dp)
+                                .size(44.dp)
+                                .clip(CircleShape)
+                                .background(GlassTint.copy(alpha = 0.08f))
+                                .border(1.dp, GlassTint.copy(alpha = 0.18f), CircleShape),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        navigationIcon()
+                    }
+                } else {
+                    Box(modifier = Modifier.padding(start = 12.dp), contentAlignment = Alignment.Center) {
+                        navigationIcon()
+                    }
+                }
             }
         },
         actions = actions,

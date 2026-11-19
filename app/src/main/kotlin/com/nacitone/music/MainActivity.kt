@@ -5,6 +5,7 @@
 
 package com.nacitone.music
 
+import androidx.compose.foundation.Image
 import com.nacitone.music.ui.component.ambientGlow
 import android.Manifest
 import android.annotation.SuppressLint
@@ -952,6 +953,14 @@ class MainActivity : FragmentActivity() {
                             ) {
                                 Row {
                                     GlassTopAppBar(
+                                        navigationIconGlass = false,
+                                        navigationIcon = {
+                                            Image(
+                                                painter = painterResource(R.drawable.app_logo),
+                                                contentDescription = stringResource(R.string.app_name),
+                                                modifier = Modifier.size(36.dp),
+                                            )
+                                        },
                                         title = {
                                             Text(
                                                 text = currentTitleRes?.let { stringResource(it) } ?: "",
