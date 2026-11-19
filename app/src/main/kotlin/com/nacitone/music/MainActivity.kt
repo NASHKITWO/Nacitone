@@ -5,6 +5,7 @@
 
 package com.nacitone.music
 
+import com.nacitone.music.ui.component.ambientGlow
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
@@ -603,7 +604,8 @@ class MainActivity : FragmentActivity() {
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.surface),
+                        .background(MaterialTheme.colorScheme.surface)
+                        .ambientGlow(),
             ) {
                 val density = LocalDensity.current
                 val configuration = LocalWindowInfo.current
@@ -940,6 +942,7 @@ class MainActivity : FragmentActivity() {
                     }
 
                     Scaffold(
+                        containerColor = Color.Transparent,
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         topBar = {
                             AnimatedVisibility(
@@ -1006,8 +1009,8 @@ class MainActivity : FragmentActivity() {
                                         scrollBehavior = topAppBarScrollBehavior,
                                         colors =
                                             TopAppBarDefaults.topAppBarColors(
-                                                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                                                scrolledContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                                                containerColor = Color.Transparent,
+                                                scrolledContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.82f),
                                                 titleContentColor = MaterialTheme.colorScheme.onSurface,
                                                 actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 navigationIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant,

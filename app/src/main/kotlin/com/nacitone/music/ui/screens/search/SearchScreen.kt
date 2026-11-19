@@ -290,7 +290,7 @@ fun SearchScreen(
                     ),
             )
         },
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = Color.Transparent,
     ) { paddingValues ->
         Box(
             modifier =

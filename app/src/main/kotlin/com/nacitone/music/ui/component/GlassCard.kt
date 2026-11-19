@@ -1,5 +1,8 @@
 package com.nacitone.music.ui.component
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
@@ -136,4 +139,37 @@ fun Modifier.pressScale(pressedScale: Float = 0.97f): Modifier =
                 scaleX = scale
                 scaleY = scale
             }
+    }
+
+
+/**
+ * Cahaya latar lembut (biru kiri atas, merah muda kanan bawah, ungu di sisi kanan) agar
+ * permukaan kaca punya sesuatu untuk ditembus. Digambar sekali dan dicache.
+ */
+fun Modifier.ambientGlow(): Modifier =
+    drawWithCache {
+        val r = size.maxDimension
+        val blue =
+            Brush.radialGradient(
+                listOf(Color(0xFF5B8CFF).copy(alpha = 0.30f), Color.Transparent),
+                center = Offset(size.width * 0.05f, size.height * 0.04f),
+                radius = r * 0.75f,
+            )
+        val pink =
+            Brush.radialGradient(
+                listOf(Color(0xFFFF7FA8).copy(alpha = 0.22f), Color.Transparent),
+                center = Offset(size.width * 0.98f, size.height * 0.96f),
+                radius = r * 0.7f,
+            )
+        val violet =
+            Brush.radialGradient(
+                listOf(Color(0xFF7C5CE0).copy(alpha = 0.18f), Color.Transparent),
+                center = Offset(size.width * 1.0f, size.height * 0.38f),
+                radius = r * 0.55f,
+            )
+        onDrawBehind {
+            drawRect(blue)
+            drawRect(violet)
+            drawRect(pink)
+        }
     }

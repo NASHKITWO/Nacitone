@@ -7,6 +7,7 @@
 
 package com.nacitone.music.ui.player
 
+import com.nacitone.music.ui.component.GlassTint
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
@@ -232,10 +233,10 @@ private fun NewMiniPlayer(
 
     // Memoize colors
     val backgroundColor =
-        MaterialTheme.colorScheme.primary
-            .copy(alpha = 0.14f)
+        GlassTint
+            .copy(alpha = 0.10f)
             .compositeOver(MaterialTheme.colorScheme.surfaceContainer)
-            .copy(alpha = 0.88f)
+            .copy(alpha = 0.72f)
     val primaryColor = MaterialTheme.colorScheme.primary
     val outlineColor = MaterialTheme.colorScheme.outline
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface

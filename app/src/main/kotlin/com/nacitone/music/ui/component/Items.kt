@@ -7,6 +7,7 @@
 
 package com.nacitone.music.ui.component
 
+import androidx.compose.foundation.border
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animate
@@ -1666,7 +1667,8 @@ fun PlaylistThumbnail(
             modifier = Modifier
                 .size(size)
                 .clip(shape)
-                .background(MaterialTheme.colorScheme.surfaceContainer)
+                .background(GlassTint.copy(alpha = 0.08f))
+                .border(1.dp, GlassTint.copy(alpha = 0.18f), shape)
         ) {
             placeHolder()
         }

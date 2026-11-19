@@ -109,7 +109,7 @@ fun LocalSearchScreen(
         modifier =
             Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
+                .background(Color.Transparent)
                 .let { base ->
                     if (isLandscape) {
                         base.windowInsetsPadding(
