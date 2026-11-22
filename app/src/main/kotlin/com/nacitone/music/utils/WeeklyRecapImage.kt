@@ -41,15 +41,15 @@ object WeeklyRecapImage {
             val softWhite = 0xCCFFFFFF.toInt()
             val gold = 0xFFE9C46A.toInt()
 
-            // Latar gradasi: aksen tema pengguna yang digelapkan -> hampir hitam keunguan.
-            val deep = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF0B0A12.toInt(), 0.72f)
-            val mid = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF0B0A12.toInt(), 0.45f)
+            // Latar gradasi: aksen tema pengguna yang digelapkan -> hitam pekat.
+            val deep = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF000000.toInt(), 0.72f)
+            val mid = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF000000.toInt(), 0.45f)
             canvas.drawRect(
                 RectF(0f, 0f, w.toFloat(), h.toFloat()),
                 Paint().apply {
                     shader = android.graphics.LinearGradient(
                         0f, 0f, w.toFloat(), h.toFloat(),
-                        intArrayOf(mid, deep, 0xFF0B0A12.toInt()),
+                        intArrayOf(mid, deep, 0xFF000000.toInt()),
                         floatArrayOf(0f, 0.55f, 1f),
                         android.graphics.Shader.TileMode.CLAMP,
                     )

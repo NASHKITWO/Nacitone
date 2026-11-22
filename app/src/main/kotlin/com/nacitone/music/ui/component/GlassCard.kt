@@ -37,7 +37,7 @@ import kotlinx.coroutines.delay
 private const val GLASS_FILL_ALPHA = 0.08f
 private const val GLASS_STROKE_ALPHA = 0.18f
 
-/** Warna kaca bening: putih transparan, tanpa semburat ungu. */
+/** Warna kaca bening: putih transparan, tanpa warna. */
 val GlassTint: Color = Color.White
 
 /** Isi transparan bening: semua kartu memakai satu nada yang sama. */
@@ -143,33 +143,26 @@ fun Modifier.pressScale(pressedScale: Float = 0.97f): Modifier =
 
 
 /**
- * Cahaya latar lembut (biru kiri atas, merah muda kanan bawah, ungu di sisi kanan) agar
- * permukaan kaca punya sesuatu untuk ditembus. Digambar sekali dan dicache.
+ * Cahaya latar netral yang sangat tipis (putih kebiruan, tanpa warna) agar kaca di atas
+ * hitam pekat punya sesuatu untuk dibiaskan.
  */
 fun Modifier.ambientGlow(): Modifier =
     drawWithCache {
         val r = size.maxDimension
-        val blue =
+        val top =
             Brush.radialGradient(
-                listOf(Color(0xFF5B8CFF).copy(alpha = 0.30f), Color.Transparent),
-                center = Offset(size.width * 0.05f, size.height * 0.04f),
-                radius = r * 0.75f,
+                listOf(Color(0xFFDDE6F5).copy(alpha = 0.11f), Color.Transparent),
+                center = Offset(size.width * 0.10f, size.height * 0.03f),
+                radius = r * 0.70f,
             )
-        val pink =
+        val bottom =
             Brush.radialGradient(
-                listOf(Color(0xFFFF7FA8).copy(alpha = 0.22f), Color.Transparent),
-                center = Offset(size.width * 0.98f, size.height * 0.96f),
-                radius = r * 0.7f,
-            )
-        val violet =
-            Brush.radialGradient(
-                listOf(Color(0xFF7C5CE0).copy(alpha = 0.18f), Color.Transparent),
-                center = Offset(size.width * 1.0f, size.height * 0.38f),
-                radius = r * 0.55f,
+                listOf(Color(0xFFFFFFFF).copy(alpha = 0.06f), Color.Transparent),
+                center = Offset(size.width * 0.95f, size.height * 0.97f),
+                radius = r * 0.65f,
             )
         onDrawBehind {
-            drawRect(blue)
-            drawRect(violet)
-            drawRect(pink)
+            drawRect(top)
+            drawRect(bottom)
         }
     }
