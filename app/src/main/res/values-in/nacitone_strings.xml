@@ -786,4 +786,5 @@
     <string name="import_spotify_pick">Pilih file CSV</string>
     <string name="website">Situs web</string>
     <string name="home_load_failed">Musik belum bisa dimuat. Periksa koneksi internet lalu coba lagi.</string>
+    <string name="listen_together_reconnect">Sambungkan ulang</string>
 </resources>

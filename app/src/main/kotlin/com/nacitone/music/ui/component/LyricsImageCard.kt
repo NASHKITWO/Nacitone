@@ -205,7 +205,7 @@ fun LyricsImageCard(
                             tileMode = TileMode.Clamp
                         )
                     }
-                } catch (_: Exception) {}
+                } catch (e: Exception) { timber.log.Timber.w(e, "LyricsImageCard: diabaikan") }
             }
         }
     }

@@ -115,7 +115,7 @@ fun AccountSettings(
                                 description = { Text(latestVersionName) },
                                 icon = painterResource(R.drawable.update),
                                 showBadge = true,
-                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (_: Exception) {} }
+                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "AccountSettings: diabaikan") } }
                             )
                         )
                     }

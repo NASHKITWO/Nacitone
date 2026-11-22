@@ -137,7 +137,7 @@ fun ChangelogScreen(
             ) {
                 val githubReleasesUrl = stringResource(R.string.github_releases_url)
                 ExtendedFloatingActionButton(
-                    onClick = { try { uriHandler.openUri(githubReleasesUrl) } catch (_: Exception) {} },
+                    onClick = { try { uriHandler.openUri(githubReleasesUrl) } catch (e: Exception) { timber.log.Timber.w(e, "ChangelogScreen: diabaikan") } },
                     icon = { Icon(painterResource(R.drawable.github), contentDescription = null, modifier = Modifier.size(24.dp)) },
                     text = { Text(stringResource(R.string.view_on_github)) },
                     containerColor = MaterialTheme.colorScheme.onPrimary,

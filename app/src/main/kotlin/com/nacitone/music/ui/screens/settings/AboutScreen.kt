@@ -263,7 +263,7 @@ fun AboutScreen(
                 Spacer(Modifier.height(12.dp))
 
                 Button(
-                    onClick = { try { uriHandler.openUri(SUPPORT_URL) } catch (_: Exception) {} },
+                    onClick = { try { uriHandler.openUri(SUPPORT_URL) } catch (e: Exception) { timber.log.Timber.w(e, "AboutScreen: diabaikan") } },
                     modifier = Modifier.fillMaxWidth(),
                     shape = CircleShape,
                     colors = ButtonDefaults.buttonColors(
@@ -277,14 +277,14 @@ fun AboutScreen(
                 }
 
                 TextButton(
-                    onClick = { try { uriHandler.openUri(WEBSITE_URL) } catch (_: Exception) {} },
+                    onClick = { try { uriHandler.openUri(WEBSITE_URL) } catch (e: Exception) { timber.log.Timber.w(e, "AboutScreen: diabaikan") } },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text(stringResource(R.string.website))
                 }
 
                 TextButton(
-                    onClick = { try { uriHandler.openUri(PRIVACY_POLICY_URL) } catch (_: Exception) {} },
+                    onClick = { try { uriHandler.openUri(PRIVACY_POLICY_URL) } catch (e: Exception) { timber.log.Timber.w(e, "AboutScreen: diabaikan") } },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text(stringResource(R.string.privacy_policy))
@@ -317,7 +317,7 @@ fun AboutScreen(
                     icon = painterResource(link.iconRes),
                     title = { Text(stringResource(link.labelRes), fontWeight = FontWeight.SemiBold) },
                     description = link.subtitle?.let { text -> { Text(text) } },
-                    onClick = { try { uriHandler.openUri(link.url) } catch (_: Exception) {} }
+                    onClick = { try { uriHandler.openUri(link.url) } catch (e: Exception) { timber.log.Timber.w(e, "AboutScreen: diabaikan") } }
                 )
             }
         )
@@ -334,7 +334,7 @@ fun AboutScreen(
                     description = if (link.labelRes == R.string.credits_license_name) {
                         { Text(stringResource(R.string.credits_license_desc)) }
                     } else null,
-                    onClick = { try { uriHandler.openUri(link.url) } catch (_: Exception) {} }
+                    onClick = { try { uriHandler.openUri(link.url) } catch (e: Exception) { timber.log.Timber.w(e, "AboutScreen: diabaikan") } }
                 )
             }
         )

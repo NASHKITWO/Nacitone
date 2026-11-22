@@ -916,4 +916,5 @@
     <string name="import_spotify_pick">Choose CSV file</string>
     <string name="website">Website</string>
     <string name="home_load_failed">Couldn’t load your music. Check your connection and try again.</string>
+    <string name="listen_together_reconnect">Reconnect</string>
 </resources>

@@ -80,12 +80,12 @@ object TTMLParser {
             factory.isNamespaceAware = true
             
             // On Android, some features might not be supported and throw ParserConfigurationException
-            try { factory.setFeature("http://xml.org/sax/features/external-general-entities", false) } catch (e: Exception) {}
-            try { factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false) } catch (e: Exception) {}
-            try { factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false) } catch (e: Exception) {}
-            try { factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true) } catch (e: Exception) {}
-            try { factory.setXIncludeAware(false) } catch (e: Exception) {}
-            try { factory.isExpandEntityReferences = false } catch (e: Exception) {}
+            try { factory.setFeature("http://xml.org/sax/features/external-general-entities", false) } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
+            try { factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false) } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
+            try { factory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false) } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
+            try { factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true) } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
+            try { factory.setXIncludeAware(false) } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
+            try { factory.isExpandEntityReferences = false } catch (e: Exception) { timber.log.Timber.w(e, "TTMLParser: diabaikan") }
             
             val builder = factory.newDocumentBuilder()
             val doc = builder.parse(ttml.byteInputStream())

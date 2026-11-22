@@ -255,7 +255,7 @@ fun SettingsScreen(
                                     )
                                 },
                                 showBadge = true,
-                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (_: Exception) {} }
+                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "SettingsScreen: diabaikan") } }
                             )
                         )
                     }

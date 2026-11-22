@@ -690,7 +690,7 @@ private fun ConnectionStatusCard(
                         modifier = Modifier.weight(1f),
                         shape = CircleShape,
                     ) {
-                        Text("Reconnect", fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.listen_together_reconnect), fontWeight = FontWeight.SemiBold)
                     }
                 }
             }
