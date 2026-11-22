@@ -1,3 +1,17 @@
+# Nacitone 1.4.6
+
+## Tampilan
+- Tema hitam pekat dengan kaca bening, tanpa warna ungu (aplikasi, widget, dan kartu rekap mingguan)
+- Cahaya latar dibuat netral dan sangat tipis
+- Bilah atas dan bawah antrean memakai kaca gelap, tidak lagi putih
+
+## Perbaikan
+- Aplikasi tidak lagi crash saat memilih "Putar berikutnya" atau menambah ke antrean sebelum pemutar siap
+- Aplikasi tidak lagi crash saat ruang Dengar Bersama tertutup di tengah pesan masuk
+- Tombol pemutar tidak lagi menjatuhkan aplikasi bila terjadi galat
+- Impor cadangan lama yang rusak tidak lagi membuat aplikasi crash
+- Beberapa pengecekan null yang rawan di layar utama, lirik, pembaruan, dan menu YouTube dirapikan
+
 # Nacitone 1.4.5
 
 ## Tampilan
