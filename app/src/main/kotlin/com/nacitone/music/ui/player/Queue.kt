@@ -112,6 +112,8 @@ import com.nacitone.music.extensions.toggleRepeatMode
 import com.nacitone.music.listentogether.RoomRole
 import com.nacitone.music.models.MediaMetadata
 import com.nacitone.music.ui.component.ActionPromptDialog
+import androidx.compose.ui.graphics.compositeOver
+import com.nacitone.music.ui.component.GlassTint
 import com.nacitone.music.ui.component.BottomSheet
 import com.nacitone.music.ui.component.BottomSheetState
 import com.nacitone.music.ui.component.LocalBottomSheetPageState
@@ -1029,9 +1031,10 @@ fun Queue(
                         interactionSource = remember { MutableInteractionSource() },
                     ) { }
                     .background(
-                        MaterialTheme.colorScheme
-                            .secondaryContainer
-                            .copy(alpha = 0.90f),
+                        GlassTint
+                            .copy(alpha = 0.10f)
+                            .compositeOver(MaterialTheme.colorScheme.surfaceContainer)
+                            .copy(alpha = 0.92f),
                     ).windowInsetsPadding(
                         WindowInsets.systemBars
                             .only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal),
@@ -1168,9 +1171,10 @@ fun Queue(
             modifier =
                 Modifier
                     .background(
-                        MaterialTheme.colorScheme
-                            .secondaryContainer
-                            .copy(alpha = 0.90f),
+                        GlassTint
+                            .copy(alpha = 0.10f)
+                            .compositeOver(MaterialTheme.colorScheme.surfaceContainer)
+                            .copy(alpha = 0.92f),
                     ).fillMaxWidth()
                     .height(
                         ListItemHeight +
