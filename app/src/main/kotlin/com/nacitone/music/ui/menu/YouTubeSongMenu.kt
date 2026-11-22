@@ -450,8 +450,9 @@ fun YouTubeSongMenu(
                                     onClick = {
                                         // Update local database first (optimistic update)
                                         database.query {
-                                            if (librarySong != null) {
-                                                update(librarySong!!.song.copy(inLibrary = java.time.LocalDateTime.now()))
+                                            val existing = librarySong
+                                            if (existing != null) {
+                                                update(existing.song.copy(inLibrary = java.time.LocalDateTime.now()))
                                             } else {
                                                 insert(song.toMediaMetadata().toSongEntity().copy(inLibrary = java.time.LocalDateTime.now(), isEpisode = true))
                                             }
@@ -475,11 +476,11 @@ fun YouTubeSongMenu(
                                 onClick = {
                                     coroutineScope.launch {
                                         Timber.d("[HISTORY_REMOVE] Removing song ${song.id} from YTM history")
-                                        YouTube.feedback(listOf(song.historyRemoveToken!!))
-                                            .onSuccess {
+                                        song.historyRemoveToken?.let { YouTube.feedback(listOf(it)) }
+                                            ?.onSuccess {
                                                 Timber.d("[HISTORY_REMOVE] Successfully removed from YTM history")
                                             }
-                                            .onFailure { e ->
+                                            ?.onFailure { e ->
                                                 Timber.e(e, "[HISTORY_REMOVE] Failed to remove from YTM history")
                                             }
                                         delay(500)

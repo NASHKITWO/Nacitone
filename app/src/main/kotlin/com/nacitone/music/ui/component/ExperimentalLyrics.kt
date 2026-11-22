@@ -825,8 +825,9 @@ fun ExperimentalLyrics(
         }
     }
 
-    if (showShareDialog && shareDialogData != null) {
-        val (txt, title, arts) = shareDialogData!!
+    val shareData = shareDialogData
+    if (showShareDialog && shareData != null) {
+        val (txt, title, arts) = shareData
         LyricsShareDialog(
             txt = txt, title = title, arts = arts, songId = mediaMetadata?.id ?: "",
             onDismiss = { showShareDialog = false },
@@ -837,8 +838,8 @@ fun ExperimentalLyrics(
         )
     }
 
-    if (showColorPickerDialog && shareDialogData != null) {
-        val (txt, title, arts) = shareDialogData!!
+    if (showColorPickerDialog && shareData != null) {
+        val (txt, title, arts) = shareData
         LyricsColorPickerDialog(
             txt = txt, title = title, arts = arts, thumbnailUrl = mediaMetadata?.thumbnailUrl,
             lyricsTextPosition = lyricsTextPosition,

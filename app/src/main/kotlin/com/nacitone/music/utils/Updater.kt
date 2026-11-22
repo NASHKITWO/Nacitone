@@ -127,8 +127,8 @@ object Updater {
         withContext(Dispatchers.IO) {
             runCatching {
                 // Return cached if available and not forcing refresh
-                if (cachedReleaseInfo != null && !forceRefresh) {
-                    return@runCatching cachedReleaseInfo!!
+                cachedReleaseInfo?.let { cached ->
+                    if (!forceRefresh) return@runCatching cached
                 }
                 
                 val response = client.get("$GITHUB_API_BASE/releases/latest")
@@ -213,12 +213,13 @@ object Updater {
                 val shouldFetch = forceRefresh || 
                     (System.currentTimeMillis() - lastCheckTime) > CHECK_INTERVAL_MILLIS
                 
-                if (!shouldFetch && cachedReleaseInfo != null) {
+                val cachedNow = cachedReleaseInfo
+                if (!shouldFetch && cachedNow != null) {
                     val hasUpdate = isUpdateAvailable(
                         BuildConfig.BASE_VERSION_NAME,
-                        cachedReleaseInfo!!.versionName
+                        cachedNow.versionName
                     )
-                    return@runCatching cachedReleaseInfo!! to hasUpdate
+                    return@runCatching cachedNow to hasUpdate
                 }
                 
                 val result = getLatestRelease(forceRefresh = true)

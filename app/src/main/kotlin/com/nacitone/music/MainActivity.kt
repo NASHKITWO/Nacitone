@@ -714,7 +714,7 @@ class MainActivity : FragmentActivity() {
                     remember(currentRoute, navigationItemRoutes) {
                         currentRoute == null ||
                             navigationItemRoutes.contains(currentRoute) ||
-                            currentRoute!!.startsWith("search/")
+                            currentRoute?.startsWith("search/") == true
                     }
 
                 val isLandscape = configuration.containerDpSize.width > configuration.containerDpSize.height
@@ -878,10 +878,11 @@ class MainActivity : FragmentActivity() {
                 val snackbarHostState = remember { SnackbarHostState() }
 
                 LaunchedEffect(Unit) {
-                    if (pendingIntent != null) {
-                        handleWidgetTargetIntent(pendingIntent!!, navController)
-                        handleRecognitionIntent(pendingIntent!!, navController)
-                        handleDeepLinkIntent(pendingIntent!!, navController)
+                    val pending = pendingIntent
+                    if (pending != null) {
+                        handleWidgetTargetIntent(pending, navController)
+                        handleRecognitionIntent(pending, navController)
+                        handleDeepLinkIntent(pending, navController)
                         pendingIntent = null
                     } else {
                         handleWidgetTargetIntent(intent, navController)

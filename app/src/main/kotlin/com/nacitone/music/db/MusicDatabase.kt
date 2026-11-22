@@ -431,9 +431,10 @@ val MIGRATION_1_2 =
             val playlistSongMaps = mutableListOf<PlaylistSongMap>()
             db.query("SELECT * FROM playlist_song".toSQLiteQuery()).use { cursor ->
                 while (cursor.moveToNext()) {
+                    val mappedPlaylistId = playlistMap[cursor.getInt(1)] ?: continue
                     playlistSongMaps.add(
                         PlaylistSongMap(
-                            playlistId = playlistMap[cursor.getInt(1)]!!,
+                            playlistId = mappedPlaylistId,
                             songId = cursor.getString(2),
                             position = cursor.getInt(3),
                         ),
@@ -471,10 +472,11 @@ val MIGRATION_1_2 =
                                     .toLocalDateTime(),
                         ),
                     )
+                    val mappedArtistId = artistMap[cursor.getInt(2)] ?: continue
                     songArtistMaps.add(
                         SongArtistMap(
                             songId = songId,
-                            artistId = artistMap[cursor.getInt(2)]!!,
+                            artistId = mappedArtistId,
                             position = 0,
                         ),
                     )
