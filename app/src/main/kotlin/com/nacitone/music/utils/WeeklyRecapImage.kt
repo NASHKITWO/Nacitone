@@ -39,27 +39,31 @@ object WeeklyRecapImage {
 
             val white = 0xFFFFFFFF.toInt()
             val softWhite = 0xCCFFFFFF.toInt()
-            val gold = 0xFFE9C46A.toInt()
+            val gold = 0xFFDDE6F5.toInt() // putih es, selaras tema bening
 
-            // Latar gradasi: aksen tema pengguna yang digelapkan -> hitam pekat.
-            val deep = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF000000.toInt(), 0.72f)
-            val mid = androidx.core.graphics.ColorUtils.blendARGB(accentColor, 0xFF000000.toInt(), 0.45f)
+            // Latar hitam pekat; aksen tema hanya jadi cahaya tipis di sudut agar kaca punya sesuatu untuk dibiaskan.
+            canvas.drawRect(RectF(0f, 0f, w.toFloat(), h.toFloat()), Paint().apply { color = 0xFF000000.toInt() })
+            val glow = androidx.core.graphics.ColorUtils.setAlphaComponent(accentColor, 0x2E)
             canvas.drawRect(
                 RectF(0f, 0f, w.toFloat(), h.toFloat()),
                 Paint().apply {
-                    shader = android.graphics.LinearGradient(
-                        0f, 0f, w.toFloat(), h.toFloat(),
-                        intArrayOf(mid, deep, 0xFF000000.toInt()),
-                        floatArrayOf(0f, 0.55f, 1f),
+                    shader = android.graphics.RadialGradient(
+                        w * 0.1f, h * 0.05f, w * 1.1f,
+                        glow, 0x00000000,
                         android.graphics.Shader.TileMode.CLAMP,
                     )
                 },
             )
-            // Lingkaran dekoratif
-            val deco = Paint().apply { isAntiAlias = true; color = 0x14FFFFFF }
-            canvas.drawCircle(w - 80f, 260f, 420f, deco)
-            canvas.drawCircle(60f, 1500f, 520f, deco)
-            canvas.drawCircle(w * 0.62f, 1180f, 260f, Paint().apply { isAntiAlias = true; color = 0x0DFFFFFF })
+            canvas.drawRect(
+                RectF(0f, 0f, w.toFloat(), h.toFloat()),
+                Paint().apply {
+                    shader = android.graphics.RadialGradient(
+                        w * 0.95f, h * 0.97f, w * 0.9f,
+                        0x14FFFFFF, 0x00000000,
+                        android.graphics.Shader.TileMode.CLAMP,
+                    )
+                },
+            )
 
             fun paint(size: Float, color: Int, bold: Boolean, serif: Boolean = false) =
                 TextPaint().apply {
@@ -110,10 +114,10 @@ object WeeklyRecapImage {
             canvas.drawText(titleText, left, 350f, titlePaint)
             canvas.drawText(dateRange, left, 415f, paint(38f, softWhite, false))
 
-            val card = Paint().apply { isAntiAlias = true; color = 0x22FFFFFF }
+            val card = Paint().apply { isAntiAlias = true; color = 0x14FFFFFF }
             val cardStroke = Paint().apply {
                 isAntiAlias = true
-                color = 0x33FFFFFF
+                color = 0x2EFFFFFF
                 style = Paint.Style.STROKE
                 strokeWidth = 2f
             }
@@ -142,6 +146,7 @@ object WeeklyRecapImage {
             songs.drop(1).take(4).forEachIndexed { index, row ->
                 val rect = RectF(left, y, right, y + 116f)
                 canvas.drawRoundRect(rect, 36f, 36f, card)
+                canvas.drawRoundRect(rect, 36f, 36f, cardStroke)
                 canvas.drawText("${index + 2}", left + 32f, y + 74f, paint(44f, gold, true, serif = true))
                 drawCover(row.cover, RectF(left + 90f, y + 16f, left + 190f, y + 100f), 22f)
                 val tp = paint(40f, white, true)
