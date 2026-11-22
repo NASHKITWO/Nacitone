@@ -256,7 +256,6 @@ class PlayerConnection(
             service.playQueue(queue)
         } catch (e: Exception) {
             Timber.tag(TAG).e(e, "Error in playQueue")
-            throw e
         }
     }
 
@@ -285,7 +284,6 @@ class PlayerConnection(
             service.startRadioSeamlessly()
         } catch (e: Exception) {
             Timber.tag(TAG).e(e, "Error in startRadioSeamlessly")
-            throw e
         }
     }
 
@@ -301,7 +299,6 @@ class PlayerConnection(
             service.playNext(items)
         } catch (e: Exception) {
             Timber.tag(TAG).e(e, "Error in playNext")
-            throw e
         }
     }
 
@@ -317,7 +314,6 @@ class PlayerConnection(
             service.addToQueue(items)
         } catch (e: Exception) {
             Timber.tag(TAG).e(e, "Error in addToQueue")
-            throw e
         }
     }
 
