@@ -1,3 +1,26 @@
+# Nacitone 1.4.7
+
+## Fitur baru
+- Lirik mengambang: lirik tampil di atas aplikasi lain, bisa digeser bebas, posisinya diingat, dan ketukan membuka Nacitone (Pengaturan, Pemutar, Lainnya)
+- Footer navigasi melengkung dengan kaca bening
+- Kartu Story rekap mingguan memakai latar hitam pekat dengan kartu kaca
+
+## Perbaikan
+- Lagu yang dipencet tidak bereaksi setelah aplikasi dibersihkan dari recent apps
+- Musik tetap berbunyi setelah jendela aplikasi dihapus walau opsi hentikan musik aktif
+- Antrean lama yang lambat tidak lagi menimpa antrean lagu yang baru dipilih
+- Sisa antrean tidak lagi hilang bila lagu pertama gagal diputar
+- Pemutaran lanjut otomatis setelah galat audio, misalnya saat pindah ke Bluetooth
+- "Putar berikutnya" tidak lagi menghapus antrean saat pemutar IDLE
+- Fokus audio selalu dilepas, dan crossfade tidak lagi macet setelah aplikasi ditutup
+- Muat lanjut radio YouTube tidak lagi menggandakan antrean, radio album tidak lagi crash
+- Galat yang sebelumnya senyap kini dicatat di log
+- String "Reconnect" Dengar Bersama kini ikut terjemahan
+
+## Lainnya
+- Pembaruan dependensi dan GitHub Actions
+- Workflow tes unit di CI
+
 # Nacitone 1.4.6
 
 ## Tampilan
