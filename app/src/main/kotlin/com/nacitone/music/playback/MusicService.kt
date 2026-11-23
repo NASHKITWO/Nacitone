@@ -392,6 +392,7 @@ class MusicService :
     private var isCrossfading = false
     private var crossfadeJob: Job? = null
     private var taskCleared = false
+    private var playQueueJob: Job? = null
     private var lastSavedPlayerState: PersistPlayerState? = null
     private var mediaSession: MediaLibrarySession? = null
     private var controllerFuture: com.google.common.util.concurrent.ListenableFuture<MediaController>? = null
@@ -1346,12 +1347,10 @@ class MusicService :
     }
 
     private fun abandonAudioFocus() {
-        if (hasAudioFocus) {
-            audioFocusRequest?.let { request ->
-                audioManager.abandonAudioFocusRequest(request)
-                hasAudioFocus = false
-            }
-        }
+        // Selalu lepas permintaan fokus; hasAudioFocus bisa sudah false (mis. setelah LOSS) padahal
+        // permintaannya masih terdaftar di sistem.
+        audioFocusRequest?.let { request -> audioManager.abandonAudioFocusRequest(request) }
+        hasAudioFocus = false
     }
 
     private fun clearPersistedQueueFiles() {
@@ -1661,7 +1660,7 @@ class MusicService :
             Timber.tag(TAG).w("playQueue called before player initialization, queuing request")
             scope.launch {
                 playerInitialized.first { it }
-                playQueue(queue, playWhenReady)
+                playQueue(queue, playWhenReady, restoringQueue)
             }
             return
         }
@@ -1678,7 +1677,10 @@ class MusicService :
             player.prepare()
             player.playWhenReady = playWhenReady
         }
-        scope.launch(SilentHandler) {
+        // Batalkan pemuatan sebelumnya: tanpa ini antrean lama yang lambat menimpa antrean yang baru dipilih.
+        playQueueJob?.cancel()
+        val preloadId = queue.preloadItem?.id
+        playQueueJob = scope.launch(SilentHandler) {
             val initialStatus =
                 withContext(Dispatchers.IO) {
                     queue
@@ -1686,11 +1688,16 @@ class MusicService :
                         .filterExplicit(dataStore.get(HideExplicitKey, false))
                         .filterVideoSongs(dataStore.get(HideVideoSongsKey, false))
                 }
-            if (queue.preloadItem != null && player.playbackState == STATE_IDLE) return@launch
+            // Bandingkan lagu yang sedang aktif, bukan state IDLE: galat pada lagu preload juga membuat IDLE
+            // dan sebelumnya membuang seluruh sisa antrean.
+            if (preloadId != null && player.currentMediaItem?.mediaId != preloadId) return@launch
             if (initialStatus.title != null) {
                 queueTitle = initialStatus.title
             }
-            if (initialStatus.items.isEmpty()) return@launch
+            if (initialStatus.items.isEmpty()) {
+                Timber.tag(TAG).w("playQueue: status awal antrean kosong")
+                return@launch
+            }
             // Track original queue size for shuffle playlist first feature
             originalQueueSize = initialStatus.items.size
             if (queue.preloadItem != null) {
@@ -1929,9 +1936,13 @@ class MusicService :
             }
             return
         }
-        // If queue is empty or player is idle, play immediately instead
+        // Antrean kosong: putar langsung. Pemutar IDLE tapi masih berisi: sisipkan, jangan hapus antrean.
         if (player.mediaItemCount == 0 || player.playbackState == STATE_IDLE) {
-            player.setMediaItems(items)
+            if (player.mediaItemCount == 0) {
+                player.setMediaItems(items)
+            } else {
+                player.addMediaItems(player.currentMediaItemIndex + 1, items)
+            }
             player.prepare()
             if (castConnectionHandler?.isCasting?.value != true) {
                 player.play()
@@ -3047,6 +3058,7 @@ class MusicService :
         retryJob =
             scope.launch {
                 try {
+                    val resumeAfterRecovery = player.playWhenReady || wasPlayingBeforeAudioFocusLoss
                     player.pause()
                     Timber.tag(TAG).d("Paused playback due to AudioTrack error")
 
@@ -3068,9 +3080,9 @@ class MusicService :
 
                         Timber.tag(TAG).d("Retrying playback for $mediaId after AudioTrack error")
 
-                        if (wasPlayingBeforeAudioFocusLoss) {
+                        if (resumeAfterRecovery) {
                             delay(500) // Brief delay to allow renderer to be ready
-                            if (hasAudioFocus && playerInitialized.value) {
+                            if (playerInitialized.value) {
                                 if (castConnectionHandler?.isCasting?.value != true) {
                                     player.play()
                                 }
@@ -3954,6 +3966,8 @@ class MusicService :
         crossfadeJob?.cancel()
         crossfadeJob = null
         crossfadeMessage?.cancel()
+        // Pembatalan job tidak menjalankan cleanup di dalamnya: tanpa ini isCrossfading menempel true.
+        if (isCrossfading) runCatching { cleanupCrossfade() }
         // Remote playback (Cast) is independent of the local ExoPlayer; ending the session
         // is required or audio keeps playing on the Cast device.
         runCatching {

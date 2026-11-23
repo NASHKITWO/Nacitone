@@ -86,10 +86,13 @@ class YouTubeQueue(
     override suspend fun nextPage(): List<MediaItem> {
         return withContext(IO) {
             var lastException: Throwable? = null
+            // Tangkap continuation sekali: mengosongkannya di dalam loop membuat percobaan berikutnya
+            // memuat ulang halaman pertama dan menggandakan isi antrean.
+            val pageContinuation = continuation
 
             for (attempt in 0..maxRetries) {
                 try {
-                    val nextResult = YouTube.next(endpoint, continuation).getOrThrow()
+                    val nextResult = YouTube.next(endpoint, pageContinuation).getOrThrow()
                     endpoint = nextResult.endpoint
                     continuation = nextResult.continuation
                     retryCount = 0
@@ -97,10 +100,10 @@ class YouTubeQueue(
                 } catch (e: Exception) {
                     lastException = e
                     retryCount++
-                    if (retryCount >= maxRetries) {
-                        continuation = null // Stop trying to load more
-                    }
                 }
+            }
+            if (retryCount >= maxRetries) {
+                continuation = null // Stop trying to load more
             }
             throw lastException ?: Exception("Failed to get next page")
         }

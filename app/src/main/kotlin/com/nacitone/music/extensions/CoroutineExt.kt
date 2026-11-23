@@ -29,4 +29,4 @@ fun <T> Flow<T>.collectLatest(
     }
 }
 
-val SilentHandler = CoroutineExceptionHandler { _, _ -> }
+val SilentHandler = CoroutineExceptionHandler { _, t -> timber.log.Timber.w(t, "Silent coroutine failure") }
