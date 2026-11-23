@@ -3,6 +3,8 @@ name: Unit Tests
 # Dijalankan manual: tab Actions -> "Unit Tests" -> Run workflow
 on:
   workflow_dispatch:
+  push:
+    branches: ["claude/**"]
 
 permissions:
   contents: read
