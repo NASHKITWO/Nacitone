@@ -398,6 +398,7 @@ val HistoryDuration = floatPreferencesKey("historyDuration")
 
 val PlayerButtonsStyleKey = stringPreferencesKey("player_buttons_style")
 val ShowLyricsKey = booleanPreferencesKey("showLyrics")
+val LyricsOverlayEnabledKey = booleanPreferencesKey("lyricsOverlayEnabled")
 val LyricsTextPositionKey = stringPreferencesKey("lyricsTextPosition")
 val LyricsClickKey = booleanPreferencesKey("lyricsClick")
 val LyricsScrollKey = booleanPreferencesKey("lyricsScrollKey")

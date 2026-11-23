@@ -787,4 +787,10 @@
     <string name="website">Situs web</string>
     <string name="home_load_failed">Musik belum bisa dimuat. Periksa koneksi internet lalu coba lagi.</string>
     <string name="listen_together_reconnect">Sambungkan ulang</string>
+    <string name="lyrics_overlay">Lirik mengambang</string>
+    <string name="lyrics_overlay_desc">Tampilkan lirik di atas aplikasi lain</string>
+    <string name="lyrics_overlay_permission">Izinkan \"Tampilkan di atas aplikasi lain\" agar lirik bisa melayang di atas aplikasi lain.</string>
+    <string name="lyrics_overlay_loading">Memuat lirik…</string>
+    <string name="lyrics_overlay_not_found">Lirik tidak ditemukan</string>
+    <string name="lyrics_overlay_unsynced">Lirik belum tersinkron waktu</string>
 </resources>

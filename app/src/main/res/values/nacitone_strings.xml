@@ -917,4 +917,10 @@
     <string name="website">Website</string>
     <string name="home_load_failed">Couldn’t load your music. Check your connection and try again.</string>
     <string name="listen_together_reconnect">Reconnect</string>
+    <string name="lyrics_overlay">Floating lyrics</string>
+    <string name="lyrics_overlay_desc">Show lyrics over other apps</string>
+    <string name="lyrics_overlay_permission">Allow \"Display over other apps\" so lyrics can float above other apps.</string>
+    <string name="lyrics_overlay_loading">Loading lyrics…</string>
+    <string name="lyrics_overlay_not_found">Lyrics not found</string>
+    <string name="lyrics_overlay_unsynced">Lyrics are not time-synced</string>
 </resources>

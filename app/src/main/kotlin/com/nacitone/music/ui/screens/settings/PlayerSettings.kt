@@ -223,6 +223,29 @@ fun PlayerSettings(
         StopMusicOnTaskClearKey,
         defaultValue = false
     )
+    val (lyricsOverlayEnabled, onLyricsOverlayEnabledChange) = rememberPreference(
+        com.nacitone.music.constants.LyricsOverlayEnabledKey,
+        defaultValue = false
+    )
+    val overlayContext = androidx.compose.ui.platform.LocalContext.current
+    val toggleLyricsOverlay: (Boolean) -> Unit = { enable ->
+        if (enable && !android.provider.Settings.canDrawOverlays(overlayContext)) {
+            android.widget.Toast.makeText(
+                overlayContext,
+                R.string.lyrics_overlay_permission,
+                android.widget.Toast.LENGTH_LONG,
+            ).show()
+            runCatching {
+                overlayContext.startActivity(
+                    android.content.Intent(
+                        android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        android.net.Uri.parse("package:" + overlayContext.packageName),
+                    ).addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
+                )
+            }
+        }
+        onLyricsOverlayEnabledChange(enable)
+    }
     val (pauseOnMute, onPauseOnMuteChange) = rememberPreference(
         PauseOnMute,
         defaultValue = false
@@ -1092,6 +1115,27 @@ fun PlayerSettings(
         Material3SettingsGroup(
             title = stringResource(R.string.misc),
             items = listOf(
+                Material3SettingsItem(
+                    icon = painterResource(R.drawable.lyrics),
+                    title = { Text(stringResource(R.string.lyrics_overlay)) },
+                    description = { Text(stringResource(R.string.lyrics_overlay_desc)) },
+                    trailingContent = {
+                        Switch(
+                            checked = lyricsOverlayEnabled,
+                            onCheckedChange = toggleLyricsOverlay,
+                            thumbContent = {
+                                Icon(
+                                    painter = painterResource(
+                                        id = if (lyricsOverlayEnabled) R.drawable.check else R.drawable.close
+                                    ),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(SwitchDefaults.IconSize)
+                                )
+                            }
+                        )
+                    },
+                    onClick = { toggleLyricsOverlay(!lyricsOverlayEnabled) }
+                ),
                 Material3SettingsItem(
                     icon = painterResource(R.drawable.clear_all),
                     title = { Text(stringResource(R.string.stop_music_on_task_clear)) },

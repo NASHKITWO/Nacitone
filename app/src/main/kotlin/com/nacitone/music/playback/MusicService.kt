@@ -36,6 +36,7 @@ import android.os.PowerManager
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.core.app.ServiceCompat
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
@@ -148,6 +149,9 @@ import com.nacitone.music.constants.SimilarContent
 import com.nacitone.music.constants.SkipSilenceInstantKey
 import com.nacitone.music.constants.SkipSilenceKey
 import com.nacitone.music.constants.StopMusicOnTaskClearKey
+import com.nacitone.music.constants.LyricsOverlayEnabledKey
+import com.nacitone.music.lyrics.LyricsUtils
+import com.nacitone.music.lyrics.lyricsTextLooksSynced
 import com.nacitone.music.db.MusicDatabase
 import com.nacitone.music.db.entities.Event
 import com.nacitone.music.db.entities.FormatEntity
@@ -393,6 +397,16 @@ class MusicService :
     private var crossfadeJob: Job? = null
     private var taskCleared = false
     private var playQueueJob: Job? = null
+    private var lyricsOverlay: LyricsOverlay? = null
+    private val appInForeground = MutableStateFlow(false)
+    private val processObserver =
+        androidx.lifecycle.LifecycleEventObserver { _, event ->
+            when (event) {
+                androidx.lifecycle.Lifecycle.Event.ON_START -> appInForeground.value = true
+                androidx.lifecycle.Lifecycle.Event.ON_STOP -> appInForeground.value = false
+                else -> Unit
+            }
+        }
     private var lastSavedPlayerState: PersistPlayerState? = null
     private var mediaSession: MediaLibrarySession? = null
     private var controllerFuture: com.google.common.util.concurrent.ListenableFuture<MediaController>? = null
@@ -823,7 +837,7 @@ class MusicService :
 
         combine(
             currentMediaMetadata.distinctUntilChangedBy { it?.id },
-            dataStore.data.map { it[ShowLyricsKey] ?: false }.distinctUntilChanged(),
+            dataStore.data.map { (it[ShowLyricsKey] ?: false) || (it[LyricsOverlayEnabledKey] ?: false) }.distinctUntilChanged(),
         ) { mediaMetadata, showLyrics ->
             mediaMetadata to showLyrics
         }.collectLatest(scope) { (mediaMetadata, showLyrics) ->
@@ -843,6 +857,8 @@ class MusicService :
                 }
             }
         }
+
+        setupLyricsOverlay()
 
         dataStore.data
             .map { (it[SkipSilenceKey] ?: false) to (it[SkipSilenceInstantKey] ?: false) }
@@ -3882,8 +3898,76 @@ class MusicService :
             false
         }
 
+    /** Lirik mengambang: tampil hanya saat aplikasi di latar belakang, izin diberikan, dan ada lagu. */
+    private fun setupLyricsOverlay() {
+        val overlay =
+            LyricsOverlay(this) {
+                scope.launch { dataStore.edit { it[LyricsOverlayEnabledKey] = false } }
+            }
+        lyricsOverlay = overlay
+        androidx.lifecycle.ProcessLifecycleOwner.get().lifecycle.addObserver(processObserver)
+
+        val lyricsFlow =
+            currentMediaMetadata
+                .distinctUntilChangedBy { it?.id }
+                .flatMapLatest { md ->
+                    if (md == null) kotlinx.coroutines.flow.flowOf(null) else database.lyrics(md.id)
+                }
+        combine(
+            dataStore.data.map { it[LyricsOverlayEnabledKey] ?: false }.distinctUntilChanged(),
+            appInForeground,
+            currentMediaMetadata.distinctUntilChangedBy { it?.id },
+            lyricsFlow,
+        ) { enabled, foreground, md, entity ->
+            val canDraw =
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
+                    android.provider.Settings.canDrawOverlays(this)
+            val show = enabled && !foreground && canDraw && md != null
+            Triple(show, md, entity)
+        }.collectLatest(scope) { (show, md, entity) ->
+            if (!show || md == null) {
+                overlay.hide()
+                return@collectLatest
+            }
+            overlay.show()
+            val raw = entity?.lyrics
+            val lines =
+                if (raw != null && raw != LyricsEntity.LYRICS_NOT_FOUND && lyricsTextLooksSynced(raw)) {
+                    LyricsUtils.parseLyrics(raw).filter { it.text.isNotBlank() }
+                } else {
+                    emptyList()
+                }
+            val message =
+                when {
+                    entity == null -> getString(R.string.lyrics_overlay_loading)
+                    raw == LyricsEntity.LYRICS_NOT_FOUND || raw.isNullOrBlank() ->
+                        getString(R.string.lyrics_overlay_not_found)
+                    lines.isEmpty() -> getString(R.string.lyrics_overlay_unsynced)
+                    else -> null
+                }
+            while (true) {
+                if (message != null) {
+                    overlay.update(md.title, "", message, "")
+                } else {
+                    val index = LyricsUtils.findCurrentLineIndex(lines, player.currentPosition)
+                    overlay.update(
+                        md.title,
+                        lines.getOrNull(index - 1)?.text.orEmpty(),
+                        if (index >= 0) lines[index].text else "♪",
+                        lines.getOrNull(index + 1)?.text.orEmpty(),
+                    )
+                }
+                delay(250)
+            }
+        }
+    }
+
     override fun onDestroy() {
         isRunning = false
+        runCatching { lyricsOverlay?.hide() }
+        runCatching {
+            androidx.lifecycle.ProcessLifecycleOwner.get().lifecycle.removeObserver(processObserver)
+        }
 
         if (!::player.isInitialized) {
             try {
