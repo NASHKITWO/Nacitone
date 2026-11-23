@@ -3948,7 +3948,8 @@ class MusicService :
      * notification after the task is cleared.
      */
     fun stopOnTaskClear() {
-        if (taskCleared) return
+        // Jangan keluar lebih awal bila flag sudah menyala: flag bisa menempel dari sesi sebelumnya,
+        // dan pemutar yang baru dinyalakan lagi harus tetap dihentikan. Semua langkah di bawah idempotent.
         taskCleared = true
         crossfadeJob?.cancel()
         crossfadeJob = null
