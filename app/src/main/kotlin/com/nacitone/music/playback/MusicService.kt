@@ -1649,7 +1649,14 @@ class MusicService :
         playWhenReady: Boolean = true,
         restoringQueue: Boolean = false,
     ) {
-        if (taskCleared) return
+        if (taskCleared) {
+            // Pemulihan antrean otomatis setelah task dibersihkan harus diabaikan, tetapi
+            // permintaan putar dari pengguna berarti ia sudah kembali: angkat penjaga ini.
+            // Tanpa ini, flag yang menempel membuat setiap ketukan lagu tidak berefek sama sekali.
+            if (restoringQueue) return
+            Timber.tag(TAG).d("playQueue from user while taskCleared; resuming")
+            taskCleared = false
+        }
         if (!playerInitialized.value) {
             Timber.tag(TAG).w("playQueue called before player initialization, queuing request")
             scope.launch {
