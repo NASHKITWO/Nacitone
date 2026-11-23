@@ -3901,9 +3901,18 @@ class MusicService :
     /** Lirik mengambang: tampil hanya saat aplikasi di latar belakang, izin diberikan, dan ada lagu. */
     private fun setupLyricsOverlay() {
         val overlay =
-            LyricsOverlay(this) {
-                scope.launch { dataStore.edit { it[LyricsOverlayEnabledKey] = false } }
-            }
+            LyricsOverlay(
+                context = this,
+                onClose = { scope.launch { dataStore.edit { it[LyricsOverlayEnabledKey] = false } } },
+                onOpenApp = {
+                    runCatching {
+                        startActivity(
+                            Intent(this, MainActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                        )
+                    }.onFailure { Timber.tag(TAG).w(it, "Overlay: gagal membuka aplikasi") }
+                },
+            )
         lyricsOverlay = overlay
         androidx.lifecycle.ProcessLifecycleOwner.get().lifecycle.addObserver(processObserver)
 
@@ -3933,7 +3942,7 @@ class MusicService :
             val raw = entity?.lyrics
             val lines =
                 if (raw != null && raw != LyricsEntity.LYRICS_NOT_FOUND && lyricsTextLooksSynced(raw)) {
-                    LyricsUtils.parseLyrics(raw).filter { it.text.isNotBlank() }
+                    LyricsUtils.parseLyrics(raw).filter { it.text.isNotBlank() && !it.isBackground }
                 } else {
                     emptyList()
                 }
@@ -3957,9 +3966,15 @@ class MusicService :
                         lines.getOrNull(index + 1)?.text.orEmpty(),
                     )
                 }
-                delay(250)
+                // Saat jeda tidak perlu menyegarkan sering-sering.
+                delay(if (player.isPlaying) 250 else 1000)
             }
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        lyricsOverlay?.onConfigurationChanged()
     }
 
     override fun onDestroy() {

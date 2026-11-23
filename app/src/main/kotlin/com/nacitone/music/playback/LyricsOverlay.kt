@@ -22,7 +22,9 @@ import timber.log.Timber
 class LyricsOverlay(
     private val context: Context,
     private val onClose: () -> Unit,
+    private val onOpenApp: () -> Unit = {},
 ) {
+    private val positionPrefs = context.getSharedPreferences("lyrics_overlay", Context.MODE_PRIVATE)
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private var root: LinearLayout? = null
     private var titleView: TextView? = null
@@ -34,6 +36,27 @@ class LyricsOverlay(
     private fun dp(value: Int): Int = (value * context.resources.displayMetrics.density).toInt()
 
     val isShowing: Boolean get() = root != null
+
+    private fun overlayWidth(): Int = (context.resources.displayMetrics.widthPixels * 0.92f).toInt()
+
+    /** Jaga jendela tetap di dalam layar (posisi lama bisa di luar layar setelah rotasi). */
+    private fun clamp(lp: WindowManager.LayoutParams, view: View) {
+        val dm = context.resources.displayMetrics
+        val maxX = ((dm.widthPixels - lp.width) / 2).coerceAtLeast(0)
+        val viewHeight = if (view.height > 0) view.height else dp(120)
+        val maxY = (dm.heightPixels - viewHeight - dp(24)).coerceAtLeast(0)
+        lp.x = lp.x.coerceIn(-maxX, maxX)
+        lp.y = lp.y.coerceIn(0, maxY)
+    }
+
+    /** Dipanggil saat konfigurasi berubah (rotasi, ukuran layar lipat). */
+    fun onConfigurationChanged() {
+        val view = root ?: return
+        val lp = params ?: return
+        lp.width = overlayWidth()
+        clamp(lp, view)
+        runCatching { windowManager.updateViewLayout(view, lp) }
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     fun show() {
@@ -86,7 +109,7 @@ class LyricsOverlay(
                 addView(next)
             }
 
-        val width = (context.resources.displayMetrics.widthPixels * 0.92f).toInt()
+        val width = overlayWidth()
         val lp =
             WindowManager.LayoutParams(
                 width,
@@ -103,22 +126,46 @@ class LyricsOverlay(
                 PixelFormat.TRANSLUCENT,
             ).apply {
                 gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
-                y = dp(96)
+                x = positionPrefs.getInt("x", 0)
+                y = positionPrefs.getInt("y", dp(96))
             }
 
-        // Geser dengan satu jari; ketukan pada tombol tutup tetap diproses oleh tombolnya sendiri.
+        // Geser bebas dengan satu jari; ketukan singkat membuka aplikasi.
+        var startX = 0
         var startY = 0
-        var startTouchY = 0f
+        var downX = 0f
+        var downY = 0f
+        var downTime = 0L
+        var moved = false
         container.setOnTouchListener { _: View, event: MotionEvent ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    startX = lp.x
                     startY = lp.y
-                    startTouchY = event.rawY
+                    downX = event.rawX
+                    downY = event.rawY
+                    downTime = event.eventTime
+                    moved = false
                     true
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    lp.y = (startY + (event.rawY - startTouchY)).toInt().coerceAtLeast(0)
-                    runCatching { windowManager.updateViewLayout(container, lp) }
+                    val dx = event.rawX - downX
+                    val dy = event.rawY - downY
+                    if (!moved && (kotlin.math.abs(dx) > dp(8) || kotlin.math.abs(dy) > dp(8))) moved = true
+                    if (moved) {
+                        lp.x = (startX + dx).toInt()
+                        lp.y = (startY + dy).toInt()
+                        clamp(lp, container)
+                        runCatching { windowManager.updateViewLayout(container, lp) }
+                    }
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    if (moved) {
+                        positionPrefs.edit().putInt("x", lp.x).putInt("y", lp.y).apply()
+                    } else if (event.eventTime - downTime < 400L) {
+                        onOpenApp()
+                    }
                     true
                 }
                 else -> false
