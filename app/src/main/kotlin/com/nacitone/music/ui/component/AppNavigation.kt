@@ -5,9 +5,13 @@
 
 package com.nacitone.music.ui.component
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -152,12 +156,14 @@ fun AppNavigationBar(
     val haptics = LocalHapticFeedback.current
     val viewConfiguration = LocalViewConfiguration.current
 
-    val lineColor = GlassTint.copy(alpha = 0.18f)
+    // Footer melengkung di sudut atas: kaca bening dengan garis tepi mengikuti lekukan.
+    val barShape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
     NavigationBar(
         modifier =
-            modifier.drawBehind {
-                drawLine(lineColor, Offset(0f, 0f), Offset(size.width, 0f), strokeWidth = 1.dp.toPx())
-            },
+            modifier
+                .clip(barShape)
+                .background(GlassTint.copy(alpha = 0.08f), barShape)
+                .border(1.dp, GlassTint.copy(alpha = 0.18f), barShape),
         containerColor = Color.Transparent,
         contentColor = contentColor,
         tonalElevation = 0.dp,
