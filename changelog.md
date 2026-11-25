@@ -1,3 +1,13 @@
+# Nacitone 1.4.8
+
+## Fitur baru
+- Pembaruan dalam aplikasi: tombol Perbarui mengunduh APK dengan progres, memeriksa paket dan tanda tangan, lalu memasangnya. Versi ini perlu dipasang manual satu kali; setelah itu pembaruan bisa dari dalam aplikasi
+- Tombol di layar pemutar menjadi footer melengkung berbahan kaca bening, seragam dengan footer beranda
+
+## Perbaikan
+- Lagu yang dipencet tidak lagi tertimpa antrean lama saat aplikasi dibuka kembali
+- Posisi dan volume sesi lalu dipulihkan setelah antrean selesai dimuat, bukan memakai timer tetap
+
 # Nacitone 1.4.7
 
 ## Fitur baru
