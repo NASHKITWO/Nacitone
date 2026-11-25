@@ -397,6 +397,13 @@ class MusicService :
     private var crossfadeJob: Job? = null
     private var taskCleared = false
     private var playQueueJob: Job? = null
+
+    /** Naik setiap kali pengguna memulai antrean sendiri; pemulihan antrean lama harus mengalah bila berubah. */
+    @Volatile
+    private var userQueueGeneration = 0
+
+    /** Status pemutar dari sesi lalu, diterapkan setelah antrean yang dipulihkan selesai dimuat. */
+    private var restoredPlayerState: PersistPlayerState? = null
     private var lyricsOverlay: LyricsOverlay? = null
     private val appInForeground = MutableStateFlow(false)
     private val processObserver =
@@ -1073,14 +1080,29 @@ class MusicService :
                 }.onSuccess { queue ->
                     runCatching {
                         val restoredQueue = queue.toQueue()
+                        val generationAtStart = userQueueGeneration
                         scope.launch {
                             playerInitialized.first { it }
-                            if (isActive) {
-                                playQueue(
-                                    queue = restoredQueue,
-                                    playWhenReady = false,
-                                    restoringQueue = true,
-                                )
+                            // Pengguna sudah memilih lagu sendiri sebelum pemulihan jalan: jangan timpa pilihannya
+                            // dengan antrean lama yang dijeda (inilah yang membuat lagu "tidak bisa diputar").
+                            if (!isActive || userQueueGeneration != generationAtStart || player.mediaItemCount > 0) {
+                                Timber.tag(TAG).d("Skip restore: pengguna sudah memulai pemutaran")
+                                restoredPlayerState = null
+                                return@launch
+                            }
+                            playQueue(
+                                queue = restoredQueue,
+                                playWhenReady = false,
+                                restoringQueue = true,
+                            )
+                            playQueueJob?.join()
+                            val state = restoredPlayerState
+                            restoredPlayerState = null
+                            if (state != null && userQueueGeneration == generationAtStart) {
+                                playerVolume.value = state.volume
+                                if (state.currentMediaItemIndex in 0 until player.mediaItemCount) {
+                                    player.seekTo(state.currentMediaItemIndex, state.currentPosition)
+                                }
                             }
                         }
                     }.onFailure { error ->
@@ -1123,17 +1145,9 @@ class MusicService :
                         }
                     }
                 }.onSuccess { playerState ->
-                    scope.launch {
-                        delay(1000) // Wait for queue to be loaded
-                        // Don't restore repeat/shuffle from playerState as they are already set from DataStore (source of truth)
-                        // player.repeatMode = playerState.repeatMode
-                        // player.shuffleModeEnabled = playerState.shuffleModeEnabled
-                        playerVolume.value = playerState.volume
-
-                        if (playerState.currentMediaItemIndex < player.mediaItemCount) {
-                            player.seekTo(playerState.currentMediaItemIndex, playerState.currentPosition)
-                        }
-                    }
+                    // Diterapkan oleh korutin pemulihan antrean setelah antrean selesai dimuat (bukan timer 1 detik).
+                    // Repeat/shuffle sengaja tidak dipulihkan: DataStore adalah sumber kebenarannya.
+                    restoredPlayerState = playerState
                 }.onFailure { error ->
                     Timber.tag(TAG).w(error, "Failed to read player state, clearing data")
                     clearPersistedQueueFiles()
@@ -1672,6 +1686,7 @@ class MusicService :
             Timber.tag(TAG).d("playQueue from user while taskCleared; resuming")
             taskCleared = false
         }
+        if (!restoringQueue) userQueueGeneration++
         if (!playerInitialized.value) {
             Timber.tag(TAG).w("playQueue called before player initialization, queuing request")
             scope.launch {
