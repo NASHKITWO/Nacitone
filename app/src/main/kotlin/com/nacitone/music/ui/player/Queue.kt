@@ -263,19 +263,22 @@ fun Queue(
         },
         collapsedContent = {
             if (useNewPlayerDesign) {
-                // New design
+                // Desain baru: footer melengkung berbahan kaca bening, sama seperti footer beranda.
+                val footerShape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier =
                         Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 30.dp, vertical = 12.dp)
+                            .clip(footerShape)
+                            .background(GlassTint.copy(alpha = 0.08f), footerShape)
+                            .border(1.dp, GlassTint.copy(alpha = 0.18f), footerShape)
                             .windowInsetsPadding(
                                 WindowInsets.systemBars.only(
                                     WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal,
                                 ),
-                            ),
+                            ).padding(horizontal = 12.dp, vertical = 10.dp),
                 ) {
                     val buttonSize = 42.dp
                     val iconSize = 24.dp
@@ -375,14 +378,11 @@ fun Queue(
                         textBackgroundColor = TextBackgroundColor,
                     )
 
-                    Spacer(modifier = Modifier.weight(1f))
-
                     Box(
                         modifier =
                             Modifier
                                 .size(buttonSize)
                                 .clip(CircleShape)
-                                .background(textButtonColor)
                                 .clickable {
                                     menuState.show {
                                         PlayerMenu(
@@ -405,7 +405,7 @@ fun Queue(
                             painter = painterResource(id = R.drawable.more_vert),
                             contentDescription = null,
                             modifier = Modifier.size(iconSize),
-                            tint = iconButtonColor,
+                            tint = Color.White.copy(alpha = 0.75f),
                         )
                     }
                 }
@@ -1270,26 +1270,15 @@ private fun PlayerQueueButton(
     iconSize: androidx.compose.ui.unit.Dp,
     textBackgroundColor: Color,
 ) {
-    val buttonModifier =
-        Modifier
-            .clip(shape)
-            .clickable(enabled = enabled, onClick = onClick)
-
+    // Gaya footer beranda: tombol berbentuk pil; aktif = kaca putih bening, tidak aktif = transparan.
+    val pill = CircleShape
     val alphaFactor = if (enabled) 1f else 0.35f
-
     val appliedModifier =
-        if (isActive) {
-            modifier.then(buttonModifier.background(textButtonColor)).alpha(alphaFactor)
-        } else {
-            modifier
-                .then(
-                    buttonModifier.border(
-                        width = 1.dp,
-                        color = textButtonColor.copy(alpha = 0.3f),
-                        shape = shape,
-                    ),
-                ).alpha(alphaFactor)
-        }
+        modifier
+            .clip(pill)
+            .then(if (isActive) Modifier.background(GlassTint.copy(alpha = 0.20f), pill) else Modifier)
+            .clickable(enabled = enabled, onClick = onClick)
+            .alpha(alphaFactor)
 
     Box(
         modifier = appliedModifier,
@@ -1298,7 +1287,7 @@ private fun PlayerQueueButton(
         if (text != null) {
             Text(
                 text = text,
-                color = iconButtonColor.copy(alpha = if (enabled) 1f else 0.6f),
+                color = Color.White.copy(alpha = if (enabled) 1f else 0.6f),
                 fontSize = 10.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -1309,12 +1298,7 @@ private fun PlayerQueueButton(
                         .basicMarquee(),
             )
         } else {
-            val baseTint =
-                if (isActive) {
-                    iconButtonColor
-                } else {
-                    Color.White
-                }
+            val baseTint = if (isActive) Color.White else Color.White.copy(alpha = 0.75f)
             val finalTint = if (enabled) baseTint else baseTint.copy(alpha = 0.5f)
             Icon(
                 painter = painterResource(id = icon),
