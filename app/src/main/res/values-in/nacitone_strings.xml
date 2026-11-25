@@ -793,4 +793,13 @@
     <string name="lyrics_overlay_loading">Memuat lirik…</string>
     <string name="lyrics_overlay_not_found">Lirik tidak ditemukan</string>
     <string name="lyrics_overlay_unsynced">Lirik belum tersinkron waktu</string>
+    <string name="update_downloading">Mengunduh pembaruan…</string>
+    <string name="update_download_progress">Mengunduh pembaruan… %1$d%%</string>
+    <string name="update_verifying">Memeriksa pembaruan…</string>
+    <string name="update_installing">Memasang pembaruan…</string>
+    <string name="update_need_permission">Izinkan pemasangan aplikasi dari Nacitone, lalu ketuk Perbarui lagi.</string>
+    <string name="update_failed_download">Unduhan gagal. Periksa koneksi lalu coba lagi.</string>
+    <string name="update_failed_verify">Pembaruan ditolak: %1$s</string>
+    <string name="update_failed_install">Pemasangan gagal: %1$s</string>
+    <string name="update_open_browser">Buka di browser</string>
 </resources>

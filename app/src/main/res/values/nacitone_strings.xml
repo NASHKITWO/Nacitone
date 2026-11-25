@@ -923,4 +923,13 @@
     <string name="lyrics_overlay_loading">Loading lyrics…</string>
     <string name="lyrics_overlay_not_found">Lyrics not found</string>
     <string name="lyrics_overlay_unsynced">Lyrics are not time-synced</string>
+    <string name="update_downloading">Downloading update…</string>
+    <string name="update_download_progress">Downloading update… %1$d%%</string>
+    <string name="update_verifying">Verifying update…</string>
+    <string name="update_installing">Installing update…</string>
+    <string name="update_need_permission">Allow installing apps from Nacitone, then tap Update again.</string>
+    <string name="update_failed_download">Download failed. Check your connection and try again.</string>
+    <string name="update_failed_verify">Update rejected: %1$s</string>
+    <string name="update_failed_install">Install failed: %1$s</string>
+    <string name="update_open_browser">Open in browser</string>
 </resources>

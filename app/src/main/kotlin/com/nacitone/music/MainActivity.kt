@@ -78,6 +78,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -139,6 +140,9 @@ import com.nacitone.music.constants.AppLanguageKey
 import com.nacitone.music.constants.CheckForUpdatesKey
 import com.nacitone.music.constants.DefaultOpenTabKey
 import com.nacitone.music.constants.DismissedStandaloneUpdateKey
+import com.nacitone.music.ui.component.UpdateInstallBlock
+import com.nacitone.music.utils.ApkInstaller
+import com.nacitone.music.utils.UpdateInstallState
 import com.nacitone.music.constants.DensityScaleKey
 import com.nacitone.music.constants.DisableScreenshotKey
 import com.nacitone.music.constants.EnableHighRefreshRateKey
@@ -1378,6 +1382,7 @@ class MainActivity : FragmentActivity() {
                     if (!showChangelog.value) {
                         availableUpdate?.let { update ->
                             val dismissUpdate: () -> Unit = {
+                                ApkInstaller.reset()
                                 availableUpdate = null
                                 lifecycleScope.launch {
                                     safeDataStoreEdit {
@@ -1403,6 +1408,7 @@ class MainActivity : FragmentActivity() {
                                                 ),
                                             style = MaterialTheme.typography.bodyMedium,
                                         )
+                                        UpdateInstallBlock()
                                         Text(
                                             text = stringResource(R.string.changelog),
                                             style = MaterialTheme.typography.titleSmall,
@@ -1415,13 +1421,26 @@ class MainActivity : FragmentActivity() {
                                     }
                                 },
                                 confirmButton = {
-                                    TextButton(
-                                        onClick = {
-                                            dismissUpdate()
-                                            startActivity(Intent(Intent.ACTION_VIEW, update.downloadUrl.toUri()))
-                                        },
-                                    ) {
-                                        Text(stringResource(R.string.update_action))
+                                    val installState by ApkInstaller.state.collectAsState()
+                                    val failed = installState is UpdateInstallState.Failed
+                                    Row {
+                                        if (failed) {
+                                            // Jalan keluar bila pemasangan dalam aplikasi gagal: unduh manual lewat browser.
+                                            TextButton(
+                                                onClick = {
+                                                    dismissUpdate()
+                                                    startActivity(Intent(Intent.ACTION_VIEW, update.downloadUrl.toUri()))
+                                                },
+                                            ) {
+                                                Text(stringResource(R.string.update_open_browser))
+                                            }
+                                        }
+                                        TextButton(
+                                            enabled = !ApkInstaller.isBusy && installState !is UpdateInstallState.Installing,
+                                            onClick = { ApkInstaller.start(this@MainActivity, update.downloadUrl) },
+                                        ) {
+                                            Text(stringResource(R.string.update_action))
+                                        }
                                     }
                                 },
                                 dismissButton = {

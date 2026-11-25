@@ -11,6 +11,9 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
+import com.nacitone.music.ui.component.UpdateInstallProgress
+import com.nacitone.music.ui.component.updateInstallStatusText
+import com.nacitone.music.utils.ApkInstaller
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -48,6 +51,7 @@ fun SettingsScreen(
     latestVersionName: String,
 ) {
     val uriHandler = LocalUriHandler.current
+    val settingsContext = androidx.compose.ui.platform.LocalContext.current
     val context = LocalContext.current
     val isAndroid12OrLater = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val hasAndroidAuto = remember {
@@ -248,14 +252,17 @@ fun SettingsScreen(
                                     )
                                 },
                                 description = {
-                                    Text(
-                                        text = latestVersionName,
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Column {
+                                        Text(
+                                            text = updateInstallStatusText() ?: latestVersionName,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                        UpdateInstallProgress(Modifier.padding(top = 6.dp))
+                                    }
                                 },
                                 showBadge = true,
-                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "SettingsScreen: diabaikan") } }
+                                onClick = { ApkInstaller.start(settingsContext, downloadUrl) }
                             )
                         )
                     }

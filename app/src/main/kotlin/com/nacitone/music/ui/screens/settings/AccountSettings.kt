@@ -6,6 +6,9 @@
 package com.nacitone.music.ui.screens.settings
 
 import androidx.compose.foundation.background
+import com.nacitone.music.ui.component.UpdateInstallProgress
+import com.nacitone.music.ui.component.updateInstallStatusText
+import com.nacitone.music.utils.ApkInstaller
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -44,6 +47,7 @@ fun AccountSettings(
     latestVersionName: String
 ) {
     val uriHandler = LocalUriHandler.current
+    val accountContext = androidx.compose.ui.platform.LocalContext.current
     val hasUpdate = BuildConfig.UPDATER_AVAILABLE && latestVersionName != BuildConfig.BASE_VERSION_NAME
 
     Column(
@@ -112,10 +116,15 @@ fun AccountSettings(
                         add(
                             Material3SettingsItem(
                                 title = { Text(stringResource(R.string.new_version_available)) },
-                                description = { Text(latestVersionName) },
+                                description = {
+                                    Column {
+                                        Text(updateInstallStatusText() ?: latestVersionName)
+                                        UpdateInstallProgress(Modifier.padding(top = 6.dp))
+                                    }
+                                },
                                 icon = painterResource(R.drawable.update),
                                 showBadge = true,
-                                onClick = { try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "AccountSettings: diabaikan") } }
+                                onClick = { ApkInstaller.start(accountContext, downloadUrl) }
                             )
                         )
                     }
