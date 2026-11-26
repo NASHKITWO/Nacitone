@@ -405,11 +405,17 @@ class MusicService :
     /** Status pemutar dari sesi lalu, diterapkan setelah antrean yang dipulihkan selesai dimuat. */
     private var restoredPlayerState: PersistPlayerState? = null
     private var lyricsOverlay: LyricsOverlay? = null
+
+    /** Disembunyikan pengguna lewat ✕: berlaku sampai Nacitone dibuka lagi. */
+    private val overlayDismissed = MutableStateFlow(false)
     private val appInForeground = MutableStateFlow(false)
     private val processObserver =
         androidx.lifecycle.LifecycleEventObserver { _, event ->
             when (event) {
-                androidx.lifecycle.Lifecycle.Event.ON_START -> appInForeground.value = true
+                androidx.lifecycle.Lifecycle.Event.ON_START -> {
+                    appInForeground.value = true
+                    overlayDismissed.value = false
+                }
                 androidx.lifecycle.Lifecycle.Event.ON_STOP -> appInForeground.value = false
                 else -> Unit
             }
@@ -3918,7 +3924,7 @@ class MusicService :
         val overlay =
             LyricsOverlay(
                 context = this,
-                onClose = { scope.launch { dataStore.edit { it[LyricsOverlayEnabledKey] = false } } },
+                onDismiss = { overlayDismissed.value = true },
                 onOpenApp = {
                     runCatching {
                         startActivity(
@@ -3942,11 +3948,12 @@ class MusicService :
             appInForeground,
             currentMediaMetadata.distinctUntilChangedBy { it?.id },
             lyricsFlow,
-        ) { enabled, foreground, md, entity ->
+            overlayDismissed,
+        ) { enabled, foreground, md, entity, dismissed ->
             val canDraw =
                 Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
                     android.provider.Settings.canDrawOverlays(this)
-            val show = enabled && !foreground && canDraw && md != null
+            val show = enabled && !foreground && canDraw && md != null && !dismissed
             Triple(show, md, entity)
         }.collectLatest(scope) { (show, md, entity) ->
             if (!show || md == null) {
