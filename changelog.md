@@ -1,3 +1,15 @@
+# Nacitone 1.4.9
+
+## Fitur baru
+- Kartu rekap mingguan lebih hidup: latar dari sampul lagu teratas, kartu lagu #1 besar, baris kaca, dan artis teratas berinisial
+- Dashboard Dengar Bersama lebih hidup: cincin cahaya di header, kode ruangan bisa diketuk untuk disalin, avatar muncul beranimasi, host punya cincin denyut
+- Lirik mengambang: bisa disembunyikan atau diminimalkan jadi gelembung, kaca dengan blur latar, area sentuh lebih besar
+- Footer beranda dan pemutar lebih pekat, tidak terlalu bening
+
+## Perbaikan
+- Status pembaruan dalam aplikasi tidak lagi macet, sesi pemasang dibatalkan saat gagal, dan ada tombol buka di browser bila gagal
+- Overlay lirik hilang saat pemutaran berhenti
+
 # Nacitone 1.4.8
 
 ## Fitur baru
