@@ -219,7 +219,7 @@ class LyricsOverlay(
                 gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
                 x = prefs.getInt("x", 0)
                 y = prefs.getInt("y", dp(96))
-                if (blurSupported()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && blurSupported()) {
                     // Blur latar sungguhan (Android 12+) = efek kaca yang sebenarnya.
                     this.flags = this.flags or WindowManager.LayoutParams.FLAG_BLUR_BEHIND
                     blurBehindRadius = dp(24)

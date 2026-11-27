@@ -14,6 +14,7 @@ import android.widget.Toast
 import com.nacitone.music.ui.component.UpdateInstallProgress
 import com.nacitone.music.ui.component.updateInstallStatusText
 import com.nacitone.music.utils.ApkInstaller
+import com.nacitone.music.utils.UpdateInstallState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -262,7 +263,15 @@ fun SettingsScreen(
                                     }
                                 },
                                 showBadge = true,
-                                onClick = { ApkInstaller.start(settingsContext, downloadUrl) }
+                                onClick = {
+                                    if (ApkInstaller.state.value is UpdateInstallState.Failed) {
+                                        // Pemasangan dalam aplikasi gagal: jalan keluar lewat browser.
+                                        try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "SettingsScreen: gagal membuka browser") }
+                                        ApkInstaller.reset()
+                                    } else {
+                                        ApkInstaller.start(settingsContext, downloadUrl)
+                                    }
+                                }
                             )
                         )
                     }

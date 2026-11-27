@@ -3960,7 +3960,6 @@ class MusicService :
                 overlay.hide()
                 return@collectLatest
             }
-            overlay.show()
             val raw = entity?.lyrics
             val lines =
                 if (raw != null && raw != LyricsEntity.LYRICS_NOT_FOUND && lyricsTextLooksSynced(raw)) {
@@ -3977,6 +3976,13 @@ class MusicService :
                     else -> null
                 }
             while (true) {
+                // Sesi sudah dihentikan atau antrean kosong: jangan biarkan jendela tertinggal di layar.
+                if (player.playbackState == Player.STATE_IDLE || player.mediaItemCount == 0) {
+                    overlay.hide()
+                    delay(1000)
+                    continue
+                }
+                overlay.show()
                 if (message != null) {
                     overlay.update(md.title, "", message, "")
                 } else {

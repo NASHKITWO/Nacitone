@@ -22,7 +22,9 @@ class UpdateInstallReceiver : BroadcastReceiver() {
                     } else {
                         intent.getParcelableExtra(Intent.EXTRA_INTENT)
                     }
-                if (confirm != null) {
+                if (confirm == null) {
+                    ApkInstaller.onInstallResult(PackageInstaller.STATUS_FAILURE, "Tidak ada layar konfirmasi")
+                } else {
                     runCatching { context.startActivity(confirm.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
                         .onFailure {
                             Timber.w(it, "UpdateInstallReceiver: gagal membuka konfirmasi pemasangan")
