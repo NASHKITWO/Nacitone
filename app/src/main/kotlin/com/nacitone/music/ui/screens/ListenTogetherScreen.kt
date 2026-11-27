@@ -109,6 +109,7 @@ import com.nacitone.music.listentogether.UserInfo
 import com.nacitone.music.ui.component.glassCardBorder
 import com.nacitone.music.ui.component.glassCardColors
 import com.nacitone.music.ui.component.softEnter
+import com.nacitone.music.ui.component.popIn
 import com.nacitone.music.ui.component.DefaultDialog
 import com.nacitone.music.ui.component.IconButton
 import com.nacitone.music.ui.utils.backToMain
@@ -488,13 +489,32 @@ private fun HeaderSection(isInRoom: Boolean = false) {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        val halo = rememberInfiniteTransition(label = "halo")
+        val haloA by halo.animateFloat(0f, 1f, infiniteRepeatable(tween(2600)), label = "haloA")
+        val haloB by halo.animateFloat(0f, 1f, infiniteRepeatable(tween(2600, delayMillis = 1300)), label = "haloB")
+        Box(
+            modifier = Modifier.size(132.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            listOf(haloA, haloB).forEach { p ->
+                Box(
+                    modifier =
+                        Modifier
+                            .size(96.dp + 36.dp * p)
+                            .border(1.dp, GlassTint.copy(alpha = 0.22f * (1f - p)), CircleShape),
+                )
+            }
         Box(
             modifier =
                 Modifier
                     .size(96.dp)
                     .clip(CircleShape)
-                    .background(GlassTint.copy(alpha = 0.08f))
-                    .border(1.dp, GlassTint.copy(alpha = 0.18f), CircleShape),
+                    .background(
+                        Brush.linearGradient(
+                            listOf(GlassTint.copy(alpha = 0.18f), GlassTint.copy(alpha = 0.04f)),
+                        ),
+                    )
+                    .border(1.dp, GlassTint.copy(alpha = 0.22f), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
             Box(
@@ -514,7 +534,8 @@ private fun HeaderSection(isInRoom: Boolean = false) {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        }
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = stringResource(R.string.listen_together),
             style = MaterialTheme.typography.headlineMedium,
@@ -734,19 +755,32 @@ private fun RoomStatusCard(
             Spacer(modifier = Modifier.height(12.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally),
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(16.dp))
+                        .clickable {
+                            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                            clipboard.setPrimaryClip(android.content.ClipData.newPlainText("Room Code", roomCode))
+                            Toast.makeText(context, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+                        },
             ) {
-                roomCode.forEach { ch ->
+                roomCode.forEachIndexed { index, ch ->
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier =
                             Modifier
                                 .weight(1f, fill = false)
-                                .width(34.dp)
-                                .height(48.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.45f))
-                                .border(1.dp, GlassTint.copy(alpha = 0.20f), RoundedCornerShape(12.dp)),
+                                .width(38.dp)
+                                .height(56.dp)
+                                .popIn(index * 60)
+                                .clip(RoundedCornerShape(14.dp))
+                                .background(
+                                    Brush.verticalGradient(
+                                        listOf(GlassTint.copy(alpha = 0.16f), Color.Black.copy(alpha = 0.35f)),
+                                    ),
+                                )
+                                .border(1.dp, GlassTint.copy(alpha = 0.26f), RoundedCornerShape(14.dp)),
                     ) {
                         Text(
                             text = ch.toString(),
@@ -839,13 +873,30 @@ private fun ConnectedUsersSection(
         Column(
             modifier = Modifier.padding(20.dp),
         ) {
-            Text(
-                text = "${stringResource(R.string.connected_users)} (${users.size})",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Spacer(modifier = Modifier.height(12.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = stringResource(R.string.connected_users),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.weight(1f),
+                )
+                Box(
+                    modifier =
+                        Modifier
+                            .clip(CircleShape)
+                            .background(GlassTint.copy(alpha = 0.14f))
+                            .border(1.dp, GlassTint.copy(alpha = 0.24f), CircleShape),
+                ) {
+                    Text(
+                        text = "${users.size}",
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier =
@@ -854,8 +905,9 @@ private fun ConnectedUsersSection(
                         .horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                users.forEach { user ->
+                users.forEachIndexed { index, user ->
                     UserAvatar(
+                        modifier = Modifier.popIn(index * 70),
                         user = user,
                         isCurrentUser = user.userId == currentUserId,
                         isClickable = isHost && user.userId != currentUserId,
@@ -873,17 +925,34 @@ private fun UserAvatar(
     isCurrentUser: Boolean,
     isClickable: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier =
-            Modifier
+            modifier
                 .width(72.dp)
+                .clip(RoundedCornerShape(16.dp))
                 .clickable(enabled = isClickable, onClick = onClick),
     ) {
+        val ringTransition = rememberInfiniteTransition(label = "avatarRing")
+        val ring by ringTransition.animateFloat(0f, 1f, infiniteRepeatable(tween(2200)), label = "ring")
         Box(
             contentAlignment = Alignment.Center,
+            modifier = Modifier.size(68.dp),
         ) {
+            if (user.isHost) {
+                Box(
+                    modifier =
+                        Modifier
+                            .size(56.dp + 12.dp * ring)
+                            .border(
+                                1.5.dp,
+                                MaterialTheme.colorScheme.primary.copy(alpha = 0.5f * (1f - ring)),
+                                CircleShape,
+                            ),
+                )
+            }
             Surface(
                 modifier = Modifier.size(56.dp),
                 shape = CircleShape,
