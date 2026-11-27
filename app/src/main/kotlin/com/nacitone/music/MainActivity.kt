@@ -1436,7 +1436,7 @@ class MainActivity : FragmentActivity() {
                                             }
                                         }
                                         TextButton(
-                                            enabled = !ApkInstaller.isBusy && installState !is UpdateInstallState.Installing,
+                                            enabled = !ApkInstaller.isBusy,
                                             onClick = { ApkInstaller.start(this@MainActivity, update.downloadUrl) },
                                         ) {
                                             Text(stringResource(R.string.update_action))

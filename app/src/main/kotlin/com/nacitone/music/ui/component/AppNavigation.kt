@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -162,8 +163,12 @@ fun AppNavigationBar(
         modifier =
             modifier
                 .clip(barShape)
-                .background(GlassTint.copy(alpha = 0.08f), barShape)
-                .border(1.dp, GlassTint.copy(alpha = 0.18f), barShape),
+                // Kaca yang cukup pekat: dasar gelap 92% + kilau tipis dari atas + garis tepi terang.
+                .background(Color(0xFF101114).copy(alpha = 0.92f), barShape)
+                .background(
+                    Brush.verticalGradient(listOf(GlassTint.copy(alpha = 0.10f), GlassTint.copy(alpha = 0.02f))),
+                    barShape,
+                ).border(1.dp, GlassTint.copy(alpha = 0.22f), barShape),
         containerColor = Color.Transparent,
         contentColor = contentColor,
         tonalElevation = 0.dp,

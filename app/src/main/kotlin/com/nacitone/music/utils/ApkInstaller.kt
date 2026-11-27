@@ -59,18 +59,19 @@ object ApkInstaller {
     private val _state = MutableStateFlow<UpdateInstallState>(UpdateInstallState.Idle)
     val state: StateFlow<UpdateInstallState> = _state.asStateFlow()
 
+    /** Sibuk hanya saat mengunduh atau memeriksa. Saat Installing pengguna boleh mencoba lagi (sesi bisa macet). */
     val isBusy: Boolean
         get() =
             when (_state.value) {
-                is UpdateInstallState.Downloading,
-                UpdateInstallState.Verifying,
-                UpdateInstallState.Installing,
-                -> true
+                is UpdateInstallState.Downloading, UpdateInstallState.Verifying -> true
                 else -> false
             }
 
+    /** Membatalkan unduhan yang berjalan dan mengembalikan status ke awal. */
     fun reset() {
-        if (!isBusy) _state.value = UpdateInstallState.Idle
+        job?.cancel()
+        job = null
+        _state.value = UpdateInstallState.Idle
     }
 
     /** Dipanggil oleh [UpdateInstallReceiver] dengan hasil sesi pemasangan. */
@@ -107,27 +108,24 @@ object ApkInstaller {
         _state.value = UpdateInstallState.Downloading(-1)
         job =
             scope.launch {
+                var phase = UpdateInstallState.Reason.DOWNLOAD
                 try {
                     val apk = download(appContext, url)
                     _state.value = UpdateInstallState.Verifying
+                    phase = UpdateInstallState.Reason.VERIFY
                     verify(appContext, apk)?.let { problem ->
                         apk.delete()
                         _state.value = UpdateInstallState.Failed(UpdateInstallState.Reason.VERIFY, problem)
                         return@launch
                     }
                     _state.value = UpdateInstallState.Installing
+                    phase = UpdateInstallState.Reason.INSTALL
                     install(appContext, apk)
                 } catch (e: kotlinx.coroutines.CancellationException) {
                     throw e
                 } catch (e: Exception) {
                     Timber.tag(TAG).w(e, "Pembaruan gagal")
-                    val reason =
-                        if (_state.value == UpdateInstallState.Installing) {
-                            UpdateInstallState.Reason.INSTALL
-                        } else {
-                            UpdateInstallState.Reason.DOWNLOAD
-                        }
-                    _state.value = UpdateInstallState.Failed(reason, e.message)
+                    _state.value = UpdateInstallState.Failed(phase, e.message)
                 }
             }
     }
@@ -176,7 +174,7 @@ object ApkInstaller {
                     val buffer = ByteArray(64 * 1024)
                     var lastPercent = -2
                     while (true) {
-                        if (!scope.isActive) error("Dibatalkan")
+                        if (job?.isActive == false) throw kotlinx.coroutines.CancellationException("Dibatalkan")
                         val n = input.read(buffer)
                         if (n < 0) break
                         output.write(buffer, 0, n)
@@ -276,6 +274,16 @@ object ApkInstaller {
                 }
             }
         val sessionId = installer.createSession(params)
+        try {
+            commitSession(context, installer, sessionId, apk)
+        } catch (e: Throwable) {
+            // Jangan tinggalkan sesi setengah jadi yang menahan data sebesar APK.
+            runCatching { installer.abandonSession(sessionId) }
+            throw e
+        }
+    }
+
+    private fun commitSession(context: Context, installer: PackageInstaller, sessionId: Int, apk: File) {
         installer.openSession(sessionId).use { session ->
             apk.inputStream().use { input ->
                 session.openWrite("nacitone-update", 0, apk.length()).use { output ->

@@ -46,6 +46,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -101,6 +102,27 @@ fun WeeklyRecapScreen(
         } ?: ""
     val failedTemplate = stringResource(R.string.failed_to_create_image)
     val shareTitle = stringResource(R.string.share)
+
+    val backdropUrl = recap?.songs?.firstOrNull()?.song?.thumbnailUrl
+    if (backdropUrl != null) {
+        // Cahaya warna dari sampul lagu #1, memudar ke hitam; memberi kedalaman di balik kartu.
+        val page = MaterialTheme.colorScheme.background
+        Box(modifier = Modifier.fillMaxWidth().height(460.dp)) {
+            AsyncImage(
+                model = backdropUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                alpha = 0.5f,
+                modifier = Modifier.fillMaxSize().blur(56.dp),
+            )
+            Box(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(Brush.verticalGradient(0f to Color.Transparent, 1f to page)),
+            )
+        }
+    }
 
     Column(
         modifier =

@@ -82,6 +82,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -272,8 +273,11 @@ fun Queue(
                         Modifier
                             .fillMaxWidth()
                             .clip(footerShape)
-                            .background(GlassTint.copy(alpha = 0.08f), footerShape)
-                            .border(1.dp, GlassTint.copy(alpha = 0.18f), footerShape)
+                            .background(Color(0xFF101114).copy(alpha = 0.92f), footerShape)
+                            .background(
+                                Brush.verticalGradient(listOf(GlassTint.copy(alpha = 0.10f), GlassTint.copy(alpha = 0.02f))),
+                                footerShape,
+                            ).border(1.dp, GlassTint.copy(alpha = 0.22f), footerShape)
                             .windowInsetsPadding(
                                 WindowInsets.systemBars.only(
                                     WindowInsetsSides.Bottom + WindowInsetsSides.Horizontal,

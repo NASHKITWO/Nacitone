@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import com.nacitone.music.ui.component.UpdateInstallProgress
 import com.nacitone.music.ui.component.updateInstallStatusText
 import com.nacitone.music.utils.ApkInstaller
+import com.nacitone.music.utils.UpdateInstallState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -124,7 +125,15 @@ fun AccountSettings(
                                 },
                                 icon = painterResource(R.drawable.update),
                                 showBadge = true,
-                                onClick = { ApkInstaller.start(accountContext, downloadUrl) }
+                                onClick = {
+                                    if (ApkInstaller.state.value is UpdateInstallState.Failed) {
+                                        // Pemasangan dalam aplikasi gagal: jalan keluar lewat browser.
+                                        try { uriHandler.openUri(downloadUrl) } catch (e: Exception) { timber.log.Timber.w(e, "AccountSettings: gagal membuka browser") }
+                                        ApkInstaller.reset()
+                                    } else {
+                                        ApkInstaller.start(accountContext, downloadUrl)
+                                    }
+                                }
                             )
                         )
                     }

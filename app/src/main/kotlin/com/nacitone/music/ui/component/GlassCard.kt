@@ -90,6 +90,25 @@ fun Modifier.softEnter(delayMillis: Int = 0): Modifier =
     }
 
 
+/** Muncul membesar dengan pantulan pegas halus; dipakai untuk elemen kecil seperti avatar dan kotak kode. */
+fun Modifier.popIn(delayMillis: Int = 0): Modifier =
+    composed {
+        val progress = remember { Animatable(0f) }
+        LaunchedEffect(Unit) {
+            if (delayMillis > 0) delay(delayMillis.toLong())
+            progress.animateTo(
+                1f,
+                spring(dampingRatio = Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessLow),
+            )
+        }
+        graphicsLayer {
+            val p = progress.value
+            alpha = p.coerceIn(0f, 1f)
+            scaleX = 0.6f + 0.4f * p
+            scaleY = 0.6f + 0.4f * p
+        }
+    }
+
 /** Bentuk pil-bulat untuk field teks kaca. */
 val GlassFieldShape = RoundedCornerShape(20.dp)
 
